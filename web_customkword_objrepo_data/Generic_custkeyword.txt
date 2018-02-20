@@ -156,7 +156,6 @@ Get_carousel_items
     \    ${amounttitlesubs}    Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${looping}]/descendant::div[@class="_3cni"]
     \    Get_Carousel_Buttons    ${order}    ${totalbuttonitems}    ${looping}
     \    Get_Carousel_Title_Subtitle    ${order}    ${looping}
-    \    ${looping}    Set Variable    ${looping}+1
 
 Get_carousel_items_on_specific_location
     [Arguments]    ${order}    ${element_number}
@@ -172,3 +171,19 @@ Check_carousel_item
     \    Set Suite Variable    ${current_carousel_button}    ${item}
     \    Wait Until Keyword Succeeds    10s    2s    Wait Until Page Contains Element    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/descendant::*[@class='_3cng' and contains(.,"${current_carousel_title}")]/following-sibling::*[@class='_3cnl' and contains(.,"${c_subtitle}")]/parent::*/parent::div/following-sibling::*/descendant::*[@class='_3cnp' and contains(.,"${current_carousel_button}")]
     Check_where_to_swipe_carousel    ${order}
+
+Compare Images
+    [Arguments]    ${Reference_Image_Path}    ${Test_Image_Path}    ${Allowed_Threshold}
+    ${TEMP}=    Replace String    ${IMAGE_COMPARATOR_COMMAND}    __REFERENCE__    ${Reference_Image_Path}
+    ${COMMAND}=    Replace String    ${TEMP}    __TEST__    ${Test_Image_Path}
+    Log    Executing: ${COMMAND}
+    ${RC}    ${OUTPUT}=    Run And Return Rc And Output    ${COMMAND}
+    Log    Return Code: ${RC}
+    Log    Return Output: ${OUTPUT}
+    ${RESULT}    Evaluate    ${OUTPUT} < ${Allowed_Threshold}
+    Should be True    ${RESULT}
+
+Get_image_src
+    [Arguments]    ${order}
+    ${image_src}    Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::img    currentSrc
+    [Return]    ${image_src}
