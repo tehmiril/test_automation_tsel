@@ -1,26 +1,28 @@
 *** Settings ***
 Library           Selenium2Library
-Resource          <...>/Custom_keywords_VA.txt
 Resource          <...>/Object_repository.txt
 Resource          <...>/Test_data_Indo.txt
+Library           String
+Resource          <...>/Detailed_custkeyword.txt
+Resource          <...>/Generic_custkeyword.txt
 
 *** Test Cases ***
 test_carousel
     [Setup]    Open_chrome
     Login_messenger    ${email}    ${password}
     User_input    lihat semua produk    #User_input    ${random_question_3}
-    Get_carousel_items_on_specific_location    2    4
+    Get_carousel_items_on_specific_location    2    3
     [Teardown]    Close Browser
 
 test_askPulsaKuota
     [Documentation]    Here registered user ask for both pulsa and kuota, without top-up.
     [Setup]    Open_chrome
     Login_messenger    ${email}    ${password}
-    Greet_VA_Indo
+    #Greet_VA_Indo
     User_input    ${ask_pulsa}
     Sleep    2s
     ${result}    Run Keyword and Return Status    Check_VA_response_text    1    ${VA_validateNumber}
-    Run Keyword If    ${result}    Click_Yes
+    Run Keyword If    ${result}    Click_Yes    1
     Check_VA_response_text    1    ${VA_answerPulsa1}
     Check_VA_response_text_with_2buttons    2    ${VA_answerPulsa2}    Ya    Tidak
     Capture Page Screenshot    response_pulsa.png
@@ -36,14 +38,14 @@ test_askPulsa
     [Documentation]    Here registered user ask for pulsa, without top-up.
     [Setup]    Open_chrome
     Login_messenger    ${email}    ${password}
-    Greet_VA_Indo
+    #Greet_VA_Indo
     User_input    ${ask_pulsa}
-    Sleep    2s
     ${result}    Run Keyword and Return Status    Check_VA_response_text    1    ${VA_validateNumber}
-    Run Keyword If    ${result}    Click_Yes
+    Run Keyword If    ${result}    Click_Yes    1
     Check_VA_response_text    1    ${VA_answerPulsa1}
     Check_VA_response_text_with_2buttons    2    ${VA_answerPulsa2}    Ya    Tidak
     Click_No    2
+    #Sleep    2s
     Check_VA_response_text    1    ${VA_question_1}
     Closing_session
     [Teardown]    Close Browser
@@ -62,7 +64,6 @@ test_simple_input_response
     Check_VA_response_carousel_exists    2
     Capture Page Screenshot    response_produk.png
     Cancel_and_closing_session
-    Sleep    2s
     [Teardown]    Close Browser
 
 10-TCASH Information
@@ -85,10 +86,9 @@ test_simple_input_response
     Check_carousel_item    2    Dapatkan TCASH    \    Dapatkan di GraPARI
     Check_carousel_item    2    Promo TCASH    Dapatkan diskon menarik di merchant mitra TCASH    Merchant TCASH
     Check_carousel_item    2    Info    Informasi mengenai TCASH    Pertanyaan Lain
-    Check_carousel_item    2    Dapatkan TCASH    Dapatkan TCASH di GraPARI atau dikirimkan ke rumah Kamu    Dapatkan di GraPARI
+    #Check_carousel_item    2    Dapatkan TCASH    Dapatkan TCASH di GraPARI atau dikirimkan ke rumah Kamu    Dapatkan di GraPARI
     Click_button_carousel    2    Dapatkan TCASH    Pesan Sticker
     #Click_button_carousel    2    Info    TCASH FAQ
-    Sleep    3s
     Cancel_and_closing_session
     [Teardown]    Close Browser
 
@@ -96,7 +96,7 @@ test_simple_input_response
     [Setup]    Open_chrome
     Login_messenger    ${email}    ${password}
     User_input    cara aktifkan tcash gmn ya?
-    Check_VA_response_text    1    TCASH dapat dinikmati oleh seluruh pelanggan Telkomsel baik pascabayar (kartuHalo) maupun prabayar (simPATI, Kartu As, dan Loop). \ Tekan *800*88*6DigitPIN# di HP Kamu. Untuk pengguna baru, tentukan 6 digit PIN Kamu sendiri.
+    Check_VA_response_text    1    TCASH dapat dinikmati oleh seluruh pelanggan Telkomsel baik pascabayar (kartuHalo) maupun prabayar (simPATI, Kartu As, dan Loop). Tekan *800*88*6DigitPIN# di HP Kamu. Untuk pengguna baru, tentukan 6 digit PIN Kamu sendiri.
     Check_VA_response_text    2    ${VA_question_1}
     User_input    cara isi ulang tcash gmn ya?
     Check_VA_response_text    1    Kamu bisa mengisi saldo TCASH Kamu dengan cara-cara berikut
