@@ -12,6 +12,7 @@ test_carousel
     Login_messenger    ${email}    ${password}
     User_input    lihat semua produk    #User_input    ${random_question_3}
     Get_carousel_items_on_specific_location    2    3
+    Check_carousel_item    2    SimPATI Combo    \    Info SimPATI Combo    Perdana SimPATI
     [Teardown]    Close Browser
 
 test_askPulsaKuota
