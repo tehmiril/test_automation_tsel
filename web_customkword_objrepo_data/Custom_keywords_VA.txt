@@ -101,8 +101,9 @@ Check_VA_response_text
 Check_VA_response_text_actual
     [Arguments]    ${user_input}    ${total_user_input}    ${order}    ${expected_text}
     ${textresponse}    Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${user_input}")])[${total_user_input}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div    body
-    #${textresponse2}=    Evaluate    '${textresponse}'.replace("\n", " ")
-    Should Contain    ${textresponse}    ${expected_text}
+    #${textresponse2}=    Execute Javascript    '${textresponse}'.replace("\n", " ")
+    ${textresponse2}=    Remove String Using Regexp    ${textresponse}    (\r\n|\r|\n)
+    Should Contain    ${textresponse2}    ${expected_text}
 
 Check_VA_response_image
     [Arguments]    ${order}
@@ -171,6 +172,10 @@ Click_button_carousel
     Set Suite Variable    ${current_carousel_title}    ${c_title}
     Set Suite Variable    ${current_carousel_button}    ${c_button}
     Check_where_to_swipe_carousel    ${order}
+    Click Element    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/descendant::*[@${carouselclass_obj} and contains(.,"${current_carousel_title}")]/following-sibling::div//a[contains(.,"${current_carousel_button}")]
+    Sleep    2s
+    Set Suite Variable    ${current_user_input}    ${c_button}
+    Run Keyword    Count_message_bubble_user_input    ${current_user_input}
     ${URLS}    Get Locations
 
 Get_locationX_carousel_item
