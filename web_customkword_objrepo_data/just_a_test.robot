@@ -6,14 +6,17 @@ Library           String
 Resource          Object_repository.txt
 Resource          Generic_custkeyword.txt
 Library           OperatingSystem
+Library           Collections
 
 *** Test Cases ***
 test_carousel
     [Setup]    Open_chrome
     Login_messenger    ${email}    ${password}
     User_input    lihat semua produk    #User_input    ${random_question_3}
-    Get_carousel_items_on_specific_location    2    3
-    Check_carousel_item    2    SimPATI Combo    \    Info SimPATI Combo    Perdana SimPATI
+    Get_carousel_items    2
+    Show_carousel_items_on_specific_location    2    3
+    Validate_carousel_items    2    SimPATI Combo    \    Info SimPATI Combo    Perdana SimPATI
+    Click_carousel_button_on_specific_location    2    4    Info Halo Kick
     [Teardown]    Close Browser
 
 test_askPulsaKuota
@@ -83,12 +86,12 @@ test_simple_input_response
     User_input    Tcash ada promo apa aja ya?
     Check_VA_response_text    1    TCASH adalah layanan uang elektronik dari Telkomsel yang telah mendapatkan izin dari Bank Indonesia. Berbeda dengan pulsa, TCASH dapat digunakan untuk bayar tagihan, bayar merchant, isi pulsa, kirim uang, dan banyak lagi.
     Check_VA_response_carousel_exists    2
-    Check_carousel_item    2    Promo TCASH    \    Merchant TCASH
-    Check_carousel_item    2    Info    \    Pertanyaan Lain
-    Check_carousel_item    2    Dapatkan TCASH    \    Dapatkan di GraPARI
-    Check_carousel_item    2    Promo TCASH    Dapatkan diskon menarik di merchant mitra TCASH    Merchant TCASH
-    Check_carousel_item    2    Info    Informasi mengenai TCASH    Pertanyaan Lain
-    #Check_carousel_item    2    Dapatkan TCASH    Dapatkan TCASH di GraPARI atau dikirimkan ke rumah Kamu    Dapatkan di GraPARI
+    Validate_carousel_items    2    Promo TCASH    \    Merchant TCASH
+    Validate_carousel_items    2    Info    \    Pertanyaan Lain
+    Validate_carousel_items    2    Dapatkan TCASH    \    Dapatkan di GraPARI
+    Validate_carousel_items    2    Promo TCASH    Dapatkan diskon menarik di merchant mitra TCASH    Merchant TCASH
+    Validate_carousel_items    2    Info    Informasi mengenai TCASH    Pertanyaan Lain
+    #Validate_carousel_items    2    Dapatkan TCASH    Dapatkan TCASH di GraPARI atau dikirimkan ke rumah Kamu    Dapatkan di GraPARI
     Click_button_carousel    2    Dapatkan TCASH    Pesan Sticker
     #Click_button_carousel    2    Info    TCASH FAQ
     Cancel_and_closing_session
@@ -103,11 +106,11 @@ test_simple_input_response
     User_input    cara isi ulang tcash gmn ya?
     Check_VA_response_text    1    Kamu bisa mengisi saldo TCASH Kamu dengan cara-cara berikut
     Check_VA_response_carousel_exists    2
-    Check_carousel_item    2    Mobile Banking    Ikuti cara berikut untuk isi saldo TCASH melalui mobile/sms    Lihat Caranya
-    Check_carousel_item    2    Internet Banking    Ikuti cara berikut untuk isi saldo TCASH melalui internet banking    Lihat Caranya
-    Check_carousel_item    2    ATM Bersama    Ikuti cara berikut untuk isi saldo TCASH melalui ATM    Lihat Caranya
-    Check_carousel_item    2    GraPARI    Kamu bisa pergi ke GraPARI untuk isi saldo TCASH    Cari GraPARI
-    Check_carousel_item    2    Retail Store    Kunjungi retail store terdekat untuk isi saldo TCASH    Lihat Caranya
+    Validate_carousel_items    2    Mobile Banking    Ikuti cara berikut untuk isi saldo TCASH melalui mobile/sms    Lihat Caranya
+    Validate_carousel_items    2    Internet Banking    Ikuti cara berikut untuk isi saldo TCASH melalui internet banking    Lihat Caranya
+    Validate_carousel_items    2    ATM Bersama    Ikuti cara berikut untuk isi saldo TCASH melalui ATM    Lihat Caranya
+    Validate_carousel_items    2    GraPARI    Kamu bisa pergi ke GraPARI untuk isi saldo TCASH    Cari GraPARI
+    Validate_carousel_items    2    Retail Store    Kunjungi retail store terdekat untuk isi saldo TCASH    Lihat Caranya
     Click_button_carousel    2    Mobile Banking    Lihat Caranya
     Check_VA_response_image    1
     Check_VA_response_text    2    ${VA_question_1}

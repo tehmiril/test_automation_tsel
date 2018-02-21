@@ -61,26 +61,28 @@ Swipe_backward_until_element
 
 Get_Carousel_Title_Subtitle
     [Arguments]    ${order}    ${looping}
-    Log    Check here
-    ${title_now}    Get Text    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${looping}]/descendant::div[@class="_3cni"][1]
-    ${subtitle_now}    Get Text    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${looping}]/descendant::div[@class="_3cni"][2]
+    ${title_now}    Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${looping}]/descendant::div[@class="_3cni"][1]    innerText
+    ${subtitle_now}    Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${looping}]/descendant::div[@class="_3cni"][2]    innerText
 
 Get_Carousel_Buttons
     [Arguments]    ${order}    ${totalbuttonitems}    ${looping}
-    Log    Here
     : FOR    ${loop}    IN RANGE    1    ${totalbuttonitems}+1
     \    ${button}    Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${looping}]/descendant::a[@class="_3cnp"][${loop}]    innerText
+    \    Set Suite Variable    ${current_carousel_button}    ${button}
 
-Get_specific_carousel_elements
-    [Arguments]    ${order}    ${element_number}
+Go_to_specific_carousel_elements
+    [Arguments]    ${order}    ${element_number}    @{buttons}
     ${totalbuttonitems}    Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${element_number}]/descendant::a[@class="_3cnp"]
     #${amounttitlesubs}    Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${looping}]/descendant::div[@class="_3cni"]
     ${title_now}    Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${element_number}]/descendant::div[@class="_3cni"][1]    innerText
     ${subtitle_now}    Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${element_number}]/descendant::div[@class="_3cni"][2]    innerText
-    : FOR    ${loop}    IN RANGE    1    ${totalbuttonitems}+1
-    \    ${button_now}    Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${element_number}]/descendant::a[@class="_3cnp"][${loop}]    innerText
+    Run Keyword If    @{buttons}==@{EMPTY}    Get_Carousel_Buttons    ${order}    ${totalbuttonitems}    ${element_number}
+    ...    ELSE    Run Keyword    Validate_carousel_items    ${order}    ${title_now}    ${EMPTY}
+    ...    @{buttons}
+    #: FOR    ${loop}    IN RANGE    1    ${totalbuttonitems}+1
+    #\    ${button_now}    Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${element_number}]/descendant::a[@class="_3cnp"][${loop}]    innerText
     Set Suite Variable    ${current_carousel_title}    ${title_now}
-    Set Suite Variable    ${current_carousel_button}    ${button_now}
+    #Set Suite Variable    ${current_carousel_button}    ${button_now}
     Check_where_to_swipe_carousel    ${order}
 
 Set_Xlimit_for_carousel

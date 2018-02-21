@@ -82,7 +82,14 @@ Check_VA_response_carousel_exists
     Wait Until Keyword Succeeds    15s    3s    Element Should Be Visible    //android.webkit.WebView
 
 Count_messages
-    ${count_message}    Get Matching Xpath Count    //android.widget.ListView/android.widget.LinearLayout    #//android.widget.RelativeLayout[3]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout
-    : FOR    ${looping}    IN RANGE    1    ${count_message}
-    \    ${text}    Get Text    //android.widget.ListView/android.widget.LinearLayout[${looping}]
-    \    ${looping}    Set Variable    ${looping}+1
+    ${count_message1}    Get Matching Xpath Count    //android.widget.ListView/android.widget.LinearLayout    #//android.widget.RelativeLayout[3]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout
+    ${count_message2}    Get Matching Xpath Count    //*[@resource-id="jp.naver.line.android:id/chathistory_row_message_layout"]
+    #${class_message}    Get Matching Xpath Count    //android.widget.ListView/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.RelativeLayout/android.view.View/android.widget.FrameLayout/child::*[@package="jp.naver.line.android"][1]
+    ${class_message1}    Get Matching Xpath Count    (//*[@resource-id="jp.naver.line.android:id/chathistory_row_message_layout"])[1]/child::*
+    ${class_message2}    Get Matching Xpath Count    (//*[@resource-id="jp.naver.line.android:id/chathistory_row_message_layout"])[2]/child::*
+    #@{webelements}    Get Webelements    //android.widget.ListView/android.widget.LinearLayout
+    ${child_element1}    Get Element Attribute    //*[@resource-id="jp.naver.line.android:id/chathistory_row_message_layout"][1]/child::*    class
+    ${child_element2}    Get Element Attribute    //*[@resource-id="jp.naver.line.android:id/chathistory_row_message_layout"][2]/child::*    class
+    #Element Attribute Should Match    xpath=//android.widget.ListView/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.RelativeLayout/android.view.View/android.widget.FrameLayout/child::*[@package="jp.naver.line.android"]    class    android.widget.LinearLayout
+    #: FOR    ${looping}    IN RANGE    1    ${count_message}
+    #\    ${text}    Get Text    //android.widget.ListView/android.widget.LinearLayout[${looping}]

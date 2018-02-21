@@ -14,8 +14,9 @@ LINE_10_TCASH
     Wait Until Element is Visible    //*[@text="Chats"]    5    None
     Click Element    //*[@resource-id="jp.naver.line.android:id/chatlist_chatname" and contains(@text,"Telkomsel")]    #id=jp.naver.line.android:id/chatlist_chatname
     Click Element    //*[@text="CEK INFONYA!"]
+    User_input    TCASH itu apaan sih?
+    Sleep    5s
     Count_messages
-    #User_input    TCASH itu apaan sih?
     #Check_VA_response_text    TCASH adalah layanan uang elektronik dari Telkomsel yang telah mendapatkan izin dari Bank Indonesia. Berbeda dengan pulsa, TCASH dapat digunakan untuk bayar tagihan, bayar merchant, isi pulsa, kirim uang, dan banyak lagi.
     #Check_VA_response_carousel_exists
     #Capture Page Screenshot    first_response_notunderstand.png

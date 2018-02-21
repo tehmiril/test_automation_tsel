@@ -79,8 +79,8 @@ Open_chrome
     Call Method    ${chrome_options}    add_argument    test-type
     Call Method    ${chrome_options}    add_argument    --disable-extensions
     Call Method    ${chrome_options}    add_argument    --disable-notifications
-    Run Keyword If    os.sep == '/'    Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}    executable_path=/usr/lib/chromium-browser/chromedriver
-    ...    ELSE    Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}
+    Run Keyword If    os.sep == '/'    Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}
+    ...    ELSE    Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}    #executable_path=/usr/lib/chromium-browser/chromedriver
     Maximize Browser Window
     Go To    ${URLmessengerTSEL}
 
@@ -157,14 +157,7 @@ Get_carousel_items
     \    Get_Carousel_Buttons    ${order}    ${totalbuttonitems}    ${looping}
     \    Get_Carousel_Title_Subtitle    ${order}    ${looping}
 
-Get_carousel_items_on_specific_location
-    [Arguments]    ${order}    ${element_number}
-    Check_VA_response_carousel_exists    ${order}
-    ${totalcarouselitems}    Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"]
-    Run Keyword If    ${element_number} > ${totalcarouselitems}    Fail    There are less number of elements in the carousel.
-    ...    ELSE    Get_specific_carousel_elements    ${order}    ${element_number}
-
-Check_carousel_item
+Validate_carousel_items
     [Arguments]    ${order}    ${c_title}    ${c_subtitle}    @{c_buttons}
     Set Suite Variable    ${current_carousel_title}    ${c_title}
     : FOR    ${item}    IN    @{c_buttons}
@@ -187,3 +180,22 @@ Get_image_src
     [Arguments]    ${order}
     ${image_src}    Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::img    currentSrc
     [Return]    ${image_src}
+
+Show_carousel_items_on_specific_location
+    [Arguments]    ${order}    ${element_number}
+    Check_VA_response_carousel_exists    ${order}
+    ${totalcarouselitems}    Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"]
+    Run Keyword If    ${element_number} > ${totalcarouselitems}    Fail    There are less number of elements in the carousel.
+    ...    ELSE    Go_to_specific_carousel_elements    ${order}    ${element_number}
+
+Click_carousel_button_on_specific_location
+    [Arguments]    ${order}    ${element_number}    @{c_button}
+    Check_VA_response_carousel_exists    ${order}
+    ${totalcarouselitems}    Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"]
+    Run Keyword If    ${element_number} > ${totalcarouselitems}    Fail    There are less number of elements in the carousel.
+    ...    ELSE    Go_to_specific_carousel_elements    ${order}    ${element_number}    @{c_button}
+    Click Element    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/descendant::*[@${carouselclass_obj} and contains(.,"${current_carousel_title}")]/following-sibling::div//a[contains(.,"${current_carousel_button}")]
+    Sleep    2s
+    Set Suite Variable    ${current_user_input}    ${c_button}
+    Run Keyword    Count_message_bubble_user_input    ${current_user_input}
+    ${URLS}    Get Locations
