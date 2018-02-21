@@ -1,10 +1,11 @@
 *** Settings ***
 Library           Selenium2Library
-Resource          <...>/Object_repository.txt
-Resource          <...>/Test_data_Indo.txt
+Resource          Detailed_custkeyword.txt
+Resource          Test_data_Indo.txt
 Library           String
-Resource          <...>/Detailed_custkeyword.txt
-Resource          <...>/Generic_custkeyword.txt
+Resource          Object_repository.txt
+Resource          Generic_custkeyword.txt
+Library           OperatingSystem
 
 *** Test Cases ***
 test_carousel
@@ -114,4 +115,16 @@ test_simple_input_response
     Check_VA_response_text    1    Kamu dapat mendatangi GraPARI terdekat atau hubungi Call Centre 188 untuk mengajukan reset PIN TCASH. Pelanggan Basic Service akan diupgrade menjadi Full Service agar dapat melakukan reset PIN.
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
+    [Teardown]    Close Browser
+
+test_compare_image
+    [Setup]    Open_chrome
+    Login_messenger    ${email}    ${password}
+    User_input    cara isi ulang tcash gmn ya?
+    Check_VA_response_text    1    Kamu bisa mengisi saldo TCASH Kamu dengan cara-cara berikut
+    Check_VA_response_carousel_exists    2
+    Click_button_carousel    2    Mobile Banking    Lihat Caranya
+    Check_VA_response_image    1
+    ${image_src}    Get_image_src    1
+    Compare Images    https://www.telkomsel.com/sites/default/files/upload/11_step_by_step_mobile_banking_indo.jpg    ${image_src}    0.1
     [Teardown]    Close Browser
