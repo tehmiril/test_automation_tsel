@@ -1,23 +1,25 @@
 *** Settings ***
 Library           AppiumLibrary
-Resource          Test_data_LINE_Indo.txt
+Resource          Test_data_FB.txt
 Library           String
 Library           Collections
-Resource          Object_repo_LINE.txt
-Resource          app_custom_keywords.txt
+Resource          Object_repo_FB.txt
+Resource          Generic_app_custom_keywords.txt
 
 *** Test Cases ***
-LINE_10_TCASH
+FB_10_TCASH
     [Setup]    Open app
-    Wait Until Element is Visible    //android.widget.FrameLayout[contains(@content-desc,"Chats tab")]    10    None
-    Click Element    //android.widget.FrameLayout[contains(@content-desc,"Chats tab")]
-    Wait Until Element is Visible    //*[@text="Chats"]    5    None
-    Click Element    //*[@resource-id="jp.naver.line.android:id/chatlist_chatname" and contains(@text,"Telkomsel")]    #id=jp.naver.line.android:id/chatlist_chatname
+    Wait Until Keyword Succeeds    10    2s    Element Should Be Visible    //android.widget.TextView[@text="Search"]
+    Click Element    //android.view.View[@content-desc="Telkomsel"]
+    Sleep    2s
+    Wait Until Keyword Succeeds    10    2s    Element Should Be Visible    //*[@content-desc="Telkomsel"]
+    #Wait Until Element is Visible    //*[@text="Chats"]    5    None
+    #Click Element    //*[@resource-id="jp.naver.line.android:id/chatlist_chatname" and contains(@text,"Telkomsel")]    #id=jp.naver.line.android:id/chatlist_chatname
     #Click Element    //*[@text="CEK INFONYA!"]
     #Swipe_up_until_element    Lihat Menu Utama
-    User_input    Halo Vero
+    #User_input    Halo Vero
     #Sleep    5s
-    @{listhere}    Count_messages    Halo Vero
+    #@{listhere}    Count_messages    Halo Vero
     #Check_VA_response_text    TCASH adalah layanan uang elektronik dari Telkomsel yang telah mendapatkan izin dari Bank Indonesia. Berbeda dengan pulsa, TCASH dapat digunakan untuk bayar tagihan, bayar merchant, isi pulsa, kirim uang, dan banyak lagi.
     #Check_VA_response_carousel_exists
     #Capture Page Screenshot    first_response_notunderstand.png
