@@ -25,27 +25,25 @@ Open app
 User_input
     [Arguments]    ${input_text}
     Click Element    //*[@content-desc="Keyboard menu"]
-    Wait Until Element is Visible    ${textbox_obj}    5    None
+    Wait Until Element is Visible    ${textbox_obj}    2    None
     Input Text    ${textbox_obj}    ${input_text}
     Click Element    ${sendkey_obj}
-    Sleep    2s
+    Sleep    1s
     Click Element    //*[@content-desc="Keyboard menu"]
-    #Click Element    //*[@text="CEK INFONYA!"]
-    #Sleep    2s
-    #Click Element    //*[@text="CEK INFONYA!"]
-    Sleep    5s
+    Set Suite Variable    ${current_user_input}    ${input_text}
+    Set Suite Variable    ${scrolled_down}    ${FALSE}
+    Sleep    3s
+    Show_user_input_on_screen
+    Get_Index
 
-Check_VA_response_text
-    [Arguments]    ${response_text}
-    #Click Element    id=jp.naver.line.android:id/chatlog
-    Wait Until Keyword Succeeds    15s    3s    Page Should Contain Element    //android.widget.TextView[contains(@text,'${response_text}')]
-
-Check_VA_response_text_2buttons
-    [Arguments]    ${response_text}    ${button1}    ${button2}
-    #Click Element    id=jp.naver.line.android:id/chatlog
-    Wait Until Keyword Succeeds    15s    3s    Page Should Contain Element    //android.view.View[contains(@text,'${response_text}')]
-    Wait Until Keyword Succeeds    10s    2s    Page Should Contain Element    //android.view.View[contains(@text,'${button1}')]
-    Wait Until Keyword Succeeds    10s    2s    Page Should Contain Element    //android.view.View[contains(@text,'${button2}')]
+Check_VA_response_text_with_buttons
+    [Arguments]    ${order}    ${response_text}    @{t_button}
+    ${new_order}    Evaluate    ${order}+${index_user_input}
+    ${count_text_buttons}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View
+    Should Be True    ${count_text_buttons}==2
+    ${text_here}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[1]/android.view.View
+    ${text_here2}=    Remove String Using Regexp    ${text_here}    (\r\n|\r|\n)
+    Should Contain    ${text_here2}    ${response_text}
 
 Click_Yes
     ${totalYa}    Get Matching Xpath Count    ${Ya_button}
@@ -83,18 +81,22 @@ Closing_session
     Check_VA_response_text    ${VA_closingstatement}
 
 Check_VA_response_carousel_exists
-    Wait Until Keyword Succeeds    15s    3s    Element Should Be Visible    //android.webkit.WebView
+    [Arguments]    ${order}
+    ${new_order}    Evaluate    ${order}+${index_user_input}
+    ${count_carousel_items}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View
+    Should Be True    ${count_carousel_items}>2
+    ${carousel_items}    Evaluate    ${count_carousel_items}-1
+    Set Suite Variable    ${current_carousel_items}    ${carousel_items}
+    Get_XLocation_Carousel_Elements    ${new_order}
 
-Swipe_up_until_element
-    [Arguments]    ${user_input}
-    #${count_user_input}    Run Keyword And Return Status    Element Should Be Visible    //*[@resource-id="jp.naver.line.android:id/message_text" and contains (@text, "${user_input}")]
+Swipe_up_until_user_input
     : FOR    ${loop}    IN RANGE    0    10
     \    Swipe    600    600    600    800
-    \    ${count_user_input}    Run Keyword And Return Status    Wait Until Element Is Visible    //*[@resource-id="jp.naver.line.android:id/message_text" and contains (@text, "${user_input}")]
-    \    Run Keyword If    ${count_user_input}    Run Keywords    Log    "Yeah"
+    \    ${count_user_input}    Run Keyword And Return Status    Element Should Be Visible    //*[@resource-id="jp.naver.line.android:id/message_text" and contains (@text, "${current_user_input}")]
+    \    Run Keyword If    ${count_user_input}    Run Keywords    Log    "Scroll up up up and found it!"
     \    ...    AND    Capture Page Screenshot    here.png
     \    ...    AND    Exit For Loop
-    #Scroll Up    //*[@resource-id="jp.naver.line.android:id/message_text" and contains (@text, "${user_input}")]
+    Count_messages
 
 Find_YLocation
     [Arguments]    ${element}
@@ -106,41 +108,99 @@ Find_YLocation
     ${finalelementY}    Strip String    ${elementY}    characters=,
     [Return]    ${finalelementY}
 
+Show_user_input_on_screen
+    ${count_user_input}    Run Keyword And Return Status    Element Should Be Visible    //*[@resource-id="jp.naver.line.android:id/message_text" and contains (., "${current_user_input}")]
+    Run Keyword If    ${count_user_input}==${FALSE}    Swipe_up_until_user_input
+
 Count_messages
-    [Arguments]    ${user_input}
-    @{list_response}=    Create List
-    ${count_user_input}    Run Keyword And Return Status    Wait Until Element Is Visible    //*[@resource-id="jp.naver.line.android:id/message_text" and contains (@text, "${user_input}")]
-    Run Keyword If    ${count_user_input}==${FALSE}    Swipe_up_until_element    ${user_input}
-    ${count_tsel_icon}    Get Matching Xpath Count    //android.widget.ImageView[@resource-id="jp.naver.line.android:id/chathistory_row_thumbnail"]
-    #@{tsel_icon_webelements}    Get Webelements    //*[@resource-id="jp.naver.line.android:id/chathistory_row_thumbnail"]
-    ${count_message1}    Get Matching Xpath Count    //android.widget.ListView[1]/android.widget.LinearLayout    #//android.widget.RelativeLayout[3]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.ListView[1]/android.widget.LinearLayout
-    ${count_message2}    Get Matching Xpath Count    //*[@resource-id="jp.naver.line.android:id/chathistory_row_message_layout"]
-    ${count_texts}    Get Matching Xpath Count    //*[@resource-id="jp.naver.line.android:id/message_text"]
-    ${user_finalelementY}    Find_YLocation    //*[@resource-id="jp.naver.line.android:id/message_text" and contains (@text, "${user_input}")]
-    Log Source
-    #: FOR    ${item}    IN    @{tsel_icon_webelements}
-    #\    ${VAresp_finalelementY}    Find_YLocation    ${item}
-    #\    Run Keyword If    ${VAresp_finalelementY}>${user_finalelementY}    Append To List    ${list_response}    ${item}
-    : FOR    ${looping}    IN RANGE    1    ${count_tsel_icon}+1
-    \    ${VAresp_finalelementY}    Find_YLocation    //android.widget.ImageView[@resource-id="jp.naver.line.android:id/chathistory_row_thumbnail"][${looping}]
-    \    Run Keyword If    ${VAresp_finalelementY}<${user_finalelementY}    Append To List    ${list_response}    ${looping}
-    #${count_user_input}    Get Matching Xpath Count    //*[@resource-id="jp.naver.line.android:id/message_text" and contains (@text, "${user_input}")]
-    #: FOR    ${looping}    IN RANGE    1    ${count_message1}+1
-    #\    ${text}    Get Text    //android.widget.ListView/android.widget.LinearLayout[${looping}]
-    #Run Keyword And Continue On Failure
-    #${index_user_input}    Get Element Attribute    //android.widget.ListView[1]/android.widget.LinearLayout[contains (., "${user_input}")]    Index
-    #${example_message}    Get Text    //*[@resource-id="jp.naver.line.android:id/message_text"][${count_texts}]
-    #${next_response}    Get Text    //*[@resource-id="jp.naver.line.android:id/message_text" and contains (@text, "${user_input}")][${count_user_input}]/ancestor::android.widget.ListView/android.widget.LinearLayout/following-sibling::*[1]/descendant::*[@resource-id="jp.naver.line.android:id/message_text"]    #[contains(.,"${VA_Greet1}")]
-    #${next2_response}    Get Text    //*[@resource-id="jp.naver.line.android:id/message_text" and contains (@text, "${user_input}")][${count_user_input}]/ancestor::android.widget.ListView/android.widget.LinearLayout/following-sibling::*[2]/descendant::*[@resource-id="jp.naver.line.android:id/message_text"]    #[contains(.,"${VA_Greet2}")]
-    #${class_message}    Get Matching Xpath Count    //android.widget.ListView/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.RelativeLayout/android.view.View/android.widget.FrameLayout/child::*[@package="jp.naver.line.android"][1]
-    #${class_message}    Get Matching Xpath Count    //android.widget.ListView[1]/android.widget.LinearLayout[1]/descendant::android.widget.FrameLayout/child::*[@package="jp.naver.line.android"]
-    #${class_message12}    Get Matching Xpath Count    //android.widget.ListView[1]/android.widget.LinearLayout[2]/descendant::android.widget.FrameLayout/child::*[@package="jp.naver.line.android"]
-    #${class_message1}    Get Matching Xpath Count    (//*[@resource-id="jp.naver.line.android:id/chathistory_row_message_layout"])[1]/child::*
-    #${class_message2}    Get Matching Xpath Count    (//*[@resource-id="jp.naver.line.android:id/chathistory_row_message_layout"])[2]/child::*
-    #@{webelements}    Get Webelements    //android.widget.ListView/android.widget.LinearLayout
-    #${child_element1}    Get Element Attribute    //*[@resource-id="jp.naver.line.android:id/chathistory_row_message_layout"][1]/child::*    className
-    #${child_element2}    Get Element Attribute    //*[@resource-id="jp.naver.line.android:id/chathistory_row_message_layout"][2]/child::*    className
-    #${child_element1}    Get Element Attribute    //android.widget.ListView[1]/android.widget.LinearLayout[1]/descendant::android.widget.FrameLayout/child::*[@package="jp.naver.line.android"]    className
-    #${child_element2}    Get Element Attribute    //android.widget.ListView[1]/android.widget.LinearLayout[2]/descendant::android.widget.FrameLayout/child::*[@package="jp.naver.line.android"]    className
-    #Element Attribute Should Match    xpath=//android.widget.ListView/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.RelativeLayout/android.view.View/android.widget.FrameLayout/child::*[@package="jp.naver.line.android"]    class    android.widget.LinearLayout
-    [Return]    @{list_response}
+    ${count_message1}    Get Matching Xpath Count    //android.widget.ListView[1]/android.widget.LinearLayout
+    Set Suite Variable    ${total_messages_on_screen}    ${count_message1}
+
+Check_VA_response_text
+    [Arguments]    ${order}    ${expected_text}
+    Wait Until Keyword Succeeds    10s    2s    Element Should Be Visible    //*[@resource-id="jp.naver.line.android:id/message_text" and contains(@text,"${expected_text}")]
+    ${new_order}    Evaluate    ${order}+${index_user_input}
+    ${text_here}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.widget.TextView[1]
+    ${text_here2}=    Remove String Using Regexp    ${text_here}    (\r\n|\r|\n)
+    Should Contain    ${text_here2}    ${expected_text}
+
+Get_Index
+    : FOR    ${looping}    IN RANGE    1    ${total_messages_on_screen}+1
+    \    ${avail}    Run Keyword And Return Status    Element Text Should Be    //android.widget.ListView/child::android.widget.LinearLayout[${looping}]/descendant::android.widget.TextView[3]    ${current_user_input}
+    \    Run Keyword If    ${avail}==${FALSE}    Continue For Loop
+    \    ...    ELSE    Run Keywords    Log    ${looping}
+    \    ...    AND    Set Suite Variable    ${index_user_input}    ${looping}
+    \    ...    AND    Exit For Loop
+
+Show_carousel_items_on_specific_location
+    [Arguments]    ${order}    ${element_number}
+    Check_VA_response_carousel_exists    ${order}
+    Run Keyword If    ${element_number} > ${current_carousel_items}    Fail    There are less number of elements in the carousel.
+    ...    ELSE    Go_to_specific_carousel_elements    ${order}    ${element_number}
+
+Go_to_specific_carousel_elements
+    [Arguments]    ${order}    ${element_number}    @{buttons}
+    ${total_children}    Get Element Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View//android.view.View[2]/android.view.View
+    ${totalbuttonitems}    Evaluate    ${total_children}-1    #1 is for the element for title and subtitle, the rest are buttons
+    ${title_now}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View//android.view.View[2]/android.view.View[1]/android.view.View[1]
+    ${subtitle_now}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View//android.view.View[2]/android.view.View[1]/android.view.View[2]
+    Set Suite Variable    ${current_carousel_title}    ${title_now}
+    Check_where_to_swipe_carousel    ${order}
+
+Check_where_to_swipe_carousel
+    [Arguments]    ${order}
+    Set_Xlimit_for_carousel
+    ${element_XBegin}    Get_locationX_carousel_item
+    Run Keyword If    ${current_tsel_icon_locationX} < ${element_XBegin} < ${current_right_limit}    Run Keywords    Sleep    1s
+    ...    AND    Capture Page Screenshot    carousel_here.png
+    ...    ELSE IF    ${element_XBegin} < ${current_tsel_icon_locationX}    Run Keyword    Swipe_backward_until_element    ${order}
+    ...    ELSE IF    ${element_XBegin} > ${current_right_limit}    Run Keyword    Swipe_forward_until_element    ${order}
+
+Get_XLocation_Carousel_Elements
+    [Arguments]    ${new_order}
+    ${icon_bound}    Get Element Location    //android.widget.ImageView[@resource-id="jp.naver.line.android:id/chathistory_row_thumbnail"][1]
+    ${XLoc}=    Create List
+    : FOR    ${loop}    IN RANGE    1    ${current_carousel_items}+1
+    \    ${bound}    Get Element Location    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${loop}]
+    \    Append To List    ${XLoc}    ${bound}
+    Log List    ${XLoc}
+
+Set_Xlimit_for_carousel
+    ${tsel_icon_locationX}    Get Element Location    //android.widget.ImageView[@resource-id="jp.naver.line.android:id/chathistory_row_thumbnail"][1]
+    ${right_limit}    Evaluate    ${tsel_icon_locationX}+400    #Just a suggested width, what would be the accepted maximum limit of X location
+    Set Suite Variable    ${current_tsel_icon_locationX}    ${tsel_icon_locationX}
+    Set Suite Variable    ${current_right_limit}    ${right_limit}
+
+Get_locationX_carousel_item
+    ${totalcarousel}    Get Element Count    //a[contains(.,'${current_carousel_button}')]/preceding::*[@class='_3cni' and contains(text(),'${current_carousel_title}')]
+    Set Suite Variable    ${total_item_carousel}    ${totalcarousel}
+    ${element_XBegin}    Get Horizontal Position    (//a[contains(.,'${current_carousel_button}')]/preceding::*[@class='_3cni' and contains(text(),'${current_carousel_title}')])[${totalcarousel}]
+    [Return]    ${element_XBegin}
+
+Get_XLocation_from_bounds
+    [Arguments]    ${bound}
+    ${boundString}    Convert To String    ${bound}
+    ${elementsXY}    Split String    ${boundString}    ${SPACE}
+    #location format, e.g. ${elementsXY} = [u"{'y':", u'702.0,', u"'x':", u'718.0}']
+    ${elementX}    Get From List    ${elementsXY}    3
+    ${finalelementX}    Strip String    ${elementX}    characters=}
+    [Return]    ${finalelementX}
+
+Come_here
+    Log    Testing
+
+Swipe_down_until_element
+    [Arguments]    ${element}
+    : FOR    ${loop}    IN RANGE    0    10
+    \    Swipe    600    600    600    400
+    \    ${count_element}    Run Keyword And Return Status    Element Should Be Visible    //*[@resource-id="jp.naver.line.android:id/message_text" and contains (@text, "${current_user_input}")]
+    \    Run Keyword If    ${count_element}    Run Keywords    Log    "Scroll up up up and found it!"
+    \    ...    AND    Capture Page Screenshot    here.png
+    \    ...    AND    Exit For Loop
+    Count_messages
+
+Check_VA_response_image
+    [Arguments]    ${order}
+    ${new_order}    Evaluate    ${order}+${index_user_input}
+    ${count_image}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.widget.FrameLayout/descendant::*[@resource-id="jp.naver.line.android:id/chathistory_row_image"]
+    Should Be True    ${count_image}>0

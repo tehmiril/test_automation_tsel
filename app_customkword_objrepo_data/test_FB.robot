@@ -10,7 +10,10 @@ Resource          Generic_app_custom_keywords.txt
 FB_10_TCASH
     [Setup]    Open app
     Wait Until Keyword Succeeds    10    2s    Element Should Be Visible    //android.widget.TextView[@text="Search"]
-    Click Element    //android.view.View[@content-desc="Telkomsel"]
+    Log Source
+    #Click Element    //android.view.View[@content-desc="Telkomsel"]
+    Click Element    //*[@content-desc="Bots"]
+    Log Source
     Sleep    2s
     Wait Until Keyword Succeeds    10    2s    Element Should Be Visible    //*[@content-desc="Telkomsel"]
     #Wait Until Element is Visible    //*[@text="Chats"]    5    None

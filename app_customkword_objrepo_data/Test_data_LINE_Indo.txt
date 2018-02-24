@@ -1,7 +1,7 @@
 *** Variables ***
 ${appPackage_LINE}    jp.naver.line.android
-${androidVersion_LINE}    5.1.1
-${deviceName_LINE}    Ami Samsung
+${androidVersion_LINE}    5.1.1    #7.0
+${deviceName_LINE}    Ami Samsung    # G5 SE
 ${platformName_LINE}    Android
 ${appActivity_LINE}    jp.naver.line.android.activity.SplashActivity    # jp.naver.line.android.activity.main.MainActivity
 ${appiumServer_LINE}    http://localhost:4723/wd/hub

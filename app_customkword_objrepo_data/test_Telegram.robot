@@ -9,10 +9,12 @@ Resource          Object_repo_Tel.txt
 Tel_askPulsaKuota
     [Setup]    Open app
     Wait Until Element is Visible    class=org.telegram.messenger.support.widget.RecyclerView    15    None
+    Log Source
     Click Element    //android.view.View[@index="0"]
     #Wait Until Element is Visible    class=android.widget.EditText    10    None
     Sleep    5s
-    ${result}    Run Keyword and Return Status    Wait Until Element is Visible    //android.widget.TextView[@text="START"]    10    None
+    Log Source
+    ${result}    Run Keyword and Return Status    Wait Until Element is Visible    //android.widget.TextView[@text="Telkomsel Care"]    10    None
     Run Keyword If    ${result}    Click Element    //android.widget.TextView[@text="START"]
     Sleep    10s
     User_input    ${ask_pulsa}
@@ -155,7 +157,7 @@ User_input
     #Click Element    //*[@content-desc="Keyboard menu"]
     #Wait Until Element is Visible    ${textbox_obj}    5    None
     Input Text    ${textbox_obj}    ${input_text}
-    Click Element    ${sendkey_obj}
+    Press Keycode    13
     Sleep    5s
     #Click Element    //*[@content-desc="Keyboard menu"]
 
