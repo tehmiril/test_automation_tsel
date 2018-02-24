@@ -55,6 +55,14 @@ test_askPulsa
     Closing_session
     [Teardown]    Close Browser
 
+test_interaction
+    [Documentation]    Here registered user ask for pulsa, without top-up.
+    [Setup]    Open_chrome
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo
+    Click_Button_From_Response    4    Lihat Menu Utama
+    [Teardown]    Close Browser
+
 test_simple_input_response
     [Setup]    Open_chrome
     Login_messenger    ${email}    ${password}
