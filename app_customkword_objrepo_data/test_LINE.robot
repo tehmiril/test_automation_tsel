@@ -35,10 +35,13 @@ LINE_simple
     Click Element    //android.widget.FrameLayout[contains(@content-desc,"Chats tab")]
     Wait Until Element is Visible    //*[@text="Chats"]    5    None
     Click Element    //*[@resource-id="jp.naver.line.android:id/chatlist_chatname" and contains(@text,"Telkomsel")]    #id=jp.naver.line.android:id/chatlist_chatname
-    Sleep    7s
+    Sleep    2s
     User_input    Halo Vero
+    Sleep    7s
     Check_VA_response_text    1    selamat datang
     Check_VA_response_text    2    Apa yang bisa Veronika bantu hari ini?
     Check_VA_response_image    3
-    Check_VA_response_text_with_buttons    4    pilih salah satu pilihan    Lihat Menu Utama    Chat in English
+    Check_VA_response_text_with_buttons    4    pilih salah satu pilihan    Lihat Menu Nan    Chat in Neder
+    #Click_Button_From_Response    4    Lihat Menu Utama
+    Sleep    2s
     [Teardown]    Close Application

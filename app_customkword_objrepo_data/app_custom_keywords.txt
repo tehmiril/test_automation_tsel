@@ -44,12 +44,16 @@ Check_VA_response_text_with_buttons
     ${text_here}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[1]/android.view.View
     ${text_here2}=    Remove String Using Regexp    ${text_here}    (\r\n|\r|\n)
     Should Contain    ${text_here2}    ${response_text}
-    ${button_order}=    Evaluate    1
     : FOR    ${item}    IN    @{t_button}
-    \    ${text_button}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[2]/android.view.View[${button_order}]
+    \    Get_button_text_from_response    ${count_text_buttons}    ${new_order}    ${item}
+
+Get_button_text_from_response
+    [Arguments]    ${count_text_buttons}    ${new_order}    ${item}
+    : FOR    ${b_order}    IN RANGE    1    ${count_text_buttons}+1
+    \    ${text_button}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[2]/android.view.View[${b_order}]
     \    ${text_button2}=    Remove String Using Regexp    ${text_button}    (\r\n|\r|\n)
-    \    Should Contain    ${text_button2}    ${item}
-    \    ${button_order}=    Evaluate    ${button_order}+1
+    \    ${button_avail}    Run Keyword And Return Status    Should Contain    ${text_button2}    ${item}
+    \    Run Keyword If    ${button_avail}    Exit For Loop
 
 Click_Yes
     ${totalYa}    Get Matching Xpath Count    ${Ya_button}
@@ -145,17 +149,17 @@ Show_carousel_items_on_specific_location
 
 Go_to_specific_carousel_elements
     [Arguments]    ${order}    ${element_number}    @{buttons}
-    ${total_children}    Get Element Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View//android.view.View[2]/android.view.View
+    ${total_children}    Get Element Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View/android.view.View[2]/android.view.View
     ${totalbuttonitems}    Evaluate    ${total_children}-1    #1 is for the element for title and subtitle, the rest are buttons
-    ${title_now}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View//android.view.View[2]/android.view.View[1]/android.view.View[1]
-    ${subtitle_now}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View//android.view.View[2]/android.view.View[1]/android.view.View[2]
+    ${title_now}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View/android.view.View[2]/android.view.View[1]/android.view.View[1]
+    ${subtitle_now}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View/android.view.View[2]/android.view.View[1]/android.view.View[2]
     Set Suite Variable    ${current_carousel_title}    ${title_now}
     Check_where_to_swipe_carousel    ${order}
 
 Check_where_to_swipe_carousel
     [Arguments]    ${order}
     Set_Xlimit_for_carousel
-    ${element_XBegin}    Get_locationX_carousel_item
+    ${element_XBegin}    Get_XLocation_Carousel_Elements
     Run Keyword If    ${current_tsel_icon_locationX} < ${element_XBegin} < ${current_right_limit}    Run Keywords    Sleep    1s
     ...    AND    Capture Page Screenshot    carousel_here.png
     ...    ELSE IF    ${element_XBegin} < ${current_tsel_icon_locationX}    Run Keyword    Swipe_backward_until_element    ${order}
@@ -168,7 +172,7 @@ Get_XLocation_Carousel_Elements
     : FOR    ${loop}    IN RANGE    1    ${current_carousel_items}+1
     \    ${bound}    Get Element Location    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${loop}]
     \    Append To List    ${XLoc}    ${bound}
-    Log List    ${XLoc}
+    #Log List    ${XLoc}
 
 Set_Xlimit_for_carousel
     ${tsel_icon_locationX}    Get Element Location    //android.widget.ImageView[@resource-id="jp.naver.line.android:id/chathistory_row_thumbnail"][1]
@@ -209,3 +213,14 @@ Check_VA_response_image
     ${new_order}    Evaluate    ${order}+${index_user_input}
     ${count_image}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.widget.FrameLayout/descendant::*[@resource-id="jp.naver.line.android:id/chathistory_row_image"]
     Should Be True    ${count_image}>0
+
+Click_Button_From_Response
+    [Arguments]    ${order}    ${r_button}
+    [Documentation]    This keyword can be used to click (any) button that is part of the VA response.
+    ${new_order}    Evaluate    ${order}+${index_user_input}
+    Click Element    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[2]/descendant::*[contains(.,${r_button})]
+    Set Suite Variable    ${current_user_input}    ${r_button}
+    Set Suite Variable    ${scrolled_down}    ${FALSE}
+    Sleep    3s
+    Show_user_input_on_screen
+    Get_Index
