@@ -44,6 +44,12 @@ Check_VA_response_text_with_buttons
     ${text_here}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[1]/android.view.View
     ${text_here2}=    Remove String Using Regexp    ${text_here}    (\r\n|\r|\n)
     Should Contain    ${text_here2}    ${response_text}
+    ${button_order}=    Evaluate    1
+    : FOR    ${item}    IN    @{t_button}
+    \    ${text_button}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[2]/android.view.View[${button_order}]
+    \    ${text_button2}=    Remove String Using Regexp    ${text_button}    (\r\n|\r|\n)
+    \    Should Contain    ${text_button2}    ${item}
+    \    ${button_order}=    Evaluate    ${button_order}+1
 
 Click_Yes
     ${totalYa}    Get Matching Xpath Count    ${Ya_button}

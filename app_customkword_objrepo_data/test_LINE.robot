@@ -35,7 +35,7 @@ LINE_simple
     Click Element    //android.widget.FrameLayout[contains(@content-desc,"Chats tab")]
     Wait Until Element is Visible    //*[@text="Chats"]    5    None
     Click Element    //*[@resource-id="jp.naver.line.android:id/chatlist_chatname" and contains(@text,"Telkomsel")]    #id=jp.naver.line.android:id/chatlist_chatname
-    Sleep    5s
+    Sleep    7s
     User_input    Halo Vero
     Check_VA_response_text    1    selamat datang
     Check_VA_response_text    2    Apa yang bisa Veronika bantu hari ini?
