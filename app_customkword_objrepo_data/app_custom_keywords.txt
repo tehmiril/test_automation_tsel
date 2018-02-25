@@ -125,11 +125,10 @@ Check_VA_response_text
     Should Contain    ${text_here2}    ${expected_text}
 
 Get_Index
-    : FOR    ${looping}    IN RANGE    1    ${total_messages_on_screen}+1
+    : FOR    ${looping}    IN RANGE    ${total_messages_on_screen}    0    -1
     \    ${avail}    Run Keyword And Return Status    Element Text Should Be    //android.widget.ListView/child::android.widget.LinearLayout[${looping}]/descendant::android.widget.TextView[3]    ${current_user_input}
     \    Run Keyword If    ${avail}==${FALSE}    Continue For Loop
-    \    ...    ELSE    Run Keywords    Log    ${looping}
-    \    ...    AND    Set Suite Variable    ${index_user_input}    ${looping}
+    \    ...    ELSE    Run Keywords    Set Suite Variable    ${index_user_input}    ${looping}
     \    ...    AND    Exit For Loop
 
 Show_carousel_items_on_specific_location
