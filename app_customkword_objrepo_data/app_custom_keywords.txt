@@ -45,15 +45,20 @@ Check_VA_response_text_with_buttons
     ${text_here2}=    Remove String Using Regexp    ${text_here}    (\r\n|\r|\n)
     Should Contain    ${text_here2}    ${response_text}
     : FOR    ${item}    IN    @{t_button}
-    \    Get_button_text_from_response    ${count_text_buttons}    ${new_order}    ${item}
+    \    ${status_button}    Get_button_text_from_response    ${count_text_buttons}    ${new_order}    ${item}
+    \    Run Keyword If    '${status_button}'=='${FALSE}'    Run Keywords    Fail    This button is not found in the response
+    \    ...    AND    Exit For Loop
 
 Get_button_text_from_response
     [Arguments]    ${count_text_buttons}    ${new_order}    ${item}
     : FOR    ${b_order}    IN RANGE    1    ${count_text_buttons}+1
+    \    Set Test Variable    ${status_button}    ${FALSE}
     \    ${text_button}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[2]/android.view.View[${b_order}]
     \    ${text_button2}=    Remove String Using Regexp    ${text_button}    (\r\n|\r|\n)
     \    ${button_avail}    Run Keyword And Return Status    Should Contain    ${text_button2}    ${item}
-    \    Run Keyword If    ${button_avail}    Exit For Loop
+    \    Run Keyword If    ${button_avail}    Run Keywords    Set Test Variable    ${status_button}    ${TRUE}
+    \    ...    AND    Exit For Loop
+    [Return]    ${status_button}
 
 Click_Yes
     ${totalYa}    Get Matching Xpath Count    ${Ya_button}

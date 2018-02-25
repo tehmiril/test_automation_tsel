@@ -41,7 +41,7 @@ LINE_simple
     Check_VA_response_text    1    selamat datang
     Check_VA_response_text    2    Apa yang bisa Veronika bantu hari ini?
     Check_VA_response_image    3
-    Check_VA_response_text_with_buttons    4    pilih salah satu pilihan    Lihat Menu Nan    Chat in Neder
+    Check_VA_response_text_with_buttons    4    pilih salah satu pilihan    Lihat Menu Utama    Chat in Neder
     #Click_Button_From_Response    4    Lihat Menu Utama
     Sleep    2s
     [Teardown]    Close Application
