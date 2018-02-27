@@ -21,16 +21,11 @@ LINE_10_TCASH
     #Count_messages    TCASH itu apaan sih?
     Check_VA_response_text    1    TCASH adalah layanan uang elektronik dari Telkomsel yang telah mendapatkan izin dari Bank Indonesia. Berbeda dengan pulsa, TCASH dapat digunakan untuk bayar tagihan, bayar merchant, isi pulsa, kirim uang, dan banyak lagi.
     Check_VA_response_carousel_exists    2
+    #Show_carousel_items_on_specific_location    2    1
     Show_carousel_items_on_specific_location    2    3
-    Show_carousel_items_on_specific_location    2    1
-    Show_carousel_items_on_specific_location    2    3
-    Click_carousel_button_on_specific_location    2    2    Nyante
-    #Capture Page Screenshot    first_response_notunderstand.png
-    #User_input    apa sih untungnya pake tcash?
-    #Check_VA_response_text_2buttons    Apa Kamu mau tahu lebih banyak tentang TCASH?    Ya    Tidak
-    #Click_No
-    #Check_VA_response_text    ${VA_question_1}
-    #Closing_session
+    Click_carousel_button_on_specific_location    2    2    Merchant TCASH
+    Sleep    5s
+    Cancel_and_closing_session
     [Teardown]    Close Application
 
 LINE_simple
