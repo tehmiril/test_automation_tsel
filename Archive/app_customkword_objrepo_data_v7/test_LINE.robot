@@ -4,7 +4,8 @@ Resource          Test_data_LINE_Indo.txt
 Library           String
 Library           Collections
 Resource          Object_repo_LINE.txt
-Resource          app_custom_keywords.txt
+Resource          Detailed_app_custom_keywords.txt
+Resource          Generic_app_custom_keywords.txt
 
 *** Test Cases ***
 LINE_10_TCASH
@@ -20,13 +21,14 @@ LINE_10_TCASH
     #Sleep    5s
     #Count_messages    TCASH itu apaan sih?
     Check_VA_response_text    1    TCASH adalah layanan uang elektronik dari Telkomsel yang telah mendapatkan izin dari Bank Indonesia. Berbeda dengan pulsa, TCASH dapat digunakan untuk bayar tagihan, bayar merchant, isi pulsa, kirim uang, dan banyak lagi.
-    Check_VA_response_carousel_exists    2
+    #Check_VA_response_carousel_exists    2
     #Show_carousel_items_on_specific_location    2    1
-    Show_carousel_items_on_specific_location    2    3
-    Click_carousel_button_on_specific_location    2    2    Merchant TCASH
+    #Show_carousel_items_on_specific_location    2    3
+    Validate_carousel_items    2    Info    \    Pertanyaan Lain
+    #Click_carousel_button_on_specific_location    2    2    Merchant TCASH
     Sleep    5s
     Cancel_and_closing_session
-    [Teardown]    Close Application
+    #[Teardown]    Close Application
 
 LINE_simple
     [Setup]    Open app
