@@ -6,14 +6,12 @@ Library           Collections
 Resource          Object_repo_LINE.txt
 Resource          Detailed_app_custom_keywords.txt
 Resource          Generic_app_custom_keywords.txt
+Resource          SMS_custom_keywords.txt
+Resource          Test_data_SMS_Indo.txt
 
 *** Test Cases ***
 LINE_10_TCASH
     [Setup]    Open app
-    Wait Until Element is Visible    //android.widget.FrameLayout[contains(@content-desc,"Chats tab")]    10    None
-    Click Element    //android.widget.FrameLayout[contains(@content-desc,"Chats tab")]
-    Wait Until Element is Visible    //*[@text="Chats"]    5    None
-    Click Element    //*[@resource-id="jp.naver.line.android:id/chatlist_chatname" and contains(@text,"Telkomsel")]    #id=jp.naver.line.android:id/chatlist_chatname
     #Click Element    //*[@text="CEK INFONYA!"]
     #Swipe_up_until_element    Lihat Menu Utama
     Sleep    2s
@@ -32,10 +30,6 @@ LINE_10_TCASH
 
 LINE_simple
     [Setup]    Open app
-    Wait Until Element is Visible    //android.widget.FrameLayout[contains(@content-desc,"Chats tab")]    10    None
-    Click Element    //android.widget.FrameLayout[contains(@content-desc,"Chats tab")]
-    Wait Until Element is Visible    //*[@text="Chats"]    5    None
-    Click Element    //*[@resource-id="jp.naver.line.android:id/chatlist_chatname" and contains(@text,"Telkomsel")]    #id=jp.naver.line.android:id/chatlist_chatname
     Sleep    2s
     User_input    Halo Vero
     Sleep    7s
@@ -46,3 +40,13 @@ LINE_simple
     Click_Button_From_Response    4    Lihat Menu Utama
     Sleep    2s
     [Teardown]    Close Application
+
+LINE_SMS_test
+    Open app
+    Open SMS
+    Select_TSEL_SMS
+    Sleep    5s
+    Switch Application    ${LINE_app}
+    Start app
+    #User_input    TCASH itu apaan sih?
+    #Sleep    5s

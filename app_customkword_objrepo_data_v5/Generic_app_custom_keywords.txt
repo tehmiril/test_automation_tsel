@@ -1,8 +1,15 @@
 *** Keywords ***
 Open app
-    Open Application    ${appiumServer_LINE}    alias=LINE    platformName=${platformName_LINE}    platformVersion=${androidVersion_LINE}    deviceName=${deviceName_LINE}    appPackage=${appPackage_LINE}
-    ...    appActivity=${appActivity_LINE}    noReset=true
+    ${LINE_app}=    Open Application    ${appiumServer_LINE}    alias=LINE    platformName=${platformName_LINE}    platformVersion=${androidVersion_LINE}    deviceName=${deviceName_LINE}
+    ...    appPackage=${appPackage_LINE}    appActivity=${appActivity_LINE}    noReset=true
     ${current_activity}    Get Activity
+    Set Suite Variable    ${LINE_app}    ${LINE_app}
+
+Start app
+    Wait Until Element is Visible    //android.widget.FrameLayout[contains(@content-desc,"Chats tab")]    10    None
+    Click Element    //android.widget.FrameLayout[contains(@content-desc,"Chats tab")]
+    Wait Until Element is Visible    //*[@text="Chats"]    5    None
+    Click Element    //*[@resource-id="jp.naver.line.android:id/chatlist_chatname" and contains(@text,"Telkomsel")]
 
 User_input
     [Arguments]    ${input_text}

@@ -1,0 +1,7 @@
+*** Variables ***
+${appPackage}     com.google.android.apps.messaging    #com.android.mms
+${androidVersion}    7.0
+${deviceName}     G5 SE
+${platformName}    Android
+${appActivity}    .ui.ConversationListActivity    #.ui.ConversationList    #.ui.ConversationComposer
+${appiumServer}    http://localhost:4723/wd/hub
