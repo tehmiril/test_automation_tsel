@@ -47,7 +47,7 @@ LINE_SMS_test
     Check_VA_response_text    1    Tolong tulis nomor handphone Kamu ya :) (contoh: 0811000000)
     User_input    081314415099
     Check_VA_response_text    1    Terima kasih untuk informasinya.
-    Check_VA_response_text    2    Veronika akan mengirim
+    #Check_VA_response_text    2    Veronika akan mengirim
     Open SMS
     Select_TSEL_SMS
     Close Application

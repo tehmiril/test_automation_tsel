@@ -7,6 +7,8 @@ Resource          Object_repository.txt
 Resource          Generic_custkeyword.txt
 Library           OperatingSystem
 Library           Collections
+Resource          ../../../../../../Python27/Lib/site-packages/Selenium2Screenshots/keywords.robot
+Resource          Image_custkeyword.txt
 
 *** Test Cases ***
 test_carousel
@@ -136,6 +138,7 @@ test_compare_image
     Check_VA_response_carousel_exists    2
     Click_button_carousel    2    Mobile Banking    Lihat Caranya
     Check_VA_response_image    1
-    ${image_src}    Get_image_src    1
-    Compare Images    https://www.telkomsel.com/sites/default/files/upload/11_step_by_step_mobile_banking_indo.jpg    ${image_src}    0.1
-    [Teardown]    Close Browser
+    Get Screenshot    1    crop.png
+    #${image_src}    Get_image_src    1
+    #Compare Images    https://www.telkomsel.com/sites/default/files/upload/11_step_by_step_mobile_banking_indo.jpg    ${image_src}    0.1
+    #[Teardown]    Close Browser
