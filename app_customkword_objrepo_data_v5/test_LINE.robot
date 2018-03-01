@@ -50,8 +50,10 @@ LINE_SMS_test
     Check_VA_response_text    2    Veronika akan mengirim
     Open SMS
     Select_TSEL_SMS
+    Close Application
     Sleep    1s
     Switch Application    ${LINE_app}
-    User_input    ${current_finalelement_pin}
+    User_input_longer    ${current_finalelement_pin}
     Check_VA_response_text    1    Oke, Veronika sudah berhasil memverifikasi nomor telepon Kamu ya.
     Sleep    2s
+    [Teardown]    Close Application

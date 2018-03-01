@@ -11,12 +11,12 @@ Select_TSEL_SMS
     Click Element    //*[@resource-id="com.google.android.apps.messaging:id/conversation_name" and @text="TELKOMSEL"]
     Wait Until Element Is Visible    //*[@resource-id="com.google.android.apps.messaging:id/conversation_title" and @text="TELKOMSEL"]    10s
     ${messages}    Get Matching Xpath Count    //*[@resource-id="android:id/list"]/android.widget.FrameLayout
-    ${message_text_last}    Get Element Attribute    //*[@resource-id="android:id/list"]/android.widget.FrameLayout[${messages}]    contentDescription
+    ${message_text_last}    Get Element Attribute    //*[@resource-id="android:id/list"]/android.widget.FrameLayout[${messages}]/descendant::*[@class="android.widget.TextView"][1]    text
     ${message_last_string}    Convert To String    ${message_text_last}
     ${elements_messages}    Split String    ${message_last_string}    :
     ${total_strings}    Get Length    ${elements_messages}
     ${last_element}    Get From List    ${elements_messages}    1
-    ${pin_messages}    Split String    ${last_element}    ,
-    ${pin_element}    Get From List    ${pin_messages}    0
-    ${finalelement_pin}    Strip String    ${pin_element}    characters=${SPACE}
+    #${pin_messages}    Split String    ${last_element}    ,
+    #${pin_element}    Get From List    ${pin_messages}    0
+    ${finalelement_pin}    Strip String    ${last_element}    characters=${SPACE}
     Set Suite Variable    ${current_finalelement_pin}    ${finalelement_pin}

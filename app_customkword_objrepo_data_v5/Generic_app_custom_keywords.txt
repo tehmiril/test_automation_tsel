@@ -1,7 +1,7 @@
 *** Keywords ***
 Open app
     ${LINE_app}=    Open Application    ${appiumServer_LINE}    alias=LINE    platformName=${platformName_LINE}    platformVersion=${androidVersion_LINE}    deviceName=${deviceName_LINE}
-    ...    appPackage=${appPackage_LINE}    appActivity=${appActivity_LINE}    noReset=true
+    ...    appPackage=${appPackage_LINE}    appActivity=${appActivity_LINE}    noReset=true    #automationName=UiAutomator2
     ${current_activity}    Get Activity
     Set Suite Variable    ${LINE_app}    ${LINE_app}
     Start app
@@ -24,7 +24,23 @@ User_input
     Hide Keyboard
     Set Suite Variable    ${current_user_input}    ${input_text}
     Set Suite Variable    ${scrolled_down}    ${FALSE}
-    Sleep    5s
+    Sleep    7s
+    Show_user_input_on_screen
+    Get_Index
+
+User_input_longer
+    [Arguments]    ${input_text}
+    #Click Element    //*[@content-desc="Keyboard menu"]
+    Wait Until Element is Visible    ${textbox_obj}    2    None
+    Click Element    ${textbox_obj}
+    Input Text    ${textbox_obj}    ${input_text}
+    Click Element    ${sendkey_obj}
+    Sleep    1s
+    #Click Element    //*[@content-desc="Keyboard menu"]
+    Hide Keyboard
+    Set Suite Variable    ${current_user_input}    ${input_text}
+    Set Suite Variable    ${scrolled_down}    ${FALSE}
+    Sleep    15s
     Show_user_input_on_screen
     Get_Index
 
@@ -78,7 +94,7 @@ Closing_session
 
 Check_VA_response_text
     [Arguments]    ${order}    ${expected_text}
-    Wait Until Keyword Succeeds    10s    2s    Element Should Be Visible    //*[@resource-id="jp.naver.line.android:id/message_text" and contains(@text,"${expected_text}")]
+    #Wait Until Keyword Succeeds    10s    2s    Element Should Be Visible    //*[@resource-id="jp.naver.line.android:id/message_text" and contains(@text,"${expected_text}")]
     ${new_order}    Evaluate    ${order}+${index_user_input}
     ${text_here}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.widget.TextView[1]
     ${text_here2}=    Remove String Using Regexp    ${text_here}    (\r\n|\r|\n)
