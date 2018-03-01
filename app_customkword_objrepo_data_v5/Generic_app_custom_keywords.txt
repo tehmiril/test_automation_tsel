@@ -4,6 +4,7 @@ Open app
     ...    appPackage=${appPackage_LINE}    appActivity=${appActivity_LINE}    noReset=true
     ${current_activity}    Get Activity
     Set Suite Variable    ${LINE_app}    ${LINE_app}
+    Start app
 
 Start app
     Wait Until Element is Visible    //android.widget.FrameLayout[contains(@content-desc,"Chats tab")]    10    None

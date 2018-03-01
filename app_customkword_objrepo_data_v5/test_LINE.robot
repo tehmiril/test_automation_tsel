@@ -43,10 +43,15 @@ LINE_simple
 
 LINE_SMS_test
     Open app
+    User_input    Ganti nomor
+    Check_VA_response_text    1    Tolong tulis nomor handphone Kamu ya :) (contoh: 0811000000)
+    User_input    081314415099
+    Check_VA_response_text    1    Terima kasih untuk informasinya.
+    Check_VA_response_text    2    Veronika akan mengirim
     Open SMS
     Select_TSEL_SMS
-    Sleep    5s
+    Sleep    1s
     Switch Application    ${LINE_app}
-    Start app
-    #User_input    TCASH itu apaan sih?
-    #Sleep    5s
+    User_input    ${current_finalelement_pin}
+    Check_VA_response_text    1    Oke, Veronika sudah berhasil memverifikasi nomor telepon Kamu ya.
+    Sleep    2s
