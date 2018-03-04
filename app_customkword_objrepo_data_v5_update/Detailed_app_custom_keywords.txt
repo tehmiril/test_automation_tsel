@@ -39,7 +39,7 @@ Count_messages
     ${count_message1}    Get Matching Xpath Count    //android.widget.ListView[1]/android.widget.LinearLayout
     Set Suite Variable    ${total_messages_on_screen}    ${count_message1}
 
-Get_Index
+Get_user_input_index
     : FOR    ${looping}    IN RANGE    ${total_messages_on_screen}    0    -1
     \    ${avail}    Run Keyword And Return Status    Element Text Should Be    //android.widget.ListView/child::android.widget.LinearLayout[${looping}]/descendant::android.widget.TextView[3]    ${current_user_input}
     \    Run Keyword If    ${avail}==${FALSE}    Continue For Loop
@@ -153,3 +153,8 @@ Get_bottom_Y
     [Arguments]    ${bottom_element}
     ${bottom_Y}    Find_YLocation    ${bottom_element}
     Set Suite Variable    ${current_bottom_Y}    ${bottom_Y}
+
+Check_validation_index
+    [Arguments]    ${order}
+    ${new_order}    Evaluate    ${order}+${index_user_input}
+    Run Keyword If    ${new_order}>${total_messages_on_screen}    Swipe_down_until_element

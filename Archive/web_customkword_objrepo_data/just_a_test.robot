@@ -1,5 +1,5 @@
 *** Settings ***
-Library           Selenium2Library    run_on_failure=Selenium2Library.CapturePageScreenshot
+Library           Selenium2Library
 Resource          Detailed_custkeyword.txt
 Resource          Test_data_Indo.txt
 Library           String
@@ -7,9 +7,8 @@ Resource          Object_repository.txt
 Resource          Generic_custkeyword.txt
 Library           OperatingSystem
 Library           Collections
-Library           AppiumLibrary    run_on_failure=AppiumLibrary.CapturePageScreenshot
-Resource          SMS_custom_keywords.txt
-Resource          Test_data_SMS_Indo.txt
+Resource          ../../../../../../Python27/Lib/site-packages/Selenium2Screenshots/keywords.robot
+Resource          Image_custkeyword.txt
 
 *** Test Cases ***
 test_carousel
@@ -131,20 +130,16 @@ test_simple_input_response
     Closing_session
     [Teardown]    Close Browser
 
-test_web_sms
-    Open_chrome
+test_compare_image
+    [Setup]    Open_chrome
     Login_messenger    ${email}    ${password}
-    User_input    Ganti nomor
-    Check_VA_response_text    1    Tolong tulis nomor handphone Kamu ya :) (contoh: 0811000000)
-    User_input    082113088651
-    Check_VA_response_text    1    Terima kasih untuk informasinya.
-    Check_VA_response_text    2    Veronika akan mengirim
-    Open SMS
-    Select_TSEL_SMS
-    Close Application
-    #Sleep    1s
-    #Switch Application    ${LINE_app}
-    User_input    ${current_finalelement_pin}
-    Check_VA_response_text    1    Oke, Veronika sudah berhasil memverifikasi nomor telepon Kamu ya.
-    Sleep    2s
+    User_input    cara isi ulang tcash gmn ya?
+    Check_VA_response_text    1    Kamu bisa mengisi saldo TCASH Kamu dengan cara-cara berikut
+    Check_VA_response_carousel_exists    2
+    Click_button_carousel    2    Mobile Banking    Lihat Caranya
+    Check_VA_response_image    1
+    Sleep    10s
+    Get Screenshot    1    crop.png
+    #${image_src}    Get_image_src    1
+    #Compare Images    https://www.telkomsel.com/sites/default/files/upload/11_step_by_step_mobile_banking_indo.jpg    ${image_src}    0.1
     [Teardown]    Close Browser
