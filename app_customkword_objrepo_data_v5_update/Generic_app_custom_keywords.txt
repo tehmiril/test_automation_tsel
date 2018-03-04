@@ -29,7 +29,9 @@ User_input
     Sleep    7s
     Show_user_input_on_screen
     Get_user_input_index
-    Set Suite Variable    &{dict_responses}    &{EMPTY}
+    #Set Suite Variable    ${dict_responses}    ${EMPTY}
+    #${dict_responses}    Create Dictionary
+    #Set Suite Variable    \${dict_responses}
 
 User_input_longer
     [Arguments]    ${input_text}
@@ -45,11 +47,12 @@ User_input_longer
     Sleep    15s
     Show_user_input_on_screen
     Get_user_input_index
-    Set Suite Variable    &{dict_responses}    &{EMPTY}
+    #Set Suite Variable    &{dict_responses}    &{EMPTY}
 
 Check_VA_response_text_with_buttons
     [Arguments]    ${order}    ${response_text}    @{t_button}
-    ${new_order}    Evaluate    ${order}+${index_user_input}
+    Set Suite Variable    ${current_response_order}    ${order}
+    ${new_order}    Evaluate    ${current_response_order}+${index_user_input}
     ${count_text_buttons}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View
     Should Be True    ${count_text_buttons}==2
     ${text_here}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[1]/android.view.View
@@ -59,8 +62,7 @@ Check_VA_response_text_with_buttons
     \    ${status_button}    Get_button_text_from_response    ${count_text_buttons}    ${new_order}    ${item}
     \    Run Keyword If    '${status_button}'=='${FALSE}'    Run Keywords    Fail    This button is not found in the response
     \    ...    AND    Exit For Loop
-    Set To Dictionary    ${dict_responses}    ${order}    textbuttons;
-    Log Dictionary    ${dict_responses}
+    Set_to_prev_responses    ${order}    textbuttons;${text_here2}
 
 Click_Button_From_Response
     [Arguments]    ${order}    ${r_button}
@@ -99,33 +101,28 @@ Closing_session
 
 Check_VA_response_text
     [Arguments]    ${order}    ${expected_text}
-    #Wait Until Keyword Succeeds    10s    2s    Element Should Be Visible    //*[@resource-id="jp.naver.line.android:id/message_text" and contains(@text,"${expected_text}")]
-    ${new_order}    Evaluate    ${order}+${index_user_input}
-    ${text_here}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.widget.TextView[1]
-    ${text_here2}=    Remove String Using Regexp    ${text_here}    (\r\n|\r|\n)
-    Should Contain    ${text_here2}    ${expected_text}
-    Set To Dictionary    ${dict_responses}    ${order}    text;${text_here2}
-    Log Dictionary    ${dict_responses}
+    Set Suite Variable    ${current_response_order}    ${order}
+    ${new_order}    Evaluate    ${current_response_order}+${index_user_input}
+    Set Suite Variable    ${current_expected_response_text}    ${expected_text}
+    Run Keyword If    ${scrolled_down}==${FALSE} and ${new_order}>${total_messages_on_screen}    Swipe_down_until_element    /descendant::android.widget.TextView[1]
+    Run Keyword If    ${scrolled_down}==${FALSE} and ${new_order}<=${total_messages_on_screen}    Check_VA_response_text_actual    ${new_order}    ${order}
+    Run Keyword If    ${scrolled_down}==${TRUE}    Log    swipe down and check the last
 
 Check_VA_response_image
     [Arguments]    ${order}
-    ${new_order}    Evaluate    ${order}+${index_user_input}
+    Set Suite Variable    ${current_response_order}    ${order}
+    ${new_order}    Evaluate    ${current_response_order}+${index_user_input}
     ${count_image}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.widget.FrameLayout/descendant::*[@resource-id="jp.naver.line.android:id/chathistory_row_image"]
     Should Be True    ${count_image}>0
-    Set To Dictionary    ${dict_responses}    ${order}    image;
-    Log Dictionary    ${dict_responses}
+    Set_to_prev_responses    ${order}    image;
 
 Check_VA_response_carousel_exists
     [Arguments]    ${order}
-    ${new_order}    Evaluate    ${order}+${index_user_input}
-    ${count_carousel_items}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View
-    Should Be True    ${count_carousel_items}>2
-    ${carousel_items}    Evaluate    ${count_carousel_items}-1
-    Set Suite Variable    ${current_carousel_items}    ${carousel_items}
-    ${count_carousel_date_time}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[1]
-    Set Suite Variable    ${current_carousel_date_time}    ${count_carousel_date_time}
-    Set To Dictionary    ${dict_responses}    ${order}    carousel;
-    Log Dictionary    ${dict_responses}
+    Set Suite Variable    ${current_response_order}    ${order}
+    ${new_order}    Evaluate    ${current_response_order}+${index_user_input}
+    Run Keyword If    ${scrolled_down}==${FALSE} and ${new_order}>${total_messages_on_screen}    Swipe_down_until_element    /descendant::android.webkit.WebView/android.view.View/android.view.View    #Log    swipe down here and check the last element
+    Run Keyword If    ${scrolled_down}==${FALSE} and ${new_order}<=${total_messages_on_screen}    Check_VA_response_carousel_exists_actual    ${new_order}    ${order}
+    Run Keyword If    ${scrolled_down}==${TRUE}    Log    swipe down and check the last
 
 Show_carousel_items_on_specific_location
     [Arguments]    ${order}    ${element_number}
