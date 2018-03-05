@@ -47,9 +47,6 @@ Get_user_input_index
     \    ...    AND    Log    ${index_user_input}
     \    ...    AND    Exit For Loop
 
-Come_here
-    Log    Testing
-
 Go_to_specific_carousel_elements
     [Arguments]    ${order}    ${element_number}    @{buttons}
     ${new_order}    Evaluate    ${order}+${index_user_input}
@@ -154,6 +151,7 @@ Check_VA_response_text_actual
     ${text_here2}=    Remove String Using Regexp    ${text_here}    (\r\n|\r|\n)
     Should Contain    ${text_here2}    ${current_expected_response_text}
     Set_to_prev_responses    ${order}    text;${text_here2}
+    Log    Finished checking VA text
 
 Check_VA_response_carousel_exists_actual
     [Arguments]    ${new_order}    ${order}
@@ -164,6 +162,7 @@ Check_VA_response_carousel_exists_actual
     ${count_carousel_date_time}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[1]
     Set Suite Variable    ${current_carousel_date_time}    ${count_carousel_date_time}
     Set_to_prev_responses    ${order}    carousel;
+    Log    Finished checking VA carousel
 
 Set_to_dict_responses
     [Arguments]    ${order}    ${values}
@@ -181,23 +180,29 @@ Set_to_prev_responses
     Set Suite Variable    ${previous_resp_details}    ${details}
 
 Swipe_down_until_element
-    [Arguments]    ${element}    #${type}
+    [Arguments]    ${type}
+    Set Suite Variable    ${scrolled_down}    ${TRUE}
     : FOR    ${loop}    IN RANGE    0    10
     \    Swipe    600    600    600    300
     \    Count_messages
     \    ${status_previous}    Run Keyword And Return Status    Check_previous_message
-    \    Run Keyword If    ${status_previous}    Exit For Loop
-    ${count_element}    Run Keyword And Return Status    Element Should Be Visible    //android.widget.ListView/child::android.widget.LinearLayout[${total_messages_on_screen}]/${element}
-    Set Suite Variable    ${scrolled_down}    ${TRUE}
+    \    Run Keyword If    ${status_previous}    Run Keywords    Log    Stop swipe down
+    \    ...    AND    Exit For Loop
+    Run Keyword If    "${type}"=="text"    Check_VA_response_text_actual    ${total_messages_on_screen}    ${current_response_order}
+    ...    ELSE IF    "${type}"=="image"    Check_VA_response_image_actual_previous
+    ...    ELSE IF    "${type}"=="carousel"    Check_VA_response_carousel_exists_actual    ${total_messages_on_screen}    ${current_response_order}
+    ...    ELSE IF    "${type}"=="textbuttons"    Check_VA_response_text_with_buttons_previous
+    #${count_element}    Run Keyword And Return Status    Element Should Be Visible    //android.widget.ListView/child::android.widget.LinearLayout[${total_messages_on_screen}]/${element}
 
 Check_previous_message
     #Run Keyword If    ${prev_order}!=${previous_resp_order}    Fail    Not similar
     #    ${prev_order_final}    Convert To String    ${prev_order}
     #    ${prev_response_full_value}    Get From Dictionary    ${dict_responses}    ${prev_order_final}
-    Run Keyword If    ${previous_resp_type}=="text"    Check_VA_response_text_actual_previous
-    ...    ELSE IF    ${previous_resp_type}=="image"    Check_VA_response_image_actual_previous
-    ...    ELSE IF    ${previous_resp_type}=="carousel"    Check_VA_response_carousel_actual_previous
-    ...    ELSE IF    ${previous_resp_type}=="textbuttons"    Check_VA_response_text_with_buttons_previous
+    Run Keyword If    "${previous_resp_type}"=="text"    Check_VA_response_text_actual_previous
+    ...    ELSE IF    "${previous_resp_type}"=="image"    Check_VA_response_image_actual_previous
+    ...    ELSE IF    "${previous_resp_type}"=="carousel"    Check_VA_response_carousel_actual_previous
+    ...    ELSE IF    "${previous_resp_type}"=="textbuttons"    Check_VA_response_text_with_buttons_previous
+    Log    Finished checking previous ones
 
 Check_VA_response_text_actual_previous
     ${prev_order}    Evaluate    ${current_response_order}-1
@@ -219,3 +224,10 @@ Check_VA_response_text_with_buttons_previous
     ${prev_order}    Evaluate    ${current_response_order}-1
     ${count_text_buttons}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${prev_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View
     Should Be True    ${count_text_buttons}==2
+
+Check_VA_response_image_actual
+    [Arguments]    ${new_order}    ${order}
+    Set Suite Variable    ${current_response_order}    ${order}
+    ${count_image}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.widget.FrameLayout/descendant::*[@resource-id="jp.naver.line.android:id/chathistory_row_image"]
+    Should Be True    ${count_image}>0
+    Set_to_prev_responses    ${order}    image;

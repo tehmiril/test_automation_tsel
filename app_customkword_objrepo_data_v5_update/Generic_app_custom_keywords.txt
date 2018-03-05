@@ -104,25 +104,25 @@ Check_VA_response_text
     Set Suite Variable    ${current_response_order}    ${order}
     ${new_order}    Evaluate    ${current_response_order}+${index_user_input}
     Set Suite Variable    ${current_expected_response_text}    ${expected_text}
-    Run Keyword If    ${scrolled_down}==${FALSE} and ${new_order}>${total_messages_on_screen}    Swipe_down_until_element    /descendant::android.widget.TextView[1]
-    Run Keyword If    ${scrolled_down}==${FALSE} and ${new_order}<=${total_messages_on_screen}    Check_VA_response_text_actual    ${new_order}    ${order}
-    Run Keyword If    ${scrolled_down}==${TRUE}    Log    swipe down and check the last
+    Run Keyword If    ${scrolled_down}==${FALSE} and ${new_order}>${total_messages_on_screen}    Swipe_down_until_element    text
+    ...    ELSE IF    ${scrolled_down}==${FALSE} and ${new_order}<=${total_messages_on_screen}    Check_VA_response_text_actual    ${new_order}    ${order}
+    ...    ELSE IF    ${scrolled_down}==${TRUE}    Swipe_down_until_element    text
 
 Check_VA_response_image
     [Arguments]    ${order}
     Set Suite Variable    ${current_response_order}    ${order}
     ${new_order}    Evaluate    ${current_response_order}+${index_user_input}
-    ${count_image}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.widget.FrameLayout/descendant::*[@resource-id="jp.naver.line.android:id/chathistory_row_image"]
-    Should Be True    ${count_image}>0
-    Set_to_prev_responses    ${order}    image;
+    Run Keyword If    ${scrolled_down}==${FALSE} and ${new_order}>${total_messages_on_screen}    Swipe_down_until_element    image
+    ...    ELSE IF    ${scrolled_down}==${FALSE} and ${new_order}<=${total_messages_on_screen}    Check_VA_response_image_actual    ${new_order}    ${order}
+    ...    ELSE IF    ${scrolled_down}==${TRUE}    Swipe_down_until_element    image
 
 Check_VA_response_carousel_exists
     [Arguments]    ${order}
     Set Suite Variable    ${current_response_order}    ${order}
     ${new_order}    Evaluate    ${current_response_order}+${index_user_input}
-    Run Keyword If    ${scrolled_down}==${FALSE} and ${new_order}>${total_messages_on_screen}    Swipe_down_until_element    /descendant::android.webkit.WebView/android.view.View/android.view.View    #Log    swipe down here and check the last element
-    Run Keyword If    ${scrolled_down}==${FALSE} and ${new_order}<=${total_messages_on_screen}    Check_VA_response_carousel_exists_actual    ${new_order}    ${order}
-    Run Keyword If    ${scrolled_down}==${TRUE}    Log    swipe down and check the last
+    Run Keyword If    ${scrolled_down}==${FALSE} and ${new_order}>${total_messages_on_screen}    Swipe_down_until_element    carousel
+    ...    ELSE IF    ${scrolled_down}==${FALSE} and ${new_order}<${total_messages_on_screen}    Check_VA_response_carousel_exists_actual    ${new_order}    ${order}
+    ...    ELSE IF    ${scrolled_down}==${TRUE}    Swipe_down_until_element    carousel
 
 Show_carousel_items_on_specific_location
     [Arguments]    ${order}    ${element_number}
