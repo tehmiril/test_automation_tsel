@@ -69,3 +69,21 @@ LINE_check_Ylocation
     Check_VA_response_text    1    TCASH adalah layanan uang elektronik dari Telkomsel yang telah mendapatkan izin dari Bank Indonesia. Berbeda dengan pulsa, TCASH dapat digunakan untuk bayar tagihan, bayar merchant, isi pulsa, kirim uang, dan banyak lagi.
     Check_VA_response_carousel_exists    2
     [Teardown]    Close Application
+
+TEST_text_buttons
+    [Setup]    Open app
+    Sleep    2s
+    User_input    sisa pulsa saya berapa?
+    ${result}    Run Keyword and Return Status    Check_VA_response_text_with_buttons    1    ${VA_validateNumber}
+    Run Keyword If    ${result}    Click_Button_From_Response    1    Ya
+    Sleep    5s
+    Check_VA_response_text    1    Setelah Veronika cek,
+    Check_VA_response_text_with_buttons    2    Apakah Kamu juga ingin    Tidak
+    Click_Button_From_Response    2    Tidak
+    Sleep    5s
+    User_input    cara aktifkan tcash gmn ya?
+    Check_VA_response_text    1    TCASH dapat dinikmati oleh seluruh pelanggan Telkomsel baik pascabayar (kartuHalo) maupun prabayar (simPATI, Kartu As, dan Loop). Tekan *800*88*6DigitPIN# di HP Kamu. Untuk pengguna baru, tentukan 6 digit PIN Kamu sendiri.
+    Check_VA_response_text    2    ${VA_question_1}
+    Sleep    1s
+    Closing_session
+    [Teardown]    Close Application
