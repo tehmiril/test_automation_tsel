@@ -18,7 +18,7 @@ LINE_10_TCASH
     #Check_VA_response_carousel_exists    2
     Show_carousel_items_on_specific_location    2    2
     Show_carousel_items_on_specific_location    2    3
-    #Validate_carousel_items    2    Info    Informasi mengenai TCASH    Pertanyaan Lain
+    Validate_carousel_items    2    Dapatkan TCASH    \    Pesan Sticker
     #Click_carousel_button_on_specific_location    2    2    Merchant TCASH
     User_input    cara aktifkan tcash gmn ya?
     Check_VA_response_text    1    TCASH dapat dinikmati oleh seluruh pelanggan Telkomsel baik pascabayar (kartuHalo) maupun prabayar (simPATI, Kartu As, dan Loop). Tekan *800*88*6DigitPIN# di HP Kamu. Untuk pengguna baru, tentukan 6 digit PIN Kamu sendiri.

@@ -171,6 +171,6 @@ Validate_carousel_items
     : FOR    ${c_item}    IN RANGE    1    ${current_carousel_items}+1
     \    ${count_c_items}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${c_item}]/descendant::${xpath_c_item}
     \    Run Keyword If    ${count_c_items}>0    Exit For Loop
-    Log    ${c_item}
+    #Log    ${c_item}
     Go_to_specific_carousel_elements    ${c_item}    @{c_buttons}
     Check_where_to_swipe_carousel    ${c_item}
