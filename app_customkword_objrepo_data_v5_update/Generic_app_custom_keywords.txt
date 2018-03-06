@@ -111,15 +111,6 @@ Check_VA_response_image
     ...    ELSE IF    ${scrolled_down}==${FALSE} and ${current_new_order}<=${total_messages_on_screen}    Check_VA_response_image_actual    ${new_order}    ${order}
     ...    ELSE IF    ${scrolled_down}==${TRUE}    Swipe_down_until_element    image
 
-Check_VA_response_carousel_exists
-    [Arguments]    ${order}
-    Set Suite Variable    ${current_response_order}    ${order}
-    ${new_order}    Evaluate    ${current_response_order}+${index_user_input}
-    Set Suite Variable    ${current_new_order}    ${new_order}
-    Run Keyword If    ${scrolled_down}==${FALSE} and ${current_new_order}>${total_messages_on_screen}    Swipe_down_until_element    carousel
-    ...    ELSE IF    ${scrolled_down}==${FALSE} and ${current_new_order}<=${total_messages_on_screen}    Check_VA_response_carousel_exists_actual    ${new_order}    ${order}
-    ...    ELSE IF    ${scrolled_down}==${TRUE}    Swipe_down_until_element    carousel
-
 Show_carousel_items_on_specific_location
     [Arguments]    ${order}    ${element_number}
     Run Keyword If    ${carousel_scrolled_down}==${FALSE}    Check_VA_response_carousel_exists    ${order}
@@ -133,8 +124,8 @@ Click_carousel_button_on_specific_location
     Run Keyword If    ${element_number} > ${current_carousel_items}    Fail    There are less number of elements in the carousel.
     ...    ELSE    Go_to_specific_carousel_elements    ${element_number}    @{c_button}
     Log    which button?${index_button_carousel}
-    #Click Element    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/descendant::android.view.View[@text="${button_carousel_to_click}"]
-    Click Element    //*[@class="android.view.View" and contains(@text,"${button_carousel_to_click}")]
+    Click Element    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/descendant::android.view.View[@text="${button_carousel_to_click}"]
+    #Click Element    //*[@class="android.view.View" and contains(@text,"${button_carousel_to_click}")]
     Set Suite Variable    ${scrolled_down}    ${FALSE}
     Sleep    7s
     ${activity_now}    Get Activity

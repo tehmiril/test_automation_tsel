@@ -260,3 +260,12 @@ Swipe_down_until_date_time_carousel
     \    Run Keyword If    ${count_carousel_date_time}==1    Run Keywords    Log    Stop swipe down
     \    ...    AND    Set Suite Variable    ${current_new_order}    ${total_messages_on_screen}
     \    ...    AND    Exit For Loop
+
+Check_VA_response_carousel_exists
+    [Arguments]    ${order}
+    Set Suite Variable    ${current_response_order}    ${order}
+    ${new_order}    Evaluate    ${current_response_order}+${index_user_input}
+    Set Suite Variable    ${current_new_order}    ${new_order}
+    Run Keyword If    ${scrolled_down}==${FALSE} and ${current_new_order}>${total_messages_on_screen}    Swipe_down_until_element    carousel
+    ...    ELSE IF    ${scrolled_down}==${FALSE} and ${current_new_order}<=${total_messages_on_screen}    Check_VA_response_carousel_exists_actual    ${new_order}    ${order}
+    ...    ELSE IF    ${scrolled_down}==${TRUE}    Swipe_down_until_element    carousel
