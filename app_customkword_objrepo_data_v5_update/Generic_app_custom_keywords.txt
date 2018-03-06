@@ -1,7 +1,7 @@
 *** Keywords ***
 Open app
     ${LINE_app}=    Open Application    ${appiumServer_LINE}    alias=LINE    platformName=${platformName_LINE}    platformVersion=${androidVersion_LINE}    deviceName=${deviceName_LINE}
-    ...    appPackage=${appPackage_LINE}    appActivity=${appActivity_LINE}    noReset=true    #automationName=UiAutomator2
+    ...    appPackage=${appPackage_LINE}    appActivity=${appActivity_LINE}    noReset=true    automationName=UiAutomator2
     ${current_activity}    Get Activity
     Set Suite Variable    ${LINE_app}    ${LINE_app}
     Start app
@@ -11,13 +11,14 @@ Start app
     Click Element    //android.widget.FrameLayout[contains(@content-desc,"Chats tab")]
     Wait Until Element is Visible    //*[@text="Chats"]    5    None
     Click Element    //*[@resource-id="jp.naver.line.android:id/chatlist_chatname" and contains(@text,"Telkomsel")]
-    ${keyboard_visible}    Run Keyword And Return Status    Page Should Contain Element    //*[@resource-id="jp.naver.line.android:id/official_account_bottombar_keyboard_button"]
+    Sleep    2s
+    ${keyboard_visible}    Run Keyword And Return Status    Element Should Be Visible    //*[@resource-id="jp.naver.line.android:id/official_account_bottombar_keyboard_button"]
     Run Keyword If    ${keyboard_visible}    Get_bottom_Y    //*[@resource-id="jp.naver.line.android:id/official_account_bottombar_keyboard_button"]
     ...    ELSE    Get_bottom_Y    ${textbox_obj}
 
 User_input
     [Arguments]    ${input_text}
-    ${keyboard_visible}    Run Keyword And Return Status    Page Should Contain Element    //*[@resource-id="jp.naver.line.android:id/official_account_bottombar_keyboard_button"]
+    ${keyboard_visible}    Run Keyword And Return Status    Element Should Be Visible    //*[@resource-id="jp.naver.line.android:id/official_account_bottombar_keyboard_button"]
     Run Keyword If    ${keyboard_visible}    Click Element    //*[@resource-id="jp.naver.line.android:id/official_account_bottombar_keyboard_button"]
     Click Element    ${textbox_obj}
     Input Text    ${textbox_obj}    ${input_text}
@@ -86,7 +87,7 @@ Closing_session
     #only type in at the moment
     User_input    ${select_Rate}
     Check_VA_response_text    1    ${VA_askRateReason}
-    User_input    ${no_answer}
+    User_input    Nope
     Sleep    10s
     Check_VA_response_text    1    ${VA_closingstatement}
     Check_VA_response_image    3
@@ -128,22 +129,20 @@ Show_carousel_items_on_specific_location
 Click_carousel_button_on_specific_location
     [Arguments]    ${order}    ${element_number}    @{c_button}
     Run Keyword If    ${carousel_scrolled_down}==${FALSE}    Check_VA_response_carousel_exists    ${order}
-    ${new_order}    Evaluate    ${order}+${index_user_input}
     ${expected_activity}    Set Variable    .activity.iab.InAppBrowserActivity
-    #Check_VA_response_carousel_exists    ${order}
     Run Keyword If    ${element_number} > ${current_carousel_items}    Fail    There are less number of elements in the carousel.
     ...    ELSE    Go_to_specific_carousel_elements    ${element_number}    @{c_button}
-    Log    ${index_button_carousel}
-    Click Element    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View/android.view.View[2]/android.view.View[${index_button_carousel}]
-    Sleep    1s
-    Set Suite Variable    ${current_user_input}    ${c_button}
+    Log    which button?${index_button_carousel}
+    #Click Element    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/descendant::android.view.View[@text="${button_carousel_to_click}"]
+    Click Element    //*[@class="android.view.View" and contains(@text,"${button_carousel_to_click}")]
     Set Suite Variable    ${scrolled_down}    ${FALSE}
-    Sleep    3s
+    Sleep    7s
     ${activity_now}    Get Activity
     ${activity_now_S}    Convert To String    ${activity_now}
     ${status_activity}    Run Keyword And Return Status    Should Be Equal As Strings    ${activity_now_S}    ${expected_activity}
     Run Keyword If    ${status_activity}    Click Element    //*[@resource-id="jp.naver.line.android:id/iab_header_close"]
-    ...    ELSE    Run Keywords    Show_user_input_on_screen
+    ...    ELSE    Run Keywords    Set Suite Variable    ${current_user_input}    ${button_carousel_to_click}
+    ...    AND    Show_user_input_on_screen
     ...    AND    Get_user_input_index
 
 Cancel_and_closing_session

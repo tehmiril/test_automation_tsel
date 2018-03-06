@@ -191,6 +191,7 @@ Get_button_text_from_carousel
     \    ${button_avail}    Run Keyword And Return Status    Should Contain    ${text_button2}    ${item}
     \    Run Keyword If    ${button_avail}    Run Keywords    Set Test Variable    ${status_button}    ${TRUE}
     \    ...    AND    Set Suite Variable    ${index_button_carousel}    ${b_order}
+    \    ...    AND    Set Suite Variable    ${button_carousel_to_click}    ${text_button2}
     \    ...    AND    Exit For Loop
     [Return]    ${status_button}
 
@@ -215,7 +216,7 @@ Get_XLocation_Carousel_Elements
 Set_Xlimit_for_carousel
     ${tsel_icon_bound}    Get Element Location    //android.widget.ImageView[@resource-id="jp.naver.line.android:id/chathistory_row_thumbnail"][1]
     ${tsel_icon_locationX}    Get_XLocation_from_bounds    ${tsel_icon_bound}
-    ${right_limit}    Evaluate    ${tsel_icon_locationX}+200    #Just a suggested width, what would be the accepted maximum limit of X location
+    ${right_limit}    Evaluate    ${tsel_icon_locationX}+235    #Just a suggested width, what would be the accepted maximum limit of X location
     Set Suite Variable    ${current_tsel_icon_locationX}    ${tsel_icon_locationX}
     Set Suite Variable    ${current_right_limit}    ${right_limit}
 
@@ -233,7 +234,7 @@ Swipe_forward_until_element
     [Documentation]    When the VA response has carousel (with picture, header and buttons), this keyword is expected to interact with it.
     Log    forward
     : FOR    ${looping}    IN RANGE    0    10
-    \    Swipe    600    600    200    600
+    \    Swipe    600    600    150    600
     \    Capture Page Screenshot    carousel_${looping}.png
     \    ${element_XBegin}    Get_XLocation_Carousel_Elements    ${element_number}
     \    Run Keyword If    ${current_tsel_icon_locationX} < ${element_XBegin} < ${current_right_limit}    Run Keywords    Sleep    1s
@@ -244,7 +245,7 @@ Swipe_backward_until_element
     [Documentation]    When the VA response has carousel (with picture, header and buttons), this keyword is expected to interact with it.
     Log    backward
     : FOR    ${looping}    IN RANGE    0    10
-    \    Swipe    200    600    600    600
+    \    Swipe    150    600    600    600
     \    Capture Page Screenshot    carousel_${looping}.png
     \    ${element_XBegin}    Get_XLocation_Carousel_Elements    ${element_number}
     \    Run Keyword If    ${current_tsel_icon_locationX} < ${element_XBegin} < ${current_right_limit}    Run Keywords    Sleep    1s
