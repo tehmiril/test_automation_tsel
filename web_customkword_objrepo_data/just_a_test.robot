@@ -148,3 +148,5 @@ test_web_sms
     Check_VA_response_text    1    Oke, Veronika sudah berhasil memverifikasi nomor telepon Kamu ya.
     Sleep    2s
     [Teardown]    Close Browser
+
+001 - Non-Telkomsel user who just started talking to VA
