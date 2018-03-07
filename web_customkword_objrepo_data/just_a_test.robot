@@ -154,9 +154,11 @@ test_web_sms
     Check_VA_response_text    1    Lokasi GraPARI sekitar mana yang Kamu maksud?
     Check_VA_response_carousel_exists    2
     Click_button_carousel    2    Police Banda Aceh    Pilih
-    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
+    Check_VA_response_text    1    Berikut info GraPARI di sekitar Police Banda Aceh ya
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Click_button_carousel    2    GraPARI SETUI    Buka di Google Maps
+    Closing_session
     [Teardown]    Close Browser
 
 010 - TCASH Information

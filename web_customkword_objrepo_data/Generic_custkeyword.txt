@@ -55,7 +55,7 @@ Closing_session
 
 Check_VA_response_text
     [Arguments]    ${order}    ${expected_text}
-    Wait Until Keyword Succeeds    15s    3s    Selenium2Library.Element Should Be Visible    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]
+    Wait Until Keyword Succeeds    1 minute    5s    Selenium2Library.Element Should Be Visible    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]
     ${classname}    Selenium2Library.Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]    class
     Should Be Equal As Strings    ${classname}    ${VA_textcarousel_bubble}
     Run Keyword    Check_VA_response_text_actual    ${current_user_input}    ${current_total_user_message}    ${order}    ${expected_text}
@@ -70,7 +70,7 @@ Check_VA_response_image
 
 Check_VA_response_carousel_exists
     [Arguments]    ${order}
-    Wait Until Keyword Succeeds    15s    3s    Selenium2Library.Element Should Be Visible    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div
+    Wait Until Keyword Succeeds    30s    3s    Selenium2Library.Element Should Be Visible    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div
     ${classname}    Selenium2Library.Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div    class
     Should Be Equal As Strings    ${classname}    ${VA_carousel_maindiv}
 
