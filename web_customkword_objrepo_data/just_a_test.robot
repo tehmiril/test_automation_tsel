@@ -82,7 +82,84 @@ test_simple_input_response
     Cancel_and_closing_session
     [Teardown]    Close Browser
 
-10-TCASH Information
+test_web_sms
+    Open_chrome
+    Login_messenger    ${email}    ${password}
+    User_input    Ganti nomor
+    Check_VA_response_text    1    Tolong tulis nomor handphone Kamu ya :) (contoh: 0811000000)
+    User_input    082113088651
+    Check_VA_response_text    1    Terima kasih untuk informasinya.
+    Check_VA_response_text    2    Veronika akan mengirim
+    Open SMS
+    Select_TSEL_SMS
+    Close Application
+    #Sleep    1s
+    #Switch Application    ${LINE_app}
+    User_input    ${current_finalelement_pin}
+    Check_VA_response_text    1    Oke, Veronika sudah berhasil memverifikasi nomor telepon Kamu ya.
+    Sleep    2s
+    [Teardown]    Close Browser
+
+[X] 001 - Non-Telkomsel user who just started talking to VA
+    [Setup]    Open Chrome
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo
+    [Teardown]    Close Browser
+
+[X] 002 - Non-Telkomsel who wants to explore VA
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo
+
+005 - Non-Telkomsel user who is wondering about Telkomsel products
+    [Setup]    Open Chrome
+    Login_messenger    ${email}    ${password}
+    User_input    Saran perdana donk
+    Check_VA_response_text    1    Oke, Veronika bantu carikan produk Telkomsel yang cocok buat Kamu ya
+    Check_VA_response_text_with_2buttons    2    Sebelumnya, tolong jawab 3 pertanyaan singkat berikut ini    Mulai    Lihat Semua Produk
+    Click_Button_From_Response    2    Lihat Semua Produk
+    Check_VA_response_text    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini
+    Check_VA_response_carousel_exists    2
+    Validate_carousel_items    2    SimPATI Combo    Aktifkan paket internet kualitas jaringan terbaik    Info SimPATI Combo    Perdana SimPATI    Beli sekarang
+    Validate_carousel_items    2    Kartu As Combo    internetan asik dengan jaringan terbaik    Info Kartu As Combo    Perdana Kartu As    Beli sekarang
+    Validate_carousel_items    2    Loop Cash    Beli paket internetan bisa nambah uang jajan    Info Loop Cash    Perdana Loop    Beli sekarang
+    Validate_carousel_items    2    Halo Kick    Dapatkan lebih banyak benefit premium dengan Halo Kick!    Info Halo Kick    Daftar kartuHalo    Beli di GraPARI
+    Click_button_carousel    2    Kartu As Combo    Perdana Kartu As
+    Check_VA_response_image    1
+    Check_VA_response_text    2    Kamu bisa cari tahu lebih lanjut di https://telkomsel.com/kartu-as
+    Check_VA_response_text_with_2buttons    3    Apakah Kamu ingin membeli kartu perdana Kartu As tersebut?    Ya    Tidak
+    Click_Button_From_Response    3    Ya
+    Check_VA_response_text    1    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
+    User_input    banda aceh
+    Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
+    Check_VA_response_carousel_exists    2
+    Click_button_carousel    2    Police Banda Aceh    Pilih
+    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    [Teardown]    Close Browser
+
+[X] 006 - Non-Telkomsel user who is interested in using KartuHalo
+    [Setup]    Open Chrome
+    Login_messenger    ${email}    ${password}
+    User_input    Kartu halo itu apa?
+    Check_VA_response_text    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini
+    Check_VA_response_carousel_exists    2
+    Validate_carousel_items    2    SimPATI Combo    Aktifkan paket internet kualitas jaringan terbaik    Info SimPATI Combo    Perdana SimPATI    Beli sekarang
+    Validate_carousel_items    2    Kartu As Combo    internetan asik dengan jaringan terbaik    Info Kartu As Combo    Perdana Kartu As    Beli sekarang
+    Validate_carousel_items    2    Loop Cash    Beli paket internetan bisa nambah uang jajan    Info Loop Cash    Perdana Loop    Beli sekarang
+    Validate_carousel_items    2    Halo Kick    Dapatkan lebih banyak benefit premium dengan Halo Kick!    Info Halo Kick    Daftar kartuHalo    Beli di GraPARI
+    Click_button_carousel    2    Halo Kick    Beli di GraPARI
+    Check_VA_response_text    1    Tuliskan lokasi yang Kamu cari atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu untuk mendapatkan GraPARI terdekat
+    User_input    banda aceh
+    Check_VA_response_text    1    Lokasi GraPARI sekitar mana yang Kamu maksud?
+    Check_VA_response_carousel_exists    2
+    Click_button_carousel    2    Police Banda Aceh    Pilih
+    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    [Teardown]    Close Browser
+
+010 - TCASH Information
     [Setup]    Open_chrome
     Login_messenger    ${email}    ${password}
     User_input    TCASH itu apaan sih?
@@ -108,7 +185,7 @@ test_simple_input_response
     Cancel_and_closing_session
     [Teardown]    Close Browser
 
-11-TCASH Information
+011 - TCASH Information
     [Setup]    Open_chrome
     Login_messenger    ${email}    ${password}
     User_input    cara aktifkan tcash gmn ya?
@@ -131,22 +208,22 @@ test_simple_input_response
     Closing_session
     [Teardown]    Close Browser
 
-test_web_sms
-    Open_chrome
+012 - User want to have a 4G card and order it online
+    [Setup]    Open Chrome
     Login_messenger    ${email}    ${password}
-    User_input    Ganti nomor
-    Check_VA_response_text    1    Tolong tulis nomor handphone Kamu ya :) (contoh: 0811000000)
-    User_input    082113088651
-    Check_VA_response_text    1    Terima kasih untuk informasinya.
-    Check_VA_response_text    2    Veronika akan mengirim
-    Open SMS
-    Select_TSEL_SMS
-    Close Application
-    #Sleep    1s
-    #Switch Application    ${LINE_app}
-    User_input    ${current_finalelement_pin}
-    Check_VA_response_text    1    Oke, Veronika sudah berhasil memverifikasi nomor telepon Kamu ya.
-    Sleep    2s
+    User_input    gimana caranya dapat sim card 4g
+    Check_VA_response_text    1    Untuk upgrade ke kartu SIM 4G, Kamu harus mengganti kartu SIM lama dengan kartu SIM 4G. Berikut adalah beberapa cara untuk mendapatkannya:
+    Check_VA_response_carousel_exists    2
+    Validate_carousel_items    2    MyGraPARI Terdekat    Dapatkan SIM card 4G di GraPARI dengan membawa ID Card Kamu    MyGraPARI Terdekat
+    Validate_carousel_items    2    GraPARI Terdekat    Dapatkan SIM card 4G di GraPARI dengan membawa ID Card Kamu    GraPARI Terdekat
+    Validate_carousel_items    2    Registrasi Online    SIM card 4G akan dikirim ke rumah    Registrasi Online
+    Click_button_carousel    2    MyGraPARI Terdekat    MyGraPARI Terdekat
+    #Click_button_carousel    2    Registrasi Online    Registrasi Online
+    Closing_session
     [Teardown]    Close Browser
 
-001 - Non-Telkomsel user who just started talking to VA
+[X] 014 - User want to search a grapari that opens on a specific day
+    [Setup]    Open Chrome
+    Login_messenger    ${email}    ${password}
+    User_input    Grapari di jakarta yang buka hari minggu dimana ya?
+    [Teardown]    Close Browser

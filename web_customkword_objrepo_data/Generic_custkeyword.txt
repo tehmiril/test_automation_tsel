@@ -5,7 +5,8 @@ Greet_VA_Indo
     Check_VA_response_text    1    ${VA_Greet1}
     #Check_VA_response_text    2    Saatnya menukar POIN Kamu dengan promo-promo menarik! Info lebih lanjut klik disini https://www.telkomsel.com/explore/telkomsel-poin
     Check_VA_response_image    3
-    Check_VA_response_text_with_2buttons    4    pilih menu    ${VA_GreetButton1}    ${VA_GreetButton2}
+    Check_VA_response_text_with_2buttons    4    Silakan pilih salah satu pilihan di bawah ini atau langsung saja ketik permintaan kamu    ${VA_GreetButton1}    ${VA_GreetButton2}
+    Click_Button_From_Response    4    Lihat Menu Utama
     Selenium2Library.Capture Page Screenshot    VA_greet.png
     Sleep    2s
 
@@ -89,6 +90,7 @@ Open_chrome
     Call Method    ${chrome_options}    add_argument    --disable-notifications
     Run Keyword If    os.sep == '/'    Selenium2Library.Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}
     ...    ELSE    Selenium2Library.Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}    #executable_path=/usr/lib/chromium-browser/chromedriver
+    Selenium2Library.Set Window Position    2000    0
     Selenium2Library.Maximize Browser Window
     Selenium2Library.Go To    ${URLmessengerTSEL}
 
