@@ -1,8 +1,9 @@
 *** Keywords ***
 Greet_VA_Indo
+    [Arguments]    ${greeting_text}= ${VA_Greet1}
     [Documentation]    Can be part of any test case, greet VA
     User_input    ${greeting}
-    Check_VA_response_text    1    ${VA_Greet1}
+    Check_VA_response_text    1    ${greeting_text}
     #Check_VA_response_text    2    Saatnya menukar POIN Kamu dengan promo-promo menarik! Info lebih lanjut klik disini https://www.telkomsel.com/explore/telkomsel-poin
     Check_VA_response_image    3
     Check_VA_response_text_with_2buttons    4    Silakan pilih salah satu pilihan di bawah ini atau langsung saja ketik permintaan kamu    ${VA_GreetButton1}    ${VA_GreetButton2}

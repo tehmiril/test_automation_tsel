@@ -100,15 +100,38 @@ test_web_sms
     Sleep    2s
     [Teardown]    Close Browser
 
-[X] 001 - Non-Telkomsel user who just started talking to VA
+001 - Non-Telkomsel user who just started talking to VA
     [Setup]    Open Chrome
-    Login_messenger    ${email}    ${password}
-    Greet_VA_Indo
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    Greet_VA_Indo    ${VA_GreetNonTsel}
+    Check_VA_response_carousel_exists    1
+    Validate_carousel_items    1    Jelajah Produk Telkomsel    Temukan produk terbaik Telkomsel di sini    Beralih ke Telkomsel    Produk untuk Kamu    Layanan Digital
+    Validate_carousel_items    1    Profil Kamu    Informasi tentang nomor Telkomsel Kamu    Sisa Kuota    Tagihan/Sisa Pulsa    Info PUK
+    Validate_carousel_items    1    Beli Paket dan Tukar POIN    Lihat dan beli produk Telkomsel favorit Kamu di sini    Beli Pulsa    Beli Paket    Telkomsel POIN
+    Validate_carousel_items    1    Bantuan Lainnya    Kamu punya pertanyaan? Temukan jawabannya di sini    Registrasi Prabayar    GraPARI Terdekat    Kontak Live Agent
+    Check_VA_response_text    2    Silakan pilih salah satu opsi di atas atau ketik layanan lain yang dibutuhkan
+    User_input    Beli Pulsa
+    User_input    Batal
+    Closing_session
     [Teardown]    Close Browser
 
-[X] 002 - Non-Telkomsel who wants to explore VA
-    Login_messenger    ${email}    ${password}
-    Greet_VA_Indo
+002 - Non-Telkomsel who wants to explore VA
+    [Setup]    Open_chrome
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    Greet_VA_Indo    ${VA_GreetNonTsel}
+    Check_VA_response_carousel_exists    1
+    Validate_carousel_items    1    Jelajah Produk Telkomsel    Temukan produk terbaik Telkomsel di sini    Beralih ke Telkomsel    Produk untuk Kamu    Layanan digital
+    Validate_carousel_items    1    Profil Kamu    Informasi tentang nomor Telkomsel Kamu    Sisa Kuota    Tagihan/Sisa Pulsa    Info PUK
+    Validate_carousel_items    1    Beli Paket dan Tukar POIN    Lihat dan beli produk Telkomsel favorit Kamu di sini    Beli Pulsa    Beli Paket    Telkomsel POIN
+    Validate_carousel_items    1    Bantuan Lainnya    Kamu punya pertanyaan? Temukan jawabannya di sini    Registrasi Prabayar    GraPARI Terdekat    Kontak Live Agent
+    Check_VA_response_text    2    Silakan pilih salah satu opsi di atas atau ketik layanan lain yang dibutuhkan
+    Click_button_carousel    1    Beli Paket dan Tukar POIN    Beli Pulsa
+    Check_VA_response_text    1    Agar permintaan Kamu dapat diproses lebih lanjut, tolong tulis nomor Telkomsel Kamu yang valid ya (contoh: 08110000000)
+    User_input    Batal
+    Check_VA_response_text    1    Baiklah, Veronika batalkan.
+    Check_VA_response_text    2    Ada lagi yang bisa Veronika bantu?
+    Closing_session
+    [Teardown]    Close Browser
 
 005 - Non-Telkomsel user who is wondering about Telkomsel products
     [Setup]    Open Chrome
