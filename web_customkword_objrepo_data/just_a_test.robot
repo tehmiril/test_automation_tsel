@@ -161,7 +161,7 @@ test_web_sms
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
     [Teardown]    Close Browser
 
-[X] 006 - Non-Telkomsel user who is interested in using KartuHalo
+006 - Non-Telkomsel user who is interested in using KartuHalo
     [Setup]    Open Chrome
     Login_messenger    ${email}    ${password}
     User_input    Kartu halo itu apa?
@@ -181,6 +181,52 @@ test_web_sms
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
     Click_button_carousel    2    GraPARI SETUI    Buka di Google Maps
+    Closing_session
+    [Teardown]    Close Browser
+
+007 - Non-Telkomsel user who wants to know about KartuAs
+    [Setup]    Open Chrome
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Mau tau info KartuAs dong
+    Check_VA_response_text    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini
+    Check_VA_response_carousel_exists    2
+    Validate_carousel_items    2    SimPATI Combo    Aktifkan paket internet kualitas jaringan terbaik    Info SimPATI Combo    Perdana SimPATI    Beli sekarang
+    Validate_carousel_items    2    Kartu As Combo    internetan asik dengan jaringan terbaik    Info Kartu As Combo    Perdana Kartu As    Beli sekarang
+    Validate_carousel_items    2    Loop Cash    Beli paket internetan bisa nambah uang jajan    Info Loop Cash    Perdana Loop    Beli sekarang
+    Validate_carousel_items    2    Halo Kick    Dapatkan lebih banyak benefit premium dengan Halo Kick!    Info Halo Kick    Daftar kartuHalo    Beli di GraPARI
+    Click_button_carousel    2    Kartu As Combo    Beli sekarang
+    Check_VA_response_text    1    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
+    User_input    banda aceh
+    Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
+    Check_VA_response_carousel_exists    2
+    Click_button_carousel    2    Police Banda Aceh    Pilih
+    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
+    Closing_session
+    [Teardown]    Close Browser
+
+008 - Non-Telkomsel user who wants to know about SimPATI
+    [Setup]    Open Chrome
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Mau tau info SimPATI dong
+    Check_VA_response_text    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini
+    Check_VA_response_carousel_exists    2
+    Validate_carousel_items    2    SimPATI Combo    Aktifkan paket internet kualitas jaringan terbaik    Info SimPATI Combo    Perdana SimPATI    Beli sekarang
+    Validate_carousel_items    2    Kartu As Combo    internetan asik dengan jaringan terbaik    Info Kartu As Combo    Perdana Kartu As    Beli sekarang
+    Validate_carousel_items    2    Loop Cash    Beli paket internetan bisa nambah uang jajan    Info Loop Cash    Perdana Loop    Beli sekarang
+    Validate_carousel_items    2    Halo Kick    Dapatkan lebih banyak benefit premium dengan Halo Kick!    Info Halo Kick    Daftar kartuHalo    Beli di GraPARI
+    Click_button_carousel    2    SimPATI Combo    Beli sekarang
+    Check_VA_response_text    1    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
+    User_input    Medan
+    Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
     Closing_session
     [Teardown]    Close Browser
 
