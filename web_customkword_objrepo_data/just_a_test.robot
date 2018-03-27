@@ -230,6 +230,37 @@ test_web_sms
     Closing_session
     [Teardown]    Close Browser
 
+[X] 009 - Non-Telkomsel user who wants to know about Loop
+    [Setup]    Open_chrome
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    Greet_VA_Indo    ${VA_GreetNonTsel}
+    Check_VA_response_carousel_exists    1
+    Validate_carousel_items    1    Jelajah Produk Telkomsel    Temukan produk terbaik Telkomsel di sini    Beralih ke Telkomsel    Produk untuk Kamu    Layanan digital
+    Validate_carousel_items    1    Profil Kamu    Informasi tentang nomor Telkomsel Kamu    Sisa Kuota    Tagihan/Sisa Pulsa    Info PUK
+    Validate_carousel_items    1    Beli Paket dan Tukar POIN    Lihat dan beli produk Telkomsel favorit Kamu di sini    Beli Pulsa    Beli Paket    Telkomsel POIN
+    Validate_carousel_items    1    Bantuan Lainnya    Kamu punya pertanyaan? Temukan jawabannya di sini    Registrasi Prabayar    GraPARI Terdekat    Kontak Live Agent
+    Check_VA_response_text    2    Silakan pilih salah satu opsi di atas atau ketik layanan lain yang dibutuhkan
+    #Click_button_carousel    1    Jelajah Produk Telkomsel    Layanan digital
+    Click_button_carousel    1    Jelajah Produk Telkomsel    Beralih ke Telkomsel
+    Check_VA_response_text    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini
+    Check_VA_response_carousel_exists    2
+    Validate_carousel_items    2    SimPATI Combo    Aktifkan paket internet kualitas jaringan terbaik    Info SimPATI Combo    Perdana SimPATI    Beli sekarang
+    Validate_carousel_items    2    Kartu As Combo    internetan asik dengan jaringan terbaik    Info Kartu As Combo    Perdana Kartu As    Beli sekarang
+    Validate_carousel_items    2    Loop Cash    Beli paket internetan bisa nambah uang jajan    Info Loop Cash    Perdana Loop    Beli sekarang
+    Validate_carousel_items    2    Halo Kick    Dapatkan lebih banyak benefit premium dengan Halo Kick!    Info Halo Kick    Daftar kartuHalo    Beli di GraPARI
+    Click_button_carousel    2    Loop Cash    Beli sekarang
+    Check_VA_response_text    1    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
+    User_input    banda aceh
+    Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
+    Check_VA_response_carousel_exists    2
+    Click_button_carousel    2    Police Banda Aceh    Pilih
+    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
+    Closing_session
+    [Teardown]    Close Browser
+
 010 - TCASH Information
     [Setup]    Open_chrome
     Login_messenger    ${email}    ${password}
@@ -293,8 +324,153 @@ test_web_sms
     Closing_session
     [Teardown]    Close Browser
 
+[DEPRECATED] 013 - User perform Inquire 4G Upgrade and Find Nearest Store
+
 [X] 014 - User want to search a grapari that opens on a specific day
     [Setup]    Open Chrome
     Login_messenger    ${email}    ${password}
-    User_input    Grapari di jakarta yang buka hari minggu dimana ya?
+    User_input    grapari yang buka di hari minggu di jakarta selatan
+    [Teardown]    Close Browser
+
+[X] 015 - User want to buy a starter pack
+    [Setup]    Open Chrome
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    mau beli perdana
+    Check_VA_response_text    1    Kamu bisa mendapatkan perdana Telkomsel di GraPARI maupun di outlet terdekat
+    Check_VA_response_text    2    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
+    User_input    Sydney
+    Click_carousel_button_on_specific_location    1    1    Pilih
+    Check_VA_response_text    1    Mohon maaf, Veronika tidak menemukan adanya outlet Telkomsel di dekat sydney
+    Check_VA_response_text    2    Ada lagi yang bisa Veronika bantu?
+    Closing_session
+    [Teardown]    Close Browser
+
+[X] 016 - User want to buy voucher data
+    [Setup]    Open Chrome
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    mau beli voucher data
+    Check_VA_response_text    1    Voucher data bisa Kamu dapatkan di outlet terdekat
+    Check_VA_response_text    2    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
+    User_input    Sydney
+    Check_VA_response_carousel_exists    1
+    Closing_session
+    [Teardown]    Close Browser
+
+[X] 017 - User wants to know about voucher information
+    [Setup]    Open Chrome
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    Greet_VA_Indo    ${VA_GreetNonTsel}
+    Check_VA_response_carousel_exists    1
+    Validate_carousel_items    1    Jelajah Produk Telkomsel    Temukan produk terbaik Telkomsel di sini    Beralih ke Telkomsel    Produk untuk Kamu    Layanan digital
+    Validate_carousel_items    1    Profil Kamu    Informasi tentang nomor Telkomsel Kamu    Sisa Kuota    Tagihan/Sisa Pulsa    Info PUK
+    Validate_carousel_items    1    Beli Paket dan Tukar POIN    Lihat dan beli produk Telkomsel favorit Kamu di sini    Beli Pulsa    Beli Paket    Telkomsel POIN
+    Validate_carousel_items    1    Bantuan Lainnya    Kamu punya pertanyaan? Temukan jawabannya di sini    Registrasi Prabayar    GraPARI Terdekat    Kontak Live Agent
+    Check_VA_response_text    2    Silakan pilih salah satu opsi di atas atau ketik layanan lain yang dibutuhkan
+    User_input    mau tau info voucher telkomsel
+    Check_VA_response_text    1    Oke Lightning Diamond, Telkomsel menyediakan berbagai macam voucher isi ulang sesuai kebutuhan Kamu
+    Check_VA_response_text_with_2buttons    2    Kamu pake simPATI, Loop, atau Kartu As?    SimPATI    Loop
+    User_input    batal
+    Closing_session
+    [Teardown]    Close Browser
+
+[DEPRECATED] 018 - User explore the FAQ menu and read about voucher information
+    [Setup]    Open Chrome
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    Greet_VA_Indo    ${VA_GreetNonTsel}
+    Check_VA_response_carousel_exists    1
+    Validate_carousel_items    1    Jelajah Produk Telkomsel    Temukan produk terbaik Telkomsel di sini    Beralih ke Telkomsel    Produk untuk Kamu    Layanan digital
+    Validate_carousel_items    1    Profil Kamu    Informasi tentang nomor Telkomsel Kamu    Sisa Kuota    Tagihan/Sisa Pulsa    Info PUK
+    Validate_carousel_items    1    Beli Paket dan Tukar POIN    Lihat dan beli produk Telkomsel favorit Kamu di sini    Beli Pulsa    Beli Paket    Telkomsel POIN
+    Validate_carousel_items    1    Bantuan Lainnya    Kamu punya pertanyaan? Temukan jawabannya di sini    Registrasi Prabayar    GraPARI Terdekat    Kontak Live Agent
+    Check_VA_response_text    2    Silakan pilih salah satu opsi di atas atau ketik layanan lain yang dibutuhkan
+    User_input    mau tau info voucher telkomsel
+    Check_VA_response_text    1    Oke Lightning Diamond, Telkomsel menyediakan berbagai macam voucher isi ulang sesuai kebutuhan Kamu
+    Check_VA_response_text_with_2buttons    2    Kamu pake simPATI, Loop, atau Kartu As?    SimPATI    Loop
+    User_input    batal
+    Closing_session
+    [Teardown]    Close Browser
+
+019 - User perform inquire outlet location
+    [Setup]    Open Chrome
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    beli pulsa 10000
+    Check_VA_response_text    1    Kamu bisa mengisi ulang pulsa dengan nominal tersebut di GraPARI maupun di outlet terdekat.
+    Check_VA_response_text    2    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
+    User_input    banda aceh
+    Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
+    Check_VA_response_carousel_exists    2
+    Click_button_carousel    2    Police Banda Aceh    Pilih
+    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
+    Closing_session
+    [Teardown]    Close Browser
+
+[DEPRECATED] 020- User perform setting Caller ID \ for Apple, Android, Windows Phone, and Blackberry
+    [Setup]    Open Chrome
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    beli pulsa 10000
+    Check_VA_response_text    1    Kamu bisa mengisi ulang pulsa dengan nominal tersebut di GraPARI maupun di outlet terdekat.
+    Check_VA_response_text    2    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
+    User_input    banda aceh
+    Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
+    Check_VA_response_carousel_exists    2
+    Click_button_carousel    2    Police Banda Aceh    Pilih
+    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
+    Closing_session
+    [Teardown]    Close Browser
+
+[DEPRECATED] 021- User complain about his internet connection
+    [Setup]    Open Chrome
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    beli pulsa 10000
+    Check_VA_response_text    1    Kamu bisa mengisi ulang pulsa dengan nominal tersebut di GraPARI maupun di outlet terdekat.
+    Check_VA_response_text    2    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
+    User_input    banda aceh
+    Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
+    Check_VA_response_carousel_exists    2
+    Click_button_carousel    2    Police Banda Aceh    Pilih
+    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
+    Closing_session
+    [Teardown]    Close Browser
+
+[X] 023- No Title
+    [Setup]    Open Chrome
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    aku bosan nih
+    Check_VA_response_text    1    Kamu bisa mengisi ulang pulsa dengan nominal tersebut di GraPARI maupun di outlet terdekat.
+    Check_VA_response_text    2    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
+    User_input    banda aceh
+    Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
+    Check_VA_response_carousel_exists    2
+    Click_button_carousel    2    Police Banda Aceh    Pilih
+    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
+    Closing_session
+    [Teardown]    Close Browser
+
+[X] 024- User wants to have a small talk with Veronika
+    [Setup]    Open Chrome
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    aku bosan nih
+    Check_VA_response_text    1    Kamu bisa mengisi ulang pulsa dengan nominal tersebut di GraPARI maupun di outlet terdekat.
+    Check_VA_response_text    2    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
+    User_input    banda aceh
+    Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
+    Check_VA_response_carousel_exists    2
+    Click_button_carousel    2    Police Banda Aceh    Pilih
+    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
+    Closing_session
     [Teardown]    Close Browser
