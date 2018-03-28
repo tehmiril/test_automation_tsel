@@ -16,8 +16,6 @@ Select_TSEL_SMS
     ${elements_messages}    Split String    ${message_last_string}    :
     ${total_strings}    Get Length    ${elements_messages}
     ${last_element}    Get From List    ${elements_messages}    1
-    #${pin_messages}    Split String    ${last_element}    ,
-    #${pin_element}    Get From List    ${pin_messages}    0
     ${finalelement_pin}    Strip String    ${last_element}    characters=${SPACE}
     AppiumLibrary.Capture Page Screenshot    otp.png
     Set Suite Variable    ${current_finalelement_pin}    ${finalelement_pin}

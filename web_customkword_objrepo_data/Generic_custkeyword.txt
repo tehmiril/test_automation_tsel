@@ -8,36 +8,36 @@ Greet_VA_Indo
     Check_VA_response_image    3
     Check_VA_response_text_with_2buttons    4    Silakan pilih salah satu pilihan di bawah ini atau langsung saja ketik permintaan kamu    ${VA_GreetButton1}    ${VA_GreetButton2}
     Click_Button_From_Response    4    Lihat Menu Utama
-    Selenium2Library.Capture Page Screenshot    VA_greet.png
+    SeleniumLibrary.Capture Page Screenshot    VA_greet.png
     Sleep    2s
 
 Click_Yes
     [Arguments]    ${order}
     [Documentation]    This keyword can be used to click Ya button that is part of the VA response.
-    Selenium2Library.Click Element    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/descendant::a[contains(.,"Ya")]    #(${yabutton_obj})[${totalYa}]
+    SeleniumLibrary.Click Element    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/descendant::a[contains(.,"Ya")]    #(${yabutton_obj})[${totalYa}]
     Set Suite Variable    ${current_user_input}    Ya
     Run Keyword    Count_message_bubble_user_input    ${current_user_input}
 
 Click_Button_From_Response
     [Arguments]    ${order}    ${r_button}
     [Documentation]    This keyword can be used to click (any) button that is part of the VA response.
-    Selenium2Library.Click Element    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/descendant::a[contains(.,"${r_button}")]
+    SeleniumLibrary.Click Element    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/descendant::a[contains(.,"${r_button}")]
     Set Suite Variable    ${current_user_input}    ${r_button}
     Run Keyword    Count_message_bubble_user_input    ${current_user_input}
 
 Click_No
     [Arguments]    ${order}
     [Documentation]    This keyword can be used to click Tidak button that is part of the VA response.
-    Selenium2Library.Click Element    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/descendant::a[contains(.,"Tidak")]    #(${nobutton_obj})[${totalNo}]
+    SeleniumLibrary.Click Element    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/descendant::a[contains(.,"Tidak")]    #(${nobutton_obj})[${totalNo}]
     Set Suite Variable    ${current_user_input}    Tidak
     Run Keyword    Count_message_bubble_user_input    ${current_user_input}
 
 User_input
     [Arguments]    ${input_text}
-    Selenium2Library.Click Element    ${inputtext_obj}
-    Selenium2Library.Press Key    ${inputtext_obj}    ${input_text}
+    SeleniumLibrary.Click Element    ${inputtext_obj}
+    SeleniumLibrary.Press Key    ${inputtext_obj}    ${input_text}
     Sleep    1s
-    Selenium2Library.Press Key    ${inputtext_obj}    \\13
+    SeleniumLibrary.Press Key    ${inputtext_obj}    \\13
     Sleep    5s
     Set Suite Variable    ${current_user_input}    ${input_text}
     Run Keyword    Count_message_bubble_user_input    ${current_user_input}
@@ -46,7 +46,7 @@ Closing_session
     User_input    ${no_answer}
     Check_VA_response_text    1    ${VA_question_2}
     User_input    ${user_rate}
-    Selenium2Library.Capture Page Screenshot    user_rate.png
+    SeleniumLibrary.Capture Page Screenshot    user_rate.png
     Check_VA_response_text    1    ${VA_question_3}
     #only type in at the moment
     User_input    ${select_Rate}
@@ -55,31 +55,34 @@ Closing_session
     Check_VA_response_text    1    ${VA_closingstatement}
 
 Check_VA_response_text
-    [Arguments]    ${order}    ${expected_text}
-    Wait Until Keyword Succeeds    1 minute    5s    Selenium2Library.Element Should Be Visible    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]
-    ${classname}    Selenium2Library.Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]    class
+    [Arguments]    ${order}    @{expected_text}
+    Wait Until Keyword Succeeds    1 minute    5s    SeleniumLibrary.Element Should Be Visible    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]
+    ${classname}    SeleniumLibrary.Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]    class
     Should Be Equal As Strings    ${classname}    ${VA_textcarousel_bubble}
-    Run Keyword    Check_VA_response_text_actual    ${current_user_input}    ${current_total_user_message}    ${order}    ${expected_text}
+    : FOR    ${item}    IN    @{expected_text}
+    \    ${status_text}    Run Keyword And Return Status    Check_VA_response_text_actual    ${current_user_input}    ${current_total_user_message}    ${order}
+    \    ...    ${item}
+    \    Run Keyword If    ${status_text}    Exit For Loop
 
 Check_VA_response_image
     [Arguments]    ${order}
     [Documentation]    As the URL shown on web is generated by FB, checking URL might be not possible. Currently only checks the class.
-    Wait Until Keyword Succeeds    15s    3s    Selenium2Library.Element Should Be Visible    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]
-    ${classname}    Selenium2Library.Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]    class
+    Wait Until Keyword Succeeds    15s    3s    SeleniumLibrary.Element Should Be Visible    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]
+    ${classname}    SeleniumLibrary.Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]    class
     Should Be Equal As Strings    ${classname}    ${VA_image_bubble}
     #Open Context Menu    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]
 
 Check_VA_response_carousel_exists
     [Arguments]    ${order}
-    Wait Until Keyword Succeeds    30s    3s    Selenium2Library.Element Should Be Visible    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div
-    ${classname}    Selenium2Library.Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div    class
+    Wait Until Keyword Succeeds    30s    3s    SeleniumLibrary.Element Should Be Visible    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div
+    ${classname}    SeleniumLibrary.Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div    class
     Should Be Equal As Strings    ${classname}    ${VA_carousel_maindiv}
 
 Check_VA_response_text_with_2buttons
     [Arguments]    ${order}    ${expected_text}    ${expected_button1}    ${expected_button2}
     Check_VA_response_text    ${order}    ${expected_text}
-    Selenium2Library.Element Should Be Visible    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/following-sibling::*[contains(.,"${expected_button1}")]
-    Selenium2Library.Element Should Be Visible    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/following-sibling::*[contains(.,"${expected_button2}")]
+    SeleniumLibrary.Element Should Be Visible    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/following-sibling::*[contains(.,"${expected_button1}")]
+    SeleniumLibrary.Element Should Be Visible    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/following-sibling::*[contains(.,"${expected_button2}")]
 
 Open_chrome
     [Documentation]    Opens _Google Chrome_ to a given web page.
@@ -89,21 +92,21 @@ Open_chrome
     Call Method    ${chrome_options}    add_argument    test-type
     Call Method    ${chrome_options}    add_argument    --disable-extensions
     Call Method    ${chrome_options}    add_argument    --disable-notifications
-    Run Keyword If    os.sep == '/'    Selenium2Library.Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}
-    ...    ELSE    Selenium2Library.Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}    #executable_path=/usr/lib/chromium-browser/chromedriver
-    Selenium2Library.Set Window Position    2000    0
-    Selenium2Library.Maximize Browser Window
-    Selenium2Library.Go To    ${URLmessengerTSEL}
+    Run Keyword If    os.sep == '/'    SeleniumLibrary.Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}
+    ...    ELSE    SeleniumLibrary.Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}    #executable_path=/usr/lib/chromium-browser/chromedriver
+    SeleniumLibrary.Set Window Position    2000    0
+    SeleniumLibrary.Maximize Browser Window
+    SeleniumLibrary.Go To    ${URLmessengerTSEL}
 
 Login_messenger
     [Arguments]    ${email}    ${password}
-    Selenium2Library.Click Element    ${email_obj}
-    Selenium2Library.Input Text    ${email_obj}    ${email}
-    Selenium2Library.Click Element    ${password_obj}
-    Selenium2Library.Input Password    ${password_obj}    ${password}
-    Selenium2Library.Click Element    ${login_obj}
-    Selenium2Library.Wait Until Page Contains    Telkomsel    15s    None
-    Wait Until Keyword Succeeds    10    3s    Selenium2Library.Element Should Be Visible    ${inputtext_obj}
+    SeleniumLibrary.Click Element    ${email_obj}
+    SeleniumLibrary.Input Text    ${email_obj}    ${email}
+    SeleniumLibrary.Click Element    ${password_obj}
+    SeleniumLibrary.Input Password    ${password_obj}    ${password}
+    SeleniumLibrary.Click Element    ${login_obj}
+    SeleniumLibrary.Wait Until Page Contains    Telkomsel    15s    None
+    Wait Until Keyword Succeeds    10    3s    SeleniumLibrary.Element Should Be Visible    ${inputtext_obj}
 
 Cancel_and_closing_session
     User_input    ${cancel_answer}
@@ -112,7 +115,6 @@ Cancel_and_closing_session
     User_input    ${no_answer}
     Check_VA_response_text    1    ${VA_question_2}
     User_input    ${user_rate}
-    #Selenium2Library.Capture Page Screenshot    user_rate.png
     Check_VA_response_text    1    ${VA_question_3}
     #only type in at the moment
     User_input    ${select_Rate}
@@ -125,19 +127,17 @@ Click_button_carousel
     Set Suite Variable    ${current_carousel_title}    ${c_title}
     Set Suite Variable    ${current_carousel_button}    ${c_button}
     Check_where_to_swipe_carousel    ${order}
-    Selenium2Library.Click Element    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/descendant::*[@${carouselclass_obj} and contains(.//div[@class="_3cni"],"${current_carousel_title}")]/following-sibling::div//a[contains(.,"${current_carousel_button}")]
+    SeleniumLibrary.Click Element    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/descendant::*[@${carouselclass_obj} and contains(.//div[@class="_3cni"],"${current_carousel_title}")]/following-sibling::div//a[contains(.,"${current_carousel_button}")]
     Sleep    2s
-    Set Suite Variable    ${current_user_input}    ${c_button}
-    Run Keyword    Count_message_bubble_user_input    ${current_user_input}
-    ${URLS}    Selenium2Library.Get Locations
+    Check_opened_URL    ${c_button}
 
 Get_carousel_items
     [Arguments]    ${order}
-    ${totalcarouselitems}    Selenium2Library.Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"]
+    ${totalcarouselitems}    SeleniumLibrary.Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"]
     #for loop; get the title, sub and buttons
     : FOR    ${looping}    IN RANGE    1    ${totalcarouselitems}+1
-    \    ${totalbuttonitems}    Selenium2Library.Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${looping}]/descendant::a[@class="_3cnp"]
-    \    ${amounttitlesubs}    Selenium2Library.Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${looping}]/descendant::div[@class="_3cni"]
+    \    ${totalbuttonitems}    SeleniumLibrary.Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${looping}]/descendant::a[@class="_3cnp"]
+    \    ${amounttitlesubs}    SeleniumLibrary.Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${looping}]/descendant::div[@class="_3cni"]
     \    Get_Carousel_Buttons    ${order}    ${totalbuttonitems}    ${looping}
     \    Get_Carousel_Title_Subtitle    ${order}    ${looping}
 
@@ -146,30 +146,35 @@ Validate_carousel_items
     Set Suite Variable    ${current_carousel_title}    ${c_title}
     : FOR    ${item}    IN    @{c_buttons}
     \    Set Suite Variable    ${current_carousel_button}    ${item}
-    \    Wait Until Keyword Succeeds    10s    5s    Selenium2Library.Wait Until Page Contains Element    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/descendant::*[@class='_3cng' and contains(.,"${current_carousel_title}")]/following-sibling::*[@class='_3cnl' and contains(.,"${c_subtitle}")]/parent::*/parent::div/following-sibling::*/descendant::*[@class='_3cnp' and contains(.,"${current_carousel_button}")]
+    \    Wait Until Keyword Succeeds    10s    5s    SeleniumLibrary.Wait Until Page Contains Element    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/descendant::*[@class='_3cng' and contains(.,"${current_carousel_title}")]/following-sibling::*[@class='_3cnl' and contains(.,"${c_subtitle}")]/parent::*/parent::div/following-sibling::*/descendant::*[@class='_3cnp' and contains(.,"${current_carousel_button}")]
     Check_where_to_swipe_carousel    ${order}
 
 Show_carousel_items_on_specific_location
     [Arguments]    ${order}    ${element_number}
     Check_VA_response_carousel_exists    ${order}
-    ${totalcarouselitems}    Selenium2Library.Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"]
+    ${totalcarouselitems}    SeleniumLibrary.Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"]
     Run Keyword If    ${element_number} > ${totalcarouselitems}    Fail    There are less number of elements in the carousel.
     ...    ELSE    Go_to_specific_carousel_elements    ${order}    ${element_number}
 
 Click_carousel_button_on_specific_location
     [Arguments]    ${order}    ${element_number}    ${c_button}
     Check_VA_response_carousel_exists    ${order}
-    ${totalcarouselitems}    Selenium2Library.Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"]
+    ${totalcarouselitems}    SeleniumLibrary.Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"]
     Run Keyword If    ${element_number} > ${totalcarouselitems}    Fail    There are less number of elements in the carousel.
     ...    ELSE    Go_to_specific_carousel_elements_based_on_item_number    ${order}    ${element_number}    ${c_button}
-    Selenium2Library.Click Element    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${element_number}]/child::div//a[contains(.,"${current_carousel_button}")]
+    SeleniumLibrary.Click Element    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${element_number}]/child::div//a[contains(.,"${current_carousel_button}")]
     Sleep    2s
-    Set Suite Variable    ${current_user_input}    ${c_button}
-    Run Keyword    Count_message_bubble_user_input    ${current_user_input}
-    ${URLS}    Selenium2Library.Get Locations
+    Check_opened_URL    ${c_button}
 
 Cancel_and_closing_session_when_unexpected_result
     User_input    ${cancel_answer}
     Check_VA_response_text    1    ${VA_cancel}
     Check_VA_response_text    2    ${VA_question_1}
     Sleep    2s
+
+Check_opened_URL
+    [Arguments]    ${c_button}
+    ${URLS}    SeleniumLibrary.Get Locations
+    ${window_opens}    Get Length    ${URLS}
+    Run Keyword If    ${window_opens}==1    Run Keywords    Set Suite Variable    ${current_user_input}    ${c_button}
+    ...    AND    Count_message_bubble_user_input    ${current_user_input}

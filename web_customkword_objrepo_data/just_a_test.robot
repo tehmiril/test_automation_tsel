@@ -2,7 +2,7 @@
 Suite Setup       Open_chrome
 Suite Teardown    Close Browser
 Test Teardown     Run Keyword If Test Failed    Cancel_and_closing_session_when_unexpected_result
-Library           Selenium2Library    run_on_failure=Selenium2Library.CapturePageScreenshot
+Library           SeleniumLibrary    run_on_failure=SeleniumLibrary.CapturePageScreenshot
 Resource          Detailed_custkeyword.txt
 Resource          Test_data_Indo.txt
 Library           String
@@ -28,8 +28,7 @@ Resource          Text_with_buttons_custkeyword.txt
     Validate_carousel_items    1    Bantuan Lainnya    Kamu punya pertanyaan? Temukan jawabannya di sini    Registrasi Prabayar    GraPARI Terdekat    Kontak Live Agent
     Check_VA_response_text    2    Silakan pilih salah satu opsi di atas atau ketik layanan lain yang dibutuhkan
     User_input    Beli Pulsa
-    User_input    Batal
-    Closing_session
+    Cancel_and_closing_session
 
 002 - Non-Telkomsel who wants to explore VA
     [Setup]    Open_chrome
@@ -43,14 +42,11 @@ Resource          Text_with_buttons_custkeyword.txt
     Check_VA_response_text    2    Silakan pilih salah satu opsi di atas atau ketik layanan lain yang dibutuhkan
     Click_button_carousel    1    Beli Paket dan Tukar POIN    Beli Pulsa
     Check_VA_response_text    1    Agar permintaan Kamu dapat diproses lebih lanjut, tolong tulis nomor Telkomsel Kamu yang valid ya (contoh: 08110000000)
-    User_input    Batal
-    Check_VA_response_text    1    Baiklah, Veronika batalkan.
-    Check_VA_response_text    2    Ada lagi yang bisa Veronika bantu?
-    Closing_session
+    Cancel_and_closing_session
 
 005 - Non-Telkomsel user who is wondering about Telkomsel products
     [Setup]    Open Chrome
-    Login_messenger    ${email}    ${password}
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    Saran perdana donk
     Check_VA_response_text    1    Oke, Veronika bantu carikan produk Telkomsel yang cocok buat Kamu ya
     Check_VA_response_text_with_2buttons    2    Sebelumnya, tolong jawab 3 pertanyaan singkat berikut ini    Mulai    Lihat Semua Produk
@@ -76,7 +72,7 @@ Resource          Text_with_buttons_custkeyword.txt
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
 
 006 - Non-Telkomsel user who is interested in using KartuHalo
-    Login_messenger    ${email}    ${password}
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    Kartu halo itu apa?
     Check_VA_response_text    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini
     Check_VA_response_carousel_exists    2
@@ -132,10 +128,10 @@ Resource          Text_with_buttons_custkeyword.txt
     Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
     Check_VA_response_carousel_exists    2
     Click_carousel_button_on_specific_location    2    1    Pilih
-    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
+    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Medan yang dapat Kamu kunjungi nih
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
-    Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
+    Click_carousel_button_on_specific_location    2    3    Buka di Google Maps
     Closing_session
 
 [X] 009 - Non-Telkomsel user who wants to know about Loop
@@ -147,7 +143,7 @@ Resource          Text_with_buttons_custkeyword.txt
     Validate_carousel_items    1    Beli Paket dan Tukar POIN    Lihat dan beli produk Telkomsel favorit Kamu di sini    Beli Pulsa    Beli Paket    Telkomsel POIN
     Validate_carousel_items    1    Bantuan Lainnya    Kamu punya pertanyaan? Temukan jawabannya di sini    Registrasi Prabayar    GraPARI Terdekat    Kontak Live Agent
     Check_VA_response_text    2    Silakan pilih salah satu opsi di atas atau ketik layanan lain yang dibutuhkan
-    #Click_button_carousel    1    Jelajah Produk Telkomsel    Layanan digital
+    Click_button_carousel    1    Jelajah Produk Telkomsel    Layanan digital
     Click_button_carousel    1    Jelajah Produk Telkomsel    Beralih ke Telkomsel
     Check_VA_response_text    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini
     Check_VA_response_carousel_exists    2
@@ -343,14 +339,5 @@ Resource          Text_with_buttons_custkeyword.txt
 [X] 024- User wants to have a small talk with Veronika
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    aku bosan nih
-    Check_VA_response_text    1    Kamu bisa mengisi ulang pulsa dengan nominal tersebut di GraPARI maupun di outlet terdekat.
-    Check_VA_response_text    2    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
-    User_input    banda aceh
-    Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
-    Check_VA_response_carousel_exists    2
-    Click_button_carousel    2    Police Banda Aceh    Pilih
-    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
-    Check_VA_response_carousel_exists    2
-    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
-    Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
-    Closing_session
+    Check_VA_response_text    1    @{randomBoredIndo}
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
