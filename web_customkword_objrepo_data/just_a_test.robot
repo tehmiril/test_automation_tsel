@@ -1,4 +1,6 @@
 *** Settings ***
+Suite Setup       Open_chrome
+Suite Teardown    Close Browser
 Test Teardown     Run Keyword If Test Failed    Cancel_and_closing_session_when_unexpected_result
 Library           Selenium2Library    run_on_failure=Selenium2Library.CapturePageScreenshot
 Resource          Detailed_custkeyword.txt
@@ -12,6 +14,7 @@ Library           AppiumLibrary    run_on_failure=AppiumLibrary.CapturePageScree
 Resource          SMS_custom_keywords.txt
 Resource          Test_data_SMS_Indo.txt
 Resource          Carousel_custkeyword.txt
+Resource          Text_with_buttons_custkeyword.txt
 
 *** Test Cases ***
 001 - Non-Telkomsel user who just started talking to VA
@@ -27,7 +30,6 @@ Resource          Carousel_custkeyword.txt
     User_input    Beli Pulsa
     User_input    Batal
     Closing_session
-    [Teardown]    Close Browser
 
 002 - Non-Telkomsel who wants to explore VA
     [Setup]    Open_chrome
@@ -45,7 +47,6 @@ Resource          Carousel_custkeyword.txt
     Check_VA_response_text    1    Baiklah, Veronika batalkan.
     Check_VA_response_text    2    Ada lagi yang bisa Veronika bantu?
     Closing_session
-    [Teardown]    Close Browser
 
 005 - Non-Telkomsel user who is wondering about Telkomsel products
     [Setup]    Open Chrome
@@ -73,10 +74,8 @@ Resource          Carousel_custkeyword.txt
     Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
-    [Teardown]    Close Browser
 
 006 - Non-Telkomsel user who is interested in using KartuHalo
-    [Setup]    Open Chrome
     Login_messenger    ${email}    ${password}
     User_input    Kartu halo itu apa?
     Check_VA_response_text    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini
@@ -96,10 +95,8 @@ Resource          Carousel_custkeyword.txt
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
     Click_button_carousel    2    GraPARI SETUI    Buka di Google Maps
     Closing_session
-    [Teardown]    Close Browser
 
 007 - Non-Telkomsel user who wants to know about KartuAs
-    [Setup]    Open Chrome
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    Mau tau info KartuAs dong
     Check_VA_response_text    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini
@@ -119,10 +116,8 @@ Resource          Carousel_custkeyword.txt
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
     Closing_session
-    [Teardown]    Close Browser
 
 008 - Non-Telkomsel user who wants to know about SimPATI
-    [Setup]    Open Chrome
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    Mau tau info SimPATI dong
     Check_VA_response_text    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini
@@ -142,10 +137,8 @@ Resource          Carousel_custkeyword.txt
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
     Closing_session
-    [Teardown]    Close Browser
 
 [X] 009 - Non-Telkomsel user who wants to know about Loop
-    [Setup]    Open_chrome
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     Greet_VA_Indo    ${VA_GreetNonTsel}
     Check_VA_response_carousel_exists    1
@@ -173,10 +166,8 @@ Resource          Carousel_custkeyword.txt
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
     Closing_session
-    [Teardown]    Close Browser
 
 010 - TCASH Information
-    [Setup]    Open_chrome
     Login_messenger    ${email}    ${password}
     User_input    TCASH itu apaan sih?
     Check_VA_response_text    1    TCASH adalah layanan uang elektronik dari Telkomsel yang telah mendapatkan izin dari Bank Indonesia. Berbeda dengan pulsa, TCASH dapat digunakan untuk bayar tagihan, bayar merchant, isi pulsa, kirim uang, dan banyak lagi.
@@ -199,10 +190,8 @@ Resource          Carousel_custkeyword.txt
     Click_button_carousel    2    Dapatkan TCASH    Pesan Sticker
     #Click_button_carousel    2    Info    TCASH FAQ
     Cancel_and_closing_session
-    [Teardown]    Close Browser
 
 011 - TCASH Information
-    [Setup]    Open_chrome
     Login_messenger    ${email}    ${password}
     User_input    cara aktifkan tcash gmn ya?
     Check_VA_response_text    1    TCASH dapat dinikmati oleh seluruh pelanggan Telkomsel baik pascabayar (kartuHalo) maupun prabayar (simPATI, Kartu As, dan Loop). Tekan *800*88*6DigitPIN# di HP Kamu. Untuk pengguna baru, tentukan 6 digit PIN Kamu sendiri.
@@ -222,10 +211,8 @@ Resource          Carousel_custkeyword.txt
     Check_VA_response_text    1    Kamu dapat mendatangi GraPARI terdekat atau hubungi Call Centre 188 untuk mengajukan reset PIN TCASH. Pelanggan Basic Service akan diupgrade menjadi Full Service agar dapat melakukan reset PIN.
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
-    [Teardown]    Close Browser
 
 012 - User want to have a 4G card and order it online
-    [Setup]    Open Chrome
     Login_messenger    ${email}    ${password}
     User_input    gimana caranya dapat sim card 4g
     Check_VA_response_text    1    Untuk upgrade ke kartu SIM 4G, Kamu harus mengganti kartu SIM lama dengan kartu SIM 4G. Berikut adalah beberapa cara untuk mendapatkannya:
@@ -236,7 +223,6 @@ Resource          Carousel_custkeyword.txt
     Click_button_carousel    2    MyGraPARI Terdekat    MyGraPARI Terdekat
     #Click_button_carousel    2    Registrasi Online    Registrasi Online
     Closing_session
-    [Teardown]    Close Browser
 
 [DEPRECATED] 013 - User perform Inquire 4G Upgrade and Find Nearest Store
 
@@ -244,10 +230,8 @@ Resource          Carousel_custkeyword.txt
     [Setup]    Open Chrome
     Login_messenger    ${email}    ${password}
     User_input    grapari yang buka di hari minggu di jakarta selatan
-    [Teardown]    Close Browser
 
 015 - User want to buy a starter pack
-    [Setup]    Open Chrome
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    mau beli perdana
     Check_VA_response_text    1    Kamu bisa mendapatkan perdana Telkomsel di GraPARI maupun di outlet terdekat
@@ -257,10 +241,8 @@ Resource          Carousel_custkeyword.txt
     Check_VA_response_text    1    Mohon maaf, Veronika tidak menemukan adanya outlet Telkomsel di dekat sydney
     Check_VA_response_text    2    Ada lagi yang bisa Veronika bantu?
     Closing_session
-    [Teardown]    Close Browser
 
 [X] 016 - User want to buy voucher data
-    [Setup]    Open Chrome
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    mau beli voucher data
     Check_VA_response_text    1    Voucher data bisa Kamu dapatkan di outlet terdekat
@@ -268,10 +250,8 @@ Resource          Carousel_custkeyword.txt
     User_input    Sydney
     Check_VA_response_carousel_exists    2
     Closing_session
-    [Teardown]    Close Browser
 
 [X] 017 - User wants to know about voucher information
-    [Setup]    Open Chrome
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     Greet_VA_Indo    ${VA_GreetNonTsel}
     Check_VA_response_carousel_exists    1
@@ -282,13 +262,10 @@ Resource          Carousel_custkeyword.txt
     Check_VA_response_text    2    Silakan pilih salah satu opsi di atas atau ketik layanan lain yang dibutuhkan
     User_input    mau tau info voucher telkomsel
     Check_VA_response_text    1    Oke Lightning Diamond, Telkomsel menyediakan berbagai macam voucher isi ulang sesuai kebutuhan Kamu
-    Check_VA_response_text_with_2buttons    2    Kamu pake simPATI, Loop, atau Kartu As?    SimPATI    Loop
-    User_input    batal
-    Closing_session
-    [Teardown]    Close Browser
+    Check_VA_response_text_with_buttons    2    Kamu pake simPATI, Loop, atau Kartu As?    SimPATI    Loop    Kartu As
+    Cancel_and_closing_session
 
 [DEPRECATED] 018 - User explore the FAQ menu and read about voucher information
-    [Setup]    Open Chrome
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     Greet_VA_Indo    ${VA_GreetNonTsel}
     Check_VA_response_carousel_exists    1
@@ -302,10 +279,8 @@ Resource          Carousel_custkeyword.txt
     Check_VA_response_text_with_2buttons    2    Kamu pake simPATI, Loop, atau Kartu As?    SimPATI    Loop
     User_input    batal
     Closing_session
-    [Teardown]    Close Browser
 
 019 - User perform inquire outlet location
-    [Setup]    Open Chrome
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    beli pulsa 10000
     Check_VA_response_text    1    Kamu bisa mengisi ulang pulsa dengan nominal tersebut di GraPARI maupun di outlet terdekat.
@@ -319,10 +294,8 @@ Resource          Carousel_custkeyword.txt
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
     Closing_session
-    [Teardown]    Close Browser
 
 [DEPRECATED] 020- User perform setting Caller ID \ for Apple, Android, Windows Phone, and Blackberry
-    [Setup]    Open Chrome
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    beli pulsa 10000
     Check_VA_response_text    1    Kamu bisa mengisi ulang pulsa dengan nominal tersebut di GraPARI maupun di outlet terdekat.
@@ -336,10 +309,8 @@ Resource          Carousel_custkeyword.txt
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
     Closing_session
-    [Teardown]    Close Browser
 
 [DEPRECATED] 021- User complain about his internet connection
-    [Setup]    Open Chrome
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    beli pulsa 10000
     Check_VA_response_text    1    Kamu bisa mengisi ulang pulsa dengan nominal tersebut di GraPARI maupun di outlet terdekat.
@@ -353,10 +324,8 @@ Resource          Carousel_custkeyword.txt
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
     Closing_session
-    [Teardown]    Close Browser
 
 [X] 023- No Title
-    [Setup]    Open Chrome
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    aku bosan nih
     Check_VA_response_text    1    Kamu bisa mengisi ulang pulsa dengan nominal tersebut di GraPARI maupun di outlet terdekat.
@@ -370,10 +339,8 @@ Resource          Carousel_custkeyword.txt
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
     Closing_session
-    [Teardown]    Close Browser
 
 [X] 024- User wants to have a small talk with Veronika
-    [Setup]    Open Chrome
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    aku bosan nih
     Check_VA_response_text    1    Kamu bisa mengisi ulang pulsa dengan nominal tersebut di GraPARI maupun di outlet terdekat.
@@ -387,4 +354,3 @@ Resource          Carousel_custkeyword.txt
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
     Closing_session
-    [Teardown]    Close Browser
