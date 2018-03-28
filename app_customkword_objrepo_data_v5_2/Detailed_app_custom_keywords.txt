@@ -1,0 +1,161 @@
+*** Keywords ***
+Enter_text
+    [Arguments]    ${input_text}
+    ${keyboard_visible}    Run Keyword And Return Status    Element Should Be Visible    //*[@resource-id="jp.naver.line.android:id/official_account_bottombar_keyboard_button"]
+    Run Keyword If    ${keyboard_visible}    Click Element    //*[@resource-id="jp.naver.line.android:id/official_account_bottombar_keyboard_button"]
+    Click Element    ${textbox_obj}
+    Input Text    ${textbox_obj}    ${input_text}
+    Click Element    ${sendkey_obj}
+    Sleep    2s
+    Run Keyword If    ${keyboard_visible}    Click Element    //*[@resource-id="jp.naver.line.android:id/official_account_show_bottombar_icon"]
+    Set Suite Variable    ${current_user_input}    ${input_text}
+    Set Suite Variable    ${scrolled_down}    ${FALSE}
+    Set Suite Variable    ${item_scrolled_down}    ${FALSE}
+
+Find_user_input
+    Show_user_input_on_screen
+    Get_user_input_index
+    #Set Suite Variable    ${dict_responses}    ${EMPTY}
+    #${dict_responses}    Create Dictionary
+    #Set Suite Variable    \${dict_responses}
+
+Swipe_up_until_user_input
+    : FOR    ${loop}    IN RANGE    0    10
+    \    Swipe    100    600    100    900
+    \    ${count_user_input}    Run Keyword And Return Status    Element Should Be Visible    //*[@resource-id="jp.naver.line.android:id/message_text" and @text="${current_user_input}"]
+    \    Run Keyword If    ${count_user_input}    Run Keywords    Log    "Scroll up up up and found it!"
+    \    ...    AND    Capture Page Screenshot    here.png
+    \    ...    AND    Exit For Loop
+    Count_messages
+
+Find_YLocation
+    [Arguments]    ${element}
+    ${bound}    Get Element Location    ${element}
+    ${boundString}    Convert To String    ${bound}
+    ${elementsXY}    Split String    ${boundString}    ${SPACE}
+    #location format, e.g. ${elementsXY} = [u"{'y':", u'702.0,', u"'x':", u'718.0}']
+    ${elementY}    Get From List    ${elementsXY}    1
+    ${finalelementY}    Strip String    ${elementY}    characters=,
+    [Return]    ${finalelementY}
+
+Show_user_input_on_screen
+    ${count_user_input}    Run Keyword And Return Status    Element Should Be Visible    //*[@resource-id="jp.naver.line.android:id/message_text" and @text="${current_user_input}"]
+    Run Keyword If    ${count_user_input}    Count_messages
+    ...    ELSE    Swipe_up_until_user_input
+
+Count_messages
+    ${count_message1}    Get Matching Xpath Count    //android.widget.ListView[1]/android.widget.LinearLayout
+    Set Suite Variable    ${total_messages_on_screen}    ${count_message1}
+    Log    total_messages:${total_messages_on_screen}
+
+Get_user_input_index
+    : FOR    ${looping}    IN RANGE    ${total_messages_on_screen}    0    -1
+    \    ${avail}    Run Keyword And Return Status    Element Text Should Be    //android.widget.ListView/child::android.widget.LinearLayout[${looping}]/descendant::android.widget.TextView[3]    ${current_user_input}
+    \    Run Keyword If    ${avail}==${FALSE}    Continue For Loop
+    \    ...    ELSE    Run Keywords    Set Suite Variable    ${index_user_input}    ${looping}
+    \    ...    AND    Log    user_index:${index_user_input}
+    \    ...    AND    Exit For Loop
+
+Get_bottom_Y
+    [Arguments]    ${bottom_element}
+    ${bottom_Y}    Find_YLocation    ${bottom_element}
+    Set Suite Variable    ${current_bottom_Y}    ${bottom_Y}
+
+Check_validation_index
+    [Arguments]    ${order}
+    ${new_order}    Evaluate    ${order}+${index_user_input}
+    Run Keyword If    ${new_order}>${total_messages_on_screen}    Swipe_down_until_element
+
+Set_to_dict_responses
+    [Arguments]    ${order}    ${values}
+    Set To Dictionary    ${dict_responses}    ${order}=${values}
+    Log Dictionary    ${dict_responses}
+
+Set_to_prev_responses
+    [Arguments]    ${order}    ${details}
+    Set Suite Variable    ${previous_resp_order}    ${order}
+    ${prev_order_details}    Convert To String    ${details}
+    ${prev_order_split}    Split String    ${prev_order_details}    ;
+    ${type}    Get From List    ${prev_order_split}    0
+    Set Suite Variable    ${previous_resp_type}    ${type}
+    ${details}    Get From List    ${prev_order_split}    1
+    Set Suite Variable    ${previous_resp_details}    ${details}
+
+Swipe_down_until_element
+    [Arguments]    ${type}
+    Set Suite Variable    ${scrolled_down}    ${TRUE}
+    : FOR    ${loop}    IN RANGE    0    10
+    \    Swipe    600    600    600    400
+    \    Count_messages
+    \    ${status_previous}    Run Keyword And Return Status    Check_previous_message
+    \    Run Keyword If    ${status_previous}    Run Keywords    Log    Stop swipe down
+    \    ...    AND    Set Suite Variable    ${current_new_order}    ${total_messages_on_screen}
+    \    ...    AND    Exit For Loop
+    Run Keyword If    "${type}"=="text"    Check_VA_response_text_actual    ${current_new_order}    ${current_response_order}
+    ...    ELSE IF    "${type}"=="image"    Check_VA_response_image_actual    ${current_new_order}    ${current_response_order}
+    ...    ELSE IF    "${type}"=="carousel"    Check_VA_response_carousel_exists_actual    ${current_new_order}    ${current_response_order}
+    ...    ELSE IF    "${type}"=="textbuttons"    Check_VA_response_text_with_buttons_actual    ${current_response_order}
+    #${count_element}    Run Keyword And Return Status    Element Should Be Visible    //android.widget.ListView/child::android.widget.LinearLayout[${total_messages_on_screen}]/${element}
+
+Check_previous_message
+    #Run Keyword If    ${prev_order}!=${previous_resp_order}    Fail    Not similar
+    #    ${prev_order_final}    Convert To String    ${prev_order}
+    #    ${prev_response_full_value}    Get From Dictionary    ${dict_responses}    ${prev_order_final}
+    Run Keyword If    "${previous_resp_type}"=="text"    Check_VA_response_text_actual_previous
+    ...    ELSE IF    "${previous_resp_type}"=="image"    Check_VA_response_image_actual_previous
+    ...    ELSE IF    "${previous_resp_type}"=="carousel"    Check_VA_response_carousel_actual_previous
+    ...    ELSE IF    "${previous_resp_type}"=="textbuttons"    Check_VA_response_text_with_buttons_previous
+    Log    Finished checking previous ones
+
+Check_VA_response_text_with_buttons_previous
+    ${prev_order}    Evaluate    ${current_response_order}-1
+    ${count_text_buttons}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${prev_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View
+    Should Be True    ${count_text_buttons}==2
+
+Check_VA_response_text_with_buttons_actual
+    [Arguments]    ${order}
+    ${count_tb_date_time}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::*[@resource-id="jp.naver.line.android:id/chathistory_row_date"]
+    Run Keyword If    ${count_tb_date_time}<1    Swipe_down_until_date_time    //android.widget.ListView/child::android.widget.LinearLayout[${total_messages_on_screen}]/descendant::*[@resource-id="jp.naver.line.android:id/chathistory_row_date"]
+    ${count_text_buttons}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View
+    Should Be True    ${count_text_buttons}==2
+    ${text_here}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[1]/android.view.View
+    ${text_here2}=    Remove String Using Regexp    ${text_here}    (\r\n|\r|\n)
+    Should Contain    ${text_here2}    ${current_expected_response_text}
+    : FOR    ${item}    IN    @{current_t_button}
+    \    ${status_button}    Get_button_text_from_response    ${count_text_buttons}    ${current_new_order}    ${item}
+    \    Run Keyword If    '${status_button}'=='${FALSE}'    Run Keywords    Fail    This button is not found in the response
+    \    ...    AND    Exit For Loop
+    Set_to_prev_responses    ${order}    textbuttons;${text_here2}
+    Log    Finished validate text with buttons
+
+Get_button_text_from_response
+    [Arguments]    ${count_text_buttons}    ${new_order}    ${item}
+    : FOR    ${b_order}    IN RANGE    1    ${count_text_buttons}+1
+    \    Set Test Variable    ${status_button}    ${FALSE}
+    \    ${text_button}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[2]/android.view.View[${b_order}]
+    \    ${text_button2}=    Remove String Using Regexp    ${text_button}    (\r\n|\r|\n)
+    \    ${button_avail}    Run Keyword And Return Status    Should Contain    ${text_button2}    ${item}
+    \    Run Keyword If    ${button_avail}    Run Keywords    Set Test Variable    ${status_button}    ${TRUE}
+    \    ...    AND    Set Suite Variable    ${index_button_response}    ${b_order}
+    \    ...    AND    Exit For Loop
+    [Return]    ${status_button}
+
+Get_XLocation_from_bounds
+    [Arguments]    ${bound}
+    ${boundString}    Convert To String    ${bound}
+    ${elementsXY}    Split String    ${boundString}    ${SPACE}
+    #location format, e.g. ${elementsXY} = [u"{'y':", u'702.0,', u"'x':", u'718.0}']
+    ${elementX}    Get From List    ${elementsXY}    3
+    ${finalelementX}    Strip String    ${elementX}    characters=}
+    [Return]    ${finalelementX}
+
+Swipe_down_until_date_time
+    Set Suite Variable    ${item_scrolled_down}    ${TRUE}
+    : FOR    ${loop}    IN RANGE    0    10
+    \    Swipe    600    600    600    300
+    \    Count_messages
+    \    ${count_item_date_time}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${total_messages_on_screen}]/descendant::*[@resource-id="jp.naver.line.android:id/chathistory_row_date"]
+    \    Run Keyword If    ${count_item_date_time}==1    Run Keywords    Log    Stop swipe down
+    \    ...    AND    Set Suite Variable    ${current_new_order}    ${total_messages_on_screen}
+    \    ...    AND    Exit For Loop
+    Log    Date time should be found.

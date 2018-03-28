@@ -1,4 +1,5 @@
 *** Settings ***
+Test Teardown     Run Keyword If Test Failed    Cancel_and_closing_session_when_unexpected_result
 Library           Selenium2Library    run_on_failure=Selenium2Library.CapturePageScreenshot
 Resource          Detailed_custkeyword.txt
 Resource          Test_data_Indo.txt
@@ -10,96 +11,9 @@ Library           Collections
 Library           AppiumLibrary    run_on_failure=AppiumLibrary.CapturePageScreenshot
 Resource          SMS_custom_keywords.txt
 Resource          Test_data_SMS_Indo.txt
+Resource          Carousel_custkeyword.txt
 
 *** Test Cases ***
-test_carousel
-    [Setup]    Open_chrome
-    Login_messenger    ${email}    ${password}
-    User_input    lihat semua produk    #User_input    ${random_question_3}
-    Get_carousel_items    2
-    Show_carousel_items_on_specific_location    2    3
-    Validate_carousel_items    2    SimPATI Combo    \    Info SimPATI Combo    Perdana SimPATI
-    Click_carousel_button_on_specific_location    2    4    Info Halo Kick
-    [Teardown]    Close Browser
-
-test_askPulsaKuota
-    [Documentation]    Here registered user ask for both pulsa and kuota, without top-up.
-    [Setup]    Open_chrome
-    Login_messenger    ${email}    ${password}
-    #Greet_VA_Indo
-    User_input    ${ask_pulsa}
-    Sleep    2s
-    ${result}    Run Keyword and Return Status    Check_VA_response_text    1    ${VA_validateNumber}
-    Run Keyword If    ${result}    Click_Yes    1
-    Check_VA_response_text    1    ${VA_answerPulsa1}
-    Check_VA_response_text_with_2buttons    2    ${VA_answerPulsa2}    Ya    Tidak
-    Capture Page Screenshot    response_pulsa.png
-    User_input    ${ask_kuota}
-    Check_VA_response_text    1    ${VA_answerKuota2}
-    Check_additional_text_2buttons    1    ${VA_answerKuota3}    Ya    Tidak
-    Click_additional_No
-    Check_VA_response_text    1    ${VA_question_1}
-    Closing_session
-    [Teardown]    Close Browser
-
-test_askPulsa
-    [Documentation]    Here registered user ask for pulsa, without top-up.
-    [Setup]    Open_chrome
-    Login_messenger    ${email}    ${password}
-    #Greet_VA_Indo
-    User_input    ${ask_pulsa}
-    ${result}    Run Keyword and Return Status    Check_VA_response_text    1    ${VA_validateNumber}
-    Run Keyword If    ${result}    Click_Yes    1
-    Check_VA_response_text    1    ${VA_answerPulsa1}
-    Check_VA_response_text_with_2buttons    2    ${VA_answerPulsa2}    Ya    Tidak
-    Click_No    2
-    #Sleep    2s
-    Check_VA_response_text    1    ${VA_question_1}
-    Closing_session
-    [Teardown]    Close Browser
-
-test_interaction
-    [Documentation]    Here registered user ask for pulsa, without top-up.
-    [Setup]    Open_chrome
-    Login_messenger    ${email}    ${password}
-    Greet_VA_Indo
-    Click_Button_From_Response    4    Lihat Menu Utama
-    [Teardown]    Close Browser
-
-test_simple_input_response
-    [Setup]    Open_chrome
-    Login_messenger    ${email}    ${password}
-    Greet_VA_Indo
-    User_input    ${random_question_3}
-    Check_VA_response_text    1    ${VA_gives_FAQ}
-    Check_VA_response_carousel_exists    2
-    Check_VA_response_text    3    ${VA_question_1}
-    Capture Page Screenshot    response_qa.png
-    User_input    Lihat semua produk
-    Check_VA_response_text    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini
-    Check_VA_response_carousel_exists    2
-    Capture Page Screenshot    response_produk.png
-    Cancel_and_closing_session
-    [Teardown]    Close Browser
-
-test_web_sms
-    Open_chrome
-    Login_messenger    ${email}    ${password}
-    User_input    Ganti nomor
-    Check_VA_response_text    1    Tolong tulis nomor handphone Kamu ya :) (contoh: 0811000000)
-    User_input    082113088651
-    Check_VA_response_text    1    Terima kasih untuk informasinya.
-    Check_VA_response_text    2    Veronika akan mengirim
-    Open SMS
-    Select_TSEL_SMS
-    Close Application
-    #Sleep    1s
-    #Switch Application    ${LINE_app}
-    User_input    ${current_finalelement_pin}
-    Check_VA_response_text    1    Oke, Veronika sudah berhasil memverifikasi nomor telepon Kamu ya.
-    Sleep    2s
-    [Teardown]    Close Browser
-
 001 - Non-Telkomsel user who just started talking to VA
     [Setup]    Open Chrome
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}

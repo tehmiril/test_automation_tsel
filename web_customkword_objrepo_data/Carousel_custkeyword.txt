@@ -1,0 +1,28 @@
+*** Keywords ***
+Go_to_specific_carousel_elements_based_on_item_number
+    [Arguments]    ${order}    ${element_number}    ${button}
+    Sleep    2s
+    Log    ${current_total_user_message}
+    ${totalbuttonitems}    Selenium2Library.Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${element_number}]/descendant::a[@class="_3cnp"]
+    #${amounttitlesubs}    Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${looping}]/descendant::div[@class="_3cni"]
+    ${title_now}    Selenium2Library.Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${element_number}]/descendant::div[@class="_3cni"][1]    innerText
+    ${subtitle_now}    Selenium2Library.Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${element_number}]/descendant::div[@class="_3cni"][2]    innerText
+    #Validate_carousel_items    ${order}    ${title_now}    ${EMPTY}    ${button}
+    Set Suite Variable    ${current_carousel_button}    ${button}
+    Set Suite Variable    ${current_carousel_title}    ${title_now}
+    ${element_XBegin}    Get_locationX_carousel_item_based_on_item_number    ${order}    ${element_number}
+    Check_where_to_swipe_carousel_based_on_item_number    ${order}    ${element_XBegin}
+
+Check_where_to_swipe_carousel_based_on_item_number
+    [Arguments]    ${order}    ${element_XBegin}
+    Set_Xlimit_for_carousel
+    Run Keyword If    ${current_tsel_icon_locationX} < ${element_XBegin} < ${current_right_limit}    Run Keywords    Sleep    1s
+    ...    AND    Selenium2Library.Capture Page Screenshot    carousel_here.png
+    ...    ELSE IF    ${element_XBegin} < ${current_tsel_icon_locationX}    Run Keyword    Swipe_backward_until_element    ${order}
+    ...    ELSE IF    ${element_XBegin} > ${current_right_limit}    Run Keyword    Swipe_forward_until_element    ${order}
+
+Get_locationX_carousel_item_based_on_item_number
+    [Arguments]    ${order}    ${element_number}    #${totalcarousel}    Selenium2Library.Get Element Count    //a[contains(.,'${current_carousel_button}')]/preceding::*[@class='_3cni' and @text='${current_carousel_title}']
+    #Set Suite Variable    ${total_item_carousel}    ${totalcarousel}
+    ${element_XBegin}    Selenium2Library.Get Horizontal Position    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${element_number}]/descendant::a[@class="_3cnp"]
+    [Return]    ${element_XBegin}

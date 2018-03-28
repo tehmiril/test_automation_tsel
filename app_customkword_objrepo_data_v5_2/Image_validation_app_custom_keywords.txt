@@ -1,0 +1,13 @@
+*** Keywords ***
+Check_VA_response_image_actual_previous
+    ${prev_order}    Evaluate    ${current_response_order}-1
+    ${count_image}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${prev_order}]/descendant::android.widget.FrameLayout/descendant::*[@resource-id="jp.naver.line.android:id/chathistory_row_image"]
+    Should Be True    ${count_image}>0
+
+Check_VA_response_image_actual
+    [Arguments]    ${new_order}    ${order}
+    Set Suite Variable    ${current_response_order}    ${order}
+    ${count_image}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.widget.FrameLayout/descendant::*[@resource-id="jp.naver.line.android:id/chathistory_row_image"]
+    Should Be True    ${count_image}>0
+    Set_to_prev_responses    ${order}    image;
+    Log    Finished validate image
