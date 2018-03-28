@@ -1,0 +1,14 @@
+*** Keywords ***
+Check_VA_response_text_actual
+    [Arguments]    ${new_order}    ${order}
+    ${text_here}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.widget.TextView[1]
+    ${text_here2}=    Remove String Using Regexp    ${text_here}    (\r\n|\r|\n)
+    Should Contain    ${text_here2}    ${current_expected_response_text}
+    Set_to_prev_responses    ${order}    text;${text_here2}
+    Log    Finished checking VA text
+
+Check_VA_response_text_actual_previous
+    ${prev_order}    Evaluate    ${current_response_order}-1
+    ${text_here}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${prev_order}]/descendant::android.widget.TextView[1]
+    ${text_here2}=    Remove String Using Regexp    ${text_here}    (\r\n|\r|\n)
+    Should Contain    ${text_here2}    ${previous_resp_details}
