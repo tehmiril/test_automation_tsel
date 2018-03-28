@@ -46,3 +46,4 @@ ${VA_gives_FAQ}    Halo, M Testaut. Berikut adalah beberapa solusi Veronika    #
 ${emailNonTsel}    automated.test.ride@gmail.com
 ${passwordNonTsel}    automated1234
 ${VA_GreetNonTsel}    Hai Lightning Diamond, selamat datang di GraPARI Virtual Telkomsel!
+@{randomBoredIndo}    Dari pada males nggak jelas, mending bermain sama Veronika.    Dari pada mager sendirian, lebih baik ditemenin sama Veronika sambil ngobrol asik.    Bosen nggak tahu mau ngapain? Veronika punya obrolan asik nih
