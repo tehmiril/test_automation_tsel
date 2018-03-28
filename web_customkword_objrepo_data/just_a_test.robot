@@ -246,14 +246,14 @@ Resource          Carousel_custkeyword.txt
     User_input    grapari yang buka di hari minggu di jakarta selatan
     [Teardown]    Close Browser
 
-[X] 015 - User want to buy a starter pack
+015 - User want to buy a starter pack
     [Setup]    Open Chrome
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    mau beli perdana
     Check_VA_response_text    1    Kamu bisa mendapatkan perdana Telkomsel di GraPARI maupun di outlet terdekat
     Check_VA_response_text    2    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
     User_input    Sydney
-    Click_carousel_button_on_specific_location    1    1    Pilih
+    Click_carousel_button_on_specific_location    2    1    Pilih
     Check_VA_response_text    1    Mohon maaf, Veronika tidak menemukan adanya outlet Telkomsel di dekat sydney
     Check_VA_response_text    2    Ada lagi yang bisa Veronika bantu?
     Closing_session
@@ -266,7 +266,7 @@ Resource          Carousel_custkeyword.txt
     Check_VA_response_text    1    Voucher data bisa Kamu dapatkan di outlet terdekat
     Check_VA_response_text    2    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
     User_input    Sydney
-    Check_VA_response_carousel_exists    1
+    Check_VA_response_carousel_exists    2
     Closing_session
     [Teardown]    Close Browser
 
