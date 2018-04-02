@@ -1,5 +1,5 @@
 *** Settings ***
-Suite Setup       Open_chrome
+Suite Setup       Open_chrome_Telegram
 Suite Teardown    Close Browser
 Test Teardown     Run Keyword If Test Failed    Cancel_and_closing_session_when_unexpected_result
 Library           SeleniumLibrary    run_on_failure=SeleniumLibrary.CapturePageScreenshot
@@ -16,19 +16,11 @@ Resource          Test_data_SMS_Indo.txt
 Resource          Carousel_custkeyword.txt
 Resource          Text_with_buttons_custkeyword.txt
 Resource          URL_Telegram.txt
+Resource          Local_path.txt
 
 *** Test Cases ***
 001 - Non-Telkomsel user who just started talking to VA
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
-    Greet_VA_Indo    ${VA_GreetNonTsel}
-    Check_VA_response_carousel_exists    1
-    Validate_carousel_items    1    Jelajah Produk Telkomsel    Temukan produk terbaik Telkomsel di sini    Beralih ke Telkomsel    Produk untuk Kamu    Layanan Digital
-    Validate_carousel_items    1    Profil Kamu    Informasi tentang nomor Telkomsel Kamu    Sisa Kuota    Tagihan/Sisa Pulsa    Info PUK
-    Validate_carousel_items    1    Beli Paket dan Tukar POIN    Lihat dan beli produk Telkomsel favorit Kamu di sini    Beli Pulsa    Beli Paket    Telkomsel POIN
-    Validate_carousel_items    1    Bantuan Lainnya    Kamu punya pertanyaan? Temukan jawabannya di sini    Registrasi Prabayar    GraPARI Terdekat    Kontak Live Agent
-    Check_VA_response_text    2    Silakan pilih salah satu opsi di atas atau ketik layanan lain yang dibutuhkan
-    User_input    Beli Pulsa
-    Cancel_and_closing_session
 
 002 - Non-Telkomsel who wants to explore VA
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
