@@ -356,7 +356,8 @@ Resource          URL_FB_Messenger.txt
     Check_VA_response_text    1    Terima kasih untuk informasinya.
     Check_VA_response_text    2    Veronika akan mengirim password melalui SMS dari TELKOMSEL ke nomor +6282110685202. Silakan tulis password tersebut ya.
     Check_VA_response_text    2    Password hanya berlaku 3 menit. Kamu bisa ketik 'Password Baru' untuk dikirimkan password baru.
-    #User_input    type OTP here
+    Open SMS
+    Select_TSEL_SMS
     Check_VA_response_text    1    Oke, Veronika sudah berhasil memverifikasi nomor telepon Kamu ya.
     Check_VA_response_text    2    ${VA_Greet1}
     Check_VA_response_text    3    Hai, kawan simPATI! Ada yang bisa Veronika bantu?
