@@ -39,10 +39,10 @@ Check_VA_response_text_with_buttons
     ...    ELSE IF    ${scrolled_down}==${FALSE} and ${current_new_order}<=${total_messages_on_screen}    Check_VA_response_text_with_buttons_actual    ${order}
     ...    ELSE IF    ${scrolled_down}==${TRUE}    Swipe_down_until_element    textbuttons
 
-Click_VA_response_button
+Click_Button_From_Response
     [Arguments]    ${order}    ${r_button}
     [Documentation]    This keyword can be used to click (any) button that is part of the VA response.
-    #${new_order}    Evaluate    ${order}+${index_user_input}
+    ${new_order}    Evaluate    ${order}+${index_user_input}
     #Click Element    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[2]/descendant::*[contains(.,${r_button})]
     ${count_text_buttons}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View
     ${status_button}    Get_button_text_from_response    ${count_text_buttons}    ${new_order}    ${r_button}
@@ -144,3 +144,9 @@ Greet_VA_Indo
     Check_VA_response_text    2    Kamu
     Check_VA_response_image    3
     Check_VA_response_text_with_buttons    4    ini    Lihat Menu Utama    Chat in English
+
+Cancel_and_closing_session_when_unexpected_result
+    User_input    ${cancel_answer}
+    Check_VA_response_text    1    ${VA_cancel}
+    Check_VA_response_text    2    ${VA_question_1}
+    Sleep    2s

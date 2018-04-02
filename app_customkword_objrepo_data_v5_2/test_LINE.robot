@@ -1,4 +1,6 @@
 *** Settings ***
+Suite Setup       Open app
+Test Teardown     Run Keyword If Test Failed    Cancel_and_closing_session_when_unexpected_result
 Library           AppiumLibrary
 Resource          Test_data_LINE_Indo.txt
 Library           String
@@ -14,10 +16,9 @@ Resource          Carousel_validation_app_custom_keywords.txt
 
 *** Test Cases ***
 005
-    [Setup]    Open app
     User_input    Saran perdana donk
     Check_VA_response_text    1    Oke, Veronika bantu carikan produk Telkomsel yang cocok buat Kamu ya
-    Check_VA_response_text_with_2buttons    2    Sebelumnya, tolong jawab 3 pertanyaan singkat berikut ini    Mulai    Lihat Semua Produk
+    Check_VA_response_text_with_buttons    2    Sebelumnya, tolong jawab 3 pertanyaan singkat berikut ini    Mulai    Lihat Semua Produk
     Click_Button_From_Response    2    Lihat Semua Produk
     Check_VA_response_text    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini
     Check_VA_response_carousel_exists    2
@@ -28,7 +29,7 @@ Resource          Carousel_validation_app_custom_keywords.txt
     Click_button_carousel    2    Kartu As Combo    Perdana Kartu As
     Check_VA_response_image    1
     Check_VA_response_text    2    Kamu bisa cari tahu lebih lanjut di https://telkomsel.com/kartu-as
-    Check_VA_response_text_with_2buttons    3    Apakah Kamu ingin membeli kartu perdana Kartu As tersebut?    Ya    Tidak
+    Check_VA_response_text_with_buttons    3    Apakah Kamu ingin membeli kartu perdana Kartu As tersebut?    Ya    Tidak
     Click_Button_From_Response    3    Ya
     Check_VA_response_text    1    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
     User_input    banda aceh
@@ -40,7 +41,6 @@ Resource          Carousel_validation_app_custom_keywords.txt
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
 
 006
-    [Setup]    Open app
     User_input    Kartu halo itu apa?
     Check_VA_response_text    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini
     Check_VA_response_carousel_exists    2
