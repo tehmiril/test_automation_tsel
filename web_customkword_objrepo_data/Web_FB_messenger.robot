@@ -339,7 +339,7 @@ Resource          URL_FB_Messenger.txt
     Check_VA_response_text    1    @{randomBoredIndo}
     Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
 
-[X] 052 - Postpaid user wants to change his number (vice versa)
+052 - Postpaid user wants to change his number (vice versa)
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     Check_VA_response_text    1    Berikut adalah informasi untuk nomor Kamu +6282110685202
@@ -356,20 +356,15 @@ Resource          URL_FB_Messenger.txt
     Check_VA_response_text    1    Terima kasih untuk informasinya.
     Check_VA_response_text    2    Veronika akan mengirim password melalui SMS dari TELKOMSEL ke nomor +6282110685202. Silakan tulis password tersebut ya.
     Check_VA_response_text    2    Password hanya berlaku 3 menit. Kamu bisa ketik 'Password Baru' untuk dikirimkan password baru.
-    Open SMS
-    Select_TSEL_SMS
+    Get_OTP
     Check_VA_response_text    1    Oke, Veronika sudah berhasil memverifikasi nomor telepon Kamu ya.
     Check_VA_response_text    2    ${VA_Greet1}
-    Check_VA_response_text    3    Hai, kawan simPATI! Ada yang bisa Veronika bantu?
-    Check_VA_response_image    4
-    Check_VA_response_text_with_2buttons    5    Silakan ketik layanan yang dibutuhkan atau pilih menu di bawah    ${VA_GreetButton1}    ${VA_GreetButton2}
-    Click_Button_From_Response    5    ${VA_GreetButton1}
-    Check_VA_response_text    1    Berikut adalah informasi untuk nomor Kamu +6282110685202
-    Check_VA_response_carousel_exists    2
-    Validate_carousel_items    2    Profil Kamu    Informasi tentang nomor Telkomsel Kamu    Detail Kuota    Beli Pulsa    Info PUK
-    Validate_carousel_items    2    Bantuan Lainnya    Kamu punya pertanyaan? Temukan jawabannya di sini    FAQ    GraPARI Terdekat    Kontak Live Agent
+    Check_VA_response_text    3    Berikut adalah informasi untuk nomor Kamu +6282110685202
+    Check_VA_response_carousel_exists    4
+    Validate_carousel_items    4    Profil Kamu    Informasi tentang nomor Telkomsel Kamu    Detail Kuota    Beli Pulsa    Info PUK
+    Validate_carousel_items    4    Bantuan Lainnya    Kamu punya pertanyaan? Temukan jawabannya di sini    FAQ    GraPARI Terdekat    Kontak Live Agent
     #Validate_carousel_items    2    Beli Paket dan Tukar POIN    Lihat dan beli produk Telkomsel favorit Kamu di sini    Beli Pulsa    Beli Paket    Telkomsel POIN
     #Validate_carousel_items    2    Bantuan Lainnya    Kamu punya pertanyaan? Temukan jawabannya di sini    Registrasi Prabayar    GraPARI Terdekat    Kontak Live Agent
-    Check_VA_response_text    3    Ketik 'Ganti nomor' untuk beralih ke nomor handphone lainnya
-    Check_VA_response_text    4    Silakan pilih salah satu opsi di atas atau ketik layanan lain yang dibutuhkan
+    Check_VA_response_text    5    Ketik 'Ganti nomor' untuk beralih ke nomor handphone lainnya
+    Check_VA_response_text    6    Silakan pilih salah satu opsi di atas atau ketik layanan lain yang dibutuhkan
     Closing_session

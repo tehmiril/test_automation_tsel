@@ -40,20 +40,14 @@ Click_No
 User_input
     [Arguments]    ${input_text}
     SeleniumLibrary.Click Element    ${inputtext_obj}
-    SeleniumLibrary.Press Key    ${inputtext_obj}    ${input_text}
-    Sleep    1s
     SeleniumLibrary.Press Key    ${inputtext_obj}    \\13
-    Sleep    7s
+    Sleep    5s
     Set Suite Variable    ${current_user_input}    ${input_text}
     Run Keyword    Count_message_bubble_user_input    ${current_user_input}
 
 Closing_session
     User_input    ${no_answer}
-    ${closing_response}    Run Keyword And Return Status    Check_VA_response_text    1    ${VA_question_2}
-    Run Keyword If    ${closing_response}!=${FALSE}    Check_VA_response_text    1    ${VA_closingstatement}
-    ...    ELSE    Perform_CES
-
-Perform_CES
+    Check_VA_response_text    1    ${VA_question_2}
     User_input    ${user_rate}
     SeleniumLibrary.Capture Page Screenshot    user_rate.png
     Check_VA_response_text    1    ${VA_question_3}

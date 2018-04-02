@@ -1,0 +1,17 @@
+*** Variables ***
+${inputtext_obj}    class="composer_rich_textarea"
+${message_bubble_obj}    class='im_history_message_wrap'
+${yabutton_obj}    //*[@class='_3cnp _3cnq' and contains(text(),'Ya')]
+${nobutton_obj}    //*[@class='_3cnp' and contains(text(),'Tidak')]
+${carouselclass_obj}    class='_3cne'
+${tselicon_obj}    //*[@alt="Telkomsel"]
+${carouselforward_obj}    //*[@direction="forward"]
+${grouped_message_bubble}    //*[@class="_1t_p clearfix"]
+${userinput_bubble}    //*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr"]
+#${VA_image_bubble}    //*[@class="clearfix _o46 _3erg _29_7 direction_ltr text_align_ltr _ylc"]
+${VA_image_bubble}    clearfix _o46 _3erg _29_7 direction_ltr text_align_ltr _ylc
+#${VA_textcarousel_bubble}    //*[@class="clearfix _o46 _3erg _29_7 direction_ltr text_align_ltr"]
+${VA_textcarousel_bubble}    clearfix _o46 _3erg _29_7 direction_ltr text_align_ltr
+${VA_carousel_maindiv}    _3058 _15gf
+${carouselbackward_obj}    //*[@direction="backward"]
+${IMAGE_COMPARATOR_COMMAND}    C:/Users/amiril.r.faradini/Documents/Robot/img/compare.exe __REFERENCE__ __TEST__ -metric RMSE -compare -format
