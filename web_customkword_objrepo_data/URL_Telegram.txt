@@ -1,0 +1,2 @@
+﻿*** Variables ***
+${URLmessengerTSEL}    https://web.telegram.org/#/im?p=@telkomsel_official_bot

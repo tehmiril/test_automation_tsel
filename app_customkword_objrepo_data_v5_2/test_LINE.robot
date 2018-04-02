@@ -13,48 +13,52 @@ Resource          Image_validation_app_custom_keywords.txt
 Resource          Carousel_validation_app_custom_keywords.txt
 
 *** Test Cases ***
-LINE_10_TCASH
+005
     [Setup]    Open app
-    Sleep    2s
-    User_input    Lihat semua produk
-    Check_VA_response_text    1    Pilihan yang tepat!
-    Click_carousel_button_on_specific_location    2    3    Perdana Loop
-    Sleep    5s
-    User_input    cara aktifkan tcash gmn ya?
-    Check_VA_response_text    1    TCASH dapat dinikmati oleh seluruh pelanggan Telkomsel baik pascabayar (kartuHalo) maupun prabayar (simPATI, Kartu As, dan Loop). Tekan *800*88*6DigitPIN# di HP Kamu. Untuk pengguna baru, tentukan 6 digit PIN Kamu sendiri.
-    Check_VA_response_text    2    ${VA_question_1}
-    User_input    TCASH itu apaan sih?
-    Check_VA_response_text    1    TCASH adalah layanan uang elektronik dari Telkomsel yang telah mendapatkan izin dari Bank Indonesia. Berbeda dengan pulsa, TCASH dapat digunakan untuk bayar tagihan, bayar merchant, isi pulsa, kirim uang, dan banyak lagi.
-    #Show_carousel_items_on_specific_location    2    2
-    #Show_carousel_items_on_specific_location    2    3
-    #Validate_carousel_items    2    Dapatkan TCASH    a    Pesan Sticker
-    Click_carousel_button_on_specific_location    2    2    Merchant TCASH
-    Sleep    5s
-    Cancel_and_closing_session
-    [Teardown]    Close Application
+    User_input    Saran perdana donk
+    Check_VA_response_text    1    Oke, Veronika bantu carikan produk Telkomsel yang cocok buat Kamu ya
+    Check_VA_response_text_with_2buttons    2    Sebelumnya, tolong jawab 3 pertanyaan singkat berikut ini    Mulai    Lihat Semua Produk
+    Click_Button_From_Response    2    Lihat Semua Produk
+    Check_VA_response_text    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini
+    Check_VA_response_carousel_exists    2
+    Validate_carousel_items    2    SimPATI Combo    Aktifkan paket internet kualitas jaringan terbaik    Info SimPATI Combo    Perdana SimPATI    Beli sekarang
+    Validate_carousel_items    2    Kartu As Combo    internetan asik dengan jaringan terbaik    Info Kartu As Combo    Perdana Kartu As    Beli sekarang
+    Validate_carousel_items    2    Loop Cash    Beli paket internetan bisa nambah uang jajan    Info Loop Cash    Perdana Loop    Beli sekarang
+    Validate_carousel_items    2    Halo Kick    Dapatkan lebih banyak benefit premium dengan Halo Kick!    Info Halo Kick    Daftar kartuHalo    Beli di GraPARI
+    Click_button_carousel    2    Kartu As Combo    Perdana Kartu As
+    Check_VA_response_image    1
+    Check_VA_response_text    2    Kamu bisa cari tahu lebih lanjut di https://telkomsel.com/kartu-as
+    Check_VA_response_text_with_2buttons    3    Apakah Kamu ingin membeli kartu perdana Kartu As tersebut?    Ya    Tidak
+    Click_Button_From_Response    3    Ya
+    Check_VA_response_text    1    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
+    User_input    banda aceh
+    Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
+    Check_VA_response_carousel_exists    2
+    Click_button_carousel    2    Police Banda Aceh    Pilih
+    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
 
-LINE_simple
+006
     [Setup]    Open app
-    Sleep    2s
-    User_input    Lihat semua produk
-    Check_VA_response_text    1    Pilihan yang tepat!
-    Click_carousel_button_on_specific_location    2    3    Beli sekarang
-    Sleep    5s
-    User_input    TCASH itu apaan sih?
-    Check_VA_response_text    1    TCASH adalah layanan uang elektronik dari Telkomsel yang telah mendapatkan izin dari Bank Indonesia. Berbeda dengan pulsa, TCASH dapat digunakan untuk bayar tagihan, bayar merchant, isi pulsa, kirim uang, dan banyak lagi.
-    Show_carousel_items_on_specific_location    2    2
-    #Show_carousel_items_on_specific_location    2    3
-    #Validate_carousel_items    2    Dapatkan TCASH    ha    Pesan Sticker
-    Click_carousel_button_on_specific_location    2    3    Pertanyaan Lain
-    #User_input_longer    Halo Vero
-    #Sleep    7s
-    #Check_VA_response_text    1    selamat datang
-    #Check_VA_response_text    2    Apa yang bisa Veronika bantu hari ini?
-    #Check_VA_response_image    3
-    #Check_VA_response_text_with_buttons    4    pilih salah satu pilihan    Lihat Menu Utama    Chat in English
-    #Click_Button_From_Response    4    Lihat Menu Utama
-    Cancel_and_closing_session
-    [Teardown]    Close Application
+    User_input    Kartu halo itu apa?
+    Check_VA_response_text    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini
+    Check_VA_response_carousel_exists    2
+    Validate_carousel_items    2    SimPATI Combo    Aktifkan paket internet kualitas jaringan terbaik    Info SimPATI Combo    Perdana SimPATI    Beli sekarang
+    Validate_carousel_items    2    Kartu As Combo    internetan asik dengan jaringan terbaik    Info Kartu As Combo    Perdana Kartu As    Beli sekarang
+    Validate_carousel_items    2    Loop Cash    Beli paket internetan bisa nambah uang jajan    Info Loop Cash    Perdana Loop    Beli sekarang
+    Validate_carousel_items    2    Halo Kick    Dapatkan lebih banyak benefit premium dengan Halo Kick!    Info Halo Kick    Daftar kartuHalo    Beli di GraPARI
+    Click_button_carousel    2    Halo Kick    Beli di GraPARI
+    Check_VA_response_text    1    Tuliskan lokasi yang Kamu cari atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu untuk mendapatkan GraPARI terdekat
+    User_input    banda aceh
+    Check_VA_response_text    1    Lokasi GraPARI sekitar mana yang Kamu maksud?
+    Check_VA_response_carousel_exists    2
+    Click_button_carousel    2    Police Banda Aceh    Pilih
+    Check_VA_response_text    1    Berikut info GraPARI di sekitar Police Banda Aceh ya
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Click_button_carousel    2    GraPARI SETUI    Buka di Google Maps
+    Closing_session
 
 LINE_SMS_test
     Open app

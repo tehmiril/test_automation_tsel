@@ -15,10 +15,10 @@ Resource          SMS_custom_keywords.txt
 Resource          Test_data_SMS_Indo.txt
 Resource          Carousel_custkeyword.txt
 Resource          Text_with_buttons_custkeyword.txt
+Resource          URL_FB_Messenger.txt
 
 *** Test Cases ***
 001 - Non-Telkomsel user who just started talking to VA
-    [Setup]    Open Chrome
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     Greet_VA_Indo    ${VA_GreetNonTsel}
     Check_VA_response_carousel_exists    1
@@ -31,7 +31,6 @@ Resource          Text_with_buttons_custkeyword.txt
     Cancel_and_closing_session
 
 002 - Non-Telkomsel who wants to explore VA
-    [Setup]    Open_chrome
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     Greet_VA_Indo    ${VA_GreetNonTsel}
     Check_VA_response_carousel_exists    1
@@ -45,7 +44,6 @@ Resource          Text_with_buttons_custkeyword.txt
     Cancel_and_closing_session
 
 005 - Non-Telkomsel user who is wondering about Telkomsel products
-    [Setup]    Open Chrome
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    Saran perdana donk
     Check_VA_response_text    1    Oke, Veronika bantu carikan produk Telkomsel yang cocok buat Kamu ya
@@ -223,7 +221,6 @@ Resource          Text_with_buttons_custkeyword.txt
 [DEPRECATED] 013 - User perform Inquire 4G Upgrade and Find Nearest Store
 
 [X] 014 - User want to search a grapari that opens on a specific day
-    [Setup]    Open Chrome
     Login_messenger    ${email}    ${password}
     User_input    grapari yang buka di hari minggu di jakarta selatan
 
@@ -343,7 +340,6 @@ Resource          Text_with_buttons_custkeyword.txt
     Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
 
 [X] 052 - Postpaid user wants to change his number (vice versa)
-    [Setup]    Open Chrome
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     Check_VA_response_text    1    Berikut adalah informasi untuk nomor Kamu +6282110685202

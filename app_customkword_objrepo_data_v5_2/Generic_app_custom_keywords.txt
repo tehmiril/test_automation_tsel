@@ -87,18 +87,12 @@ Check_VA_response_image
     ...    ELSE IF    ${scrolled_down}==${FALSE} and ${current_new_order}<=${total_messages_on_screen}    Check_VA_response_image_actual    ${new_order}    ${order}
     ...    ELSE IF    ${scrolled_down}==${TRUE}    Swipe_down_until_element    image
 
-Show_carousel_items_on_specific_location
-    [Arguments]    ${order}    ${element_number}
-    Run Keyword If    ${item_scrolled_down}==${FALSE}    Check_VA_response_carousel_exists    ${order}
-    Run Keyword If    ${element_number} > ${current_carousel_items}    Fail    There are less number of elements in the carousel.
-    ...    ELSE    Go_to_specific_carousel_elements    ${element_number}
-
 Click_carousel_button_on_specific_location
-    [Arguments]    ${order}    ${element_number}    @{c_button}
+    [Arguments]    ${order}    ${element_number}    ${c_button}
     Run Keyword If    ${item_scrolled_down}==${FALSE}    Check_VA_response_carousel_exists    ${order}
     ${expected_activity}    Set Variable    .activity.iab.InAppBrowserActivity
     Run Keyword If    ${element_number} > ${current_carousel_items}    Fail    There are less number of elements in the carousel.
-    ...    ELSE    Go_to_specific_carousel_elements    ${element_number}    @{c_button}
+    ...    ELSE    Go_to_specific_carousel_elements_based_on_item_number    ${element_number}    ${c_button}
     Log    which button?${index_button_carousel}
     Sleep    2s
     Log Source
@@ -143,7 +137,7 @@ Validate_carousel_items
     Go_to_specific_carousel_elements    ${c_item}    @{c_buttons}
     Check_where_to_swipe_carousel    ${c_item}
 
-Greet_VA
+Greet_VA_Indo
     User_input_longer    Halo Vero
     Sleep    5s
     Check_VA_response_text    1    selamat datang

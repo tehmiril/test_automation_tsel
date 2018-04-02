@@ -106,3 +106,15 @@ Check_VA_response_carousel_exists
     Run Keyword If    ${scrolled_down}==${FALSE} and ${current_new_order}>${total_messages_on_screen}    Swipe_down_until_element    carousel
     ...    ELSE IF    ${scrolled_down}==${FALSE} and ${current_new_order}<=${total_messages_on_screen}    Check_VA_response_carousel_exists_actual    ${new_order}    ${order}
     ...    ELSE IF    ${scrolled_down}==${TRUE}    Swipe_down_until_element    carousel
+
+Go_to_specific_carousel_elements_based_on_item_number
+    [Arguments]    ${element_number}    ${buttons}
+    #${new_order}    Evaluate    ${order}+${index_user_input}
+    ${total_children}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View/android.view.View[2]/android.view.View
+    ${totalbuttonitems}    Evaluate    ${total_children}-1    #1 is for the element for title and subtitle, the rest are buttons
+    Set Suite Variable    ${current_total_carousel_buttons}    ${totalbuttonitems}
+    ${title_now}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View/android.view.View[2]/android.view.View[1]/android.view.View[1]
+    ${subtitle_now}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View/android.view.View[2]/android.view.View[1]/android.view.View[2]
+    Set Suite Variable    ${current_carousel_title}    ${title_now}
+    Set Suite Variable    ${current_carousel_subtitle}    ${subtitle_now}
+    Check_where_to_swipe_carousel    ${element_number}

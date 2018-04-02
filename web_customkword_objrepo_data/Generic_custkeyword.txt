@@ -3,10 +3,11 @@ Greet_VA_Indo
     [Arguments]    ${greeting_text}= ${VA_Greet1}
     [Documentation]    Can be part of any test case, greet VA
     User_input    ${greeting}
-    Run Keyword If    ${greeting_text} == ${VA_GreetNonTsel}    Run Keywords    Set Variable    ${VA_SecondGreetWording}    Apa yang bisa Veronika bantu hari ini?
-    ...    AND    Set Variable    ${VA_ThirdGreetWording}    Silakan pilih salah satu pilihan di bawah ini atau langsung saja ketik permintaan kamu
-    ...    ELSE    Run Keywords    Set Variable    ${VA_SecondGreetWording}    Hai, kawan simPATI! Ada yang bisa Veronika bantu?
-    ...    AND    Set Variable    ${VA_ThirdGreetWording}    Silakan ketik layanan yang dibutuhkan atau pilih menu di bawah
+    Sleep    30s
+    Run Keyword If    '${greeting_text}' == '${VA_GreetNonTsel}'    Run Keywords    Set Suite Variable    ${VA_SecondGreetWording}    Apa yang bisa Veronika bantu hari ini?
+    ...    AND    Set Suite Variable    ${VA_ThirdGreetWording}    Silakan pilih salah satu pilihan di bawah ini atau langsung saja ketik permintaan kamu
+    ...    ELSE    Run Keywords    Set Suite Variable    ${VA_SecondGreetWording}    Hai, kawan simPATI! Ada yang bisa Veronika bantu?
+    ...    AND    Set Suite Variable    ${VA_ThirdGreetWording}    Silakan ketik layanan yang dibutuhkan atau pilih menu di bawah
     Check_VA_response_text    1    ${greeting_text}
     Check_VA_response_text    2    ${VA_SecondGreetWording}
     Check_VA_response_image    3
@@ -98,9 +99,11 @@ Open_chrome
     Call Method    ${chrome_options}    add_argument    --disable-notifications
     Run Keyword If    os.sep == '/'    SeleniumLibrary.Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}
     ...    ELSE    SeleniumLibrary.Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}    #executable_path=/usr/lib/chromium-browser/chromedriver
+    #SeleniumLibrary.Set Window Size    800    600
     SeleniumLibrary.Set Window Position    2000    0
     SeleniumLibrary.Maximize Browser Window
     SeleniumLibrary.Go To    ${URLmessengerTSEL}
+    ${width}    ${height}=    SeleniumLibrary.Get Window Size
 
 Login_messenger
     [Arguments]    ${email}    ${password}

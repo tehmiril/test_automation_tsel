@@ -1,0 +1,3 @@
+﻿*** Variables ***
+${URL}            https://www.facebook.com/
+${URLmessengerTSEL}    https://www.facebook.com/messages/t/telkomsel
