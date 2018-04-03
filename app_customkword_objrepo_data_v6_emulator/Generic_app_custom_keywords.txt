@@ -1,0 +1,176 @@
+*** Keywords ***
+Open app
+    ${LINE_app}=    Open Application    ${appiumServer_LINE}    alias=LINE    platformName=${platformName_LINE}    platformVersion=${androidVersion_LINE}    deviceName=${deviceName_LINE}
+    ...    appPackage=${appPackage_LINE}    appActivity=${appActivity_LINE}    noReset=true    automationName=UiAutomator2
+    ${current_activity}    Get Activity
+    Set Suite Variable    ${LINE_app}    ${LINE_app}
+    Start app
+
+Start app
+    Wait Until Element is Visible    //android.widget.FrameLayout[contains(@content-desc,"Chats tab")]    10    None
+    Click Element    //android.widget.FrameLayout[contains(@content-desc,"Chats tab")]
+    #Wait Until Element is Visible    //*[@text="Chats"]    5    None
+    Sleep    2s
+    Click Element    //*[@resource-id="jp.naver.line.android:id/chatlist_chatname" and contains(@text,"Telkomsel")]
+    Sleep    2s
+    ${keyboard_visible}    Run Keyword And Return Status    Element Should Be Visible    //*[@resource-id="jp.naver.line.android:id/official_account_bottombar_keyboard_button"]
+    Run Keyword If    ${keyboard_visible}    Get_bottom_Y    //*[@resource-id="jp.naver.line.android:id/official_account_bottombar_keyboard_button"]
+    ...    ELSE    Get_bottom_Y    ${textbox_obj}
+
+User_input
+    [Arguments]    ${input_text}
+    Enter_text    ${input_text}
+    Sleep    7s
+    Find_user_input
+
+User_input_longer
+    [Arguments]    ${input_text}
+    Enter_text    ${input_text}
+    Sleep    20s
+    Find_user_input
+
+Check_VA_response_text_with_buttons
+    [Arguments]    ${order}    ${response_text}    @{t_button}
+    Set Suite Variable    ${current_response_order}    ${order}
+    ${new_order}    Evaluate    ${current_response_order}+${index_user_input}
+    Set Suite Variable    ${current_new_order}    ${new_order}
+    Set Suite Variable    ${current_expected_response_text}    ${response_text}
+    Set Suite Variable    @{current_t_button}    @{t_button}
+    Run Keyword If    ${scrolled_down}==${FALSE} and ${current_new_order}>${total_messages_on_screen}    Swipe_down_until_element    textbuttons
+    ...    ELSE IF    ${scrolled_down}==${FALSE} and ${current_new_order}<=${total_messages_on_screen}    Check_VA_response_text_with_buttons_actual    ${order}
+    ...    ELSE IF    ${scrolled_down}==${TRUE}    Swipe_down_until_element    textbuttons
+
+Click_Button_From_Response
+    [Arguments]    ${order}    ${r_button}
+    [Documentation]    This keyword can be used to click (any) button that is part of the VA response.
+    ${new_order}    Evaluate    ${order}+${index_user_input}
+    #Click Element    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[2]/descendant::*[contains(.,${r_button})]
+    #${count_text_buttons}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View
+    ${count_text_buttons}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View
+    ${status_button}    Get_button_text_from_response_emulator    ${count_text_buttons}    ${new_order}    ${r_button}
+    Run Keyword If    '${status_button}'=='${FALSE}'    Run Keywords    Fail    This button is not found in the response
+    ...    ELSE    Click Element    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View[${index_button_response}]    #//android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[2]/android.view.View[${index_button_response}]
+    Set Suite Variable    ${current_user_input}    ${r_button}
+    Set Suite Variable    ${scrolled_down}    ${FALSE}
+    Log    Finished click button on text
+    Sleep    10s
+    Show_user_input_on_screen
+    Get_user_input_index
+
+Closing_session
+    User_input    ${no_answer}
+    Check_VA_response_text    1    ${VA_question_2}
+    User_input    ${user_rate}
+    Check_VA_response_text    1    ${VA_question_3}
+    #only type in at the moment
+    User_input    ${select_Rate}
+    Check_VA_response_text    1    ${VA_askRateReason}
+    User_input    Nope
+    Sleep    10s
+    Check_VA_response_text    1    ${VA_closingstatement}
+    Check_VA_response_image    3
+
+Check_VA_response_text
+    [Arguments]    ${order}    ${expected_text}
+    Set Suite Variable    ${current_response_order}    ${order}
+    ${new_order}    Evaluate    ${current_response_order}+${index_user_input}
+    Set Suite Variable    ${current_new_order}    ${new_order}
+    Set Suite Variable    ${current_expected_response_text}    ${expected_text}
+    Run Keyword If    ${scrolled_down}==${FALSE} and ${current_new_order}>${total_messages_on_screen}    Swipe_down_until_element    text
+    ...    ELSE IF    ${scrolled_down}==${FALSE} and ${current_new_order}<=${total_messages_on_screen}    Check_VA_response_text_actual    ${new_order}    ${order}
+    ...    ELSE IF    ${scrolled_down}==${TRUE}    Swipe_down_until_element    text
+
+Check_VA_response_image
+    [Arguments]    ${order}
+    Set Suite Variable    ${current_response_order}    ${order}
+    ${new_order}    Evaluate    ${current_response_order}+${index_user_input}
+    Set Suite Variable    ${current_new_order}    ${new_order}
+    Run Keyword If    ${scrolled_down}==${FALSE} and ${current_new_order}>${total_messages_on_screen}    Swipe_down_until_element    image
+    ...    ELSE IF    ${scrolled_down}==${FALSE} and ${current_new_order}<=${total_messages_on_screen}    Check_VA_response_image_actual    ${new_order}    ${order}
+    ...    ELSE IF    ${scrolled_down}==${TRUE}    Swipe_down_until_element    image
+
+Click_carousel_button_on_specific_location
+    [Arguments]    ${order}    ${element_number}    ${c_button}
+    Run Keyword If    ${item_scrolled_down}==${FALSE}    Check_VA_response_carousel_exists    ${order}
+    ${expected_activity}    Set Variable    .activity.iab.InAppBrowserActivity
+    Run Keyword If    ${element_number} > ${current_carousel_items}    Fail    There are less number of elements in the carousel.
+    ...    ELSE    Go_to_specific_carousel_elements_based_on_item_number    ${element_number}    ${c_button}
+    Log    which button?${index_button_carousel}
+    Sleep    2s
+    #Log Source
+    Click Element    xpath=//android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View/android.view.View[2]/android.view.View[@text="${button_carousel_to_click}"]
+    #${emang ada banyak}    Get Matching Xpath Count    xpath=//android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View/android.view.View[2]/android.view.View[${index_button_carousel}]
+    #Click Element    xpath=//android.view.View[@text="${button_carousel_to_click}"]
+    #${is it correct}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View/android.view.View[2]/android.view.View[${index_button_carousel}]
+    #Click Element    xpath=//android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View/android.view.View[2]/android.view.View[${index_button_carousel}]
+    #${webelement_button2}    Get Webelement    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View/android.view.View[2]/android.view.View[@text="${button_carousel_to_click}"]
+    #${ypoint}    Find_YLocation    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View/android.view.View[2]/android.view.View[@text="${button_carousel_to_click}"]
+    #${xpoint_bound}    Get Element Location    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View/android.view.View[2]/android.view.View[@text="${button_carousel_to_click}"]
+    #${xpoint}    Get_XLocation_from_bounds    ${xpoint_bound}
+    #Tap    ${webelement_button2}
+    #Click Element At Coordinates    ${xpoint}    ${ypoint}
+    Set Suite Variable    ${scrolled_down}    ${FALSE}
+    Sleep    7s
+    ${activity_now}    Get Activity
+    ${activity_now_S}    Convert To String    ${activity_now}
+    ${status_activity}    Run Keyword And Return Status    Should Be Equal As Strings    ${activity_now_S}    ${expected_activity}
+    Run Keyword If    ${status_activity}    Click Element    //*[@resource-id="jp.naver.line.android:id/iab_header_close"]
+    ...    ELSE    Run Keywords    Set Suite Variable    ${current_user_input}    ${button_carousel_to_click}
+    ...    AND    Show_user_input_on_screen
+    ...    AND    Get_user_input_index
+
+Cancel_and_closing_session
+    User_input    ${cancel_answer}
+    Check_VA_response_text    1    ${VA_cancel}
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
+
+Validate_carousel_items
+    [Arguments]    ${order}    ${c_title}    ${c_subtitle}    @{c_buttons}
+    Run Keyword If    ${item_scrolled_down}==${FALSE}    Check_VA_response_carousel_exists    ${order}
+    Set Suite Variable    ${current_carousel_title}    ${c_title}
+    Set Suite Variable    ${current_carousel_subtitle}    ${c_subtitle}
+    Run keyword If    '${c_subtitle}'=='${EMPTY}'    Run Keyword    Set Suite Variable    ${xpath_c_item}    //*[@class="android.view.View" and @text="${current_carousel_title}"]
+    ...    ELSE    Run Keyword    Set Suite Variable    ${xpath_c_item}    //*[@class="android.view.View" and contains(@text,"${current_carousel_title}")]/following-sibling::*[@class="android.view.View" and @text="${current_carousel_subtitle}"]
+    #: FOR    ${c_item}    IN RANGE    1    ${current_carousel_items}+1
+    #\    ${count_c_items}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${c_item}]/descendant::${xpath_c_item}
+    #\    Run Keyword If    ${count_c_items}>0    Exit For Loop
+    #Log    ${c_item}
+    Go_to_specific_carousel_elements    ${c_item}    @{c_buttons}
+    Check_where_to_swipe_carousel    ${c_item}
+
+Greet_VA_Indo
+    User_input_longer    Halo Vero
+    Sleep    5s
+    Check_VA_response_text    1    selamat datang
+    Check_VA_response_text    2    Kamu
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    ini    Lihat Menu Utama    Chat in English
+
+Cancel_and_closing_session_when_unexpected_result
+    User_input    ${cancel_answer}
+    Check_VA_response_text    1    ${VA_cancel}
+    Check_VA_response_text    2    ${VA_question_1}
+    Sleep    2s
+
+Click_button_carousel
+    [Arguments]    ${order}    ${c_title}    ${c_buttons}
+    Run Keyword If    ${item_scrolled_down}==${FALSE}    Check_VA_response_carousel_exists    ${order}
+    : FOR    ${c_item}    IN RANGE    1    ${current_carousel_items}+1
+    \    ${count_c_items}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${c_item}]/descendant::${xpath_c_item}
+    \    Run Keyword If    ${count_c_items}>0    Exit For Loop
+    #Log    ${c_item}
+    Go_to_specific_carousel_elements_based_on_title    ${c_item}    ${c_buttons}
+    #Check_where_to_swipe_carousel    ${c_item}
+
+Go_to_specific_carousel_elements_based_on_title
+    [Arguments]    ${element_number}    ${buttons}
+    #${new_order}    Evaluate    ${order}+${index_user_input}
+    ${total_children}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View/android.view.View[2]/android.view.View
+    ${totalbuttonitems}    Evaluate    ${total_children}-1    #1 is for the element for title and subtitle, the rest are buttons
+    Set Suite Variable    ${current_total_carousel_buttons}    ${totalbuttonitems}
+    ${title_now}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View/android.view.View[2]/android.view.View[1]/android.view.View[1]
+    ${subtitle_now}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View/android.view.View[2]/android.view.View[1]/android.view.View[2]
+    Set Suite Variable    ${current_carousel_title}    ${title_now}
+    Set Suite Variable    ${current_carousel_subtitle}    ${subtitle_now}
+    Check_where_to_swipe_carousel    ${element_number}
