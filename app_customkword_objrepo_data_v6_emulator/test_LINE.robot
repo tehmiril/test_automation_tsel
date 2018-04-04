@@ -1,6 +1,6 @@
 *** Settings ***
 Suite Setup       Open app
-Test Teardown     Run Keyword If Test Failed    Cancel_and_closing_session_when_unexpected_result
+Test Teardown     Run Keyword If Test Failed    Cancel_and_closing_session
 Library           AppiumLibrary
 Resource          Test_data_LINE_Indo.txt
 Library           String
@@ -21,7 +21,7 @@ Resource          Carousel_validation_app_custom_keywords.txt
     Check_VA_response_text_with_buttons    2    Sebelumnya, tolong jawab 3 pertanyaan singkat berikut ini    Mulai    Lihat Semua Produk
     Click_Button_From_Response    2    Lihat Semua Produk
     Check_VA_response_text    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini
-    Check_VA_response_carousel_exists    2
+    Check_VA_response_carousel_exists    2    5
     Validate_carousel_items    2    SimPATI Combo    Aktifkan paket internet kualitas jaringan terbaik    Info SimPATI Combo    Perdana SimPATI    Beli sekarang
     Validate_carousel_items    2    Kartu As Combo    internetan asik dengan jaringan terbaik    Info Kartu As Combo    Perdana Kartu As    Beli sekarang
     Validate_carousel_items    2    Loop Cash    Beli paket internetan bisa nambah uang jajan    Info Loop Cash    Perdana Loop    Beli sekarang

@@ -50,12 +50,10 @@ Click_Button_From_Response
     ${status_button}    Get_button_text_from_response_emulator    ${count_text_buttons}    ${new_order}    ${r_button}
     Run Keyword If    '${status_button}'=='${FALSE}'    Run Keywords    Fail    This button is not found in the response
     ...    ELSE    Click Element    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View[${index_button_response}]    #//android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[2]/android.view.View[${index_button_response}]
-    Set Suite Variable    ${current_user_input}    ${r_button}
-    Set Suite Variable    ${scrolled_down}    ${FALSE}
+    Set_init_variables    ${r_button}
     Log    Finished click button on text
     Sleep    10s
-    Show_user_input_on_screen
-    Get_user_input_index
+    Find_user_input
 
 Closing_session
     User_input    ${no_answer}
@@ -68,7 +66,7 @@ Closing_session
     User_input    Nope
     Sleep    10s
     Check_VA_response_text    1    ${VA_closingstatement}
-    Check_VA_response_image    3
+    #Check_VA_response_image    3
 
 Check_VA_response_text
     [Arguments]    ${order}    ${expected_text}

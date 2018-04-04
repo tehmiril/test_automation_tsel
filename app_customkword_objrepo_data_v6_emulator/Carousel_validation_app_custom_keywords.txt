@@ -1,9 +1,13 @@
 *** Keywords ***
 Check_VA_response_carousel_exists_actual
-    [Arguments]    ${new_order}    ${order}
-    ${count_carousel_items}    Get Element Size    //android.webkit.WebView/android.view.View/android.view.View    #//android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View
-    Should Be True    ${count_carousel_items}>3
-    Log Source
+    [Arguments]    ${new_order}    ${order}    ${c_item_amount}
+    #This is the amount of items visible on screen. By defaut, 2 items are visible on screen in the beginning.
+    ${count_carousel_items_visible}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View
+    Should Be True    ${count_carousel_items_visible}>3
+    #Get Y location of one of the carousel elements
+    ${carousel_Y}    FindYLocation    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View[${count_carousel_items_visible}]
+    ${elements_per_item}    Evaluate    ${count_carousel_items_visible}/2
+    #Log Source
     #In emulator, they are all flat
     #${carousel_items}    Evaluate    ${count_carousel_items}-1
     #Set Suite Variable    ${current_carousel_items}    ${carousel_items}
@@ -101,12 +105,12 @@ Swipe_backward_until_element
     \    ...    AND    Exit For Loop
 
 Check_VA_response_carousel_exists
-    [Arguments]    ${order}
+    [Arguments]    ${order}    ${c_item_amount}
     Set Suite Variable    ${current_response_order}    ${order}
     ${new_order}    Evaluate    ${current_response_order}+${index_user_input}
     Set Suite Variable    ${current_new_order}    ${new_order}
     Run Keyword If    ${scrolled_down}==${FALSE} and ${current_new_order}>${total_messages_on_screen}    Swipe_down_until_element    carousel
-    ...    ELSE IF    ${scrolled_down}==${FALSE} and ${current_new_order}<=${total_messages_on_screen}    Check_VA_response_carousel_exists_actual    ${new_order}    ${order}
+    ...    ELSE IF    ${scrolled_down}==${FALSE} and ${current_new_order}<=${total_messages_on_screen}    Check_VA_response_carousel_exists_actual    ${new_order}    ${order}    ${c_item_amount}
     ...    ELSE IF    ${scrolled_down}==${TRUE}    Swipe_down_until_element    carousel
 
 Go_to_specific_carousel_elements_based_on_item_number
@@ -120,3 +124,9 @@ Go_to_specific_carousel_elements_based_on_item_number
     Set Suite Variable    ${current_carousel_title}    ${title_now}
     Set Suite Variable    ${current_carousel_subtitle}    ${subtitle_now}
     Check_where_to_swipe_carousel    ${element_number}
+
+Create_carousel_dictionaries
+    [Arguments]    ${item_amount}
+    : FOR    ${looping}    IN RANGE    1    ${item_amount}
+    \    ${dict_carousel_${looping}}    Create Dictionary
+    \    Set Suite Variable    \${dict_carousel_${looping}}

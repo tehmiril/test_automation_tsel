@@ -6,18 +6,21 @@ Enter_text
     Click Element    ${textbox_obj}
     Input Text    ${textbox_obj}    ${input_text}
     Click Element    ${sendkey_obj}
-    Sleep    2s
+    Sleep    3s
     Run Keyword If    ${keyboard_visible}    Click Element    //*[@resource-id="jp.naver.line.android:id/official_account_show_bottombar_icon"]
+    Set_init_variables    ${input_text}
+
+Set_init_variables
+    [Arguments]    ${input_text}
     Set Suite Variable    ${current_user_input}    ${input_text}
     Set Suite Variable    ${scrolled_down}    ${FALSE}
     Set Suite Variable    ${item_scrolled_down}    ${FALSE}
+    ${dict_carousel}    Create Dictionary
+    Set Suite Variable    \${dict_carousel}
 
 Find_user_input
     Show_user_input_on_screen
     Get_user_input_index
-    #Set Suite Variable    ${dict_responses}    ${EMPTY}
-    #${dict_responses}    Create Dictionary
-    #Set Suite Variable    \${dict_responses}
 
 Swipe_up_until_user_input
     : FOR    ${loop}    IN RANGE    0    10
