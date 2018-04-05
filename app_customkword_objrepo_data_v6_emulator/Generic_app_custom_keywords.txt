@@ -1,7 +1,7 @@
 *** Keywords ***
 Open app
     ${LINE_app}=    Open Application    ${appiumServer_LINE}    alias=LINE    platformName=${platformName_LINE}    platformVersion=${androidVersion_LINE}    deviceName=${deviceName_LINE}
-    ...    appPackage=${appPackage_LINE}    appActivity=${appActivity_LINE}    noReset=true    automationName=UiAutomator2
+    ...    appPackage=${appPackage_LINE}    appActivity=${appActivity_LINE}    noReset=true    automationName=appium    udid=${deviceName_LINE}    #UiAutomator2
     ${current_activity}    Get Activity
     Set Suite Variable    ${LINE_app}    ${LINE_app}
     Start app
@@ -10,7 +10,7 @@ Start app
     Wait Until Element is Visible    //android.widget.FrameLayout[contains(@content-desc,"Chats tab")]    10    None
     Click Element    //android.widget.FrameLayout[contains(@content-desc,"Chats tab")]
     #Wait Until Element is Visible    //*[@text="Chats"]    5    None
-    Sleep    2s
+    Sleep    5s
     Click Element    //*[@resource-id="jp.naver.line.android:id/chatlist_chatname" and contains(@text,"Telkomsel")]
     Sleep    2s
     ${keyboard_visible}    Run Keyword And Return Status    Element Should Be Visible    //*[@resource-id="jp.naver.line.android:id/official_account_bottombar_keyboard_button"]
@@ -20,7 +20,7 @@ Start app
 User_input
     [Arguments]    ${input_text}
     Enter_text    ${input_text}
-    Sleep    7s
+    Sleep    15s
     Find_user_input
 
 User_input_longer
@@ -52,7 +52,7 @@ Click_Button_From_Response
     ...    ELSE    Click Element    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View[${index_button_response}]    #//android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[2]/android.view.View[${index_button_response}]
     Set_init_variables    ${r_button}
     Log    Finished click button on text
-    Sleep    10s
+    Sleep    20s
     Find_user_input
 
 Closing_session
@@ -125,17 +125,15 @@ Cancel_and_closing_session
 
 Validate_carousel_items
     [Arguments]    ${order}    ${c_title}    ${c_subtitle}    @{c_buttons}
-    Run Keyword If    ${item_scrolled_down}==${FALSE}    Check_VA_response_carousel_exists    ${order}
+    Run Keyword If    ${carousel_validated}==${FALSE}    Check_VA_response_carousel_exists    ${order}
     Set Suite Variable    ${current_carousel_title}    ${c_title}
     Set Suite Variable    ${current_carousel_subtitle}    ${c_subtitle}
-    Run keyword If    '${c_subtitle}'=='${EMPTY}'    Run Keyword    Set Suite Variable    ${xpath_c_item}    //*[@class="android.view.View" and @text="${current_carousel_title}"]
-    ...    ELSE    Run Keyword    Set Suite Variable    ${xpath_c_item}    //*[@class="android.view.View" and contains(@text,"${current_carousel_title}")]/following-sibling::*[@class="android.view.View" and @text="${current_carousel_subtitle}"]
-    #: FOR    ${c_item}    IN RANGE    1    ${current_carousel_items}+1
-    #\    ${count_c_items}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${c_item}]/descendant::${xpath_c_item}
-    #\    Run Keyword If    ${count_c_items}>0    Exit For Loop
-    #Log    ${c_item}
-    Go_to_specific_carousel_elements    ${c_item}    @{c_buttons}
-    Check_where_to_swipe_carousel    ${c_item}
+    ${buttons_to_check}    Get Length    ${c_buttons}
+    Run keyword If    '${c_subtitle}'=='${EMPTY}'    Run Keyword    Set Suite Variable    ${xpath_c_item}    android.view.View[@content-desc="${current_carousel_title}"]
+    ...    ELSE    Run Keyword    Set Suite Variable    ${xpath_c_item}    android.view.View[@content-desc="${current_carousel_title}"]/following-sibling::android.view.View[@content-desc="${current_carousel_subtitle}"]
+    ${status_title_sub}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/descendant::${xpath_c_item}
+    Run Keyword If    ${status_title_sub}==0    Fail    The combination of title and subtitle are not found in the carousel.
+    ...    ELSE    Loop_through_c_buttons    ${c_buttons}    ${xpath_c_item}    ${buttons_to_check}
 
 Greet_VA_Indo
     User_input_longer    Halo Vero
@@ -149,7 +147,6 @@ Cancel_and_closing_session_when_unexpected_result
     User_input    ${cancel_answer}
     Check_VA_response_text    1    ${VA_cancel}
     Check_VA_response_text    2    ${VA_question_1}
-    Sleep    2s
 
 Click_button_carousel
     [Arguments]    ${order}    ${c_title}    ${c_buttons}

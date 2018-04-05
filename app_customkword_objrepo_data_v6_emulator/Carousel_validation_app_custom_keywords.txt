@@ -1,21 +1,13 @@
 *** Keywords ***
 Check_VA_response_carousel_exists_actual
-    [Arguments]    ${new_order}    ${order}    ${c_item_amount}
-    #This is the amount of items visible on screen. By defaut, 2 items are visible on screen in the beginning.
+    [Arguments]    ${new_order}    ${order}
     ${count_carousel_items_visible}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View
-    Should Be True    ${count_carousel_items_visible}>3
-    #Get Y location of one of the carousel elements
+    Should Be True    ${count_carousel_items_visible}>4
+    #Get Y location of one of the carousel elements, for swiping purposes
     ${carousel_Y}    FindYLocation    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View[${count_carousel_items_visible}]
-    ${elements_per_item}    Evaluate    ${count_carousel_items_visible}/2
-    #Log Source
-    #In emulator, they are all flat
-    #${carousel_items}    Evaluate    ${count_carousel_items}-1
-    #Set Suite Variable    ${current_carousel_items}    ${carousel_items}
-    Log    here is the order:${new_order}
+    Set Suite Variable    ${current_carousel_Y}    ${carousel_Y}
     ${count_carousel_date_time}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::*[@resource-id="jp.naver.line.android:id/chathistory_row_date"]
-    #Set Suite Variable    ${current_carousel_date_time}    ${count_carousel_date_time}
     Run Keyword If    ${count_carousel_date_time}<1    Swipe_down_until_date_time
-    #Set Suite Variable    ${current_carousel_date_time}    ${count_carousel_date_time}
     Set_to_prev_responses    ${order}    carousel;
     Log    Finished checking VA carousel
 
@@ -44,7 +36,7 @@ Loop_through_buttons_carousel
     \    Run Keyword If    '${status_button}'=='${FALSE}'    Run Keywords    Fail    This button is not found in the response
     \    ...    AND    Exit For Loop
 
-Get_button_text_from_carousel
+Get_button_text_from_carousel_based_on_item_number
     [Arguments]    ${element_number}    ${item}
     : FOR    ${b_order}    IN RANGE    2    ${current_total_carousel_buttons}+2
     \    Set Test Variable    ${status_button}    ${FALSE}
@@ -105,13 +97,14 @@ Swipe_backward_until_element
     \    ...    AND    Exit For Loop
 
 Check_VA_response_carousel_exists
-    [Arguments]    ${order}    ${c_item_amount}
+    [Arguments]    ${order}
     Set Suite Variable    ${current_response_order}    ${order}
     ${new_order}    Evaluate    ${current_response_order}+${index_user_input}
     Set Suite Variable    ${current_new_order}    ${new_order}
     Run Keyword If    ${scrolled_down}==${FALSE} and ${current_new_order}>${total_messages_on_screen}    Swipe_down_until_element    carousel
-    ...    ELSE IF    ${scrolled_down}==${FALSE} and ${current_new_order}<=${total_messages_on_screen}    Check_VA_response_carousel_exists_actual    ${new_order}    ${order}    ${c_item_amount}
+    ...    ELSE IF    ${scrolled_down}==${FALSE} and ${current_new_order}<=${total_messages_on_screen}    Check_VA_response_carousel_exists_actual    ${new_order}    ${order}
     ...    ELSE IF    ${scrolled_down}==${TRUE}    Swipe_down_until_element    carousel
+    Set Suite Variable    ${carousel_validated}    ${TRUE}
 
 Go_to_specific_carousel_elements_based_on_item_number
     [Arguments]    ${element_number}    ${buttons}
@@ -125,8 +118,48 @@ Go_to_specific_carousel_elements_based_on_item_number
     Set Suite Variable    ${current_carousel_subtitle}    ${subtitle_now}
     Check_where_to_swipe_carousel    ${element_number}
 
-Create_carousel_dictionaries
+Populate_carousel_item_list
     [Arguments]    ${item_amount}
-    : FOR    ${looping}    IN RANGE    1    ${item_amount}
-    \    ${dict_carousel_${looping}}    Create Dictionary
-    \    Set Suite Variable    \${dict_carousel_${looping}}
+    : FOR    ${looping}    IN RANGE    0    ${item_amount}
+    \    ${index}    Evaluate    ${item_amount}*${looping}
+    \    ${new_index}    Evaluate    ${index}+1
+    \    Append To List    ${list_carousel}    ${new_index}
+    #Log List    ${list_carousel}
+
+Populate_carousel_dict_item_list
+    [Arguments]    ${item_amount}    ${count_carousel_items_visible}    ${elements_per_item}    ${new_order}    ${total_elements_to_check}
+    : FOR    ${main_loop}    IN RANGE    1    ${item_amount}+1
+    \    ${status_keyword}    Run Keyword And Return Status    Loop_through_carousel    ${main_loop}    ${new_order}    ${total_elements_to_check}
+
+Loop_through_carousel
+    [Arguments]    ${main_loop}    ${new_order}    ${total_elements_to_check}
+    : FOR    ${looping}    IN RANGE    1    ${total_elements_to_check}+1
+    \    Sleep    5s
+
+Swipe_forward_carousel
+    [Documentation]    When the VA response has carousel (with picture, header and buttons), this keyword is expected to interact with it.
+    Log    forward once
+    ${width}    Get Window Width
+    ${height}    Get Window Height
+    ${limit_right}    Evaluate    ${width}-50
+    Swipe    ${limit_right}    ${current_carousel_Y}    100    ${current_carousel_Y}
+    Sleep    1s
+
+Loop_through_c_buttons
+    [Arguments]    ${c_buttons}    ${xpath_c_item}    ${buttons_to_check}
+    : FOR    ${button_item}    IN    @{c_buttons}
+    \    ${status_button}    Get_button_text_from_carousel    ${button_item}    ${xpath_c_item}    ${buttons_to_check}
+    \    Run Keyword If    ${status_button}==${FALSE}    Fail    Button is not found in carousel
+
+Get_button_text_from_carousel
+    [Arguments]    ${button_item}    ${xpath_c_item}    ${buttons_to_check}
+    : FOR    ${b_order}    IN RANGE    1    ${buttons_to_check}+1
+    \    Set Test Variable    ${status_button}    ${FALSE}
+    \    ${text_button}    Get Element Attribute    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/child::${xpath_c_item}/following-sibling::android.view.View[${b_order}]    contentDescription
+    \    ${text_button2}=    Remove String Using Regexp    ${text_button}    (\r\n|\r|\n)
+    \    ${button_avail}    Run Keyword And Return Status    Should Be Equal As Strings    ${text_button2}    ${button_item}
+    \    Run Keyword If    ${button_avail}    Run Keywords    Set Test Variable    ${status_button}    ${TRUE}
+    \    ...    AND    Set Suite Variable    ${index_button_carousel}    ${b_order}
+    \    ...    AND    Set Suite Variable    ${button_carousel_to_click}    ${text_button2}
+    \    ...    AND    Exit For Loop
+    [Return]    ${status_button}
