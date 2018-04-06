@@ -4,6 +4,7 @@ Open app
     ...    appPackage=${appPackage_LINE}    appActivity=${appActivity_LINE}    noReset=true    automationName=appium    udid=${deviceName_LINE}    #UiAutomator2
     ${current_activity}    Get Activity
     Set Suite Variable    ${LINE_app}    ${LINE_app}
+    Set Suite Variable    ${current_activity}    ${current_activity}
     Start app
 
 User_input
@@ -139,7 +140,7 @@ Cancel_and_closing_session_when_unexpected_result
     Check_VA_response_text    2    ${VA_question_1}
 
 Click_button_carousel
-    [Arguments]    ${order}    ${c_title}    ${c_buttons}    @{total_buttons}
+    [Arguments]    ${order}    ${c_title}    ${c_buttons}    ${expected_message}    @{total_buttons}
     Run Keyword If    ${carousel_validated}==${FALSE}    Check_VA_response_carousel_exists    ${order}
     #Each carousel item would have title and subtitle in the beginning
     ${elements_per_item}    Evaluate    @{total_buttons}[0]+2
@@ -148,5 +149,5 @@ Click_button_carousel
     Set Suite Variable    ${xpath_c_item}    android.view.View[@content-desc="${current_carousel_title}"]/following-sibling::android.view.View
     ${status_elements}    Get_button_text_from_carousel    ${c_buttons}    ${xpath_c_item}    @{total_buttons}[0]
     Run Keyword If    ${status_elements}    Run Keywords    Check_where_to_swipe_carousel
-    ...    AND    Click Element    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/child::${xpath_c_item}/following-sibling::android.view.View[${index_button_carousel}]
+    ...    AND    Click_button_carousel_actual    ${c_buttons}    ${expected_message}
     ...    AND    Log    Finished click VA carousel button based on title

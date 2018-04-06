@@ -23,17 +23,12 @@ Enter_text
     Click Element    ${sendkey_obj}
     Run Keyword If    ${keyboard_visible}    Click Element    //*[@resource-id="jp.naver.line.android:id/official_account_show_bottombar_icon"]
     Set_init_variables    ${input_text}
-    Sleep    3s
 
 Set_init_variables
     [Arguments]    ${input_text}
     Set Suite Variable    ${current_user_input}    ${input_text}
     Set Suite Variable    ${scrolled_down}    ${FALSE}
     Set Suite Variable    ${item_scrolled_down}    ${FALSE}
-    ${list_carousel}    Create List
-    Set Suite Variable    \${list_carousel}
-    ${dict_carousel}    Create Dictionary
-    Set Suite Variable    \${dict_carousel}
     Set Suite Variable    ${current_carousel_Y}    ${FALSE}
     Set Suite Variable    ${carousel_validated}    ${FALSE}
 

@@ -66,9 +66,9 @@ Get_XLocation_Carousel_Elements
 Set_Xlimit_for_carousel
     ${tsel_icon_bound}    Get Element Location    //android.widget.ImageView[@resource-id="jp.naver.line.android:id/chathistory_row_thumbnail"][1]
     ${tsel_icon_locationX}    Get_XLocation_from_bounds    ${tsel_icon_bound}
-    ${right_limit}    Evaluate    ${tsel_icon_locationX}+500    #Just a suggested width, what would be the accepted maximum limit of X location
+    #${right_limit}    Evaluate    ${tsel_icon_locationX}+500    #Just a suggested width, what would be the accepted maximum limit of X location
     Set Suite Variable    ${current_tsel_icon_locationX}    ${tsel_icon_locationX}
-    Set Suite Variable    ${current_right_limit}    ${right_limit}
+    Set Suite Variable    ${current_right_limit}    ${width}
 
 Swipe_forward_until_element
     [Arguments]    ${xpath_c_item}
@@ -159,3 +159,14 @@ Get_button_text_from_carousel
     \    ...    AND    Set Suite Variable    ${button_carousel_to_click}    ${text_button2}
     \    ...    AND    Exit For Loop
     [Return]    ${status_button}
+
+Click_button_carousel_actual
+    [Arguments]    ${c_buttons}    ${expected_message}
+    Click Element    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/child::${xpath_c_item}/following-sibling::android.view.View[${index_button_carousel}]
+    Sleep    10s
+    ${expected_activity}    Set Variable    .activity.iab.InAppBrowserActivity
+    ${activity_now}    Get Activity
+    ${activity_now_S}    Convert To String    ${activity_now}
+    Run Keyword If    '${expected_activity}'!='${activity_now_S}'    Run Keywords    Set_init_variables    ${expected_message}
+    ...    AND    Find_user_input
+    ...    ELSE    Click Element    //*[@resource-id="jp.naver.line.android:id/iab_header_close"]
