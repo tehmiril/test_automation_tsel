@@ -1,6 +1,6 @@
 *** Settings ***
 Suite Setup       Open app
-Test Teardown     Run Keyword If Test Failed    Cancel_and_closing_session
+Test Teardown     Run Keyword If Test Failed    Cancel_and_closing_session_when_unexpected_result
 Library           AppiumLibrary    run_on_failure=No Operation
 Resource          Test_data_LINE_Indo.txt
 Library           String
@@ -26,7 +26,7 @@ Resource          Carousel_validation_app_custom_keywords.txt
     Validate_carousel_items    2    Kartu As Combo    internetan asik dengan jaringan terbaik    Info Kartu As Combo    Perdana Kartu As    Beli sekarang
     Validate_carousel_items    2    Loop Cash    Beli paket internetan bisa nambah uang jajan    Info Loop Cash    Perdana Loop    Beli sekarang
     Validate_carousel_items    2    Halo Kick    Dapatkan lebih banyak benefit premium dengan Halo Kick!    Info Halo Kick    Daftar kartuHalo    Beli di GraPARI
-    #Click_button_carousel    2    Kartu As Combo    Perdana Kartu As
+    Click_button_carousel    2    Kartu As Combo    Perdana Kartu As    3
     #Check_VA_response_image    1
     #Check_VA_response_text    2    Kamu bisa cari tahu lebih lanjut di https://telkomsel.com/kartu-as
     #Check_VA_response_text_with_buttons    3    Apakah Kamu ingin membeli kartu perdana Kartu As tersebut?    Ya    Tidak
@@ -48,17 +48,18 @@ Resource          Carousel_validation_app_custom_keywords.txt
     Validate_carousel_items    2    Kartu As Combo    internetan asik dengan jaringan terbaik    Info Kartu As Combo    Perdana Kartu As    Beli sekarang
     Validate_carousel_items    2    Loop Cash    Beli paket internetan bisa nambah uang jajan    Info Loop Cash    Perdana Loop    Beli sekarang
     Validate_carousel_items    2    Halo Kick    Dapatkan lebih banyak benefit premium dengan Halo Kick!    Info Halo Kick    Daftar kartuHalo    Beli di GraPARI
-    Click_button_carousel    2    Halo Kick    Beli di GraPARI
-    Check_VA_response_text    1    Tuliskan lokasi yang Kamu cari atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu untuk mendapatkan GraPARI terdekat
-    User_input    banda aceh
-    Check_VA_response_text    1    Lokasi GraPARI sekitar mana yang Kamu maksud?
-    Check_VA_response_carousel_exists    2
-    Click_button_carousel    2    Police Banda Aceh    Pilih
-    Check_VA_response_text    1    Berikut info GraPARI di sekitar Police Banda Aceh ya
-    Check_VA_response_carousel_exists    2
-    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
-    Click_button_carousel    2    GraPARI SETUI    Buka di Google Maps
-    Closing_session
+    #Click_button_carousel    2    Halo Kick    Beli di GraPARI
+    #Check_VA_response_text    1    Tuliskan lokasi yang Kamu cari atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu untuk mendapatkan GraPARI terdekat
+    #User_input    banda aceh
+    #Check_VA_response_text    1    Lokasi GraPARI sekitar mana yang Kamu maksud?
+    #Check_VA_response_carousel_exists    2
+    #Click_button_carousel    2    Police Banda Aceh    Pilih
+    #Check_VA_response_text    1    Berikut info GraPARI di sekitar Police Banda Aceh ya
+    #Check_VA_response_carousel_exists    2
+    #Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    #Click_button_carousel    2    GraPARI SETUI    Buka di Google Maps
+    #Closing_session
+    Cancel_and_closing_session
 
 LINE_SMS_test
     Open app

@@ -1,10 +1,11 @@
 *** Keywords ***
 Check_VA_response_carousel_exists_actual
     [Arguments]    ${new_order}    ${order}
-    ${count_carousel_items_visible}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View
-    Should Be True    ${count_carousel_items_visible}>4
+    ${count_carousel_items}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View
+    Should Be True    ${count_carousel_items}>4
+    Set Suite Variable    ${current_carousel_items}    ${count_carousel_items}
     #Get Y location of one of the carousel elements, for swiping purposes
-    ${carousel_Y}    FindYLocation    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View[${count_carousel_items_visible}]
+    ${carousel_Y}    FindYLocation    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View[${count_carousel_items}]
     Set Suite Variable    ${current_carousel_Y}    ${carousel_Y}
     ${count_carousel_date_time}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::*[@resource-id="jp.naver.line.android:id/chathistory_row_date"]
     Run Keyword If    ${count_carousel_date_time}<1    Swipe_down_until_date_time
@@ -50,49 +51,46 @@ Get_button_text_from_carousel_based_on_item_number
     [Return]    ${status_button}
 
 Check_where_to_swipe_carousel
-    [Arguments]    ${element_number}
     Set_Xlimit_for_carousel
-    ${element_XBegin}    Get_XLocation_Carousel_Elements    ${element_number}
+    ${element_XBegin}    Get_XLocation_Carousel_Elements
     Run Keyword If    ${current_tsel_icon_locationX} < ${element_XBegin} < ${current_right_limit}    Run Keywords    Sleep    1s
     ...    AND    Capture Page Screenshot    carousel_here.png
-    ...    ELSE IF    ${element_XBegin} < ${current_tsel_icon_locationX}    Run Keyword    Swipe_backward_until_element    ${element_number}
-    ...    ELSE IF    ${element_XBegin} > ${current_right_limit}    Run Keyword    Swipe_forward_until_element    ${element_number}
+    ...    ELSE IF    ${element_XBegin} < ${current_tsel_icon_locationX}    Run Keyword    Swipe_backward_until_element    ${xpath_c_item}
+    ...    ELSE IF    ${element_XBegin} > ${current_right_limit}    Run Keyword    Swipe_forward_until_element    ${xpath_c_item}
 
 Get_XLocation_Carousel_Elements
-    [Arguments]    ${element_number}
-    #${new_order}    Evaluate    ${order}+${index_user_input}
-    #${count_carousel_spec_items}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View/android.view.View[2]/android.view.View[1][contains(@text,"Info")]/following-sibling::*[contains(@text,"TCASH FAQ")]
-    #${spec_item_bound}    Get Element Location    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View/android.view.View[2]/android.view.View[1][contains(@text,"Info")]/following-sibling::*[contains(@text,"TCASH FAQ")]
-    ${bound_item}    Get Element Location    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]
+    ${bound_item}    Get Element Location    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/child::${xpath_c_item}/following-sibling::android.view.View[${index_button_carousel}]
     ${spec_item_XLoc}    Get_XLocation_from_bounds    ${bound_item}
     [Return]    ${spec_item_XLoc}
 
 Set_Xlimit_for_carousel
     ${tsel_icon_bound}    Get Element Location    //android.widget.ImageView[@resource-id="jp.naver.line.android:id/chathistory_row_thumbnail"][1]
     ${tsel_icon_locationX}    Get_XLocation_from_bounds    ${tsel_icon_bound}
-    ${right_limit}    Evaluate    ${tsel_icon_locationX}+235    #Just a suggested width, what would be the accepted maximum limit of X location
+    ${right_limit}    Evaluate    ${tsel_icon_locationX}+500    #Just a suggested width, what would be the accepted maximum limit of X location
     Set Suite Variable    ${current_tsel_icon_locationX}    ${tsel_icon_locationX}
     Set Suite Variable    ${current_right_limit}    ${right_limit}
 
 Swipe_forward_until_element
-    [Arguments]    ${element_number}
+    [Arguments]    ${xpath_c_item}
     [Documentation]    When the VA response has carousel (with picture, header and buttons), this keyword is expected to interact with it.
     Log    forward
+    ${limit_right}    Evaluate    ${width}-100
     : FOR    ${looping}    IN RANGE    0    10
-    \    Swipe    600    600    150    600
-    \    Capture Page Screenshot    carousel_${looping}.png
-    \    ${element_XBegin}    Get_XLocation_Carousel_Elements    ${element_number}
+    \    Swipe    ${limit_right}    ${current_carousel_Y}    100    ${current_carousel_Y}
+    \    Capture Page Screenshot    carousel_swipe_forward${looping}.png
+    \    ${element_XBegin}    Get_XLocation_Carousel_Elements
     \    Run Keyword If    ${current_tsel_icon_locationX} < ${element_XBegin} < ${current_right_limit}    Run Keywords    Sleep    1s
     \    ...    AND    Exit For Loop
 
 Swipe_backward_until_element
-    [Arguments]    ${element_number}
+    [Arguments]    ${xpath_c_item}
     [Documentation]    When the VA response has carousel (with picture, header and buttons), this keyword is expected to interact with it.
     Log    backward
+    ${limit_right}    Evaluate    ${width}-100
     : FOR    ${looping}    IN RANGE    0    10
-    \    Swipe    150    600    600    600
-    \    Capture Page Screenshot    carousel_${looping}.png
-    \    ${element_XBegin}    Get_XLocation_Carousel_Elements    ${element_number}
+    \    Swipe    ${limit_right}    ${current_carousel_Y}    100    ${current_carousel_Y}
+    \    Capture Page Screenshot    carousel_swipe_back${looping}.png
+    \    ${element_XBegin}    Get_XLocation_Carousel_Elements
     \    Run Keyword If    ${current_tsel_icon_locationX} < ${element_XBegin} < ${current_right_limit}    Run Keywords    Sleep    1s
     \    ...    AND    Exit For Loop
 
@@ -139,9 +137,7 @@ Loop_through_carousel
 Swipe_forward_carousel
     [Documentation]    When the VA response has carousel (with picture, header and buttons), this keyword is expected to interact with it.
     Log    forward once
-    ${width}    Get Window Width
-    ${height}    Get Window Height
-    ${limit_right}    Evaluate    ${width}-50
+    ${limit_right}    Evaluate    ${width}-100
     Swipe    ${limit_right}    ${current_carousel_Y}    100    ${current_carousel_Y}
     Sleep    1s
 

@@ -6,17 +6,6 @@ Open app
     Set Suite Variable    ${LINE_app}    ${LINE_app}
     Start app
 
-Start app
-    Wait Until Element is Visible    //android.widget.FrameLayout[contains(@content-desc,"Chats tab")]    10    None
-    Click Element    //android.widget.FrameLayout[contains(@content-desc,"Chats tab")]
-    #Wait Until Element is Visible    //*[@text="Chats"]    5    None
-    Sleep    5s
-    Click Element    //*[@resource-id="jp.naver.line.android:id/chatlist_chatname" and contains(@text,"Telkomsel")]
-    Sleep    2s
-    ${keyboard_visible}    Run Keyword And Return Status    Element Should Be Visible    //*[@resource-id="jp.naver.line.android:id/official_account_bottombar_keyboard_button"]
-    Run Keyword If    ${keyboard_visible}    Get_bottom_Y    //*[@resource-id="jp.naver.line.android:id/official_account_bottombar_keyboard_button"]
-    ...    ELSE    Get_bottom_Y    ${textbox_obj}
-
 User_input
     [Arguments]    ${input_text}
     Enter_text    ${input_text}
@@ -129,11 +118,12 @@ Validate_carousel_items
     Set Suite Variable    ${current_carousel_title}    ${c_title}
     Set Suite Variable    ${current_carousel_subtitle}    ${c_subtitle}
     ${buttons_to_check}    Get Length    ${c_buttons}
-    Run keyword If    '${c_subtitle}'=='${EMPTY}'    Run Keyword    Set Suite Variable    ${xpath_c_item}    android.view.View[@content-desc="${current_carousel_title}"]
+    Run keyword If    '${c_subtitle}'=='${EMPTY}'    Run Keyword    Set Suite Variable    ${xpath_c_item}    android.view.View[@content-desc="${current_carousel_title}"]/following-sibling::android.view.View
     ...    ELSE    Run Keyword    Set Suite Variable    ${xpath_c_item}    android.view.View[@content-desc="${current_carousel_title}"]/following-sibling::android.view.View[@content-desc="${current_carousel_subtitle}"]
     ${status_title_sub}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/descendant::${xpath_c_item}
     Run Keyword If    ${status_title_sub}==0    Fail    The combination of title and subtitle are not found in the carousel.
     ...    ELSE    Loop_through_c_buttons    ${c_buttons}    ${xpath_c_item}    ${buttons_to_check}
+    Log    Finished validating VA carousel items
 
 Greet_VA_Indo
     User_input_longer    Halo Vero
@@ -149,23 +139,14 @@ Cancel_and_closing_session_when_unexpected_result
     Check_VA_response_text    2    ${VA_question_1}
 
 Click_button_carousel
-    [Arguments]    ${order}    ${c_title}    ${c_buttons}
-    Run Keyword If    ${item_scrolled_down}==${FALSE}    Check_VA_response_carousel_exists    ${order}
-    : FOR    ${c_item}    IN RANGE    1    ${current_carousel_items}+1
-    \    ${count_c_items}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${c_item}]/descendant::${xpath_c_item}
-    \    Run Keyword If    ${count_c_items}>0    Exit For Loop
-    #Log    ${c_item}
-    Go_to_specific_carousel_elements_based_on_title    ${c_item}    ${c_buttons}
-    #Check_where_to_swipe_carousel    ${c_item}
-
-Go_to_specific_carousel_elements_based_on_title
-    [Arguments]    ${element_number}    ${buttons}
-    #${new_order}    Evaluate    ${order}+${index_user_input}
-    ${total_children}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View/android.view.View[2]/android.view.View
-    ${totalbuttonitems}    Evaluate    ${total_children}-1    #1 is for the element for title and subtitle, the rest are buttons
-    Set Suite Variable    ${current_total_carousel_buttons}    ${totalbuttonitems}
-    ${title_now}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View/android.view.View[2]/android.view.View[1]/android.view.View[1]
-    ${subtitle_now}    Get Text    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[${element_number}]/android.view.View/android.view.View[2]/android.view.View[1]/android.view.View[2]
-    Set Suite Variable    ${current_carousel_title}    ${title_now}
-    Set Suite Variable    ${current_carousel_subtitle}    ${subtitle_now}
-    Check_where_to_swipe_carousel    ${element_number}
+    [Arguments]    ${order}    ${c_title}    ${c_buttons}    @{total_buttons}
+    Run Keyword If    ${carousel_validated}==${FALSE}    Check_VA_response_carousel_exists    ${order}
+    #Each carousel item would have title and subtitle in the beginning
+    ${elements_per_item}    Evaluate    @{total_buttons}[0]+2
+    ${total_carousel_items}    Evaluate    ${current_carousel_items}/${elements_per_item}
+    Set Suite Variable    ${current_carousel_title}    ${c_title}
+    Set Suite Variable    ${xpath_c_item}    android.view.View[@content-desc="${current_carousel_title}"]/following-sibling::android.view.View
+    ${status_elements}    Get_button_text_from_carousel    ${c_buttons}    ${xpath_c_item}    @{total_buttons}[0]
+    Run Keyword If    ${status_elements}    Run Keywords    Check_where_to_swipe_carousel
+    ...    AND    Click Element    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/child::${xpath_c_item}/following-sibling::android.view.View[${index_button_carousel}]
+    ...    AND    Log    Finished click VA carousel button based on title

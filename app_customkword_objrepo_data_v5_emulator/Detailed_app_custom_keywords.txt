@@ -1,4 +1,19 @@
 *** Keywords ***
+Start app
+    Wait Until Element is Visible    //android.widget.FrameLayout[contains(@content-desc,"Chats tab")]    10    None
+    Click Element    //android.widget.FrameLayout[contains(@content-desc,"Chats tab")]
+    #Wait Until Element is Visible    //*[@text="Chats"]    5    None
+    Sleep    5s
+    Click Element    //*[@resource-id="jp.naver.line.android:id/chatlist_chatname" and contains(@text,"Telkomsel")]
+    Sleep    2s
+    ${keyboard_visible}    Run Keyword And Return Status    Element Should Be Visible    //*[@resource-id="jp.naver.line.android:id/official_account_bottombar_keyboard_button"]
+    Run Keyword If    ${keyboard_visible}    Get_bottom_Y    //*[@resource-id="jp.naver.line.android:id/official_account_bottombar_keyboard_button"]
+    ...    ELSE    Get_bottom_Y    ${textbox_obj}
+    ${width_now}    Get Window Width
+    Set Suite Variable    ${width}    ${width_now}
+    ${height_now}    Get Window Height
+    Set Suite Variable    ${height}    ${height_now}
+
 Enter_text
     [Arguments]    ${input_text}
     ${keyboard_visible}    Run Keyword And Return Status    Element Should Be Visible    //*[@resource-id="jp.naver.line.android:id/official_account_bottombar_keyboard_button"]
