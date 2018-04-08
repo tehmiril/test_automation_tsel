@@ -1,0 +1,33 @@
+*** Keywords ***
+Check_VA_response_text_with_buttons_previous
+    ${prev_order}    Evaluate    ${current_response_order}-1
+    ${count_text_buttons}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${prev_order}]/descendant::android.webkit.WebView/android.view.View
+    Should Be True    ${count_text_buttons}>=2
+
+Check_VA_response_text_with_buttons_actual
+    [Arguments]    ${order}
+    ${count_tb_date_time}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::*[@resource-id="jp.naver.line.android:id/chathistory_row_date"]
+    Run Keyword If    ${count_tb_date_time}<1    Swipe_down_until_date_time    //android.widget.ListView/child::android.widget.LinearLayout[${total_messages_on_screen}]/descendant::*[@resource-id="jp.naver.line.android:id/chathistory_row_date"]
+    ${count_text_buttons}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View
+    Should Be True    ${count_text_buttons}>=2
+    ${text_here}    Get Element Attribute    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/android.view.View[1]    contentDescription
+    ${text_here2}=    Remove String Using Regexp    ${text_here}    (\r\n|\r|\n)
+    Should Contain    ${text_here2}    ${current_expected_response_text}
+    : FOR    ${item}    IN    @{current_t_button}
+    \    ${status_button}    Get_button_text_from_response    ${count_text_buttons}    ${current_new_order}    ${item}
+    \    Run Keyword If    '${status_button}'=='${FALSE}'    Run Keywords    Fail    This button is not found in the response
+    \    ...    AND    Exit For Loop
+    Set_to_prev_responses    ${order}    textbuttons;${text_here2}
+    Log    Finished validate text with buttons
+
+Get_button_text_from_response
+    [Arguments]    ${count_text_buttons}    ${new_order}    ${item}
+    : FOR    ${b_order}    IN RANGE    2    ${count_text_buttons}+1
+    \    Set Test Variable    ${status_button}    ${FALSE}
+    \    ${text_button}    Get Element Attribute    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View[${b_order}]    contentDescription
+    \    ${text_button2}=    Remove String Using Regexp    ${text_button}    (\r\n|\r|\n)
+    \    ${button_avail}    Run Keyword And Return Status    Should Contain    ${text_button2}    ${item}
+    \    Run Keyword If    ${button_avail}    Run Keywords    Set Test Variable    ${status_button}    ${TRUE}
+    \    ...    AND    Set Suite Variable    ${index_button_response}    ${b_order}
+    \    ...    AND    Exit For Loop
+    [Return]    ${status_button}

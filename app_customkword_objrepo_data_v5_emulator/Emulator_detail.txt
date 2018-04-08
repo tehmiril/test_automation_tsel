@@ -1,0 +1,4 @@
+﻿*** Variables ***
+${androidVersion_LINE}    5.1.1
+${deviceName_LINE}    127.0.0.1:62025    #Ami Samsung
+${platformName_LINE}    Android

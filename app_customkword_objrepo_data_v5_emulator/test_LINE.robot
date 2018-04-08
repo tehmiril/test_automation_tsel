@@ -13,6 +13,8 @@ Resource          Test_data_SMS_Indo.txt
 Resource          Text_validation_app_custom_keywords.txt
 Resource          Image_validation_app_custom_keywords.txt
 Resource          Carousel_validation_app_custom_keywords.txt
+Resource          Emulator_detail.txt
+Resource          Text_buttons_validation_app_custom_keywords.txt
 
 *** Test Cases ***
 005
@@ -35,7 +37,7 @@ Resource          Carousel_validation_app_custom_keywords.txt
     User_input    banda aceh
     Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
     Check_VA_response_carousel_exists    2
-    Click_button_carousel    2    Police Banda Aceh    Pilih    Option 5    1
+    #Click_button_carousel    2    Police Banda Aceh    Pilih    Option 5    1
     Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?

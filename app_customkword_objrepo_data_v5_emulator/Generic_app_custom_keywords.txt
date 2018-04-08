@@ -1,23 +1,24 @@
 *** Keywords ***
 Open app
     ${LINE_app}=    Open Application    ${appiumServer_LINE}    alias=LINE    platformName=${platformName_LINE}    platformVersion=${androidVersion_LINE}    deviceName=${deviceName_LINE}
-    ...    appPackage=${appPackage_LINE}    appActivity=${appActivity_LINE}    noReset=true    automationName=appium    udid=${deviceName_LINE}    #UiAutomator2
-    ${current_activity}    Get Activity
-    Set Suite Variable    ${LINE_app}    ${LINE_app}
-    Set Suite Variable    ${current_activity}    ${current_activity}
+    ...    appPackage=${appPackage_LINE}    appActivity=${appActivity_LINE}    noReset=True    automationName=Appium    ignoreUnimportantViews=True    udid=${deviceName_LINE}
+    ...    isHeadless=True
     Start app
 
 User_input
     [Arguments]    ${input_text}
     Enter_text    ${input_text}
-    Sleep    15s
     Find_user_input
 
-User_input_longer
-    [Arguments]    ${input_text}
-    Enter_text    ${input_text}
-    Sleep    20s
-    Find_user_input
+Check_VA_response_text
+    [Arguments]    ${order}    ${expected_text}
+    Set Suite Variable    ${current_response_order}    ${order}
+    ${new_order}    Evaluate    ${current_response_order}+${index_user_input}
+    Set Suite Variable    ${current_new_order}    ${new_order}
+    Set Suite Variable    ${current_expected_response_text}    ${expected_text}
+    Run Keyword If    ${scrolled_down}==${FALSE} and ${current_new_order}>${total_messages_on_screen}    Swipe_down_until_element    text
+    ...    ELSE IF    ${scrolled_down}==${FALSE} and ${current_new_order}<=${total_messages_on_screen}    Check_VA_response_text_actual    ${new_order}    ${order}
+    ...    ELSE IF    ${scrolled_down}==${TRUE}    Swipe_down_until_element    text
 
 Check_VA_response_text_with_buttons
     [Arguments]    ${order}    ${response_text}    @{t_button}
@@ -37,7 +38,7 @@ Click_Button_From_Response
     #Click Element    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[2]/descendant::*[contains(.,${r_button})]
     #${count_text_buttons}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View
     ${count_text_buttons}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View
-    ${status_button}    Get_button_text_from_response_emulator    ${count_text_buttons}    ${new_order}    ${r_button}
+    ${status_button}    Get_button_text_from_response    ${count_text_buttons}    ${new_order}    ${r_button}
     Run Keyword If    '${status_button}'=='${FALSE}'    Run Keywords    Fail    This button is not found in the response
     ...    ELSE    Click Element    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View[${index_button_response}]    #//android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View/android.view.View[2]/android.view.View[${index_button_response}]
     Set_init_variables    ${r_button}
@@ -57,16 +58,6 @@ Closing_session
     Sleep    10s
     Check_VA_response_text    1    ${VA_closingstatement}
     #Check_VA_response_image    3
-
-Check_VA_response_text
-    [Arguments]    ${order}    ${expected_text}
-    Set Suite Variable    ${current_response_order}    ${order}
-    ${new_order}    Evaluate    ${current_response_order}+${index_user_input}
-    Set Suite Variable    ${current_new_order}    ${new_order}
-    Set Suite Variable    ${current_expected_response_text}    ${expected_text}
-    Run Keyword If    ${scrolled_down}==${FALSE} and ${current_new_order}>${total_messages_on_screen}    Swipe_down_until_element    text
-    ...    ELSE IF    ${scrolled_down}==${FALSE} and ${current_new_order}<=${total_messages_on_screen}    Check_VA_response_text_actual    ${new_order}    ${order}
-    ...    ELSE IF    ${scrolled_down}==${TRUE}    Swipe_down_until_element    text
 
 Check_VA_response_image
     [Arguments]    ${order}

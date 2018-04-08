@@ -4,6 +4,9 @@ Check_VA_response_carousel_exists_actual
     ${count_carousel_items}    Get Matching Xpath Count    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View
     Should Be True    ${count_carousel_items}>4
     Set Suite Variable    ${current_carousel_items}    ${count_carousel_items}
+    @{elements}    Get Webelements    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View
+    ${element_w}    Get Length    ${elements}
+    Set Suite Variable    @{w_elements}    @{elements}
     #Get Y location of one of the carousel elements, for swiping purposes
     ${carousel_Y}    FindYLocation    //android.widget.ListView/child::android.widget.LinearLayout[${new_order}]/descendant::android.webkit.WebView/android.view.View[${count_carousel_items}]
     Set Suite Variable    ${current_carousel_Y}    ${carousel_Y}
@@ -71,6 +74,12 @@ Set_Xlimit_for_carousel
     Set Suite Variable    ${current_right_limit}    ${width}
 
 Swipe_forward_until_element
+    [Arguments]    ${xpath_c_item}
+    [Documentation]    When the VA response has carousel (with picture, header and buttons), this keyword is expected to interact with it.
+    Log    forward
+    Sleep    10s
+
+Swipe_forward_until_element_test
     [Arguments]    ${xpath_c_item}
     [Documentation]    When the VA response has carousel (with picture, header and buttons), this keyword is expected to interact with it.
     Log    forward
@@ -162,7 +171,7 @@ Get_button_text_from_carousel
 
 Click_button_carousel_actual
     [Arguments]    ${c_buttons}    ${expected_message}
-    Click Element    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/child::${xpath_c_item}/following-sibling::android.view.View[${index_button_carousel}]
+    Tap    //android.widget.ListView/child::android.widget.LinearLayout[${current_new_order}]/descendant::android.webkit.WebView/child::${xpath_c_item}/following-sibling::android.view.View[${index_button_carousel}]
     Sleep    10s
     ${expected_activity}    Set Variable    .activity.iab.InAppBrowserActivity
     ${activity_now}    Get Activity
@@ -170,3 +179,12 @@ Click_button_carousel_actual
     Run Keyword If    '${expected_activity}'!='${activity_now_S}'    Run Keywords    Set_init_variables    ${expected_message}
     ...    AND    Find_user_input
     ...    ELSE    Click Element    //*[@resource-id="jp.naver.line.android:id/iab_header_close"]
+
+Click_button_carousel_actual_testing
+    ${bound_item1}    Run Keyword And Return Status    Element Should Be Visible    @{w_elements}[14]
+    Sleep    5s
+    ${bound_item2}    Run Keyword And Return Status    Page Should Contain Element    @{w_elements}[14]
+    ${bound_item1}    Run Keyword And Return Status    Element Should Be Visible    @{w_elements}[14]
+    Sleep    5s
+    ${bound_item2}    Run Keyword And Return Status    Page Should Contain Element    @{w_elements}[14]
+    Click Element    @{w_elements}[14]
