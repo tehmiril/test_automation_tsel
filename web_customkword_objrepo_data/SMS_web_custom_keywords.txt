@@ -1,5 +1,6 @@
 *** Keywords ***
 Open SMS
+    Sleep    5s
     Go To    ${URL_SMS}
     Sleep    10s
     Wait Until Keyword Succeeds    20s    5s    Page Should Contain Element    //*[@class="thread-tab " and contains(@name,"TELKOMSEL")]    #//*[@class="msg-search-input"]
