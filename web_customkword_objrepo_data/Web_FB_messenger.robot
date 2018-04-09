@@ -2,7 +2,7 @@
 Suite Setup       Open_chrome
 Suite Teardown    Close Browser
 Test Teardown     Run Keyword If Test Failed    Cancel_and_closing_session_when_unexpected_result
-Library           SeleniumLibrary    run_on_failure=SeleniumLibrary.CapturePageScreenshot
+Library           SeleniumLibrary    run_on_failure=No Operation
 Resource          Detailed_custkeyword.txt
 Resource          Test_data_Indo.txt
 Library           String
@@ -10,7 +10,7 @@ Resource          Object_repository.txt
 Resource          Generic_custkeyword.txt
 Library           OperatingSystem
 Library           Collections
-Library           AppiumLibrary    run_on_failure=AppiumLibrary.CapturePageScreenshot
+Library           AppiumLibrary    run_on_failure=No Operation
 Resource          SMS_custom_keywords.txt
 Resource          Test_data_SMS_Indo.txt
 Resource          Carousel_custkeyword.txt

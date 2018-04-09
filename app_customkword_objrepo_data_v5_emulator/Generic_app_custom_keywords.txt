@@ -1,7 +1,7 @@
 *** Keywords ***
 Open app
     ${LINE_app}=    Open Application    ${appiumServer_LINE}    alias=LINE    platformName=${platformName_LINE}    platformVersion=${androidVersion_LINE}    deviceName=${deviceName_LINE}
-    ...    appPackage=${appPackage_LINE}    appActivity=${appActivity_LINE}    noReset=True    automationName=Appium    ignoreUnimportantViews=True    udid=${deviceName_LINE}
+    ...    appPackage=${appPackage_LINE}    appActivity=${appActivity_LINE}    noReset=True    automationName=appium    ignoreUnimportantViews=True    udid=${deviceName_LINE}
     ...    isHeadless=True
     Start app
 
