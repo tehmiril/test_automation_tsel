@@ -1,5 +1,6 @@
 *** Keywords ***
 Open_chrome
+    [Arguments]    ${URL}
     [Documentation]    Opens _Google Chrome_ to a given web page.
     ...    For more information on what capabilities that _Google Chrome_
     ...    supports, see [https://sites.google.com/a/chromium.org/chromedriver/capabilities%7Cthis Capabilities & ChromeOptions page].
@@ -12,7 +13,7 @@ Open_chrome
     ...    ELSE    SeleniumLibrary.Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}    #executable_path=/usr/lib/chromium-browser/chromedriver
     ${width}    ${height}=    SeleniumLibrary.Get Window Size
     SeleniumLibrary.Set Window Size    ${width}    ${height}
-    SeleniumLibrary.Go To    ${URLmessengerTSEL}
+    SeleniumLibrary.Go To    ${URL}
 
 Open_chrome_with_user_profile
     [Arguments]    ${URL}
