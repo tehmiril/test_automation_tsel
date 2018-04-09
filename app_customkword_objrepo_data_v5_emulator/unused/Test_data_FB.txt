@@ -1,7 +1,0 @@
-*** Variables ***
-${appPackage}     com.facebook.orca
-${androidVersion}    7.0    # 5.1.1
-${deviceName}     G5 SE    # Ami Samsung
-${platformName}    Android
-${appActivity}    .auth.StartScreenActivity    # com.facebook.messenger.neue.MainActivity
-${appiumServer}    http://localhost:4723/wd/hub

@@ -1,0 +1,24 @@
+*** Keywords ***
+Open SMS
+    Go To    ${URL_SMS}
+    Sleep    10s
+    Wait Until Keyword Succeeds    20s    5s    Page Should Contain Element    //*[@class="thread-tab " and contains(@name,"TELKOMSEL")]    #//*[@class="msg-search-input"]
+
+Select_TSEL_SMS
+    Click Element    //*[@class="thread-tab " and contains(@name,"TELKOMSEL")]
+    Sleep    5s
+    ${messages}    Get Matching Xpath Count    //*[@class="threadItem receivedText "]
+    ${message_text_last}    Get Text    //*[@class="threadItem receivedText "][${messages}]/span
+    ${message_last_string}    Convert To String    ${message_text_last}
+    ${elements_messages}    Split String    ${message_last_string}    :
+    ${total_strings}    Get Length    ${elements_messages}
+    ${last_element}    Get From List    ${elements_messages}    1
+    ${finalelement_pin}    Strip String    ${last_element}    characters=${SPACE}
+    Capture Page Screenshot    otp.png
+    Set Suite Variable    ${current_finalelement_pin}    ${finalelement_pin}
+
+Get_OTP
+    Open SMS
+    Select_TSEL_SMS
+    Go To    ${URLmessengerTSEL}
+    User_input    ${current_finalelement_pin}

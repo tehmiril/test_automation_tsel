@@ -1,4 +1,37 @@
 *** Keywords ***
+Open_chrome
+    [Documentation]    Opens _Google Chrome_ to a given web page.
+    ...    For more information on what capabilities that _Google Chrome_
+    ...    supports, see [https://sites.google.com/a/chromium.org/chromedriver/capabilities%7Cthis Capabilities & ChromeOptions page].
+    ${chrome_options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
+    Call Method    ${chrome_options}    add_argument    test-type
+    Call Method    ${chrome_options}    add_argument    --disable-extensions
+    Call Method    ${chrome_options}    add_argument    --disable-notifications
+    Call Method    ${chrome_options}    add_argument    --disable-infobars
+    Run Keyword If    os.sep == '/'    SeleniumLibrary.Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}
+    ...    ELSE    SeleniumLibrary.Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}    #executable_path=/usr/lib/chromium-browser/chromedriver
+    ${width}    ${height}=    SeleniumLibrary.Get Window Size
+    SeleniumLibrary.Set Window Size    ${width}    ${height}
+    SeleniumLibrary.Go To    ${URLmessengerTSEL}
+
+Open_chrome_with_user_profile
+    [Arguments]    ${URL}
+    [Documentation]    Opens _Google Chrome_ with saved user profile.
+    ...    For more information on what capabilities that _Google Chrome_
+    ...    supports, see [https://sites.google.com/a/chromium.org/chromedriver/capabilities%7Cthis Capabilities & ChromeOptions page].
+    ${chrome_options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
+    Call Method    ${chrome_options}    add_argument    test-type
+    Call Method    ${chrome_options}    add_argument    --disable-extensions
+    Call Method    ${chrome_options}    add_argument    --disable-notifications
+    Call Method    ${chrome_options}    add_argument    --disable-infobars
+    Call Method    ${chrome_options}    add_argument    ${user-data-dir}
+    Call Method    ${chrome_options}    add_argument    ${profile-dir}
+    Run Keyword If    os.sep == '/'    SeleniumLibrary.Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}
+    ...    ELSE    SeleniumLibrary.Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}    #executable_path=/usr/lib/chromium-browser/chromedriver
+    ${width}    ${height}=    SeleniumLibrary.Get Window Size
+    SeleniumLibrary.Set Window Size    ${width}    ${height}
+    SeleniumLibrary.Go To    ${URL}
+
 Greet_VA_Indo
     [Arguments]    ${greeting_text}= ${VA_Greet1}
     [Documentation]    Can be part of any test case, greet VA
@@ -92,43 +125,6 @@ Check_VA_response_text_with_2buttons
     Check_VA_response_text    ${order}    ${expected_text}
     SeleniumLibrary.Element Should Be Visible    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/following-sibling::*[contains(.,"${expected_button1}")]
     SeleniumLibrary.Element Should Be Visible    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/following-sibling::*[contains(.,"${expected_button2}")]
-
-Open_chrome
-    [Documentation]    Opens _Google Chrome_ to a given web page.
-    ...    For more information on what capabilities that _Google Chrome_
-    ...    supports, see [https://sites.google.com/a/chromium.org/chromedriver/capabilities%7Cthis Capabilities & ChromeOptions page].
-    ${chrome_options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
-    Call Method    ${chrome_options}    add_argument    test-type
-    Call Method    ${chrome_options}    add_argument    --disable-extensions
-    Call Method    ${chrome_options}    add_argument    --disable-notifications
-    Call Method    ${chrome_options}    add_argument    --disable-infobars
-    Run Keyword If    os.sep == '/'    SeleniumLibrary.Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}
-    ...    ELSE    SeleniumLibrary.Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}    #executable_path=/usr/lib/chromium-browser/chromedriver
-    ${width}    ${height}=    SeleniumLibrary.Get Window Size
-    SeleniumLibrary.Set Window Size    ${width}    ${height}
-    #SeleniumLibrary.Set Window Position    2000    0
-    #SeleniumLibrary.Maximize Browser Window
-    SeleniumLibrary.Go To    ${URLmessengerTSEL}
-
-Open_chrome_Telegram
-    [Documentation]    Opens _Google Chrome_ for Telegram.
-    ...    For more information on what capabilities that _Google Chrome_
-    ...    supports, see [https://sites.google.com/a/chromium.org/chromedriver/capabilities%7Cthis Capabilities & ChromeOptions page].
-    ${chrome_options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
-    Call Method    ${chrome_options}    add_argument    test-type
-    Call Method    ${chrome_options}    add_argument    --disable-extensions
-    Call Method    ${chrome_options}    add_argument    --disable-notifications
-    Call Method    ${chrome_options}    add_argument    --disable-infobars
-    Call Method    ${chrome_options}    add_argument    ${user-data-dir}
-    #Call Method    ${chrome_options}    add_argument    --profile-directory\=Default
-    Call Method    ${chrome_options}    add_argument    ${profile-dir}
-    Run Keyword If    os.sep == '/'    SeleniumLibrary.Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}
-    ...    ELSE    SeleniumLibrary.Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}    #executable_path=/usr/lib/chromium-browser/chromedriver
-    ${width}    ${height}=    SeleniumLibrary.Get Window Size
-    SeleniumLibrary.Set Window Size    ${width}    ${height}
-    #SeleniumLibrary.Set Window Position    2000    0
-    #SeleniumLibrary.Maximize Browser Window
-    SeleniumLibrary.Go To    ${URLmessengerTSEL}
 
 Login_messenger
     [Arguments]    ${email}    ${password}
