@@ -1,38 +1,4 @@
 *** Keywords ***
-Open_chrome
-    [Arguments]    ${URL}
-    [Documentation]    Opens _Google Chrome_ to a given web page.
-    ...    For more information on what capabilities that _Google Chrome_
-    ...    supports, see [https://sites.google.com/a/chromium.org/chromedriver/capabilities%7Cthis Capabilities & ChromeOptions page].
-    ${chrome_options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
-    Call Method    ${chrome_options}    add_argument    test-type
-    Call Method    ${chrome_options}    add_argument    --disable-extensions
-    Call Method    ${chrome_options}    add_argument    --disable-notifications
-    Call Method    ${chrome_options}    add_argument    --disable-infobars
-    Run Keyword If    os.sep == '/'    SeleniumLibrary.Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}
-    ...    ELSE    SeleniumLibrary.Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}    #executable_path=/usr/lib/chromium-browser/chromedriver
-    ${width}    ${height}=    SeleniumLibrary.Get Window Size
-    SeleniumLibrary.Set Window Size    ${width}    ${height}
-    SeleniumLibrary.Go To    ${URL}
-
-Open_chrome_with_user_profile
-    [Arguments]    ${URL}
-    [Documentation]    Opens _Google Chrome_ with saved user profile.
-    ...    For more information on what capabilities that _Google Chrome_
-    ...    supports, see [https://sites.google.com/a/chromium.org/chromedriver/capabilities%7Cthis Capabilities & ChromeOptions page].
-    ${chrome_options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
-    Call Method    ${chrome_options}    add_argument    test-type
-    Call Method    ${chrome_options}    add_argument    --disable-extensions
-    Call Method    ${chrome_options}    add_argument    --disable-notifications
-    Call Method    ${chrome_options}    add_argument    --disable-infobars
-    Call Method    ${chrome_options}    add_argument    ${user-data-dir}
-    Call Method    ${chrome_options}    add_argument    ${profile-dir}
-    Run Keyword If    os.sep == '/'    SeleniumLibrary.Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}
-    ...    ELSE    SeleniumLibrary.Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}    #executable_path=/usr/lib/chromium-browser/chromedriver
-    ${width}    ${height}=    SeleniumLibrary.Get Window Size
-    SeleniumLibrary.Set Window Size    ${width}    ${height}
-    SeleniumLibrary.Go To    ${URL}
-
 Greet_VA_Indo
     [Arguments]    ${greeting_text}= ${VA_Greet1}
     [Documentation]    Can be part of any test case, greet VA
@@ -50,25 +16,11 @@ Greet_VA_Indo
     SeleniumLibrary.Capture Page Screenshot    VA_greet.png
     Sleep    2s
 
-Click_Yes
-    [Arguments]    ${order}
-    [Documentation]    This keyword can be used to click Ya button that is part of the VA response.
-    SeleniumLibrary.Click Element    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/descendant::a[contains(.,"Ya")]    #(${yabutton_obj})[${totalYa}]
-    Set Suite Variable    ${current_user_input}    Ya
-    Run Keyword    Count_message_bubble_user_input    ${current_user_input}
-
 Click_Button_From_Response
     [Arguments]    ${order}    ${r_button}
     [Documentation]    This keyword can be used to click (any) button that is part of the VA response.
     SeleniumLibrary.Click Element    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/descendant::a[contains(.,"${r_button}")]
     Set Suite Variable    ${current_user_input}    ${r_button}
-    Run Keyword    Count_message_bubble_user_input    ${current_user_input}
-
-Click_No
-    [Arguments]    ${order}
-    [Documentation]    This keyword can be used to click Tidak button that is part of the VA response.
-    SeleniumLibrary.Click Element    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/descendant::a[contains(.,"Tidak")]    #(${nobutton_obj})[${totalNo}]
-    Set Suite Variable    ${current_user_input}    Tidak
     Run Keyword    Count_message_bubble_user_input    ${current_user_input}
 
 User_input

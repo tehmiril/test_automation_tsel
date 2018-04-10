@@ -17,6 +17,7 @@ Resource          Local_path.txt
 Resource          Detailed_custkeyword_Telegram.txt
 Resource          Generic_custkeyword_Telegram.txt
 Resource          Object_repository_Telegram.txt
+Resource          Browser_custkeyword.txt
 
 *** Test Cases ***
 001 - Non-Telkomsel user who just started talking to VA
