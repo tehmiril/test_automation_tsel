@@ -1,9 +1,7 @@
 *** Variables ***
-${inputtext_obj}    class="composer_rich_textarea"
-${message_bubble_obj}    class='im_history_message_wrap'
-${yabutton_obj}    //*[@class='_3cnp _3cnq' and contains(text(),'Ya')]
-${nobutton_obj}    //*[@class='_3cnp' and contains(text(),'Tidak')]
-${carouselclass_obj}    class='_3cne'
+${inputtext_obj}    //*[@class="composer_rich_textarea"]
+${message_bubble_obj}    //div[contains(@class,"im_history_message_wrap")]
+${carouselclass_obj}    //*[@class="im_send_keyboard_wrap"]
 ${tselicon_obj}    //*[@alt="Telkomsel"]
 ${carouselforward_obj}    //*[@direction="forward"]
 ${grouped_message_bubble}    //*[@class="_1t_p clearfix"]

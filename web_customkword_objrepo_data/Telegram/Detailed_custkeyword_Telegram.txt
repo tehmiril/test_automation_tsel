@@ -2,8 +2,8 @@
 Count_message_bubble_user_input
     [Arguments]    ${user_input}
     [Documentation]    count total number of message bubble for specific input
-    ${totalallmessage}    SeleniumLibrary.Get Element Count    (//*[@class="${message_bubble_obj}"])
-    ${totalgroupedmessage}    SeleniumLibrary.Get Element Count    //*[@class="${message_bubble_obj}" and contains (.,"${user_input}")]
+    ${totalallmessage}    SeleniumLibrary.Get Element Count    ${message_bubble_obj}
+    ${totalgroupedmessage}    SeleniumLibrary.Get Element Count    ${message_bubble_obj}/descendant::div[@class="im_message_text" and text()="${user_input}"]
     Set Suite Variable    ${current_total_user_message}    ${totalgroupedmessage}
 
 Get_VA_grouped_response
@@ -14,7 +14,7 @@ Get_VA_grouped_response
 
 Check_VA_response_text_actual
     [Arguments]    ${user_input}    ${total_user_input}    ${order}    ${expected_text}
-    ${textresponse}    SeleniumLibrary.Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${user_input}")])[${total_user_input}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div    body
+    ${textresponse}    SeleniumLibrary.Get Text    (//div[@class="im_message_text" and text()="${current_user_input}"])[${current_total_user_message}]/ancestor::div[contains(@class,"im_history_message_wrap")]/following-sibling::*[${order}]/descendant::*[@class="im_message_text"]
     ${textresponse2}=    Remove String Using Regexp    ${textresponse}    (\r\n|\r|\n)
     Should Contain    ${textresponse2}    ${expected_text}
 

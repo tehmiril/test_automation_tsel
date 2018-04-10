@@ -16,13 +16,6 @@ Greet_VA_Indo
     SeleniumLibrary.Capture Page Screenshot    VA_greet.png
     Sleep    2s
 
-Click_Yes
-    [Arguments]    ${order}
-    [Documentation]    This keyword can be used to click Ya button that is part of the VA response.
-    SeleniumLibrary.Click Element    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/descendant::a[contains(.,"Ya")]    #(${yabutton_obj})[${totalYa}]
-    Set Suite Variable    ${current_user_input}    Ya
-    Run Keyword    Count_message_bubble_user_input    ${current_user_input}
-
 Click_Button_From_Response
     [Arguments]    ${order}    ${r_button}
     [Documentation]    This keyword can be used to click (any) button that is part of the VA response.
@@ -30,16 +23,13 @@ Click_Button_From_Response
     Set Suite Variable    ${current_user_input}    ${r_button}
     Run Keyword    Count_message_bubble_user_input    ${current_user_input}
 
-Click_No
-    [Arguments]    ${order}
-    [Documentation]    This keyword can be used to click Tidak button that is part of the VA response.
-    SeleniumLibrary.Click Element    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/descendant::a[contains(.,"Tidak")]    #(${nobutton_obj})[${totalNo}]
-    Set Suite Variable    ${current_user_input}    Tidak
-    Run Keyword    Count_message_bubble_user_input    ${current_user_input}
-
 User_input
     [Arguments]    ${input_text}
+    Sleep    5s
+    Wait Until Keyword Succeeds    15s    3s    Wait Until Page Contains Element    ${inputtext_obj}
     SeleniumLibrary.Click Element    ${inputtext_obj}
+    SeleniumLibrary.Press Key    ${inputtext_obj}    ${input_text}
+    Sleep    1s
     SeleniumLibrary.Press Key    ${inputtext_obj}    \\13
     Sleep    5s
     Set Suite Variable    ${current_user_input}    ${input_text}
@@ -59,9 +49,9 @@ Closing_session
 
 Check_VA_response_text
     [Arguments]    ${order}    @{expected_text}
-    Wait Until Keyword Succeeds    1 minute    5s    SeleniumLibrary.Element Should Be Visible    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]
-    ${classname}    SeleniumLibrary.Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]    class
-    Should Be Equal As Strings    ${classname}    ${VA_textcarousel_bubble}
+    Wait Until Keyword Succeeds    1 minute    5s    SeleniumLibrary.Element Should Be Visible    (//div[@class="im_message_text" and text()="${current_user_input}"])[${current_total_user_message}]/ancestor::div[contains(@class,"im_history_message_wrap")]/following-sibling::*[${order}]
+    ${check_text}    Get Text    (//div[@class="im_message_text" and text()="${current_user_input}"])[${current_total_user_message}]/ancestor::div[contains(@class,"im_history_message_wrap")]/following-sibling::*[${order}]/descendant::*[@class="im_message_text"]
+    Run Keyword If    '${check_text}'=='${EMPTY}'    Fail    The response is not text
     : FOR    ${item}    IN    @{expected_text}
     \    ${status_text}    Run Keyword And Return Status    Check_VA_response_text_actual    ${current_user_input}    ${current_total_user_message}    ${order}
     \    ...    ${item}
