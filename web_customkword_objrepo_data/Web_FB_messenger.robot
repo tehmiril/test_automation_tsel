@@ -13,6 +13,7 @@ Library           Collections
 Resource          Carousel_custkeyword.txt
 Resource          Text_with_buttons_custkeyword.txt
 Resource          URL_FB_Messenger.txt
+Resource          Browser_custkeyword.txt
 
 *** Test Cases ***
 001 - Non-Telkomsel user who just started talking to VA
