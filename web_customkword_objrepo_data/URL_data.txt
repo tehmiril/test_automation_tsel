@@ -2,3 +2,4 @@
 ${URL}            https://www.facebook.com/
 ${URLmessengerTSEL}    https://www.facebook.com/messages/t/telkomsel
 ${URL_SMS}        https://mightytext.net/web8/
+${URL_Telegram}    https://web.telegram.org/#/im?p=@telkomsel_official_bot

@@ -12,7 +12,7 @@ Library           OperatingSystem
 Library           Collections
 Resource          Carousel_custkeyword.txt
 Resource          Text_with_buttons_custkeyword.txt
-Resource          URL_FB_Messenger.txt
+Resource          URL_data.txt
 Resource          SMS_web_custom_keywords.txt
 Resource          Local_path.txt
 Resource          Browser_custkeyword.txt
