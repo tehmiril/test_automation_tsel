@@ -7,7 +7,6 @@ Resource          Test_data_Indo.txt
 Library           String
 Library           OperatingSystem
 Library           Collections
-Resource          Carousel_custkeyword.txt
 Resource          Telegram/Text_with_buttons_custkeyword_Telegram.txt
 Resource          URL_data.txt
 Resource          SMS_web_custom_keywords.txt
@@ -19,5 +18,9 @@ Resource          Browser_custkeyword.txt
 
 *** Test Cases ***
 001 - Non-Telkomsel user who just started talking to VA
+    #Greet_VA_Indo    selamat datang di GraPARI Virtual Telkomsel!
     User_input    Lihat semua produk
-    Check_VA_response_text_with_buttons    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini :)    SimPATI    Kartu As    Loop    hhy
+    #Check_VA_response_text_with_buttons    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini :)    SimPATI    Kartu As    Loop    kartuHalo
+    Check_VA_response_text_with_buttons    1    \    SimPATI    Kartu As    Loop    kartuHalo
+    Click_Button_From_Response    1    Kartu As    Kartu As
+    Cancel_and_closing_session_when_unexpected_result
