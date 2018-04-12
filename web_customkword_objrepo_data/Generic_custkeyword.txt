@@ -36,7 +36,7 @@ User_input
 Closing_session
     User_input    ${no_answer}
     ${closing_response}    Run Keyword And Return Status    Check_VA_response_text    1    ${VA_question_2}
-    Run Keyword If    ${closing_response}!=${FALSE}    Check_VA_response_text    1    ${VA_closingstatement}
+    Run Keyword If    ${closing_response}==${FALSE}    Check_VA_response_text    1    ${VA_closingstatement}
     ...    ELSE    Perform_CES
 
 Perform_CES
@@ -152,10 +152,3 @@ Cancel_and_closing_session_when_unexpected_result
     Check_VA_response_text    1    ${VA_cancel}
     Check_VA_response_text    2    ${VA_question_1}
     Sleep    2s
-
-Check_opened_URL
-    [Arguments]    ${c_button}
-    ${URLS}    SeleniumLibrary.Get Locations
-    ${window_opens}    Get Length    ${URLS}
-    Run Keyword If    ${window_opens}==1    Run Keywords    Set Suite Variable    ${current_user_input}    ${c_button}
-    ...    AND    Count_message_bubble_user_input    ${current_user_input}

@@ -1,4 +1,4 @@
-﻿*** Variables ***
+*** Variables ***
 ${webDriver_Chrome}    firefox    # chrome \ safari
 ${email}          taacnindonesia01@gmail.com
 ${password}       Welcome01!
@@ -17,7 +17,7 @@ ${yes_answer}     Ya
 ${cancel_answer}    Batal
 ${VA_question_2}    untuk terus meningkatkan layanan ini, mohon bantuannya untuk menilai percakapan ini ya.    #Penilaian dalam skala 1-10 (1 sangat tidak puas - 10 sangat puas). Silakan masukan penilaian Kamu
 ${VA_question_3}    Menurut Kamu, apa yang harus Veronika tingkatkan?
-${user_rate}      4
+${user_rate}      5
 ${random_question_3}    Apa itu waktu sholat?
 ${VA_closingstatement}    Terima kasih    #atas penilaiannya    #Veronika turut senang membantu
 ${ask_pulsa}      Sisa pulsa saya berapa?
