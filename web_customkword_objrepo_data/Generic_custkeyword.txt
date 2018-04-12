@@ -35,8 +35,8 @@ User_input
 
 Closing_session
     User_input    ${no_answer}
-    ${closing_response}    Run Keyword And Return Status    Check_VA_response_text    1    ${VA_question_2}
-    Run Keyword If    ${closing_response}    Perform_CES
+    ${status_text}    Run Keyword And Return Status    Check_VA_response_text_actual    ${no_answer}    ${current_total_user_message}    1    ${VA_question_2}
+    Run Keyword If    ${status_text}    Perform_CES
     ...    ELSE    Check_VA_response_text    1    ${VA_closingstatement}
 
 Perform_CES
