@@ -12,20 +12,20 @@ Greet_VA_Indo
     Check_VA_response_text    2    ${VA_SecondGreetWording}
     Check_VA_response_image    3
     Check_VA_response_text_with_buttons    4    ${VA_ThirdGreetWording}    ${VA_GreetButton1}    ${VA_GreetButton2}
-    #Click_Button_From_Response    4    Lihat Menu Utama
+    Click_Button_From_Response    4    Lihat Menu Utama    Lihat Menu Utama
     SeleniumLibrary.Capture Page Screenshot    VA_greet.png
     Sleep    2s
 
 Click_Button_From_Response
-    [Arguments]    ${order}    ${r_button}    @{expected_input}
+    [Arguments]    ${order}    ${r_button}    ${expected_input}
     [Documentation]    This keyword can be used to click (any) button that is part of the VA response.
     Run Keyword If    '${tb_validated}'=='${FALSE}'    Check_VA_response_text_with_buttons    ${order}    ${EMPTY}    ${r_button}
     ...    ELSE    Loop_through_buttons_in_the_response    ${r_button}    ${current_amount_buttons}
     SeleniumLibrary.Click Element    ${xpath_item}[${b_index}]
     Sleep    10s
-    #Set Suite Variable    ${current_user_input}    ${r_button}
-    #Set Suite Variable    ${tb_validated}    ${FALSE}
-    #Run Keyword    Count_message_bubble_user_input    ${current_user_input}
+    ${pop_up_visible}    Run Keyword And Return Status    Element Should Be Visible    //*[@class="confirm_modal_wrap md_simple_modal_wrap"]
+    Run Keyword If    ${pop_up_visible}    Click Element    //*[@name="url" and contains (.,"https://")]/ancestor::*[@class="md_simple_modal_body"]/following-sibling::*/descendant::button[contains(.,"OK")]
+    ...    ELSE    Click_button_actual    ${r_button}    ${expected_input}
 
 User_input
     [Arguments]    ${input_text}

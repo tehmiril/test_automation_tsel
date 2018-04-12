@@ -11,3 +11,9 @@ Check_VA_response_text_actual
     ${textresponse}    SeleniumLibrary.Get Text    (//div[@class="im_message_text" and text()="${current_user_input}"])[${current_total_user_message}]/ancestor::div[contains(@class,"im_history_message_wrap")]/following-sibling::*[${order}]/descendant::*[@class="im_message_text"]
     ${textresponse2}=    Remove String Using Regexp    ${textresponse}    (\r\n|\r|\n)
     Should Contain    ${textresponse2}    ${expected_text}
+
+Click_button_actual
+    [Arguments]    ${r_button}    ${expected_input}
+    Run Keyword If    '${expected_input}'!='NONE'    Run Keywords    Set Suite Variable    ${current_user_input}    ${expected_input}
+    ...    AND    Count_message_bubble_user_input    ${current_user_input}
+    Set Suite Variable    ${tb_validated}    ${FALSE}
