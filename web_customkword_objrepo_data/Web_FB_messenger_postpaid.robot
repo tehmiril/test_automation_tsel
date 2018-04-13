@@ -16,6 +16,7 @@ Resource          URL_data.txt
 Resource          SMS_web_custom_keywords.txt
 Resource          Local_path.txt
 Resource          Browser_custkeyword.txt
+Resource          Login_logout_custkeyword.txt
 
 *** Test Cases ***
 052 - Postpaid user wants to change his number (vice versa)
