@@ -1,7 +1,7 @@
 *** Settings ***
 Suite Setup       Open_chrome    ${URLmessengerTSEL}
 Suite Teardown    Close Browser
-Test Teardown     Run Keyword If Test Failed    Cancel_and_closing_session_when_unexpected_result
+Test Teardown     Run Keyword If Test Failed    Cancel_session
 Library           SeleniumLibrary    run_on_failure=No Operation
 Resource          Detailed_custkeyword.txt
 Resource          Test_data_Indo.txt
@@ -14,13 +14,14 @@ Resource          Carousel_custkeyword.txt
 Resource          Text_with_buttons_custkeyword.txt
 Resource          URL_data.txt
 Resource          Browser_custkeyword.txt
+Resource          Login_logout_custkeyword.txt
 
 *** Test Cases ***
 001 - Non-Telkomsel user who just started talking to VA
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     Greet_VA_Indo    ${VA_GreetNonTsel}
     Check_VA_response_carousel_exists    1
-    Validate_carousel_items    1    Jelajah Produk Telkomsel    Temukan produk terbaik Telkomsel di sini    Beralih ke Telkomsel    Produk untuk Kamu    Layanan Digital
+    Validate_carousel_items    1    Jelajah Produk Telkomsel    Temukan produk terbaik Telkomsel di sini    Beralih ke Telkomsel    Produk untuk Kamu    Layanan digital
     Validate_carousel_items    1    Profil Kamu    Informasi tentang nomor Telkomsel Kamu    Sisa Kuota    Tagihan/Sisa Pulsa    Info PUK
     Validate_carousel_items    1    Beli Paket dan Tukar POIN    Lihat dan beli produk Telkomsel favorit Kamu di sini    Beli Pulsa    Beli Paket    Telkomsel POIN
     Validate_carousel_items    1    Bantuan Lainnya    Kamu punya pertanyaan? Temukan jawabannya di sini    Registrasi Prabayar    GraPARI Terdekat    Kontak Live Agent
@@ -39,7 +40,7 @@ Resource          Browser_custkeyword.txt
     Check_VA_response_text    2    Silakan pilih salah satu opsi di atas atau ketik layanan lain yang dibutuhkan
     Click_button_carousel    1    Beli Paket dan Tukar POIN    Beli Pulsa
     Check_VA_response_text    1    Agar permintaan Kamu dapat diproses lebih lanjut, tolong tulis nomor Telkomsel Kamu yang valid ya (contoh: 08110000000)
-    Cancel_and_closing_session
+    Cancel_session
 
 005 - Non-Telkomsel user who is wondering about Telkomsel products
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}

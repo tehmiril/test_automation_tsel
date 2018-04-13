@@ -47,6 +47,8 @@ Perform_CES
     User_input    ${select_Rate}
     Check_VA_response_text    1    ${VA_askRateReason}
     User_input    ${no_answer}
+    Check_VA_response_text    1    ${VA_ask_rec}
+    User_input    ${give_rec}
     Check_VA_response_text    1    ${VA_closingstatement}
 
 Check_VA_response_text
@@ -81,27 +83,15 @@ Check_VA_response_text_with_2buttons
 
 Login_messenger
     [Arguments]    ${email}    ${password}
-    SeleniumLibrary.Click Element    ${email_obj}
-    SeleniumLibrary.Input Text    ${email_obj}    ${email}
-    SeleniumLibrary.Click Element    ${password_obj}
-    SeleniumLibrary.Input Password    ${password_obj}    ${password}
-    SeleniumLibrary.Click Element    ${login_obj}
-    SeleniumLibrary.Wait Until Page Contains    Telkomsel    15s    None
-    Wait Until Keyword Succeeds    10    3s    SeleniumLibrary.Element Should Be Visible    ${inputtext_obj}
+    ${email_obj_visible}    Run Keyword And Return Status    Wait Until Keyword Succeeds    10    3s    SeleniumLibrary.Element Should Be Visible    ${email_obj}
+    Run Keyword If    ${email_obj_visible}    Login_messenger_actual    ${email}    ${password}
+    ...    ELSE    Check_logged_in_user    ${email}    ${password}
 
 Cancel_and_closing_session
     User_input    ${cancel_answer}
     Check_VA_response_text    1    ${VA_cancel}
     Check_VA_response_text    2    ${VA_question_1}
-    User_input    ${no_answer}
-    Check_VA_response_text    1    ${VA_question_2}
-    User_input    ${user_rate}
-    Check_VA_response_text    1    ${VA_question_3}
-    #only type in at the moment
-    User_input    ${select_Rate}
-    Check_VA_response_text    1    ${VA_askRateReason}
-    User_input    ${no_answer}
-    Check_VA_response_text    1    ${VA_closingstatement}
+    Closing_session
 
 Click_button_carousel
     [Arguments]    ${order}    ${c_title}    ${c_button}
@@ -147,7 +137,7 @@ Click_carousel_button_on_specific_location
     Sleep    2s
     Check_opened_URL    ${c_button}
 
-Cancel_and_closing_session_when_unexpected_result
+Cancel_session
     User_input    ${cancel_answer}
     Check_VA_response_text    1    ${VA_cancel}
     Check_VA_response_text    2    ${VA_question_1}

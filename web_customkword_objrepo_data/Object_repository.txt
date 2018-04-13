@@ -20,3 +20,5 @@ ${VA_textcarousel_bubble}    clearfix _o46 _3erg _29_7 direction_ltr text_align_
 ${VA_carousel_maindiv}    _3058 _15gf
 ${carouselbackward_obj}    //*[@direction="backward"]
 ${IMAGE_COMPARATOR_COMMAND}    C:/Users/amiril.r.faradini/Documents/Robot/img/compare.exe __REFERENCE__ __TEST__ -metric RMSE -compare -format
+${user_setting}    //*[@id="userNavigationLabel"]
+${logout_button}    //*[@class="_w0d _w0d"]

@@ -1,0 +1,24 @@
+*** Keywords ***
+Login_messenger_actual
+    [Arguments]    ${email}    ${password}
+    SeleniumLibrary.Click Element    ${email_obj}
+    SeleniumLibrary.Input Text    ${email_obj}    ${email}
+    SeleniumLibrary.Click Element    ${password_obj}
+    SeleniumLibrary.Input Password    ${password_obj}    ${password}
+    SeleniumLibrary.Click Element    ${login_obj}
+    #SeleniumLibrary.Wait Until Page Contains    ${message_header}    15s    None
+    Wait Until Keyword Succeeds    15    3s    SeleniumLibrary.Element Should Be Visible    ${inputtext_obj}
+    Set Suite Variable    ${current_email}    ${email}
+    Set Suite Variable    ${current_password}    ${password}
+
+Check_logged_in_user
+    [Arguments]    ${email}    ${password}
+    Run Keyword If    '${email}'!='${current_email}'    Run Keywords    Logout_messenger
+    ...    AND    Login_messenger_actual    ${email}    ${password}
+
+Logout_messenger
+    Click Element    ${user_setting}
+    Sleep    2s
+    Mouse Over    ${logout_button}
+    Click Element    ${logout_button}
+    Wait Until Keyword Succeeds    15    3s    SeleniumLibrary.Element Should Be Visible    ${email_obj}
