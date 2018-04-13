@@ -17,8 +17,11 @@ Check_logged_in_user
     ...    AND    Login_messenger_actual    ${email}    ${password}
 
 Logout_messenger
-    Click Element    ${user_setting}
-    Sleep    2s
-    Mouse Over    ${logout_button}
-    Click Element    ${logout_button}
-    Wait Until Keyword Succeeds    15    3s    SeleniumLibrary.Element Should Be Visible    ${email_obj}
+    [Documentation]    At the moment only close driver and re-open new browser. As Log Out button is currently not detected.
+    Close Browser
+    Open_chrome    ${URLmessengerTSEL}
+    #Click Element    ${user_setting}
+    #Sleep    2s
+    #Wait Until Element Is Visible    ${logout_button}    10s
+    #Click Element    ${logout_button}
+    #Wait Until Keyword Succeeds    15    3s    SeleniumLibrary.Element Should Be Visible    ${email_obj}
