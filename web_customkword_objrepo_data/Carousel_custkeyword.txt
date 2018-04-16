@@ -4,10 +4,8 @@ Go_to_specific_carousel_elements_based_on_item_number
     Sleep    2s
     Log    ${current_total_user_message}
     ${totalbuttonitems}    SeleniumLibrary.Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${element_number}]/descendant::a[@class="_3cnp"]
-    #${amounttitlesubs}    Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${looping}]/descendant::div[@class="_3cni"]
     ${title_now}    SeleniumLibrary.Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${element_number}]/descendant::div[@class="_3cni"][1]    innerText
     ${subtitle_now}    SeleniumLibrary.Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${element_number}]/descendant::div[@class="_3cni"][2]    innerText
-    #Validate_carousel_items    ${order}    ${title_now}    ${EMPTY}    ${button}
     Set Suite Variable    ${current_carousel_button}    ${button}
     Set Suite Variable    ${current_carousel_title}    ${title_now}
     ${element_XBegin}    Get_locationX_carousel_item_based_on_item_number    ${order}    ${element_number}
@@ -23,6 +21,22 @@ Check_where_to_swipe_carousel_based_on_item_number
 
 Get_locationX_carousel_item_based_on_item_number
     [Arguments]    ${order}    ${element_number}
-    #Set Suite Variable    ${total_item_carousel}    ${totalcarousel}
     ${element_XBegin}    SeleniumLibrary.Get Horizontal Position    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${element_number}]/descendant::a[@class="_3cnp"]
     [Return]    ${element_XBegin}
+
+Show_carousel_items_on_specific_location
+    [Arguments]    ${order}    ${element_number}
+    Check_VA_response_carousel_exists    ${order}
+    ${totalcarouselitems}    SeleniumLibrary.Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"]
+    Run Keyword If    ${element_number} > ${totalcarouselitems}    Fail    There are less number of elements in the carousel.
+    ...    ELSE    Go_to_specific_carousel_elements    ${order}    ${element_number}
+
+Get_carousel_items
+    [Arguments]    ${order}
+    ${totalcarouselitems}    SeleniumLibrary.Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"]
+    #for loop; get the title, sub and buttons
+    : FOR    ${looping}    IN RANGE    1    ${totalcarouselitems}+1
+    \    ${totalbuttonitems}    SeleniumLibrary.Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${looping}]/descendant::a[@class="_3cnp"]
+    \    ${amounttitlesubs}    SeleniumLibrary.Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_2zgz"][${looping}]/descendant::div[@class="_3cni"]
+    \    Get_Carousel_Buttons    ${order}    ${totalbuttonitems}    ${looping}
+    \    Get_Carousel_Title_Subtitle    ${order}    ${looping}

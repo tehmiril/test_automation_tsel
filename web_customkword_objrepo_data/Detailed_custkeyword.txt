@@ -7,7 +7,7 @@ Count_message_bubble
 Count_message_bubble_user_input
     [Arguments]    ${user_input}
     [Documentation]    count total number of message bubble for specific input
-    ${totalallmessage}    SeleniumLibrary.Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr"])
+    ${totalallmessage}    SeleniumLibrary.Get Element Count    (${userinput_bubble})
     ${totalgroupedmessage}    SeleniumLibrary.Get Element Count    //*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${user_input}")]
     Set Suite Variable    ${current_total_user_message}    ${totalgroupedmessage}
     #[Return]    ${totalgroupedmessage}
@@ -15,7 +15,6 @@ Count_message_bubble_user_input
 Get_VA_grouped_response
     [Arguments]    ${user_input}    ${total_user_input}
     ${totalgroupedmessage}    SeleniumLibrary.Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${user_input}")])[${total_user_input}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")]
-    #${classname}    Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${user_input}")])[${total_user_input}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${totalgroupedmessage}]    class
     [Return]    ${totalgroupedmessage}
 
 Check_VA_response_text_actual

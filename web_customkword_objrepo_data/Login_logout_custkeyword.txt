@@ -1,6 +1,7 @@
 *** Keywords ***
 Login_messenger_actual
     [Arguments]    ${email}    ${password}
+    [Documentation]    Login activity.
     SeleniumLibrary.Click Element    ${email_obj}
     SeleniumLibrary.Input Text    ${email_obj}    ${email}
     SeleniumLibrary.Click Element    ${password_obj}
@@ -13,15 +14,11 @@ Login_messenger_actual
 
 Check_logged_in_user
     [Arguments]    ${email}    ${password}
+    [Documentation]    Different test case might use different user. Therefore, this keyword checks logged in user and determine whether to continue or logout.
     Run Keyword If    '${email}'!='${current_email}'    Run Keywords    Logout_messenger
     ...    AND    Login_messenger_actual    ${email}    ${password}
 
 Logout_messenger
-    [Documentation]    At the moment only close driver and re-open new browser. As Log Out button is currently not detected.
+    [Documentation]    Logout from Farcebook. At the moment only close driver and re-open new browser. As Log Out button is currently not detected.
     Close Browser
     Open_chrome    ${URLmessengerTSEL}
-    #Click Element    ${user_setting}
-    #Sleep    2s
-    #Wait Until Element Is Visible    ${logout_button}    10s
-    #Click Element    ${logout_button}
-    #Wait Until Keyword Succeeds    15    3s    SeleniumLibrary.Element Should Be Visible    ${email_obj}

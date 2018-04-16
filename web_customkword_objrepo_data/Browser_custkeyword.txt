@@ -49,4 +49,5 @@ Check_opened_URL
     ${URL_compare}    Run Keyword And Return Status    Should Be Equal As Strings    ${last_url_string}    ${last_opened_URL_string}
     Run Keyword If    ${URL_compare}    Run Keywords    Set Suite Variable    ${current_user_input}    ${c_button}
     ...    AND    Count_message_bubble_user_input    ${current_user_input}
+    ...    AND    SeleniumLibrary.Capture Page Screenshot    input_${current_user_input}_${TEST NAME}.png
     Set Suite Variable    ${last_opened_URL}    ${last_url}
