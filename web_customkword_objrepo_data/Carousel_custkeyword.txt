@@ -15,7 +15,7 @@ Check_where_to_swipe_carousel_based_on_item_number
     [Arguments]    ${order}    ${element_XBegin}
     Set_Xlimit_for_carousel
     Run Keyword If    ${current_tsel_icon_locationX} < ${element_XBegin} < ${current_right_limit}    Run Keywords    Sleep    1s
-    ...    AND    SeleniumLibrary.Capture Page Screenshot    carousel_here.png
+    ...    AND    SeleniumLibrary.Capture Page Screenshot    item_carousel_found_${TEST NAME}.png
     ...    ELSE IF    ${element_XBegin} < ${current_tsel_icon_locationX}    Run Keyword    Swipe_backward_until_element    ${order}
     ...    ELSE IF    ${element_XBegin} > ${current_right_limit}    Run Keyword    Swipe_forward_until_element    ${order}
 

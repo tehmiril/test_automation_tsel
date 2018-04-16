@@ -3,20 +3,21 @@ Suite Setup       Open_chrome    ${URLmessengerTSEL}
 Suite Teardown    Close Browser
 Test Teardown     Run Keyword If Test Failed    Cancel_session
 Library           SeleniumLibrary    run_on_failure=No Operation
-Resource          Detailed_custkeyword.txt
-Resource          Test_data_Indo.txt
 Library           String
-Resource          Object_repository.txt
-Resource          Generic_custkeyword.txt
 Library           OperatingSystem
 Library           Collections
+Resource          Detailed_custkeyword.txt
+Resource          Test_data_user_input_Indo.txt
+Resource          Object_repository.txt
+Resource          Generic_custkeyword.txt
 Resource          Carousel_custkeyword.txt
 Resource          Text_with_buttons_custkeyword.txt
 Resource          URL_data.txt
 Resource          Browser_custkeyword.txt
 Resource          Login_logout_custkeyword.txt
-Resource          Test_data_carousel_Indo.txt
+Resource          Test_data_VA_carousel_Indo.txt
 Resource          Carousel_validate_custkeyword.txt
+Resource          Test_data_VA_response_Indo.txt
 
 *** Test Cases ***
 001 - Non-Telkomsel user who just started talking to VA

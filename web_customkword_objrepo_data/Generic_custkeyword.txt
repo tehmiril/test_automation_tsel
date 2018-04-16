@@ -49,7 +49,7 @@ Closing_session
 
 Perform_CES
     User_input    ${user_rate}
-    SeleniumLibrary.Capture Page Screenshot    user_rate.png
+    SeleniumLibrary.Capture Page Screenshot    user_rate_${TEST NAME}.png
     Check_VA_response_text    1    ${VA_question_3}
     #only type in at the moment
     User_input    ${select_Rate}
