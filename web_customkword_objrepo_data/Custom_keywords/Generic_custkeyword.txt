@@ -7,8 +7,8 @@ Greet_VA_Indo
     Run Keyword If    '${greeting_text}' == '${VA_GreetNonTsel}'    Run Keywords    Set Suite Variable    ${VA_SecondGreetWording}    Apa yang bisa Veronika bantu hari ini?
     ...    AND    Set Suite Variable    ${VA_ThirdGreetWording}    Silakan pilih salah satu pilihan di bawah ini atau langsung saja ketik permintaan kamu
     ...    AND    Set Suite Variable    ${user_type}    NON-TSEL
-    ...    ELSE    Run Keywords    Set Suite Variable    ${VA_SecondGreetWording}    Hai, kawan simPATI! Ada yang bisa Veronika bantu?
-    ...    AND    Set Suite Variable    ${VA_ThirdGreetWording}    Silakan ketik layanan yang dibutuhkan atau pilih menu di bawah
+    ...    ELSE    Run Keywords    Set Suite Variable    ${VA_SecondGreetWording}    Nikmati pengalaman maksimal bermain game online dengan paket GamesMAX! Aktifkan paketnya sekarang! http://tsel.me/GAMESMAXVA
+    ...    AND    Set Suite Variable    ${VA_ThirdGreetWording}    Apa yang bisa Veronika bantu hari ini?
     ...    AND    Set Suite Variable    ${user_type}    TSEL
     Check_VA_response_text    1    ${greeting_text}
     Check_VA_response_text    2    ${VA_SecondGreetWording}

@@ -119,12 +119,8 @@ Resource          Test_data/Test_data_VA_response_carousel_TSEL_Indo.txt
     Click_carousel_button_on_specific_location    2    3    Buka di Google Maps
     Closing_session
 
-<<<<<<< HEAD
-009 - Non-Telkomsel user who wants to know about Loop
-=======
 [X] 009 - Non-Telkomsel user who wants to know about Loop
     [Tags]    Non-Telkomsel_FB
->>>>>>> c2827fafaad2a2d5ef7426474c62eac4b802f014
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     Greet_VA_Indo    ${VA_GreetNonTsel}
     Click_button_carousel    1    Jelajah Produk Telkomsel    Layanan digital
@@ -203,15 +199,33 @@ Resource          Test_data/Test_data_VA_response_carousel_TSEL_Indo.txt
     #Click_button_carousel    2    Registrasi Online    Registrasi Online
     Closing_session
 
-[DEPRECATED] 013 - User perform Inquire 4G Upgrade and Find Nearest Store
+[READY TO TEST] 013 - User perform Inquire 4G Upgrade and Find Nearest Store
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
+    Click_button_carousel    2    Bantuan Lainnya    FAQ
+    Check_VA_response_carousel_exists    1
+    #Validate_carousel_items    2    FAQ
+    Click_button_carousel    1    FAQ    Info Upgrade 4G
+    Check_VA_response_text_with_2buttons    1    Oke M Testaut ${\n}Sebelum menggunakan layanan 4G, pastikan Handphone & SIM card Kamu sudah mendukung 4G. ${\n}Apakah handphone Kamu sudah 4G?    Sudah    Belum
+    Click_Button_From_Response    1    Sudah
+    Check_VA_response_text_with_2buttons    1    Apakah Kamu sudah membeli SIM Card 4G?    Sudah    Belum
+    Click_Button_From_Response    1    Belum
+    Check_VA_response_text    1    Untuk upgrade ke kartu SIM 4G, ganti kartu SIM lama Kamu dengan kartu SIM 4G ya. Pergantian kartu tidak akan mengubah nomor Telkomsel Kamu. ${\n}Berikut adalah beberapa cara untuk mendapatkannya:
     Check_VA_response_carousel_exists    2
-    Validate_carousel_items    2    ${Menu_utama_titleA}    ${Menu_utama_subtitleA}    ${Menu_utama_button1A}    ${Menu_utama_button2A}    ${Menu_utama_button3A}
-    Validate_carousel_items    2    ${Menu_utama_titleB}    ${Menu_utama_subtitleB}    ${Menu_utama_button1B}    ${Menu_utama_button2B}    ${Menu_utama_button3B}
-    Validate_carousel_items    2    ${Menu_utama_titleC}    ${Menu_utama_subtitleC}    ${Menu_utama_button1C}    ${Menu_utama_button2C}    ${Menu_utama_button3C}
-    Validate_carousel_items    2    ${Menu_utama_titleD}    ${Menu_utama_subtitleD}    ${Menu_utama_button1D}    ${Menu_utama_button2D}    ${Menu_utama_button3D}
-    Check_VA_response_text    2    Silakan pilih salah satu opsi di atas atau ketik layanan lain yang dibutuhkan
+    Validate_carousel_items    2    MyGraPARI Terdekat    Dapatkan SIM card 4G di GraPARI dengan membawa ID Card Kamu \ \ \ \     MyGraPARI Terdekat
+    Validate_carousel_items    2    GraPARI Terdekat    Dapatkan SIM card 4G di GraPARI dengan membawa ID Card Kamu \ \ \ \     GraPARI Terdekat
+    Validate_carousel_items    2    Registrasi Online    SIM card 4G akan dikirim ke rumah    Registrasi Online
+    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Click_button_carousel    2    GraPARI Terdekat    GraPARI Terdekat
+    Check_VA_response_text    1    Tuliskan lokasi yang Kamu cari atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu untuk mendapatkan GraPARI terdekat
+    User_input    jakarta selatan
+    Check_VA_response_text    1    Lokasi GraPARI sekitar mana yang Kamu maksud?
+    Check_VA_response_carousel_exists    2
+    Click_button_carousel    2    Jakarta Selatan    Pilih
+    Check_VA_response_text    1    Berikut info GraPARI di sekitar Jakarta Selatan ya
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Closing_session
 
 [X] 014 - User want to search a grapari that opens on a specific day
     [Tags]    Telkomsel_FB
@@ -230,7 +244,7 @@ Resource          Test_data/Test_data_VA_response_carousel_TSEL_Indo.txt
     Check_VA_response_text    2    Ada lagi yang bisa Veronika bantu?
     Closing_session
 
-[X] 016 - User want to buy voucher data
+[READY TO TEST] 016 - User want to buy voucher data
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    mau beli voucher data
@@ -240,7 +254,7 @@ Resource          Test_data/Test_data_VA_response_carousel_TSEL_Indo.txt
     Check_VA_response_carousel_exists    2
     Closing_session
 
-[X] 017 - User wants to know about voucher information
+[READY TO TEST] 017 - User wants to know about voucher information
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     Greet_VA_Indo    ${VA_GreetNonTsel}
@@ -249,14 +263,39 @@ Resource          Test_data/Test_data_VA_response_carousel_TSEL_Indo.txt
     Check_VA_response_text_with_buttons    2    Kamu pake simPATI, Loop, atau Kartu As?    SimPATI    Loop    Kartu As
     Cancel_and_closing_session
 
-[DEPRECATED] 018 - User explore the FAQ menu and read about voucher information
+[MINUS NO SUBTITLE] 018 - User explore the FAQ menu and read about voucher information
     [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
-    Greet_VA_Indo    ${VA_GreetNonTsel}
-    User_input    mau tau info voucher telkomsel
-    Check_VA_response_text    1    Oke Lightning Diamond, Telkomsel menyediakan berbagai macam voucher isi ulang sesuai kebutuhan Kamu
-    Check_VA_response_text_with_buttons    2    Kamu pake simPATI, Loop, atau Kartu As?    SimPATI    Loop
-    User_input    batal
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    Click_button_carousel    2    Bantuan Lainnya    FAQ
+    Check_VA_response_carousel_exists    1
+    #Validate_carousel_items    2    FAQ    \    Loop
+    Click_button_carousel    1    FAQ    Info Voucher
+    Check_VA_response_text    1    Oke M Testaut, Telkomsel menyediakan berbagai macam voucher isi ulang sesuai kebutuhan Kamu
+    Check_VA_response_text_with_buttons    2    Kamu pake simPATI, Loop, atau Kartu As?    SimPATI    Loop    Kartu As
+    Click_Button_From_Response    2    Kartu As
+    Check_VA_response_text    1    Berikut informasi voucher Kartu As untuk Kamu
+    Check_VA_response_image    2
+    Check_VA_response_text_with_2buttons    3    Apakah Kamu juga ingin melakukan pengisian pulsa?    Ya    Tidak
+    Click_Button_From_Response    3    Ya
+    Check_VA_response_text    1    Oke M Testaut, Kamu bisa memilih nominal pulsa dibawah ini.
+    Check_VA_response_carousel_exists    2
+    Validate_carousel_items    2    Rp50.000    Berlaku 45 Hari ${\n}Bonus 10 POIN    Pilih
+    Validate_carousel_items    2    Rp100.000    Berlaku 60 Hari ${\n}Bonus 20 POIN    Pilih
+    Validate_carousel_items    2    Rp150.000    Berlaku 120 Hari ${\n}Bonus 30 POIN    Pilih
+    Validate_carousel_items    2    Rp200.000    Berlaku 150 Hari ${\n}Bonus 40 POIN    Pilih
+    Validate_carousel_items    2    Rp300.000    Berlaku 180 Hari ${\n}Bonus 60 POIN    Pilih
+    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
+    Click_button_carousel    2    Rp50.000    Pilih
+    Check_VA_response_text    1    Oke M Testaut, untuk melanjutkan pengisian pulsa sebesar Rp50000, silakan pilih salah satu opsi pembayaran di bawah ini.
+    Check_VA_response_carousel_exists    2
+    #validate    carousel without subtitle
+    Click_button_carousel    2    Kartu Kredit    Kartu Kredit
+    User_input    voucher simpati nominalnya berapa aja?
+    Check_VA_response_text    1    Berikut informasi voucher simPATI.
+    Check_VA_response_image    2
+    Check_VA_response_text_with_2buttons    3    Apakah Kamu juga ingin melakukan pengisian pulsa?    Ya    Tidak
+    Click_Button_From_Response    3    Tidak
     Closing_session
 
 019 - User perform inquire outlet location
@@ -275,39 +314,52 @@ Resource          Test_data/Test_data_VA_response_carousel_TSEL_Indo.txt
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
     Closing_session
 
-[DEPRECATED] 020- User perform setting Caller ID \ for Apple, Android, Windows Phone, and Blackberry
+[MINUS NO SUBTITLE] 020- User perform setting Caller ID \ for Apple, Android, Windows Phone, and Blackberry
     [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
-    User_input    beli pulsa 10000
-    Check_VA_response_text    1    Kamu bisa mengisi ulang pulsa dengan nominal tersebut di GraPARI maupun di outlet terdekat.
-    Check_VA_response_text    2    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
-    User_input    banda aceh
-    Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    Click_button_carousel    2    Bantuan Lainnya    FAQ
+    Check_VA_response_carousel_exists    1
+    #Validate_carousel_items    2    FAQ
+    Click_button_carousel    1    FAQ    Info Konfigurasi
+    Check_VA_response_text    1    Berikut Veronika berikan jenis konfigurasi yang bisa Kamu pilih ya
     Check_VA_response_carousel_exists    2
-    Click_button_carousel    2    Police Banda Aceh    Pilih
-    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
+    Validate_carousel_items    2    Konfigurasi terkait Internet         Refresh Jaringan    Setting APN
+    Validate_carousel_items    2    Konfigurasi terkait SMS    \    Refresh Jaringan    Pengaturan Pusat SMS
+    Validate_carousel_items    2    Konfigurasi terkait telepon    \    Refresh Jaringan    Pengaturan Caller ID
+    Validate_carousel_items    2    Konfigurasi lain    \    Refresh Jaringan    Pengaturan Pusat SMS
+    Click_button_carousel    1    Konfigurasi terkait telepon         Refresh Jaringan    Pengaturan Caller ID
+    Check_VA_response_text    1    Untuk membantu Kamu terkait hal ini, silakan pilih salah satu ya
     Check_VA_response_carousel_exists    2
+    Validate_carousel_items    2    iOS (Apple)    iPhone    Apple
+    Validate_carousel_items    2    Android    Samsung, LG, Lenovo, Asus, Xiaomi, OPPO    Android
+    Validate_carousel_items    2    Windows Phone    Nokia Lumia    Windows Phone
+    Validate_carousel_items    2    Blackberry    Blackberry    Blackberry
+    Click_button_carousel    2    iOS (Apple)    Apple
+    Check_VA_response_text    1    Veronika pandu ya :) ${\n}Untuk pengaturan Caller ID di handphone Apple, Kamu bisa ikuti langkah-langkah berikut:
+    Check_VA_response_image    2
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
-    Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
+    User_input    Mau setting caller id di android gmn ya?
+    Check_VA_response_text    1    Veronika pandu ya :) ${\n}Untuk pengaturan Caller ID di handphone Android, Kamu bisa ikuti langkah-langkah berikut:
+    Check_VA_response_image    2
+    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    User_input    Mau setting caller id di windows phone gmn ya?
+    Check_VA_response_text    1    Veronika pandu ya :) ${\n}Untuk pengaturan Caller ID di handphone Windows Phone, Kamu bisa ikuti langkah-langkah berikut:
+    Check_VA_response_image    2
+    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    User_input    Mau setting caller id di blackberry gmn ya?
+    Check_VA_response_text    1    Veronika pandu ya :) ${\n}Untuk pengaturan Caller ID di handphone Blackberry, Kamu bisa ikuti langkah-langkah berikut:
+    Check_VA_response_image    2
+    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
     Closing_session
 
-[DEPRECATED] 021- User complain about his internet connection
+[X] 021- User complain about his internet connection
     [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
-    User_input    beli pulsa 10000
-    Check_VA_response_text    1    Kamu bisa mengisi ulang pulsa dengan nominal tersebut di GraPARI maupun di outlet terdekat.
-    Check_VA_response_text    2    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
-    User_input    banda aceh
-    Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
-    Check_VA_response_carousel_exists    2
-    Click_button_carousel    2    Police Banda Aceh    Pilih
-    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
-    Check_VA_response_carousel_exists    2
-    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
-    Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
-    Closing_session
+    Login_messenger    ${email}    ${password}
 
-[X] 023- No Title
+[AGENT INVOLVED] 022 - User complain about his internet service and agree to connect to agent
+
+[X] 023- Smalltalk
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    aku bosan nih
@@ -324,6 +376,48 @@ Resource          Test_data/Test_data_VA_response_carousel_TSEL_Indo.txt
     Closing_session
 
 [X] 024- User wants to have a small talk with Veronika
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    aku bosan nih
+    Check_VA_response_text    1    @{randomBoredIndo}
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
+
+[X] 025- User expresses harsh comment and ask random question to Veronika
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    aku bosan nih
+    Check_VA_response_text    1    @{randomBoredIndo}
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
+
+[WALL POSTING INVOLVED] 026- User wrote a wallpost in the last 3 days that VA can handle
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    aku bosan nih
+    Check_VA_response_text    1    @{randomBoredIndo}
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
+
+[AGENT INVOLVED] 027- User is VVIP and want to connect to agent
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    aku bosan nih
+    Check_VA_response_text    1    @{randomBoredIndo}
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
+
+[AGENT INVOLVED] 028- User is VVIP and want to connect to agent
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    aku bosan nih
+    Check_VA_response_text    1    @{randomBoredIndo}
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
+
+[X] 029- User Inquire Active Subscribed Offer
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    aku bosan nih
+    Check_VA_response_text    1    @{randomBoredIndo}
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
+
+[X] 030- User inquire for hot offer
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    aku bosan nih
