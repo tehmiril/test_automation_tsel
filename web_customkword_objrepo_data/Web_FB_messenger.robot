@@ -109,7 +109,7 @@ Resource          Test_data_VA_response_Indo.txt
     Click_carousel_button_on_specific_location    2    3    Buka di Google Maps
     Closing_session
 
-[X] 009 - Non-Telkomsel user who wants to know about Loop
+009 - Non-Telkomsel user who wants to know about Loop
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     Greet_VA_Indo    ${VA_GreetNonTsel}
     Click_button_carousel    1    Jelajah Produk Telkomsel    Layanan digital
@@ -186,6 +186,14 @@ Resource          Test_data_VA_response_Indo.txt
     Closing_session
 
 [DEPRECATED] 013 - User perform Inquire 4G Upgrade and Find Nearest Store
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    Check_VA_response_carousel_exists    2
+    Validate_carousel_items    2    ${Menu_utama_titleA}    ${Menu_utama_subtitleA}    ${Menu_utama_button1A}    ${Menu_utama_button2A}    ${Menu_utama_button3A}
+    Validate_carousel_items    2    ${Menu_utama_titleB}    ${Menu_utama_subtitleB}    ${Menu_utama_button1B}    ${Menu_utama_button2B}    ${Menu_utama_button3B}
+    Validate_carousel_items    2    ${Menu_utama_titleC}    ${Menu_utama_subtitleC}    ${Menu_utama_button1C}    ${Menu_utama_button2C}    ${Menu_utama_button3C}
+    Validate_carousel_items    2    ${Menu_utama_titleD}    ${Menu_utama_subtitleD}    ${Menu_utama_button1D}    ${Menu_utama_button2D}    ${Menu_utama_button3D}
+    Check_VA_response_text    2    Silakan pilih salah satu opsi di atas atau ketik layanan lain yang dibutuhkan
 
 [X] 014 - User want to search a grapari that opens on a specific day
     Login_messenger    ${email}    ${password}
