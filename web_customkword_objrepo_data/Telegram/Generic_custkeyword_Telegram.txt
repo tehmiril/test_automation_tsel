@@ -11,9 +11,11 @@ Greet_VA_Indo
     Check_VA_response_text    1    ${greeting_text}
     Check_VA_response_text    2    ${VA_SecondGreetWording}
     Check_VA_response_image    3
-    Check_VA_response_text_with_buttons    4    ${VA_ThirdGreetWording}    ${VA_GreetButton1}    ${VA_GreetButton2}
-    Click_Button_From_Response    4    Lihat Menu Utama    Lihat Menu Utama
-    SeleniumLibrary.Capture Page Screenshot    VA_greet.png
+    Check_VA_response_text_with_buttons    3    ${VA_ThirdGreetWording}    ${VA_GreetButton1}    ${VA_GreetButton2}
+    Click_Button_From_Response    3    Lihat Menu Utama    Lihat Menu Utama
+    Check_VA_response_text_with_buttons    1    Silakan pilih salah satu pilihan dibawah ini atau ketik layanan lain yang dibutuhkan :)    Promosi    Jelajahi Produk Telkomsel    Profil Kamu    Beli Paket dan Tukar POIN
+    ...    Bantuan Lainnya
+    SeleniumLibrary.Capture Page Screenshot    VAgreet_${TEST NAME}.png
     Sleep    2s
 
 Click_Button_From_Response
@@ -24,13 +26,12 @@ Click_Button_From_Response
     SeleniumLibrary.Click Element    ${xpath_item}[${b_index}]
     Sleep    10s
     ${pop_up_visible}    Run Keyword And Return Status    Element Should Be Visible    //*[@class="confirm_modal_wrap md_simple_modal_wrap"]
-    Run Keyword If    ${pop_up_visible}    Click Element    //*[@name="url" and contains (.,"https://")]/ancestor::*[@class="md_simple_modal_body"]/following-sibling::*/descendant::button[contains(.,"OK")]
+    Run Keyword If    ${pop_up_visible}    Click_button_URL
     ...    ELSE    Click_button_actual    ${r_button}    ${expected_input}
 
 User_input
     [Arguments]    ${input_text}
-    Sleep    5s
-    Wait Until Keyword Succeeds    15s    3s    Wait Until Page Contains Element    ${inputtext_obj}
+    Wait Until Keyword Succeeds    20s    4s    Element Should Be Visible    ${inputtext_obj}
     SeleniumLibrary.Click Element    ${inputtext_obj}
     SeleniumLibrary.Press Key    ${inputtext_obj}    ${input_text}
     Sleep    1s
@@ -39,24 +40,32 @@ User_input
     Set Suite Variable    ${current_user_input}    ${input_text}
     Set Suite Variable    ${tb_validated}    ${FALSE}
     Run Keyword    Count_message_bubble_user_input    ${current_user_input}
+    SeleniumLibrary.Capture Page Screenshot    input_${input_text}_${TEST NAME}.png
 
 Closing_session
     User_input    ${no_answer}
-    Check_VA_response_text    1    ${VA_question_2}
+    Sleep    3s
+    ${status_text}    Run Keyword And Return Status    Check_VA_response_text_actual    ${no_answer}    ${current_total_user_message}    1    ${VA_question_2}
+    Run Keyword If    ${status_text}    Perform_CES
+    ...    ELSE    Check_VA_response_text    1    ${VA_closingstatement}
+
+Perform_CES
     User_input    ${user_rate}
-    SeleniumLibrary.Capture Page Screenshot    user_rate.png
+    SeleniumLibrary.Capture Page Screenshot    user_rate_${TEST NAME}.png
     Check_VA_response_text    1    ${VA_question_3}
     #only type in at the moment
     User_input    ${select_Rate}
     Check_VA_response_text    1    ${VA_askRateReason}
     User_input    ${no_answer}
+    Check_VA_response_text    1    ${VA_ask_rec}
+    User_input    ${give_rec}
     Check_VA_response_text    1    ${VA_closingstatement}
 
 Check_VA_response_text
     [Arguments]    ${order}    @{expected_text}
     Wait Until Keyword Succeeds    1 minute    5s    SeleniumLibrary.Element Should Be Visible    (//div[@class="im_message_text" and text()="${current_user_input}"])[${current_total_user_message}]/ancestor::div[contains(@class,"im_history_message_wrap")]/following-sibling::*[${order}]
-    ${check_text}    Get Text    (//div[@class="im_message_text" and text()="${current_user_input}"])[${current_total_user_message}]/ancestor::div[contains(@class,"im_history_message_wrap")]/following-sibling::*[${order}]/descendant::*[@class="im_message_text"]
-    Run Keyword If    '${check_text}'=='${EMPTY}'    Fail    The response is not text
+    #${check_text}    Get Text    (//div[@class="im_message_text" and text()="${current_user_input}"])[${current_total_user_message}]/ancestor::div[contains(@class,"im_history_message_wrap")]/following-sibling::*[${order}]/descendant::*[@class="im_message_text"]
+    #Run Keyword If    '${check_text}'=='${EMPTY}'    Fail    The response is not text
     : FOR    ${item}    IN    @{expected_text}
     \    ${status_text}    Run Keyword And Return Status    Check_VA_response_text_actual    ${current_user_input}    ${current_total_user_message}    ${order}
     \    ...    ${item}
@@ -71,27 +80,8 @@ Check_VA_response_image
 
 Cancel_and_closing_session
     User_input    ${cancel_answer}
-    Check_VA_response_text    1    ${VA_cancel}
-    Check_VA_response_text    2    ${VA_question_1}
-    User_input    ${no_answer}
-    Check_VA_response_text    1    ${VA_question_2}
-    User_input    ${user_rate}
-    Check_VA_response_text    1    ${VA_question_3}
-    #only type in at the moment
-    User_input    ${select_Rate}
-    Check_VA_response_text    1    ${VA_askRateReason}
-    User_input    ${no_answer}
-    Check_VA_response_text    1    ${VA_closingstatement}
-
-Cancel_and_closing_session_when_unexpected_result
-    User_input    ${cancel_answer}
-    Check_VA_response_text    1    ${VA_cancel}
-    Check_VA_response_text    2    ${VA_question_1}
-    Sleep    2s
-
-Check_opened_URL
-    [Arguments]    ${c_button}
-    ${URLS}    SeleniumLibrary.Get Locations
-    ${window_opens}    Get Length    ${URLS}
-    Run Keyword If    ${window_opens}==1    Run Keywords    Set Suite Variable    ${current_user_input}    ${c_button}
-    ...    AND    Count_message_bubble_user_input    ${current_user_input}
+    Sleep    3s
+    ${cancel_response}    Run Keyword And Return Status    Check_VA_response_text_actual    ${current_user_input}    ${current_total_user_message}    1    ${VA_cancel}
+    Run Keyword If    ${cancel_response}    Run Keywords    Check_VA_response_text    2    ${VA_question_1}
+    ...    AND    Closing_session
+    ...    ELSE    Perform_CES

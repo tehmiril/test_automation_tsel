@@ -1,8 +1,0 @@
-*** Keywords ***
-Validate_VA_carousel_produk
-    Check_VA_response_carousel_exists    2
-    Validate_carousel_items    2    ${Produk_titleA}    ${Produk_subtitleA}    ${Produk_button1A}    ${Produk_button2A}    ${Produk_button3A}
-    Validate_carousel_items    2    ${Produk_titleB}    ${Produk_subtitleB}    ${Produk_button1B}    ${Produk_button2B}    ${Produk_button3B}
-    Validate_carousel_items    2    ${Produk_titleC}    ${Produk_subtitleC}    ${Produk_button1C}    ${Produk_button2C}    ${Produk_button3C}
-    Validate_carousel_items    2    ${Produk_titleD}    ${Produk_subtitleD}    ${Produk_button1D}    ${Produk_button2D}    ${Produk_button3D}
-    Sleep    2s

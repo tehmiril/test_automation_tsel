@@ -1,0 +1,50 @@
+*** Variables ***
+${VA_notunderstand_1}    Maaf    #Maaf, Veronika belum mengerti apa yang Kamu tulis karena masih dalam proses belajar.    # Maaf, Veronika tidak mengerti kata-kata yang Kamu tulis
+${VA_notunderstand_2}    perjelas    #Tolong perjelas yang Kamu maksud ya
+${VA_notunderstand_3}    Saat ini    #Saat ini Veronika belum bisa memenuhi keinginan Kamu.    #Saat ini, Veronika belum mengerti permintaan Kamu
+${VA_notunderstand_4}    customer service    #Veronika hubungkan dengan teman-teman dari customer service ya    #Mungkin teman dari customer service Telkomsel bisa membantu Kamu. Apakah mau disambungkan?
+${VA_notunderstand_5}    Sembari menunggu, Kamu bisa mencoba hiburan di bawah ini
+${VA_notunderstand_6}    Kamu bisa ketik    #Kamu bisa ketik 'batal' jika Kamu tidak lagi membutuhkan bantuan customer service Telkomsel
+${VA_cancel}      Baiklah, Veronika batalkan.
+${VA_question_1}    Ada lagi yang bisa Veronika bantu?
+${VA_question_2}    terus meningkatkan layanan, berikan penilaian Kamu    #Penilaian dalam skala 1-10 (1 sangat tidak puas - 10 sangat puas). Silakan masukan penilaian Kamu
+${VA_question_3}    Menurut Kamu, apa yang harus Veronika tingkatkan?
+${VA_closingstatement}    Terima kasih    #atas penilaiannya    #Veronika turut senang membantu
+${VA_answerPulsa1}    Setelah Veronika cek, sisa pulsa untuk nomor +6281310365118    #adalah sebesar Rp<BALANCE AMOUNT> dan berlaku hingga <EXPIRY DATE>
+${VA_answerPulsa2}    Apakah Kamu juga ingin melakukan pengisian pulsa?
+${VA_validateNumber}    Apakah Kamu bertanya untuk nomor handphone +6281310365118 ?
+${VA_answerKuota2}    Berikut sisa kuota Internet Kamu:
+${VA_answerKuota3}    Apakah Kamu mau membeli paket tambahan?
+${VA_Greet1}      Hai M Testaut, selamat datang di GraPARI Virtual Telkomsel!
+${VA_Greet2}      Apa yang bisa Veronika bantu hari ini?
+${VA_GreetButton1}    Lihat Menu Utama
+${VA_GreetButton2}    Chat in English
+${VA_endGreet}    Sampai jumpa di chat berikutnya dan semoga harimu menyenangkan ya!    #Terima kasih atas penilaiannya  Jangan lupa untuk chat Veronika lagi ya
+${VA_askRateReason}    Tolong tulis alasan Kamu ya
+${VA_thanksRate}    Terima kasih    #atas penilaiannya
+${VA_gives_FAQ}    Berikut adalah beberapa solusi Veronika    #untuk membantu menjawab pertanyaan Kamu ya
+${VA_GreetNonTsel}    Hai Lightning Diamond, selamat datang di GraPARI Virtual Telkomsel!
+${VA_ask_rec}     Seberapa besarkah keinginan Kamu untuk merekomendasikan Telkomsel kepada keluarga atau teman?
+${VA_Main_Menu_TSEL}    Berikut adalah informasi untuk nomor Kamu +6282110685202
+${VA_change_number_info}    Ketik 'Ganti nomor' untuk beralih ke nomor handphone lainnya
+${VA_give_options}    Silakan pilih salah satu opsi di atas atau ketik layanan lain yang dibutuhkan
+${Produk_titleA}    SimPATI Combo
+${Produk_subtitleA}    Aktifkan paket internet kualitas jaringan terbaik
+${Produk_button1A}    Info SimPATI Combo
+${Produk_button2A}    Perdana SimPATI
+${Produk_button3A}    Beli sekarang
+${Produk_titleB}    Kartu As Combo
+${Produk_subtitleB}    internetan asik dengan jaringan terbaik
+${Produk_button1B}    Info Kartu As Combo
+${Produk_button2B}    Perdana Kartu As
+${Produk_button3B}    Beli sekarang
+${Produk_titleC}    Loop Cash
+${Produk_subtitleC}    Beli paket internetan bisa nambah uang jajan
+${Produk_button1C}    Info Loop Cash
+${Produk_button2C}    Perdana Loop
+${Produk_button3C}    Beli sekarang
+${Produk_titleD}    Halo Kick
+${Produk_subtitleD}    Dapatkan lebih banyak benefit premium dengan Halo Kick!
+${Produk_button1D}    Info Halo Kick
+${Produk_button2D}    Daftar kartuHalo
+${Produk_button3D}    Beli di GraPARI

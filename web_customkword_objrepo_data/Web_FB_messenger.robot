@@ -6,29 +6,36 @@ Library           SeleniumLibrary    run_on_failure=No Operation
 Library           String
 Library           OperatingSystem
 Library           Collections
-Resource          Detailed_custkeyword.txt
-Resource          Test_data_user_input_Indo.txt
-Resource          Object_repository.txt
-Resource          Generic_custkeyword.txt
-Resource          Carousel_custkeyword.txt
-Resource          Text_with_buttons_custkeyword.txt
-Resource          URL_data.txt
-Resource          Browser_custkeyword.txt
-Resource          Login_logout_custkeyword.txt
-Resource          Test_data_VA_carousel_Indo.txt
-Resource          Carousel_validate_custkeyword.txt
-Resource          Test_data_VA_response_Indo.txt
+Resource          Custom_keywords/Detailed_custkeyword.txt
+Resource          Custom_keywords/Generic_custkeyword.txt
+Resource          Custom_keywords/Carousel_custkeyword.txt
+Resource          Custom_keywords/Text_with_buttons_custkeyword.txt
+Resource          Custom_keywords/Carousel_validate_custkeyword.txt
+Resource          Custom_keywords/Browser_custkeyword.txt
+Resource          Custom_keywords/Login_logout_custkeyword.txt
+Resource          Object_repository/Object_repo_FB.txt
+Resource          Test_data/URL_data.txt
+Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
+Resource          Test_data/Test_data_VA_response_Indo.txt
+Resource          Test_data/Test_data_user_input_Indo.txt
+Resource          Test_data/Test_data_VA_response_carousel_TSEL_Indo.txt
 
 *** Test Cases ***
 001 - Non-Telkomsel user who just started talking to VA
-    [Tags]    testJenkins
+    [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     Greet_VA_Indo    ${VA_GreetNonTsel}
     User_input    Beli Pulsa
     Cancel_and_closing_session
 
+[TEST_PURPOSES] 001x - Telkomsel user who just started talking to VA
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    Closing_session
+
 002 - Non-Telkomsel who wants to explore VA
-    [Tags]    testJenkins
+    [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     Greet_VA_Indo    ${VA_GreetNonTsel}
     Click_button_carousel    1    Beli Paket dan Tukar POIN    Beli Pulsa
@@ -36,7 +43,7 @@ Resource          Test_data_VA_response_Indo.txt
     Cancel_and_closing_session
 
 005 - Non-Telkomsel user who is wondering about Telkomsel products
-    [Tags]    testJenkins
+    [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    Saran perdana donk
     Check_VA_response_text    1    Oke, Veronika bantu carikan produk Telkomsel yang cocok buat Kamu ya
@@ -59,6 +66,7 @@ Resource          Test_data_VA_response_Indo.txt
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
 
 006 - Non-Telkomsel user who is interested in using KartuHalo
+    [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    Kartu halo itu apa?
     Check_VA_response_text    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini
@@ -76,6 +84,7 @@ Resource          Test_data_VA_response_Indo.txt
     Closing_session
 
 007 - Non-Telkomsel user who wants to know about KartuAs
+    [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    Mau tau info KartuAs dong
     Check_VA_response_text    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini
@@ -93,6 +102,7 @@ Resource          Test_data_VA_response_Indo.txt
     Closing_session
 
 008 - Non-Telkomsel user who wants to know about SimPATI
+    [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    Mau tau info SimPATI dong
     Check_VA_response_text    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini
@@ -109,7 +119,12 @@ Resource          Test_data_VA_response_Indo.txt
     Click_carousel_button_on_specific_location    2    3    Buka di Google Maps
     Closing_session
 
+<<<<<<< HEAD
 009 - Non-Telkomsel user who wants to know about Loop
+=======
+[X] 009 - Non-Telkomsel user who wants to know about Loop
+    [Tags]    Non-Telkomsel_FB
+>>>>>>> c2827fafaad2a2d5ef7426474c62eac4b802f014
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     Greet_VA_Indo    ${VA_GreetNonTsel}
     Click_button_carousel    1    Jelajah Produk Telkomsel    Layanan digital
@@ -129,6 +144,7 @@ Resource          Test_data_VA_response_Indo.txt
     Closing_session
 
 010 - TCASH Information
+    [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     User_input    TCASH itu apaan sih?
     Check_VA_response_text    1    TCASH adalah layanan uang elektronik dari Telkomsel yang telah mendapatkan izin dari Bank Indonesia. Berbeda dengan pulsa, TCASH dapat digunakan untuk bayar tagihan, bayar merchant, isi pulsa, kirim uang, dan banyak lagi.
@@ -153,6 +169,7 @@ Resource          Test_data_VA_response_Indo.txt
     Cancel_and_closing_session
 
 011 - TCASH Information
+    [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     User_input    cara aktifkan tcash gmn ya?
     Check_VA_response_text    1    TCASH dapat dinikmati oleh seluruh pelanggan Telkomsel baik pascabayar (kartuHalo) maupun prabayar (simPATI, Kartu As, dan Loop). Tekan *800*88*6DigitPIN# di HP Kamu. Untuk pengguna baru, tentukan 6 digit PIN Kamu sendiri.
@@ -174,6 +191,7 @@ Resource          Test_data_VA_response_Indo.txt
     Closing_session
 
 012 - User want to have a 4G card and order it online
+    [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     User_input    gimana caranya dapat sim card 4g
     Check_VA_response_text    1    Untuk upgrade ke kartu SIM 4G, Kamu harus mengganti kartu SIM lama dengan kartu SIM 4G. Berikut adalah beberapa cara untuk mendapatkannya:
@@ -196,10 +214,12 @@ Resource          Test_data_VA_response_Indo.txt
     Check_VA_response_text    2    Silakan pilih salah satu opsi di atas atau ketik layanan lain yang dibutuhkan
 
 [X] 014 - User want to search a grapari that opens on a specific day
+    [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     User_input    grapari yang buka di hari minggu di jakarta selatan
 
 015 - User want to buy a starter pack
+    [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    mau beli perdana
     Check_VA_response_text    1    Kamu bisa mendapatkan perdana Telkomsel di GraPARI maupun di outlet terdekat
@@ -211,6 +231,7 @@ Resource          Test_data_VA_response_Indo.txt
     Closing_session
 
 [X] 016 - User want to buy voucher data
+    [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    mau beli voucher data
     Check_VA_response_text    1    Voucher data bisa Kamu dapatkan di outlet terdekat
@@ -220,6 +241,7 @@ Resource          Test_data_VA_response_Indo.txt
     Closing_session
 
 [X] 017 - User wants to know about voucher information
+    [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     Greet_VA_Indo    ${VA_GreetNonTsel}
     User_input    mau tau info voucher telkomsel
@@ -228,6 +250,7 @@ Resource          Test_data_VA_response_Indo.txt
     Cancel_and_closing_session
 
 [DEPRECATED] 018 - User explore the FAQ menu and read about voucher information
+    [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     Greet_VA_Indo    ${VA_GreetNonTsel}
     User_input    mau tau info voucher telkomsel
@@ -237,6 +260,7 @@ Resource          Test_data_VA_response_Indo.txt
     Closing_session
 
 019 - User perform inquire outlet location
+    [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    beli pulsa 10000
     Check_VA_response_text    1    Kamu bisa mengisi ulang pulsa dengan nominal tersebut di GraPARI maupun di outlet terdekat.
@@ -252,6 +276,7 @@ Resource          Test_data_VA_response_Indo.txt
     Closing_session
 
 [DEPRECATED] 020- User perform setting Caller ID \ for Apple, Android, Windows Phone, and Blackberry
+    [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    beli pulsa 10000
     Check_VA_response_text    1    Kamu bisa mengisi ulang pulsa dengan nominal tersebut di GraPARI maupun di outlet terdekat.
@@ -267,6 +292,7 @@ Resource          Test_data_VA_response_Indo.txt
     Closing_session
 
 [DEPRECATED] 021- User complain about his internet connection
+    [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    beli pulsa 10000
     Check_VA_response_text    1    Kamu bisa mengisi ulang pulsa dengan nominal tersebut di GraPARI maupun di outlet terdekat.
@@ -282,6 +308,7 @@ Resource          Test_data_VA_response_Indo.txt
     Closing_session
 
 [X] 023- No Title
+    [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    aku bosan nih
     Check_VA_response_text    1    Kamu bisa mengisi ulang pulsa dengan nominal tersebut di GraPARI maupun di outlet terdekat.
@@ -297,6 +324,7 @@ Resource          Test_data_VA_response_Indo.txt
     Closing_session
 
 [X] 024- User wants to have a small talk with Veronika
+    [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    aku bosan nih
     Check_VA_response_text    1    @{randomBoredIndo}

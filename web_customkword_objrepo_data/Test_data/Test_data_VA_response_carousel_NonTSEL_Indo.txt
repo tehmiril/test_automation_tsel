@@ -1,0 +1,21 @@
+*** Variables ***
+${Menu_utama_NonTSEL_titleA}    Jelajah Produk Telkomsel
+${Menu_utama_NonTSEL_subtitleA}    Temukan produk terbaik Telkomsel di sini
+${Menu_utama_NonTSEL_button1A}    Beralih ke Telkomsel
+${Menu_utama_NonTSEL_button2A}    Produk untuk Kamu
+${Menu_utama_NonTSEL_button3A}    Layanan digital
+${Menu_utama_NonTSEL_titleB}    Profil Kamu
+${Menu_utama_NonTSEL_subtitleB}    Informasi tentang nomor Telkomsel Kamu
+${Menu_utama_NonTSEL_button1B}    Sisa Kuota
+${Menu_utama_NonTSEL_button2B}    Tagihan/Sisa Pulsa
+${Menu_utama_NonTSEL_button3B}    Info PUK
+${Menu_utama_NonTSEL_titleC}    Beli Paket dan Tukar POIN
+${Menu_utama_NonTSEL_subtitleC}    Lihat dan beli produk Telkomsel favorit Kamu di sini
+${Menu_utama_NonTSEL_button1C}    Beli Pulsa
+${Menu_utama_NonTSEL_button2C}    Beli Paket
+${Menu_utama_NonTSEL_button3C}    Telkomsel POIN
+${Menu_utama_NonTSEL_titleD}    Bantuan Lainnya
+${Menu_utama_NonTSEL_subtitleD}    Kamu punya pertanyaan? Temukan jawabannya di sini
+${Menu_utama_NonTSEL_button1D}    Registrasi Prabayar
+${Menu_utama_NonTSEL_button2D}    GraPARI Terdekat
+${Menu_utama_NonTSEL_button3D}    Kontak Live Agent

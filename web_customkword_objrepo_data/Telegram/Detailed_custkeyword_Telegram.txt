@@ -17,3 +17,10 @@ Click_button_actual
     Run Keyword If    '${expected_input}'!='NONE'    Run Keywords    Set Suite Variable    ${current_user_input}    ${expected_input}
     ...    AND    Count_message_bubble_user_input    ${current_user_input}
     Set Suite Variable    ${tb_validated}    ${FALSE}
+    SeleniumLibrary.Capture Page Screenshot    button_${r_button}_${TEST NAME}.png
+
+Click_button_URL
+    Click Element    //*[@name="url" and contains (.,"https://")]/ancestor::*[@class="md_simple_modal_body"]/following-sibling::*/descendant::button[contains(.,"OK")]
+    Sleep    7s
+    SeleniumLibrary.Capture Page Screenshot    button_URL_${TEST NAME}.png
+    Select Window    url=${URL_Telegram}

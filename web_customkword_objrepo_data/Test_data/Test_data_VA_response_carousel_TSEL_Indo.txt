@@ -1,0 +1,26 @@
+*** Variables ***
+${Menu_utama_TSEL_titleA}    Profil Kamu
+${Menu_utama_TSEL_subtitleA}    Informasi tentang nomor Telkomsel Kamu
+${Menu_utama_TSEL_button1A}    Detail Kuota
+${Menu_utama_TSEL_button2A}    Beli Pulsa
+${Menu_utama_TSEL_button3A}    Info PUK
+${Menu_utama_TSEL_titleB}    Hanya Untuk Kamu
+${Menu_utama_TSEL_subtitleB}    Pilihan produk paling menarik hanya untuk Kamu
+${Menu_utama_TSEL_button1B}    Beli Paket Favorit
+${Menu_utama_TSEL_button2B}    Lihat Paket Lainnya
+${Menu_utama_TSEL_button3B}    Gifting
+${Menu_utama_TSEL_titleC}    '#SiapHeboh simPATI COMBO
+${Menu_utama_TSEL_subtitleC}    Pastikan Kamu selalu #SiapHeboh dengan simPATI COMBO
+${Menu_utama_TSEL_button1C}    Ikuti Promo
+${Menu_utama_TSEL_button2C}    Detail Promosi
+${Menu_utama_TSEL_button3C}    Lihat Semua Promo
+${Menu_utama_TSEL_titleD}    ABC
+${Menu_utama_TSEL_subtitleD}    ABC
+${Menu_utama_TSEL_button1D}    Penawaran untuk Kamu
+${Menu_utama_TSEL_button2D}    Semua Penawaran
+${Menu_utama_TSEL_button3D}    Info POINTASTIC DEAL
+${Menu_utama_TSEL_titleE}    Bantuan Lainnya
+${Menu_utama_TSEL_subtitleE}    Kamu punya pertanyaan? Temukan jawabannya di sini
+${Menu_utama_TSEL_button1E}    FAQ
+${Menu_utama_TSEL_button2E}    GraPARI Terdekat
+${Menu_utama_TSEL_button3E}    Kontak Live Agent
