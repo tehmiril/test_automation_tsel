@@ -1,0 +1,23 @@
+*** Keywords ***
+Validate_VA_carousel_produk
+    Check_VA_response_carousel_exists    2
+    Validate_carousel_items    2    ${Produk_titleA}    ${Produk_subtitleA}    ${Produk_button1A}    ${Produk_button2A}    ${Produk_button3A}
+    Validate_carousel_items    2    ${Produk_titleB}    ${Produk_subtitleB}    ${Produk_button1B}    ${Produk_button2B}    ${Produk_button3B}
+    Validate_carousel_items    2    ${Produk_titleC}    ${Produk_subtitleC}    ${Produk_button1C}    ${Produk_button2C}    ${Produk_button3C}
+    Validate_carousel_items    2    ${Produk_titleD}    ${Produk_subtitleD}    ${Produk_button1D}    ${Produk_button2D}    ${Produk_button3D}
+    Sleep    2s
+
+Validate_VA_carousel_main_menu_non_tsel
+    [Arguments]    ${order}
+    Validate_carousel_items    ${order}    ${Menu_utama_NonTSEL_titleA}    ${Menu_utama_NonTSEL_subtitleA}    ${Menu_utama_NonTSEL_button1A}    ${Menu_utama_NonTSEL_button2A}    ${Menu_utama_NonTSEL_button3A}
+    Validate_carousel_items    ${order}    ${Menu_utama_NonTSEL_titleB}    ${Menu_utama_NonTSEL_subtitleB}    ${Menu_utama_NonTSEL_button1B}    ${Menu_utama_NonTSEL_button2B}    ${Menu_utama_NonTSEL_button3B}
+    Validate_carousel_items    ${order}    ${Menu_utama_NonTSEL_titleC}    ${Menu_utama_NonTSEL_subtitleC}    ${Menu_utama_NonTSEL_button1C}    ${Menu_utama_NonTSEL_button2C}    ${Menu_utama_NonTSEL_button3C}
+    Validate_carousel_items    ${order}    ${Menu_utama_NonTSEL_titleD}    ${Menu_utama_NonTSEL_subtitleD}    ${Menu_utama_NonTSEL_button1D}    ${Menu_utama_NonTSEL_button2D}    ${Menu_utama_NonTSEL_button3D}
+
+Validate_VA_carousel_main_menu_tsel
+    [Arguments]    ${order}
+    Validate_carousel_items    ${order}    ${Menu_utama_TSEL_titleA}    ${Menu_utama_TSEL_subtitleA}    ${Menu_utama_TSEL_button1A}    ${Menu_utama_TSEL_button2A}    ${Menu_utama_TSEL_button3A}
+    Validate_carousel_items    ${order}    ${Menu_utama_TSEL_titleB}    ${Menu_utama_TSEL_subtitleB}    ${Menu_utama_TSEL_button1B}    ${Menu_utama_TSEL_button2B}    ${Menu_utama_TSEL_button3B}
+    #Validate_carousel_items    ${order}    ${Menu_utama_TSEL_titleC}    ${Menu_utama_TSEL_subtitleC}    ${Menu_utama_TSEL_button1C}    ${Menu_utama_TSEL_button2C}    ${Menu_utama_TSEL_button3C}
+    #Validate_carousel_items    ${order}    ${Menu_utama_TSEL_titleD}    ${Menu_utama_TSEL_subtitleD}    ${Menu_utama_TSEL_button1D}    ${Menu_utama_TSEL_button2D}    ${Menu_utama_TSEL_button3D}
+    Validate_carousel_items    ${order}    ${Menu_utama_TSEL_titleE}    ${Menu_utama_TSEL_subtitleE}    ${Menu_utama_TSEL_button1E}    ${Menu_utama_TSEL_button2E}    ${Menu_utama_TSEL_button3E}

@@ -41,7 +41,6 @@ Swipe_forward_until_element
     : FOR    ${looping}    IN RANGE    0    10
     \    SeleniumLibrary.Click Element    (${carouselforward_obj})[${totalcarousel}]
     \    Sleep    2s
-    \    SeleniumLibrary.Capture Page Screenshot    carousel_${looping}_${TEST NAME}.png
     \    ${element_XBegin}    Get_locationX_carousel_item
     \    Run Keyword If    ${current_tsel_icon_locationX} < ${element_XBegin} < ${current_right_limit}    Run Keywords    Sleep    1s
     \    ...    AND    Exit For Loop    #(//*[@${carouselclass_obj} and contains(.,'${current_carousel_title}')])[${total_item_carousel}]/following-sibling::div//a[contains(.,'${current_carousel_button}')]
@@ -53,7 +52,6 @@ Swipe_backward_until_element
     : FOR    ${looping}    IN RANGE    0    10
     \    SeleniumLibrary.Click Element    (${carouselbackward_obj})[${totalcarousel}]
     \    Sleep    2s
-    \    SeleniumLibrary.Capture Page Screenshot    carousel_${looping}_${TEST NAME}.png
     \    ${element_XBegin}    Get_locationX_carousel_item
     \    Run Keyword If    ${current_tsel_icon_locationX} < ${element_XBegin} < ${current_right_limit}    Run Keywords    Sleep    1s
     \    ...    AND    Exit For Loop    #(//*[@${carouselclass_obj} and contains(.,'${current_carousel_title}')])[${total_item_carousel}]/following-sibling::div//a[contains(.,'${current_carousel_button}')]
@@ -99,3 +97,12 @@ Check_where_to_swipe_carousel
     ...    AND    SeleniumLibrary.Capture Page Screenshot    item_carousel_found_${TEST NAME}.png
     ...    ELSE IF    ${element_XBegin} < ${current_tsel_icon_locationX}    Run Keyword    Swipe_backward_until_element    ${order}
     ...    ELSE IF    ${element_XBegin} > ${current_right_limit}    Run Keyword    Swipe_forward_until_element    ${order}
+
+Validate_Main_Menu
+    Run Keyword If    '${user_type}'=='NON-TSEL'    Run Keywords    Check_VA_response_carousel_exists    1
+    ...    AND    Validate_VA_carousel_main_menu_non_tsel    1
+    ...    AND    Check_VA_response_text    2    ${VA_give_options}
+    ...    ELSE    Run Keywords    Check_VA_response_text    1    ${VA_Main_Menu_TSEL}
+    ...    AND    Validate_VA_carousel_main_menu_tsel    2
+    ...    AND    Check_VA_response_text    3    ${VA_change_number_info}
+    ...    AND    Check_VA_response_text    4    ${VA_give_options}

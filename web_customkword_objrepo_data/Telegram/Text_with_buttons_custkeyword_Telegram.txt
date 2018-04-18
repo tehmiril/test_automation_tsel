@@ -33,7 +33,7 @@ Loop_through_buttons_in_the_response
     : FOR    ${index}    IN RANGE    1    ${amount_button}+1
     \    ${text_button}    SeleniumLibrary.Get Text    ${xpath_item}[${index}]
     \    ${text_button2}=    Remove String Using Regexp    ${text_button}    (\r\n|\r|\n)
-    \    ${status_button}    Run Keyword And Return Status    Should Contain    ${button_text}    ${text_button2}
+    \    ${status_button}    Run Keyword And Return Status    Should Be Equal As Strings    ${button_text}    ${text_button2}
     \    Run Keyword If    ${status_button}    Run Keywords    Set Suite Variable    ${b_index}    ${index}
     \    ...    AND    Exit For Loop
     [Return]    ${status_button}

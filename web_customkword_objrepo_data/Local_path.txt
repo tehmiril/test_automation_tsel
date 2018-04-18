@@ -1,5 +1,5 @@
 *** Variables ***
-#${user-data-dir}    --user-data-dir\=C:\\Users\\amiril.r.faradini\\AppData\\Local\\Google\\Chrome\\User Data
-${user-data-dir}    --user-data-dir\=C:\\Users\\chairaja\\AppData\\Local\\Google\\Chrome\\User Data
-#${profile-dir}    --profile-directory\=Profile 1
-${profile-dir}    --profile-directory\=Default
+${user-data-dir}    --user-data-dir\=C:\\Users\\amiril.r.faradini\\AppData\\Local\\Google\\Chrome\\User Data
+#${user-data-dir}    --user-data-dir\=C:\\Users\\chairaja\\AppData\\Local\\Google\\Chrome\\User Data
+${profile-dir_NonT}    --profile-directory\=Profile 1
+${profile-dir_T}    --profile-directory\=Default

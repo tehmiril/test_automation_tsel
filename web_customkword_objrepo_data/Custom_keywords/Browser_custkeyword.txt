@@ -17,7 +17,7 @@ Open_chrome
     Set Suite Variable    ${last_opened_URL}    ${URL}
 
 Open_chrome_with_user_profile
-    [Arguments]    ${URL}
+    [Arguments]    ${URL}    ${profile-dir_now}
     [Documentation]    Opens _Google Chrome_ with saved user profile.
     ...    For more information on what capabilities that _Google Chrome_
     ...    supports, see [https://sites.google.com/a/chromium.org/chromedriver/capabilities%7Cthis Capabilities & ChromeOptions page].
@@ -27,7 +27,7 @@ Open_chrome_with_user_profile
     Call Method    ${chrome_options}    add_argument    --disable-notifications
     Call Method    ${chrome_options}    add_argument    --disable-infobars
     Call Method    ${chrome_options}    add_argument    ${user-data-dir}
-    Call Method    ${chrome_options}    add_argument    ${profile-dir}
+    Call Method    ${chrome_options}    add_argument    ${profile-dir_now}
     Run Keyword If    os.sep == '/'    SeleniumLibrary.Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}
     ...    ELSE    SeleniumLibrary.Create Webdriver    Chrome    my_alias    chrome_options=${chrome_options}    #executable_path=/usr/lib/chromium-browser/chromedriver
     ${width}    ${height}=    SeleniumLibrary.Get Window Size
@@ -51,3 +51,18 @@ Check_opened_URL
     ...    AND    Count_message_bubble_user_input    ${current_user_input}
     ...    AND    SeleniumLibrary.Capture Page Screenshot    input_${current_user_input}_${TEST NAME}.png
     Set Suite Variable    ${last_opened_URL}    ${last_url}
+
+Check_tags
+    Set Suite Variable    ${current_tag}    @{TEST TAGS}[0]
+    Run Keyword If    '${prev_tag}'=='NONE' or '${current_tag}'!='${prev_tag}'    Open_chrome_based_on_tag
+    ...    ELSE IF    '${current_tag}'=='${prev_tag}'    No Operation
+
+Open_chrome_based_on_tag
+    Run Keyword If    '${current_tag}'=='Telkomsel_Telegram'    Run Keywords    Close Browser
+    ...    AND    Open_chrome_with_user_profile    ${URL_Telegram}    ${profile-dir_T}
+    ...    ELSE IF    '${current_tag}'=='Non-Telkomsel_Telegram'    Run Keywords    Close Browser
+    ...    AND    Open_chrome_with_user_profile    ${URL_Telegram}    ${profile-dir_NonT}
+    Set Suite Variable    ${prev_tag}    ${current_tag}
+
+Set_init_browser_variable
+    Set Suite Variable    ${prev_tag}    NONE
