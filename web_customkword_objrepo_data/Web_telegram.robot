@@ -125,29 +125,33 @@ tester2
     Click_Button_From_Response    4    NAZWA CELL SELASA    NONE
     Closing_session
 
-[X] 009 - Non-Telkomsel user who wants to know about Loop
+009 - Non-Telkomsel user who wants to know about Loop
     [Tags]    Non-Telkomsel_Telegram
     Greet_VA_Indo    ${VA_GreetNonTsel}
-    Click_button_carousel    1    Jelajah Produk Telkomsel    Layanan digital
-    Click_button_carousel    1    Jelajah Produk Telkomsel    Beralih ke Telkomsel
-    Check_VA_response_text    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini
-    Validate_VA_carousel_produk
-    Click_button_carousel    2    Loop Cash    Beli sekarang
-    Check_VA_response_text    1    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
-    User_input    banda aceh
+    Click_Button_From_Response    1    Jelajahi Produk Telkomsel    Jelajahi Produk Telkomsel
+    Check_VA_response_text_with_buttons    1    Berikut jenis informasi yang bisa Veronika berikan untuk Kamu    Beralih ke Telkomsel    Produk untuk Kamu    Layanan digital
+    Click_Button_From_Response    1    Layanan digital    NONE
+    Click_Button_From_Response    1    Beralih ke Telkomsel    NONE
+    Check_VA_response_text_with_buttons    2    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini    SimPATI    Kartu As    Loop    kartuHalo
+    Click_Button_From_Response    2    Loop    Loop
+    Check_VA_response_text_with_buttons    1    Berikut adalah informasi tentang produk Loop    Info Loop Cash    Perdana Loop    Beli sekarang
+    Click_Button_From_Response    1    Beli sekarang    NONE
+    User_input    jakarta
     Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
-    Check_VA_response_carousel_exists    2
-    Click_button_carousel    2    Police Banda Aceh    Pilih
-    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
-    Check_VA_response_carousel_exists    2
-    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
-    Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
+    Check_VA_response_text_with_buttons    2    Lokasi yang Veronika temukan:
+    Click_Button_From_Response    2    Jakarta Timur    NONE
+    Check_VA_response_text    3    Veronika menemukan beberapa outlet Telkomsel di sekitar Jakarta Timur yang dapat Kamu kunjungi nih
+    Check_VA_response_text_with_buttons    4    Berikut GraPARI dan outlet terdekat di sekitarmu
+    Check_VA_response_text    5    Ada lagi yang bisa Veronika bantu?
+    Click_Button_From_Response    4    NAZWA CELL SELASA    NONE
     Closing_session
 
-010 - TCASH Information
+[x] 010 - TCASH Information
     [Tags]    Telkomsel_Telegram
     User_input    TCASH itu apaan sih?
     Check_VA_response_text    1    TCASH adalah layanan uang elektronik dari Telkomsel yang telah mendapatkan izin dari Bank Indonesia. Berbeda dengan pulsa, TCASH dapat digunakan untuk bayar tagihan, bayar merchant, isi pulsa, kirim uang, dan banyak lagi.
+    Check_VA_response_text_with_buttons    2    TCASH info    Dapatkan di GraPARI    Pesan Sticker    Promo TCASH    Merchant TCASH
+    ...    TCASH FAQ    Pertanyaan Lain
     User_input    apa sih untungnya pake tcash?
     Check_VA_response_image    1
     Check_VA_response_text_with_buttons    2    Apa Kamu mau tahu lebih banyak tentang TCASH?    Ya    Tidak
@@ -186,7 +190,7 @@ tester2
 012 - User want to have a 4G card and order it online
     [Tags]    Telkomsel_Telegram
     User_input    gimana caranya dapat sim card 4g
-    Check_VA_response_text    1    Untuk upgrade ke kartu SIM 4G, ganti kartu SIM lama Kamu dengan kartu SIM 4G ya. Pergantian kartu tidak akan mengubah nomor Telkomsel Kamu. Berikut adalah beberapa cara untuk mendapatkannya:    MyGraPARI Terdekat    GraPARI Terdekat    Registrasi Online
+    Check_VA_response_text_with_buttons    1    Untuk upgrade ke kartu SIM 4G, ganti kartu SIM lama Kamu dengan kartu SIM 4G ya. Pergantian kartu tidak akan mengubah nomor Telkomsel Kamu. Berikut adalah beberapa cara untuk mendapatkannya:    MyGraPARI Terdekat    GraPARI Terdekat    Registrasi Online
     Click_Button_From_Response    1    MyGraPARI Terdekat    NONE
     Closing_session
 

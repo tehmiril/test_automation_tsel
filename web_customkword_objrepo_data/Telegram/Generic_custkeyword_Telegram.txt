@@ -40,7 +40,7 @@ User_input
     Set Suite Variable    ${current_user_input}    ${input_text}
     Set Suite Variable    ${tb_validated}    ${FALSE}
     Run Keyword    Count_message_bubble_user_input    ${current_user_input}
-    SeleniumLibrary.Capture Page Screenshot    input_${input_text}_${TEST NAME}.png
+    Make_screenshot_user_input
 
 Closing_session
     User_input    ${no_answer}

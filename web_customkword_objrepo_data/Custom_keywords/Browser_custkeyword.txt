@@ -66,3 +66,7 @@ Open_chrome_based_on_tag
 
 Set_init_browser_variable
     Set Suite Variable    ${prev_tag}    NONE
+
+Make_screenshot_user_input
+    ${input_s}    Remove String Using Regexp    ${current_user_input}    [^a-zA-Z0-9]
+    SeleniumLibrary.Capture Page Screenshot    input_${input_s}_${TEST NAME}.png
