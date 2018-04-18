@@ -1,22 +1,22 @@
 *** Settings ***
 Suite Setup       Set_init_browser_variable
 Suite Teardown    Close Browser
-Test Setup        Run Keywords    Check_tags
+Test Setup        Check_tags
 Test Teardown     Run Keyword If Test Failed    Cancel_and_closing_session
 Library           SeleniumLibrary    run_on_failure=No Operation
 Library           String
 Library           OperatingSystem
 Library           Collections
+Resource          Local_path.txt
+Resource          Custom_keywords/Browser_custkeyword.txt
+Resource          Custom_keywords/SMS_web_custom_keywords.txt
 Resource          Telegram/Test_data_user_input_Telegram_Indo.txt
 Resource          Telegram/Text_with_buttons_custkeyword_Telegram.txt
-Resource          URL_data.txt
-Resource          SMS_web_custom_keywords.txt
-Resource          Local_path.txt
 Resource          Telegram/Detailed_custkeyword_Telegram.txt
 Resource          Telegram/Generic_custkeyword_Telegram.txt
 Resource          Telegram/Object_repository_Telegram.txt
-Resource          Browser_custkeyword.txt
 Resource          Telegram/Test_data_VA_response_Telegram_Indo.txt
+Resource          Test_data/URL_data.txt
 
 *** Test Cases ***
 001 - Non-Telkomsel user who just started talking to VA
@@ -188,4 +188,18 @@ tester2
     User_input    gimana caranya dapat sim card 4g
     Check_VA_response_text    1    Untuk upgrade ke kartu SIM 4G, ganti kartu SIM lama Kamu dengan kartu SIM 4G ya. Pergantian kartu tidak akan mengubah nomor Telkomsel Kamu. Berikut adalah beberapa cara untuk mendapatkannya:    MyGraPARI Terdekat    GraPARI Terdekat    Registrasi Online
     Click_Button_From_Response    1    MyGraPARI Terdekat    NONE
+    Closing_session
+
+[x] 052 - Postpaid user wants to change his number (vice versa)
+    [Tags]    Telkomsel_Telegram
+    Greet_VA_Indo    ${VA_Greet1}
+    User_input    Ganti Nomor
+    Check_VA_response_text    1    Agar permintaan Kamu dapat diproses lebih lanjut, tolong tulis nomor Telkomsel Kamu yang valid ya (contoh: 08110000000)
+    User_input    082110685202
+    Check_VA_response_text    1    Terima kasih untuk informasinya.
+    Check_VA_response_text    2    Veronika akan mengirim password melalui SMS dari TELKOMSEL ke nomor +6282110685202. Silakan tulis password tersebut ya.
+    Check_VA_response_text    2    Password hanya berlaku 3 menit. Kamu bisa ketik 'Password Baru' untuk dikirimkan password baru.
+    Get_OTP
+    Check_VA_response_text    1    Oke, Veronika sudah berhasil memverifikasi nomor telepon Kamu ya.
+    Check_VA_response_text    2    ${VA_Greet1}
     Closing_session

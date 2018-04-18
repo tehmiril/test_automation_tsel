@@ -15,11 +15,12 @@ Select_TSEL_SMS
     ${total_strings}    Get Length    ${elements_messages}
     ${last_element}    Get From List    ${elements_messages}    1
     ${finalelement_pin}    Strip String    ${last_element}    characters=${SPACE}
-    Capture Page Screenshot    otp.png
+    Capture Page Screenshot    otp_${finalelement_pin}_${TEST NAME}.png
     Set Suite Variable    ${current_finalelement_pin}    ${finalelement_pin}
 
 Get_OTP
+    ${URL_now}    Get Location
     Open SMS
     Select_TSEL_SMS
-    Go To    ${URLmessengerTSEL}
+    Go To    ${URL_now}
     User_input    ${current_finalelement_pin}

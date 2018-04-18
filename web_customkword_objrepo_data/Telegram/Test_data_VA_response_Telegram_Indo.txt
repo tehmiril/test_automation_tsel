@@ -15,7 +15,7 @@ ${VA_answerPulsa2}    Apakah Kamu juga ingin melakukan pengisian pulsa?
 ${VA_validateNumber}    Apakah Kamu bertanya untuk nomor handphone +6281310365118 ?
 ${VA_answerKuota2}    Berikut sisa kuota Internet Kamu:
 ${VA_answerKuota3}    Apakah Kamu mau membeli paket tambahan?
-${VA_Greet1}      Hai Testaut01, selamat datang di GraPARI Virtual Telkomsel!
+${VA_Greet1}      Hai Testaut01 , selamat datang di GraPARI Virtual Telkomsel!
 ${VA_Greet2}      Apa yang bisa Veronika bantu hari ini?
 ${VA_GreetButton1}    Lihat Menu Utama
 ${VA_GreetButton2}    Chat in English

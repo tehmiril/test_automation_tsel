@@ -58,10 +58,10 @@ Check_tags
     ...    ELSE IF    '${current_tag}'=='${prev_tag}'    No Operation
 
 Open_chrome_based_on_tag
-    Run Keyword If    '${current_tag}'=='Telkomsel_Telegram'    Run Keywords    Close Browser
-    ...    AND    Open_chrome_with_user_profile    ${URL_Telegram}    ${profile-dir_T}
-    ...    ELSE IF    '${current_tag}'=='Non-Telkomsel_Telegram'    Run Keywords    Close Browser
-    ...    AND    Open_chrome_with_user_profile    ${URL_Telegram}    ${profile-dir_NonT}
+    Close Browser
+    Run Keyword If    '${current_tag}'=='Telkomsel_Telegram'    Open_chrome_with_user_profile    ${URL_Telegram}    ${profile-dir_T}
+    ...    ELSE IF    '${current_tag}'=='Non-Telkomsel_Telegram'    Open_chrome_with_user_profile    ${URL_Telegram}    ${profile-dir_NonT}
+    ...    ELSE IF    '${current_tag}'=='Telkomsel_FB'    Open_chrome_with_user_profile    ${URLmessengerTSEL}    ${profile-dir_T}
     Set Suite Variable    ${prev_tag}    ${current_tag}
 
 Set_init_browser_variable
