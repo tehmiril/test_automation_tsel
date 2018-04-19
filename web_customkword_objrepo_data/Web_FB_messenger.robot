@@ -55,11 +55,11 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text_with_buttons    3    Apakah Kamu ingin membeli kartu perdana Kartu As tersebut?    Ya    Tidak
     Click_Button_From_Response    3    Ya
     Check_VA_response_text    1    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
-    User_input    banda aceh
+    User_input    jakarta selatan
     Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
     Check_VA_response_carousel_exists    2
-    Click_button_carousel    2    Police Banda Aceh    Pilih
-    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
+    Click_button_carousel    2    Jakarta Selatan    Pilih
+    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Jakarta Selatan yang dapat Kamu kunjungi nih
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
 
@@ -71,11 +71,11 @@ Resource          Test_data/Test_data_payment.txt
     Validate_VA_carousel_produk
     Click_button_carousel    2    Halo Kick    Beli di GraPARI
     Check_VA_response_text    1    Tuliskan lokasi yang Kamu cari atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu untuk mendapatkan GraPARI terdekat
-    User_input    banda aceh
+    User_input    Jakarta Selatan
     Check_VA_response_text    1    Lokasi GraPARI sekitar mana yang Kamu maksud?
     Check_VA_response_carousel_exists    2
-    Click_button_carousel    2    Police Banda Aceh    Pilih
-    Check_VA_response_text    1    Berikut info GraPARI di sekitar Police Banda Aceh ya
+    Click_button_carousel    2    Jakarta Selatan    Pilih
+    Check_VA_response_text    1    Berikut info GraPARI di sekitar Jakarta Selatan ya
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
     Click_button_carousel    2    GraPARI SETUI    Buka di Google Maps
@@ -89,11 +89,11 @@ Resource          Test_data/Test_data_payment.txt
     Validate_VA_carousel_produk
     Click_button_carousel    2    Kartu As Combo    Beli sekarang
     Check_VA_response_text    1    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
-    User_input    banda aceh
+    User_input    Jakarta Selatan
     Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
     Check_VA_response_carousel_exists    2
-    Click_button_carousel    2    Police Banda Aceh    Pilih
-    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
+    Click_button_carousel    2    Jakarta Selatan    Pilih
+    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Jakarta Selatan yang dapat Kamu kunjungi nih
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
@@ -117,7 +117,7 @@ Resource          Test_data/Test_data_payment.txt
     Click_carousel_button_on_specific_location    2    3    Buka di Google Maps
     Closing_session
 
-[X] 009 - Non-Telkomsel user who wants to know about Loop
+009 - Non-Telkomsel user who wants to know about Loop
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     Greet_VA_Indo    ${VA_GreetNonTsel}
@@ -127,11 +127,11 @@ Resource          Test_data/Test_data_payment.txt
     Validate_VA_carousel_produk
     Click_button_carousel    2    Loop Cash    Beli sekarang
     Check_VA_response_text    1    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
-    User_input    banda aceh
+    User_input    Jakarta Selatan
     Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
     Check_VA_response_carousel_exists    2
-    Click_button_carousel    2    Police Banda Aceh    Pilih
-    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
+    Click_button_carousel    2    Jakarta Selatan    Pilih
+    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Jakarta Selatan yang dapat Kamu kunjungi nih
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
@@ -152,14 +152,10 @@ Resource          Test_data/Test_data_payment.txt
     User_input    Tcash ada promo apa aja ya?
     Check_VA_response_text    1    TCASH adalah layanan uang elektronik dari Telkomsel yang telah mendapatkan izin dari Bank Indonesia. Berbeda dengan pulsa, TCASH dapat digunakan untuk bayar tagihan, bayar merchant, isi pulsa, kirim uang, dan banyak lagi.
     Check_VA_response_carousel_exists    2
-    Validate_carousel_items    2    Promo TCASH    \    Merchant TCASH
-    Validate_carousel_items    2    Info    \    Pertanyaan Lain
-    Validate_carousel_items    2    Dapatkan TCASH    \    Dapatkan di GraPARI
     Validate_carousel_items    2    Promo TCASH    Dapatkan diskon menarik di merchant mitra TCASH    Merchant TCASH
     Validate_carousel_items    2    Info    Informasi mengenai TCASH    Pertanyaan Lain
-    #Validate_carousel_items    2    Dapatkan TCASH    Dapatkan TCASH di GraPARI atau dikirimkan ke rumah Kamu    Dapatkan di GraPARI
+    Validate_carousel_items    2    Dapatkan TCASH    Dapatkan TCASH di GraPARI atau dikirimkan ke rumah Kamu    Dapatkan di GraPARI
     Click_button_carousel    2    Dapatkan TCASH    Pesan Sticker
-    #Click_button_carousel    2    Info    TCASH FAQ
     Cancel_and_closing_session
 
 011 - TCASH Information
@@ -302,11 +298,11 @@ Resource          Test_data/Test_data_payment.txt
     User_input    beli pulsa 10000
     Check_VA_response_text    1    Kamu bisa mengisi ulang pulsa dengan nominal tersebut di GraPARI maupun di outlet terdekat.
     Check_VA_response_text    2    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
-    User_input    banda aceh
+    User_input    jakarta selatan
     Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
     Check_VA_response_carousel_exists    2
-    Click_button_carousel    2    Police Banda Aceh    Pilih
-    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
+    Click_button_carousel    2    Jakarta Selatan    Pilih
+    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Jakarta Selatan yang dapat Kamu kunjungi nih
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
@@ -363,11 +359,11 @@ Resource          Test_data/Test_data_payment.txt
     User_input    aku bosan nih
     Check_VA_response_text    1    Kamu bisa mengisi ulang pulsa dengan nominal tersebut di GraPARI maupun di outlet terdekat.
     Check_VA_response_text    2    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
-    User_input    banda aceh
+    User_input    Jakarta Selatan
     Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
     Check_VA_response_carousel_exists    2
-    Click_button_carousel    2    Police Banda Aceh    Pilih
-    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Police Banda Aceh yang dapat Kamu kunjungi nih
+    Click_button_carousel    2    Jakarta Selatan    Pilih
+    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Jakarta Selatan yang dapat Kamu kunjungi nih
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
