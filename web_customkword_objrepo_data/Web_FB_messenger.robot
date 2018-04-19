@@ -445,6 +445,7 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    1    silakan pilih salah satu opsi pembayaran di bawah ini.
     Validate_VA_carousel_payment    2
     Click_carousel_button_on_specific_location    2    1    Kartu Kredit
+    #This needs to be updated with PASS once credit card details are correct
     Pay_with_credit_card    FAIL
     Closing_session
 
