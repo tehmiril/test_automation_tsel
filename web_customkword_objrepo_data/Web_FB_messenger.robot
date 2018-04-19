@@ -58,8 +58,9 @@ Resource          Test_data/Test_data_payment.txt
     User_input    jakarta selatan
     Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
     Check_VA_response_carousel_exists    2
-    Click_button_carousel    2    Jakarta Selatan    Pilih
-    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Jakarta Selatan yang dapat Kamu kunjungi nih
+    #Click_button_carousel    2    Jakarta Selatan    Pilih
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel    #di sekitar Jakarta Selatan yang dapat Kamu kunjungi nih
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
 
@@ -74,11 +75,13 @@ Resource          Test_data/Test_data_payment.txt
     User_input    Jakarta Selatan
     Check_VA_response_text    1    Lokasi GraPARI sekitar mana yang Kamu maksud?
     Check_VA_response_carousel_exists    2
-    Click_button_carousel    2    Jakarta Selatan    Pilih
-    Check_VA_response_text    1    Berikut info GraPARI di sekitar Jakarta Selatan ya
+    #Click_button_carousel    2    Jakarta Selatan    Pilih
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_response_text    1    Berikut info GraPARI di sekitar    #Jakarta Selatan ya
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
-    Click_button_carousel    2    GraPARI SETUI    Buka di Google Maps
+    #Click_button_carousel    2    GraPARI SETUI    Buka di Google Maps
+    Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
     Closing_session
 
 007 - Non-Telkomsel user who wants to know about KartuAs
@@ -92,8 +95,9 @@ Resource          Test_data/Test_data_payment.txt
     User_input    Jakarta Selatan
     Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
     Check_VA_response_carousel_exists    2
-    Click_button_carousel    2    Jakarta Selatan    Pilih
-    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Jakarta Selatan yang dapat Kamu kunjungi nih
+    #Click_button_carousel    2    Jakarta Selatan    Pilih
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel    #di sekitar Jakarta Selatan yang dapat Kamu kunjungi nih
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
@@ -130,8 +134,9 @@ Resource          Test_data/Test_data_payment.txt
     User_input    Jakarta Selatan
     Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
     Check_VA_response_carousel_exists    2
-    Click_button_carousel    2    Jakarta Selatan    Pilih
-    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Jakarta Selatan yang dapat Kamu kunjungi nih
+    #Click_button_carousel    2    Jakarta Selatan    Pilih
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar    #Jakarta Selatan yang dapat Kamu kunjungi nih
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
@@ -215,8 +220,9 @@ Resource          Test_data/Test_data_payment.txt
     User_input    jakarta selatan
     Check_VA_response_text    1    Lokasi GraPARI sekitar mana yang Kamu maksud?
     Check_VA_response_carousel_exists    2
-    Click_button_carousel    2    Jakarta Selatan    Pilih
-    Check_VA_response_text    1    Berikut info GraPARI di sekitar Jakarta Selatan ya
+    #Click_button_carousel    2    Jakarta Selatan    Pilih
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_response_text    1    Berikut info GraPARI di sekitar    #Jakarta Selatan ya
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
     Closing_session
@@ -362,8 +368,9 @@ Resource          Test_data/Test_data_payment.txt
     User_input    Jakarta Selatan
     Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
     Check_VA_response_carousel_exists    2
-    Click_button_carousel    2    Jakarta Selatan    Pilih
-    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Jakarta Selatan yang dapat Kamu kunjungi nih
+    #Click_button_carousel    2    Jakarta Selatan    Pilih
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar    #Jakarta Selatan yang dapat Kamu kunjungi nih
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
