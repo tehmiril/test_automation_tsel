@@ -63,6 +63,7 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel    #di sekitar Jakarta Selatan yang dapat Kamu kunjungi nih
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Closing_session
 
 006 - Non-Telkomsel user who is interested in using KartuHalo
     [Tags]    Non-Telkomsel_FB
