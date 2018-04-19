@@ -21,3 +21,11 @@ Validate_VA_carousel_main_menu_tsel
     #Validate_carousel_items    ${order}    ${Menu_utama_TSEL_titleC}    ${Menu_utama_TSEL_subtitleC}    ${Menu_utama_TSEL_button1C}    ${Menu_utama_TSEL_button2C}    ${Menu_utama_TSEL_button3C}
     #Validate_carousel_items    ${order}    ${Menu_utama_TSEL_titleD}    ${Menu_utama_TSEL_subtitleD}    ${Menu_utama_TSEL_button1D}    ${Menu_utama_TSEL_button2D}    ${Menu_utama_TSEL_button3D}
     Validate_carousel_items    ${order}    ${Menu_utama_TSEL_titleE}    ${Menu_utama_TSEL_subtitleE}    ${Menu_utama_TSEL_button1E}    ${Menu_utama_TSEL_button2E}    ${Menu_utama_TSEL_button3E}
+
+Validate_VA_carousel_payment
+    [Arguments]    ${order}
+    Check_VA_response_carousel_exists    ${order}
+    Validate_carousel_items    ${order}    ${Payment_titleA}    \    ${Payment_button1A}
+    Validate_carousel_items    ${order}    ${Payment_titleB}    ${Payment_subtitleB}    ${Payment_button1B}
+    Validate_carousel_items    ${order}    ${Payment_titleC}    ${Payment_subtitleC}    ${Payment_button1C}
+    Validate_carousel_items    ${order}    ${Payment_titleD}    \    ${Payment_button1D}
