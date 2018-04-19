@@ -63,7 +63,6 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel    #di sekitar Jakarta Selatan yang dapat Kamu kunjungi nih
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
-    Closing_session
 
 006 - Non-Telkomsel user who is interested in using KartuHalo
     [Tags]    Non-Telkomsel_FB
@@ -199,14 +198,14 @@ Resource          Test_data/Test_data_payment.txt
     #Click_button_carousel    2    Registrasi Online    Registrasi Online
     Closing_session
 
-[READY TO TEST] 013 - User perform Inquire 4G Upgrade and Find Nearest Store
+013 - User perform Inquire 4G Upgrade and Find Nearest Store
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     Click_button_carousel    2    Bantuan Lainnya    FAQ
     Check_VA_response_carousel_exists    1
-    #Validate_carousel_items    2    FAQ
+    Validate_carousel_items    1    FAQ    \    Info Voucher    Info Upgrade 4G    Info Konfigurasi
     Click_button_carousel    1    FAQ    Info Upgrade 4G
-    Check_VA_response_text_with_2buttons    1    Oke M Testaut ${\n}Sebelum menggunakan layanan 4G, pastikan Handphone & SIM card Kamu sudah mendukung 4G. ${\n}Apakah handphone Kamu sudah 4G?    Sudah    Belum
+    Check_VA_response_text_with_buttons    1    Oke M Testaut ${\n}Sebelum menggunakan layanan 4G, pastikan Handphone & SIM card Kamu sudah mendukung 4G. ${\n}Apakah handphone Kamu sudah 4G?    Sudah    Belum
     Click_Button_From_Response    1    Sudah
     Check_VA_response_text_with_2buttons    1    Apakah Kamu sudah membeli SIM Card 4G?    Sudah    Belum
     Click_Button_From_Response    1    Belum
@@ -435,7 +434,7 @@ Resource          Test_data/Test_data_payment.txt
     Click_carousel_button_on_specific_location    2    1    Lihat
     Closing_session
 
-[x] 110- User wants to perform Send Gift Reload Balance from Prepaid or Postpaid Number to Prepaid Number
+110- User wants to perform Send Gift Reload Balance from Prepaid or Postpaid Number to Prepaid Number
     [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}

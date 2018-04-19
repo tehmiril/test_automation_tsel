@@ -30,9 +30,17 @@ Check_VA_response_carousel_actual
 
 Get_locationX_carousel_item
     ${totalcarousel}    SeleniumLibrary.Get Element Count    //a[contains(.,'${current_carousel_button}')]/preceding::*[@class='_3cni' and contains(text(),'${current_carousel_title}')]
-    Set Suite Variable    ${total_item_carousel}    ${totalcarousel}
-    ${element_XBegin}    SeleniumLibrary.Get Horizontal Position    (//a[contains(.,'${current_carousel_button}')]/preceding::*[@class='_3cni' and contains(text(),'${current_carousel_title}')])[${totalcarousel}]
+    Run Keyword If    ${totalcarousel}>0    Run Keywords    Set Suite Variable    ${total_item_carousel}    ${totalcarousel}
+    ...    AND    Set Suite Variable    ${carousel_item_xpath}    //a[contains(.,'${current_carousel_button}')]/preceding::*[@class='_3cni' and contains(text(),'${current_carousel_title}')]
+    ...    ELSE    Get_locationX_carousel_item_wo_class
+    ${element_XBegin}    SeleniumLibrary.Get Horizontal Position    (${carousel_item_xpath})[${total_item_carousel}]
     [Return]    ${element_XBegin}
+
+Get_locationX_carousel_item_wo_class
+    ${totalcarousel}    SeleniumLibrary.Get Element Count    //a[contains(.,'${current_carousel_button}')]/preceding::*[@class='' and contains(text(),'${current_carousel_title}')]
+    Run Keyword If    ${totalcarousel}>0    Run Keywords    Set Suite Variable    ${total_item_carousel}    ${totalcarousel}
+    ...    AND    Set Suite Variable    ${carousel_item_xpath}    //a[contains(.,'${current_carousel_button}')]/preceding::*[@class='' and contains(text(),'${current_carousel_title}')]
+    ...    ELSE    Fail    No Carousel Found
 
 Swipe_forward_until_element
     [Arguments]    ${order}
@@ -106,3 +114,9 @@ Validate_Main_Menu
     ...    AND    Validate_VA_carousel_main_menu_tsel    2
     ...    AND    Check_VA_response_text    3    ${VA_change_number_info}
     ...    AND    Check_VA_response_text    4    ${VA_give_options}
+
+Count_b_c
+    [Arguments]    ${order}
+    ${count_e}    Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="" and text()="${current_carousel_title}"]/ancestor::*[@class="_3cne"]/following-sibling::div//a[contains(.,"${current_carousel_button}")]
+    Run Keyword If    ${count_e}>0    Set Suite Variable    ${b_c_xpath}    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="" and text()="${current_carousel_title}"]/ancestor::*[@class="_3cne"]/following-sibling::div//a[contains(.,"${current_carousel_button}")]
+    ...    ELSE    Fail    No Button Found

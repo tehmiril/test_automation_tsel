@@ -78,3 +78,7 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    2    Oke, transaksi yang Kamu lakukan telah sukses. Kode voucher akan dikirimkan melalui SMS ke nomor handphone Kamu
     Check_VA_response_text    3    ${VA_question_1}
     Closing_session
+
+[x] 094- User want to reload but cancel in the middle of conversation
+    [Tags]    Telkomsel_FB
+    Greet_VA_Indo    ${VA_Greet1}
