@@ -1,0 +1,9 @@
+*** Variables ***
+${CC_holder_name_obj}      id:card_holder_name
+${CC_email_obj}    id:cust_email
+${CC_cardno_obj}      id:card_no
+${CC_month_obj}    //*[@name="month"]
+${CC_year_obj}       //*[@name="year"]
+${CC_CV_obj}    id:card_bin
+${CC_submit_obj}    //*[@class="btn btn-success btn-block"]
+${CC_invalidcardalert_obj}    //*[@id="validationAlert"]/span[contains(text(),"Invalid Card Number.")]

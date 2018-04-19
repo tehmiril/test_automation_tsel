@@ -1,0 +1,35 @@
+*** Keywords ***
+Pay_with_credit_card
+    [Arguments]    ${status}
+    ${URLS}    SeleniumLibrary.Get Locations
+    ${window_opens}    Get Length    ${URLS}
+    ${index_latest_window}    Evaluate    ${window_opens}-1
+    ${last_url}    Get From List    ${URLS}    ${index_latest_window}
+    Select Window    url=${last_url}
+    Wait Until Keyword Succeeds    15    3s    SeleniumLibrary.Element Should Be Visible    ${CC_holder_name_obj}
+    Run Keyword If    '${status}'=='FAIL'    Set Suite Variable    @{payment_data}    @{CC_details_fail_payment}
+    ...    ELSE IF    '${status}'=='PASS'    Set Suite Variable    @{payment_data}    @{CC_details_pass_payment}
+    Enter_CC_details
+    Check_CC_payment_status    ${status}
+
+Enter_CC_details
+    SeleniumLibrary.Click Element    ${CC_holder_name_obj}
+    SeleniumLibrary.Input Text    ${CC_holder_name_obj}    @{payment_data}[0]
+    SeleniumLibrary.Click Element    ${CC_email_obj}
+    SeleniumLibrary.Input Text    ${CC_email_obj}    @{payment_data}[1]
+    SeleniumLibrary.Click Element    ${CC_cardno_obj}
+    SeleniumLibrary.Input Text    ${CC_cardno_obj}    @{payment_data}[2]
+    SeleniumLibrary.Click Element    ${CC_month_obj}
+    SeleniumLibrary.Click Element    ${CC_month_obj}/option[contains(text(),"@{payment_data}[3]")]
+    SeleniumLibrary.Click Element    ${CC_year_obj}
+    SeleniumLibrary.Click Element    ${CC_year_obj}/option[contains(text(),"@{payment_data}[4]")]
+    SeleniumLibrary.Click Element    ${CC_CV_obj}
+    SeleniumLibrary.Input Text    ${CC_CV_obj}    @{payment_data}[5]
+
+Check_CC_payment_status
+    [Arguments]    ${status}
+    SeleniumLibrary.Click Element    ${CC_submit_obj}
+    Sleep    2s
+    Run Keyword If    '${status}'=='FAIL'    Element Should Be Visible    ${CC_invalidcardalert_obj}
+    Sleep    3s
+    Select Window    url=${URLmessengerTSEL}

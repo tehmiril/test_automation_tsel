@@ -1,0 +1,2 @@
+*** Variables ***
+@{CC_details_fail_payment}    MTestaut    taacnindonesia01@gmail.com    123456781234    12    2025    123

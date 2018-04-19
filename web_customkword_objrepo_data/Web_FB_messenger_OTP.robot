@@ -15,12 +15,15 @@ Resource          Custom_keywords/Text_with_buttons_custkeyword.txt
 Resource          Custom_keywords/SMS_web_custom_keywords.txt
 Resource          Custom_keywords/Browser_custkeyword.txt
 Resource          Custom_keywords/Login_logout_custkeyword.txt
+Resource          Custom_keywords/Carousel_validate_custkeyword.txt
+Resource          Custom_keywords/Credit_card_payment_custkeyword.txt
 Resource          Object_repository/Object_repo_FB.txt
+Resource          Object_repository/Payment_pages_object_repo.txt
 Resource          Test_data/Test_data_user_input_Indo.txt
 Resource          Test_data/URL_data.txt
 Resource          Test_data/Test_data_VA_response_Indo.txt
 Resource          Test_data/Test_data_VA_response_carousel_TSEL_Indo.txt
-Resource          Custom_keywords/Carousel_validate_custkeyword.txt
+Resource          Test_data/Test_data_payment.txt
 
 *** Test Cases ***
 052 - Postpaid user wants to change his number (vice versa)
@@ -45,7 +48,7 @@ Resource          Custom_keywords/Carousel_validate_custkeyword.txt
     Check_VA_response_text    6    Silakan pilih salah satu opsi di atas atau ketik layanan lain yang dibutuhkan
     Closing_session
 
-[x] 110- User wants to perform Send Gift Reload Balance from Prepaid/Postpaid Number to Prepaid Number
+[x] 110- User wants to perform Send Gift Reload Balance from Prepaid or Postpaid Number to Prepaid Number
     [Tags]    Telkomsel_FB
     Greet_VA_Indo    ${VA_Greet1}
     User_input    Mau beliin pulsa untuk orang lain
@@ -62,8 +65,10 @@ Resource          Custom_keywords/Carousel_validate_custkeyword.txt
     Check_VA_response_text    1    silakan pilih salah satu opsi pembayaran di bawah ini.
     Validate_VA_carousel_payment    2
     Click_carousel_button_on_specific_location    2    1    Kartu Kredit
+    Pay_with_credit_card    PASS
+    Closing_session
 
-[x] 114- User wants to perform Send Gift Pay Bill from Postpaid /Prepaid Number to Postpaid Number (Block 3 Status - Voluntary Block)
+[x] 114- User wants to perform Send Gift Pay Bill from Postpaid or Prepaid Number to Postpaid Number (Block 3 Status - Voluntary Block)
     [Tags]    Telkomsel_FB
     Greet_VA_Indo    ${VA_Greet1}
     User_input    Mau bayar tagihan untuk orang lain
@@ -80,7 +85,7 @@ Resource          Custom_keywords/Carousel_validate_custkeyword.txt
     Check_VA_response_text    1    silakan pilih salah satu opsi pembayaran di bawah ini.
     Validate_VA_carousel_payment    2
 
-[x] 116- User wants to perform Send Gift from Prepaid/Postpaid Number to Prepaid Number
+[x] 116- User wants to perform Send Gift from Prepaid or Postpaid Number to Prepaid Number
     [Tags]    Telkomsel_FB
     Greet_VA_Indo    ${VA_Greet1}
     User_input    Mau beliin pulsa untuk orang lain
@@ -100,7 +105,7 @@ Resource          Custom_keywords/Carousel_validate_custkeyword.txt
     Check_VA_response_text    1    silakan pilih salah satu opsi pembayaran di bawah ini.
     Validate_VA_carousel_payment    2
 
-[x] 118- User wants to perform Send Gift from Prepaid/Postpaid Number to Prepaid/Postpaid Number
+[x] 118- User wants to perform Send Gift from Prepaid or Postpaid Number to Prepaid/Postpaid Number
     [Tags]    Telkomsel_FB
     Greet_VA_Indo    ${VA_Greet1}
     User_input    Mau beliin pulsa untuk orang lain
