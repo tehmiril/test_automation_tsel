@@ -42,7 +42,7 @@ Check_opened_URL
     ${window_opens}    Get Length    ${URLS}
     ${index_latest_window}    Evaluate    ${window_opens}-1
     ${URL_now}    Get Location
-    #Select Window    url=${URLmessengerTSEL}
+    Select Window    url=${URLmessengerTSEL}
     ${last_url}    Get From List    ${URLS}    ${index_latest_window}
     ${last_url_string}    Convert To String    ${last_url}
     ${last_opened_URL_string}    Convert To String    ${last_opened_URL}

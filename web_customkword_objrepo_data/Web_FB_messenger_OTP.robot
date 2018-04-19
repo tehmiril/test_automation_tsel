@@ -48,6 +48,14 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    6    Silakan pilih salah satu opsi di atas atau ketik layanan lain yang dibutuhkan
     Closing_session
 
+[x] 098- User ask something that VA doesn’t understand and directed to FAQ
+    [Tags]    Non-Telkomsel_FB
+    User_input    ${random_question_sholat}
+    Check_VA_response_text    1    ${VA_gives_FAQ}
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Lihat
+    Closing_session
+
 [x] 110- User wants to perform Send Gift Reload Balance from Prepaid or Postpaid Number to Prepaid Number
     [Tags]    Telkomsel_FB
     Greet_VA_Indo    ${VA_Greet1}

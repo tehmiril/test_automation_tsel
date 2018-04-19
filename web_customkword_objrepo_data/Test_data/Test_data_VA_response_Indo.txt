@@ -1,6 +1,6 @@
 *** Variables ***
 ${VA_notunderstand_1}    Maaf    #Maaf, Veronika belum mengerti apa yang Kamu tulis karena masih dalam proses belajar.    # Maaf, Veronika tidak mengerti kata-kata yang Kamu tulis
-${VA_notunderstand_2}    perjelas    #Tolong perjelas yang Kamu maksud ya
+${VA_notunderstand_2}    Tolong perjelas    #Tolong perjelas yang Kamu maksud ya
 ${VA_notunderstand_3}    Saat ini    #Saat ini Veronika belum bisa memenuhi keinginan Kamu.    #Saat ini, Veronika belum mengerti permintaan Kamu
 ${VA_notunderstand_4}    customer service    #Veronika hubungkan dengan teman-teman dari customer service ya    #Mungkin teman dari customer service Telkomsel bisa membantu Kamu. Apakah mau disambungkan?
 ${VA_notunderstand_5}    Sembari menunggu, Kamu bisa mencoba hiburan di bawah ini

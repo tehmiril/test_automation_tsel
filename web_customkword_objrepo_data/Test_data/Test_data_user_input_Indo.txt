@@ -7,7 +7,7 @@ ${no_answer}      Tidak
 ${yes_answer}     Ya
 ${cancel_answer}    Batal
 ${user_rate}      5
-${random_question_3}    Apa itu waktu sholat?
+${random_question_sholat}    Apa itu waktu sholat?
 ${ask_pulsa}      Sisa pulsa saya berapa?
 ${ask_kuota}      Sisa kuota data saya berapa?
 ${greeting}       Halo Vero

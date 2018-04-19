@@ -36,7 +36,7 @@ User_input
     Sleep    7s
     Set Suite Variable    ${current_user_input}    ${input_text}
     Run Keyword    Count_message_bubble_user_input    ${current_user_input}
-    SeleniumLibrary.Capture Page Screenshot    input_${input_text}_${TEST NAME}.png
+    Make_screenshot_user_input
 
 Closing_session
     User_input    ${no_answer}
@@ -46,15 +46,16 @@ Closing_session
 
 Perform_CES
     User_input    ${user_rate}
-    SeleniumLibrary.Capture Page Screenshot    user_rate_${TEST NAME}.png
     Check_VA_response_text    1    ${VA_question_3}
     #only type in at the moment
     User_input    ${select_Rate}
     Check_VA_response_text    1    ${VA_askRateReason}
+    SeleniumLibrary.Capture Page Screenshot    CES1_${TEST NAME}.png
     User_input    ${no_answer}
     Check_VA_response_text    1    ${VA_ask_rec}
     User_input    ${give_rec}
     Check_VA_response_text    1    ${VA_closingstatement}
+    SeleniumLibrary.Capture Page Screenshot    CES2_${TEST NAME}.png
 
 Check_VA_response_text
     [Arguments]    ${order}    @{expected_text}
