@@ -227,6 +227,35 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
     Closing_session
 
+013(backup) - User perform Inquire 4G Upgrade and Find Nearest Store
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    Click_button_carousel    2    Bantuan Lainnya    FAQ
+    Check_VA_response_carousel_exists    1
+    Validate_carousel_items    1    FAQ    \    Info Voucher    Info Upgrade 4G    Info Konfigurasi
+    Click_button_carousel    1    FAQ    Info Upgrade 4G
+    Check_VA_response_text_with_buttons    1    Oke M Testaut ${\n}Sebelum menggunakan layanan 4G, pastikan Handphone & SIM card Kamu sudah mendukung 4G. ${\n}Apakah handphone Kamu sudah 4G?    Sudah    Belum
+    Click_Button_From_Response    1    Sudah
+    Check_VA_response_text_with_2buttons    1    Apakah Kamu sudah membeli SIM Card 4G?    Sudah    Belum
+    Click_Button_From_Response    1    Belum
+    Check_VA_response_text    1    Untuk upgrade ke kartu SIM 4G, ganti kartu SIM lama Kamu dengan kartu SIM 4G ya. Pergantian kartu tidak akan mengubah nomor Telkomsel Kamu. ${\n}Berikut adalah beberapa cara untuk mendapatkannya:
+    Check_VA_response_carousel_exists    2
+    Validate_carousel_items    2    MyGraPARI Terdekat    Dapatkan SIM card 4G di GraPARI dengan membawa ID Card Kamu \ \ \ \    MyGraPARI Terdekat
+    Validate_carousel_items    2    GraPARI Terdekat    Dapatkan SIM card 4G di GraPARI dengan membawa ID Card Kamu \ \ \ \    GraPARI Terdekat
+    Validate_carousel_items    2    Registrasi Online    SIM card 4G akan dikirim ke rumah    Registrasi Online
+    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Click_button_carousel    2    GraPARI Terdekat    GraPARI Terdekat
+    Check_VA_response_text    1    Tuliskan lokasi yang Kamu cari atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu untuk mendapatkan GraPARI terdekat
+    User_input    jakarta selatan
+    Check_VA_response_text    1    Lokasi GraPARI sekitar mana yang Kamu maksud?
+    Check_VA_response_carousel_exists    2
+    #Click_button_carousel    2    Jakarta Selatan    Pilih
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_response_text    1    Berikut info GraPARI di sekitar    #Jakarta Selatan ya
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Closing_session
+
 [X] 014 - User want to search a grapari that opens on a specific day
     [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
@@ -256,21 +285,30 @@ Resource          Test_data/Test_data_payment.txt
 
 [READY TO TEST] 017 - User wants to know about voucher information
     [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
-    Greet_VA_Indo    ${VA_GreetNonTsel}
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
     User_input    mau tau info voucher telkomsel
     Check_VA_response_text    1    Oke Lightning Diamond, Telkomsel menyediakan berbagai macam voucher isi ulang sesuai kebutuhan Kamu
     Check_VA_response_text_with_buttons    2    Kamu pake simPATI, Loop, atau Kartu As?    SimPATI    Loop    Kartu As
     Cancel_and_closing_session
 
-[MINUS NO SUBTITLE] 018 - User explore the FAQ menu and read about voucher information
+017 - User wants to know about voucher information
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    User_input    mau tau info voucher telkomsel
+    Check_VA_response_text    1    Oke Lightning Diamond, Telkomsel menyediakan berbagai macam voucher isi ulang sesuai kebutuhan Kamu
+    Check_VA_response_text_with_buttons    2    Kamu pake simPATI, Loop, atau Kartu As?    SimPATI    Loop    Kartu As
+    Cancel_and_closing_session
+
+018 - User explore the FAQ menu and read about voucher information
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     Click_button_carousel    2    Bantuan Lainnya    FAQ
     Check_VA_response_carousel_exists    1
-    #Validate_carousel_items    2    FAQ    Loop
-    Click_button_carousel    1    FAQ    Info Voucher
+    Validate_carousel_items    1    FAQ    \    Info Voucher    Info Upgrade 4G    Info Konfigurasi
+    Click_button_carousel_faq    1    FAQ    Info Voucher
     Check_VA_response_text    1    Oke M Testaut, Telkomsel menyediakan berbagai macam voucher isi ulang sesuai kebutuhan Kamu
     Check_VA_response_text_with_buttons    2    Kamu pake simPATI, Loop, atau Kartu As?    SimPATI    Loop    Kartu As
     Click_Button_From_Response    2    Kartu As
@@ -280,22 +318,24 @@ Resource          Test_data/Test_data_payment.txt
     Click_Button_From_Response    3    Ya
     Check_VA_response_text    1    Oke M Testaut, Kamu bisa memilih nominal pulsa dibawah ini.
     Check_VA_response_carousel_exists    2
-    Validate_carousel_items    2    Rp50.000    Berlaku 45 Hari ${\n}Bonus 10 POIN    Pilih
-    Validate_carousel_items    2    Rp100.000    Berlaku 60 Hari ${\n}Bonus 20 POIN    Pilih
-    Validate_carousel_items    2    Rp150.000    Berlaku 120 Hari ${\n}Bonus 30 POIN    Pilih
-    Validate_carousel_items    2    Rp200.000    Berlaku 150 Hari ${\n}Bonus 40 POIN    Pilih
-    Validate_carousel_items    2    Rp300.000    Berlaku 180 Hari ${\n}Bonus 60 POIN    Pilih
+    Validate_carousel_items    2    Rp50.000    Berlaku 45 Hari    Pilih
+    Validate_carousel_items    2    Rp100.000    Berlaku 60 Hari    Pilih
+    Validate_carousel_items    2    Rp150.000    Berlaku 120 Hari    Pilih
+    Validate_carousel_items    2    Rp200.000    Berlaku 150 Hari    Pilih
+    Validate_carousel_items    2    Rp300.000    Berlaku 180 Hari    Pilih
     Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
     Click_button_carousel    2    Rp50.000    Pilih
     Check_VA_response_text    1    Oke M Testaut, untuk melanjutkan pengisian pulsa sebesar Rp50000, silakan pilih salah satu opsi pembayaran di bawah ini.
     Check_VA_response_carousel_exists    2
-    #validate    carousel without subtitle
-    Click_button_carousel    2    Kartu Kredit    Kartu Kredit
+    Validate_VA_carousel_payment    2
+    Click_carousel_button_on_specific_location    2    1    Kartu Kredit
+    Pay_with_credit_card    FAIL
     User_input    voucher simpati nominalnya berapa aja?
     Check_VA_response_text    1    Berikut informasi voucher simPATI.
     Check_VA_response_image    2
     Check_VA_response_text_with_2buttons    3    Apakah Kamu juga ingin melakukan pengisian pulsa?    Ya    Tidak
     Click_Button_From_Response    3    Tidak
+    Check_VA_response_text    1    Ada lagi yang bisa Veronika bantu?
     Closing_session
 
 019 - User perform inquire outlet location
@@ -424,6 +464,194 @@ Resource          Test_data/Test_data_payment.txt
     User_input    aku bosan nih
     Check_VA_response_text    1    @{randomBoredIndo}
     Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
+
+[X] 031- User perform inquire subscribed main offering, package terms & condition and subscribed offer
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 032- Prepaid User ask for Recharge History
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 033- Prepaid User perform Get Invoice Date & Amount
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 034- Prepaid user who wants to topup using credit card
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[MANDIRI RELATED] 035- Prepaid user who wants to topup using Mandiri ClickPay
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 036- Prepaid user who wants to topup using PermataNet
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 037- Prepaid user who wants top up his credit using TCASH but doesn't have a TCASH account yet
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[TCASH RELATED] 038- Prepaid user who wants top up his credit using TCASH
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[TCASH RELATED] 039- User perform reload using TCASH but has insufficient balance
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[MANDIRI RELATED] 040- Prepaid user who wants to top up using E-Banking (Mandiri ClickPay)
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[MANDIRI RELATED] 041- Prepaid user who wants to top up using E-Banking (PermataNet)
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[TCASH RELATED] 042- Prepaid user who performs top up through TCASH
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 043- Prepaid users who ask about registration status
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 044- Prepaid user who wants to purchase the package that VA offers
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 045- User want to see the detail information of ongoing promotion
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 046- User want to see all promotion
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 047- Prepaid user who wants to explore the loyalty card
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[POINTASTIC DEALS] 048- User want to know and participate on POINTASTIC DEALS (optional)
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[POINTASTIC DEALS] 049- User want to know and participate on POINTASTIC DEALS (optional)
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 050- User wants to book an appointment at GraPARI
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 051- User want to know about detail information about his/her reservation
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 052- Postpaid user wants to change his number (vice versa)
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 053- Postpaid user who has outstanding bill wants to pay his bill
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 054- Postpaid user want to check quota detail information
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[KARTUHALO REGISTRATION] 055- User want to add kartuHalo subscripton
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 056- Postpaid User ask his credit limit
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 057- Postpaid User ask his credit limit
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[POSTPAID PUK] 058- User perform request PIN and PUK
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 059- Postpaid User who has no outstanding bill try to perform pay bill directly on VA and get told that he/she has no bill to pay
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 060- User want to pay his bill but the payment failed for three times
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[MANDIRI RELATED] 061- User perform pay bill using Mandiri ClickPay (2)
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[TCASH RELATED] 062- User perform pay bill using TCASH
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[MANDIRI RELATED] 063- User perform pay bill using PermataNet (2)
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 064- User perform pay bill using credit card
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 065- User perform pay bill using Mandiri ClickPay
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 066- User perform pay bill using PermataNet
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[TCASH RELATED] 067- User wants to know how to cash in Tcash
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[TCASH RELATED] 068- User wants to know how to cash in Tcash
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 069- User wants to know how to cash in Tcash
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 070- User wants to know how to cash in Tcash
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 071- User wants to know how to cash in Tcash
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[TCASH RELATED] 072- Prepaid Telkomsel User failed to recharge using Tcash and informed how to top up tcash balance
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 073- User wants to know how to Top Up Tcash Balance through Tcash FAQ
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 074- User wants to participate CES in VA - finished
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[AGENT RELATED] 075- User wants to participate CES in Agent - finished
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[AGENT RELATED] 076- User wants to participate CES in Agent - finished
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[AGENT RELATED] 077- User wants to participate CES in Agent - not finished
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 [x] 098- User ask something that VA doesn’t understand and directed to FAQ
     [Tags]    Non-Telkomsel_FB

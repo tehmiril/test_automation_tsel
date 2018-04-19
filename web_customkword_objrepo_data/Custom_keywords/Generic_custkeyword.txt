@@ -7,7 +7,7 @@ Greet_VA_Indo
     Run Keyword If    '${greeting_text}' == '${VA_GreetNonTsel}'    Run Keywords    Set Suite Variable    ${VA_SecondGreetWording}    Apa yang bisa Veronika bantu hari ini?
     ...    AND    Set Suite Variable    ${VA_ThirdGreetWording}    Silakan pilih salah satu pilihan di bawah ini atau langsung saja ketik permintaan kamu
     ...    AND    Set Suite Variable    ${user_type}    NON-TSEL
-    ...    ELSE    Run Keywords    Set Suite Variable    ${VA_SecondGreetWording}    Nikmati pengalaman maksimal bermain game online dengan paket GamesMAX! Aktifkan paketnya sekarang! http://tsel.me/GAMESMAXVA
+    ...    ELSE    Run Keywords    Set Suite Variable    ${VA_SecondGreetWording}    Ayo, ikuti keseruan Indonesia Games Championship 2018! Info lengkap, klik: http://tsel.me/IGCVA
     ...    AND    Set Suite Variable    ${VA_ThirdGreetWording}    Apa yang bisa Veronika bantu hari ini?
     ...    AND    Set Suite Variable    ${user_type}    TSEL
     Check_VA_response_text    1    ${greeting_text}
@@ -142,3 +142,16 @@ Cancel_session
     Check_VA_response_text    1    ${VA_cancel}
     Check_VA_response_text    2    ${VA_question_1}
     Sleep    2s
+
+Click_button_carousel_faq
+    [Arguments]    ${order}    ${c_title}    ${c_button}
+    [Documentation]    User click button based on it's title in carousel.
+    Set Suite Variable    ${current_carousel_title}    ${c_title}
+    Set Suite Variable    ${current_carousel_button}    ${c_button}
+    Check_where_to_swipe_carousel    ${order}
+    SeleniumLibrary.Capture Page Screenshot    carousel_click_${c_button}_${TEST NAME}.png
+    #SeleniumLibrary.Click Element    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/descendant::*[@${carouselclass_obj} and contains(.//div[@class="_3cni"],"${current_carousel_title}")]/following-sibling::div//a[contains(.,"${current_carousel_button}")]
+    #(//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"jakarta selatan")])[1]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][2]/div/descendant::div[@class="_3cni" and text()="Jakarta Selatan"]/ancestor::*[@class="_3cne"]/following-sibling::div//a[contains(.,"Pilih")]
+    SeleniumLibrary.Click Element    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_3cn0" and contains (.,"${current_carousel_title}")]/descendant::*[@class="_3cne"]/following-sibling::div//a[contains(.,"${current_carousel_button}")]
+    Sleep    2s
+    Check_opened_URL    ${c_button}
