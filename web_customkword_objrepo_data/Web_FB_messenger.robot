@@ -32,12 +32,6 @@ Resource          Test_data/Test_data_payment.txt
     User_input    Beli Pulsa
     Cancel_and_closing_session
 
-[TEST_PURPOSES] 001x - Telkomsel user who just started talking to VA
-    [Tags]    Telkomsel_FB
-    Login_messenger    ${email}    ${password}
-    Greet_VA_Indo    ${VA_Greet1}
-    Closing_session
-
 002 - Non-Telkomsel who wants to explore VA
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
@@ -216,8 +210,8 @@ Resource          Test_data/Test_data_payment.txt
     Click_Button_From_Response    1    Belum
     Check_VA_response_text    1    Untuk upgrade ke kartu SIM 4G, ganti kartu SIM lama Kamu dengan kartu SIM 4G ya. Pergantian kartu tidak akan mengubah nomor Telkomsel Kamu. ${\n}Berikut adalah beberapa cara untuk mendapatkannya:
     Check_VA_response_carousel_exists    2
-    Validate_carousel_items    2    MyGraPARI Terdekat    Dapatkan SIM card 4G di GraPARI dengan membawa ID Card Kamu \ \ \ \     MyGraPARI Terdekat
-    Validate_carousel_items    2    GraPARI Terdekat    Dapatkan SIM card 4G di GraPARI dengan membawa ID Card Kamu \ \ \ \     GraPARI Terdekat
+    Validate_carousel_items    2    MyGraPARI Terdekat    Dapatkan SIM card 4G di GraPARI dengan membawa ID Card Kamu \ \ \ \    MyGraPARI Terdekat
+    Validate_carousel_items    2    GraPARI Terdekat    Dapatkan SIM card 4G di GraPARI dengan membawa ID Card Kamu \ \ \ \    GraPARI Terdekat
     Validate_carousel_items    2    Registrasi Online    SIM card 4G akan dikirim ke rumah    Registrasi Online
     Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
     Click_button_carousel    2    GraPARI Terdekat    GraPARI Terdekat
@@ -273,7 +267,7 @@ Resource          Test_data/Test_data_payment.txt
     Greet_VA_Indo    ${VA_Greet1}
     Click_button_carousel    2    Bantuan Lainnya    FAQ
     Check_VA_response_carousel_exists    1
-    #Validate_carousel_items    2    FAQ    \    Loop
+    #Validate_carousel_items    2    FAQ    Loop
     Click_button_carousel    1    FAQ    Info Voucher
     Check_VA_response_text    1    Oke M Testaut, Telkomsel menyediakan berbagai macam voucher isi ulang sesuai kebutuhan Kamu
     Check_VA_response_text_with_buttons    2    Kamu pake simPATI, Loop, atau Kartu As?    SimPATI    Loop    Kartu As
@@ -328,11 +322,11 @@ Resource          Test_data/Test_data_payment.txt
     Click_button_carousel    1    FAQ    Info Konfigurasi
     Check_VA_response_text    1    Berikut Veronika berikan jenis konfigurasi yang bisa Kamu pilih ya
     Check_VA_response_carousel_exists    2
-    Validate_carousel_items    2    Konfigurasi terkait Internet         Refresh Jaringan    Setting APN
+    Validate_carousel_items    2    Konfigurasi terkait Internet    Refresh Jaringan    Setting APN
     Validate_carousel_items    2    Konfigurasi terkait SMS    \    Refresh Jaringan    Pengaturan Pusat SMS
     Validate_carousel_items    2    Konfigurasi terkait telepon    \    Refresh Jaringan    Pengaturan Caller ID
     Validate_carousel_items    2    Konfigurasi lain    \    Refresh Jaringan    Pengaturan Pusat SMS
-    Click_button_carousel    1    Konfigurasi terkait telepon         Refresh Jaringan    Pengaturan Caller ID
+    Click_button_carousel    1    Konfigurasi terkait telepon    Refresh Jaringan    Pengaturan Caller ID
     Check_VA_response_text    1    Untuk membantu Kamu terkait hal ini, silakan pilih salah satu ya
     Check_VA_response_carousel_exists    2
     Validate_carousel_items    2    iOS (Apple)    iPhone    Apple
@@ -427,9 +421,10 @@ Resource          Test_data/Test_data_payment.txt
     User_input    aku bosan nih
     Check_VA_response_text    1    @{randomBoredIndo}
     Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
-	
+
 [x] 098- User ask something that VA doesn’t understand and directed to FAQ
     [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    ${random_question_sholat}
     Check_VA_response_text    1    ${VA_gives_FAQ}
     Check_VA_response_carousel_exists    2
@@ -438,6 +433,7 @@ Resource          Test_data/Test_data_payment.txt
 
 [x] 110- User wants to perform Send Gift Reload Balance from Prepaid or Postpaid Number to Prepaid Number
     [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     User_input    Mau beliin pulsa untuk orang lain
     #Check_VA_response_text_with_buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
@@ -453,11 +449,12 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    1    silakan pilih salah satu opsi pembayaran di bawah ini.
     Validate_VA_carousel_payment    2
     Click_carousel_button_on_specific_location    2    1    Kartu Kredit
-    Pay_with_credit_card    PASS
+    Pay_with_credit_card    FAIL
     Closing_session
 
 [x] 114- User wants to perform Send Gift Pay Bill from Postpaid or Prepaid Number to Postpaid Number (Block 3 Status - Voluntary Block)
     [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     User_input    Mau bayar tagihan untuk orang lain
     Check_VA_response_text_with_buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
@@ -475,6 +472,7 @@ Resource          Test_data/Test_data_payment.txt
 
 [x] 116- User wants to perform Send Gift from Prepaid or Postpaid Number to Prepaid Number
     [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     User_input    Mau beliin pulsa untuk orang lain
     Check_VA_response_text_with_buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
@@ -495,41 +493,10 @@ Resource          Test_data/Test_data_payment.txt
 
 [x] 118- User wants to perform Send Gift from Prepaid or Postpaid Number to Prepaid/Postpaid Number
     [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     User_input    Mau beliin pulsa untuk orang lain
     Check_VA_response_text_with_buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
     Click_Button_From_Response    1    Ya
     Check_VA_response_text    1    Oke, silakan masukkan nomor tujuan yang kamu ingin berikan hadiah
     User_input    ${inactive_number}
-
-[x] 124- Prepaid user who has insufficient prepaid balance purchase mobile legend voucher
-    [Tags]    Telkomsel_FB
-    Greet_VA_Indo    ${VA_Greet1}
-    User_input    mau beli voucher games
-    Check_VA_response_text_with_buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
-    Click_Button_From_Response    1    Ya
-    Check_VA_response_text    1    Berikut adalah kategori voucher games yang bisa kamu pilih
-    Check_VA_response_carousel_exists    2
-    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
-    Click_carousel_button_on_specific_location    2    1    Pilih
-    Check_VA_response_text    1    Oke M Testaut, Veronika menyediakan beberapa pilihan
-    Click_carousel_button_on_specific_location    2    1    Beli
-    Check_VA_response_text_with_buttons    1    Setelah Veronika cek, pulsa Kamu tidak mencukupi untuk pembelian voucher ini. Apakah kamu mau mengisi pulsa atau memilih paket lainnya?    Isi Pulsa    Pilih Voucher Lainnya
-    Click_Button_From_Response    1    Pilih Voucher Lainnya
-    Check_VA_response_text    1    Berikut adalah kategori voucher games yang bisa kamu pilih
-    Check_VA_response_carousel_exists    2
-    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
-    Click_carousel_button_on_specific_location    2    1    Pilih
-    Check_VA_response_text    1    Oke M Testaut, Veronika menyediakan beberapa pilihan
-    Click_carousel_button_on_specific_location    2    2    Beli
-    Check_VA_response_text_with_buttons    1    Veronika pastikan lagi ya.    Ya    Tidak
-    Click_Button_From_Response    1    Ya
-    Check_VA_response_text    1    Terima kasih untuk informasinya.
-    Check_VA_response_text    2    Veronika akan mengirim password melalui SMS dari TELKOMSEL ke nomor +6282110685202. Silakan tulis password tersebut ya.
-    Check_VA_response_text    2    Password hanya berlaku 3 menit. Kamu bisa ketik 'Password Baru' untuk dikirimkan password baru.
-    Get_OTP
-    Check_VA_response_text    1    Oke, Veronika sudah berhasil memverifikasi nomor telepon Kamu ya.
-    Check_VA_response_text    2    Oke, transaksi yang Kamu lakukan telah sukses. Kode voucher akan dikirimkan melalui SMS ke nomor handphone Kamu
-    Check_VA_response_text    3    ${VA_question_1}
-    Closing_session
-
