@@ -7,13 +7,18 @@ Greet_VA_Indo
     Run Keyword If    '${greeting_text}' == '${VA_GreetNonTsel}'    Run Keywords    Set Suite Variable    ${VA_SecondGreetWording}    Apa yang bisa Veronika bantu hari ini?
     ...    AND    Set Suite Variable    ${VA_ThirdGreetWording}    Silakan pilih salah satu pilihan di bawah ini atau langsung saja ketik permintaan kamu
     ...    AND    Set Suite Variable    ${user_type}    NON-TSEL
+    ...    ELSE IF    '${greeting_text}' == '${VA_GreetPostPaid}'    Run Keywords    Set Suite Variable    ${VA_SecondGreetWording}    Sekarang makin sering Kamu membeli paket, makin besar kesempatan memenangkan banyak hadiah menarik! Info lebih lanjut klik di sini:
+    ...    AND    Set Suite Variable    ${VA_ThirdGreetWording}    Silakan ketik layanan yang dibutuhkan atau pilih menu di bawah
+    ...    AND    Set Suite Variable    ${user_type}    TSEL-POSTPAID
     ...    ELSE    Run Keywords    Set Suite Variable    ${VA_SecondGreetWording}    Ayo, ikuti keseruan Indonesia Games Championship 2018! Info lengkap, klik: http://tsel.me/IGCVA
     ...    AND    Set Suite Variable    ${VA_ThirdGreetWording}    Apa yang bisa Veronika bantu hari ini?
     ...    AND    Set Suite Variable    ${user_type}    TSEL
     Check_VA_response_text    1    ${greeting_text}
     Check_VA_response_text    2    ${VA_SecondGreetWording}
     Check_VA_response_image    3
-    Check_VA_response_text_with_buttons    4    ${VA_ThirdGreetWording}    ${VA_GreetButton1}    ${VA_GreetButton2}
+    Run Keyword If    '${user_type}'=='TSEL-POSTPAID'    Check_VA_response_text_with_buttons    4    ${VA_ThirdGreetWording}    ${VA_GreetButton3}    ${VA_GreetButton1}
+    ...    ${VA_GreetButton2}
+    ...    ELSE    Check_VA_response_text_with_buttons    4    ${VA_ThirdGreetWording}    ${VA_GreetButton1}    ${VA_GreetButton2}
     Click_Button_From_Response    4    ${VA_GreetButton1}
     SeleniumLibrary.Capture Page Screenshot    VAgreet_${TEST NAME}.png
     Validate_Main_Menu

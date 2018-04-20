@@ -554,9 +554,20 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
-[X] 054- Postpaid user want to check quota detail information
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+054- Postpaid user want to check quota detail information
+    [Tags]    Telkomsel_FB_postpaid
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    Greet_VA_Indo    ${VA_GreetPostPaid}
+    Click_button_carousel    2    Profil Kamu    Detail Kuota
+    Validate_postpaid_number    1
+    Check_VA_response_text    1    silakan pilih jenis sisa kuota yang ingin Kamu ketahui
+    Validate_VA_carousel_kuota_postpaid    2
+    Click_button_carousel    2    SMS    Lihat Kuota SMS
+    Check_VA_response_text    1    Berikut sisa kuota SMS Kamu: 1. SMS Tsel
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau membeli paket tambahan?    Ya    Tidak
+    Click_Button_From_Response    2    Tidak
+    Check_VA_response_text    1    ${VA_question_1}
+    Closing_session
 
 [KARTUHALO REGISTRATION] 055- User want to add kartuHalo subscripton
     [Tags]    Non-Telkomsel_FB

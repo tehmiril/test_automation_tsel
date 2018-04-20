@@ -8,6 +8,7 @@ Validate_VA_carousel_produk
 
 Validate_VA_carousel_main_menu_non_tsel
     [Arguments]    ${order}
+    Check_VA_response_carousel_exists    ${order}
     Validate_carousel_items    ${order}    ${Menu_utama_NonTSEL_titleA}    ${Menu_utama_NonTSEL_subtitleA}    ${Menu_utama_NonTSEL_button1A}    ${Menu_utama_NonTSEL_button2A}    ${Menu_utama_NonTSEL_button3A}
     Validate_carousel_items    ${order}    ${Menu_utama_NonTSEL_titleB}    ${Menu_utama_NonTSEL_subtitleB}    ${Menu_utama_NonTSEL_button1B}    ${Menu_utama_NonTSEL_button2B}    ${Menu_utama_NonTSEL_button3B}
     Validate_carousel_items    ${order}    ${Menu_utama_NonTSEL_titleC}    ${Menu_utama_NonTSEL_subtitleC}    ${Menu_utama_NonTSEL_button1C}    ${Menu_utama_NonTSEL_button2C}    ${Menu_utama_NonTSEL_button3C}
@@ -15,11 +16,27 @@ Validate_VA_carousel_main_menu_non_tsel
 
 Validate_VA_carousel_main_menu_tsel
     [Arguments]    ${order}
+    Check_VA_response_carousel_exists    ${order}
     Validate_carousel_items    ${order}    ${Menu_utama_TSEL_titleA}    ${Menu_utama_TSEL_subtitleA}    ${Menu_utama_TSEL_button1A}    ${Menu_utama_TSEL_button2A}    ${Menu_utama_TSEL_button3A}
     Validate_carousel_items    ${order}    ${Menu_utama_TSEL_titleB}    ${Menu_utama_TSEL_subtitleB}    ${Menu_utama_TSEL_button1B}    ${Menu_utama_TSEL_button2B}    ${Menu_utama_TSEL_button3B}
     #Validate_carousel_items    ${order}    ${Menu_utama_TSEL_titleC}    ${Menu_utama_TSEL_subtitleC}    ${Menu_utama_TSEL_button1C}    ${Menu_utama_TSEL_button2C}    ${Menu_utama_TSEL_button3C}
     #Validate_carousel_items    ${order}    ${Menu_utama_TSEL_titleD}    ${Menu_utama_TSEL_subtitleD}    ${Menu_utama_TSEL_button1D}    ${Menu_utama_TSEL_button2D}    ${Menu_utama_TSEL_button3D}
     Validate_carousel_items    ${order}    ${Menu_utama_TSEL_titleE}    ${Menu_utama_TSEL_subtitleE}    ${Menu_utama_TSEL_button1E}    ${Menu_utama_TSEL_button2E}    ${Menu_utama_TSEL_button3E}
+
+Validate_VA_carousel_main_menu_postpaid
+    [Arguments]    ${order}
+    Check_VA_response_carousel_exists    ${order}
+    Validate_carousel_items    ${order}    @{Menu_utama_Postpaid_A}[0]    @{Menu_utama_Postpaid_A}[1]    @{Menu_utama_Postpaid_A}[2]    @{Menu_utama_Postpaid_A}[3]    @{Menu_utama_Postpaid_A}[4]
+    Validate_carousel_items    ${order}    @{Menu_utama_Postpaid_B}[0]    @{Menu_utama_Postpaid_B}[1]    @{Menu_utama_Postpaid_B}[2]    @{Menu_utama_Postpaid_B}[3]    @{Menu_utama_Postpaid_B}[4]
+    Validate_carousel_items    ${order}    @{Menu_utama_Postpaid_E}[0]    @{Menu_utama_Postpaid_E}[1]    @{Menu_utama_Postpaid_E}[2]    @{Menu_utama_Postpaid_E}[3]    @{Menu_utama_Postpaid_E}[4]
+
+Validate_VA_carousel_kuota_postpaid
+    [Arguments]    ${order}
+    Check_VA_response_carousel_exists    ${order}
+    Validate_carousel_items    ${order}    @{Kuota_Postpaid_A}[0]    \    @{Kuota_Postpaid_A}[1]
+    Validate_carousel_items    ${order}    @{Kuota_Postpaid_B}[0]    \    @{Kuota_Postpaid_B}[1]
+    Validate_carousel_items    ${order}    @{Kuota_Postpaid_C}[0]    \    @{Kuota_Postpaid_C}[1]
+    Validate_carousel_items    ${order}    @{Kuota_Postpaid_D}[0]    \    @{Kuota_Postpaid_D}[1]
 
 Validate_VA_carousel_payment
     [Arguments]    ${order}
@@ -37,6 +54,7 @@ Validate_VA_carousel_ebanking
 
 Validate_VA_carousel_tcash
     [Arguments]    ${order}
+    Check_VA_response_carousel_exists    ${order}
     Validate_carousel_items    ${order}    ${TCASH_titleA}    ${TCASH_subtitleA}    ${TCASH_button1A}
     Validate_carousel_items    ${order}    ${TCASH_titleB}    ${TCASH_subtitleB}    ${TCASH_button1B}
     Validate_carousel_items    ${order}    ${TCASH_titleC}    ${TCASH_subtitleC}    ${TCASH_button1C}
