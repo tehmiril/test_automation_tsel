@@ -48,13 +48,3 @@ ${Produk_subtitleD}    Dapatkan lebih banyak benefit premium dengan Halo Kick!
 ${Produk_button1D}    Info Halo Kick
 ${Produk_button2D}    Daftar kartuHalo
 ${Produk_button3D}    Beli di GraPARI
-${Payment_titleA}    Kartu Kredit
-${Payment_button1A}    Kartu Kredit
-${Payment_titleB}    E-Banking
-${Payment_subtitleB}    Bayar Dengan E-Banking
-${Payment_button1B}    E-Banking
-${Payment_titleC}    TCASH
-${Payment_subtitleC}    Bayar Dengan TCASH
-${Payment_button1C}    TCASH
-${Payment_titleD}    Batalkan
-${Payment_button1D}    Batalkan

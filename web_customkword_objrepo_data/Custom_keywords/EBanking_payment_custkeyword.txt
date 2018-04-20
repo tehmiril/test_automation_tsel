@@ -1,0 +1,31 @@
+*** Keywords ***
+Pay_with_Mandiri_CP
+    [Arguments]    ${status}
+    ${URLS}    SeleniumLibrary.Get Locations
+    ${first_url}    Get From List    ${URLS}    0
+    Set Suite Variable    ${first_url}    ${first_url}
+    ${window_opens}    Get Length    ${URLS}
+    ${index_latest_window}    Evaluate    ${window_opens}-1
+    ${last_url}    Get From List    ${URLS}    ${index_latest_window}
+    Select Window    url=${last_url}
+    Wait Until Keyword Succeeds    15    3s    SeleniumLibrary.Element Should Be Visible    ${MCP_cardno_obj}
+    Run Keyword If    '${status}'=='FAIL'    Set Suite Variable    @{payment_data}    @{MCP_details_fail_payment}
+    ...    ELSE IF    '${status}'=='PASS'    Set Suite Variable    @{payment_data}    @{MCP_details_fail_payment}
+    Enter_MCP_details
+    Check_MCP_payment_status    ${status}
+
+Enter_MCP_details
+    SeleniumLibrary.Click Element    ${MCP_cardno_obj}
+    SeleniumLibrary.Input Text    ${MCP_cardno_obj}    @{payment_data}[0]
+    SeleniumLibrary.Click Element    ${MCP_token_obj}
+    SeleniumLibrary.Input Text    ${MCP_token_obj}    @{payment_data}[1]
+
+Check_MCP_payment_status
+    [Arguments]    ${status}
+    SeleniumLibrary.Click Element    ${MCP_submit_obj}
+    Sleep    2s
+    Select Window    url=${first_url}
+    Run Keyword If    '${status}'=='FAIL'    Run Keywords    Check_VA_response_text_with_buttons    1    Maaf, pembayaran Kamu gagal, apakah Kamu ingin mencoba kembali?    Ya
+    ...    Tidak
+    ...    AND    Click_Button_From_Response    1    Tidak
+    ...    AND    Check_VA_response_text    1    ${VA_question_1}

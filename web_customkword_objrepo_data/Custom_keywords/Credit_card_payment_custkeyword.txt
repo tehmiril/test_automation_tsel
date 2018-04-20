@@ -2,6 +2,8 @@
 Pay_with_credit_card
     [Arguments]    ${status}
     ${URLS}    SeleniumLibrary.Get Locations
+    ${first_url}    Get From List    ${URLS}    0
+    Set Suite Variable    ${first_url}    ${first_url}
     ${window_opens}    Get Length    ${URLS}
     ${index_latest_window}    Evaluate    ${window_opens}-1
     ${last_url}    Get From List    ${URLS}    ${index_latest_window}
@@ -32,4 +34,4 @@ Check_CC_payment_status
     Sleep    2s
     Run Keyword If    '${status}'=='FAIL'    Element Should Be Visible    ${CC_invalidcardalert_obj}
     Sleep    3s
-    Select Window    url=${URLmessengerTSEL}
+    Select Window    url=${first_url}

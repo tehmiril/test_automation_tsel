@@ -16,6 +16,7 @@ Resource          Custom_keywords/Browser_custkeyword.txt
 Resource          Custom_keywords/Login_logout_custkeyword.txt
 Resource          Custom_keywords/Carousel_validate_custkeyword.txt
 Resource          Custom_keywords/Credit_card_payment_custkeyword.txt
+Resource          Custom_keywords/EBanking_payment_custkeyword.txt
 Resource          Object_repository/Object_repo_FB.txt
 Resource          Object_repository/Payment_pages_object_repo.txt
 Resource          Test_data/Test_data_user_input_Indo.txt
@@ -653,6 +654,26 @@ Resource          Test_data/Test_data_payment.txt
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
+[x] 094- User want to reload but cancel in the middle of conversation
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    Click_button_carousel    2    Profil Kamu    Beli Pulsa
+    Validate_prepaid_number    1
+    Check_VA_response_text    1    Kamu bisa memilih nominal pulsa dibawah ini.
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_response_text    1    silakan pilih salah satu opsi pembayaran di bawah ini.
+    Validate_VA_carousel_payment    2
+    Click_button_carousel    2    E-Banking    E-Banking
+    Validate_VA_carousel_ebanking    1
+    Check_VA_response_text    2    ${VA_question_1}
+    Click_button_carousel    1    Bank Mandiri    Pilih
+    Pay_with_Mandiri_CP    FAIL
+    Check_VA_response_text_with_buttons    3    Maaf, pembayaran Kamu gagal, apakah Kamu ingin mencoba kembali?    Ya    Tidak
+    Closing_session
+
 [x] 098- User ask something that VA doesn’t understand and directed to FAQ
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
@@ -667,8 +688,7 @@ Resource          Test_data/Test_data_payment.txt
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     User_input    Mau beliin pulsa untuk orang lain
-    #Check_VA_response_text_with_buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
-    #Click_Button_From_Response    1    Ya
+    Validate_prepaid_number    1
     Check_VA_response_text    1    Oke, silakan masukkan nomor tujuan yang kamu ingin berikan hadiah
     User_input    ${other_prepaid_number}
     Check_VA_response_text_with_buttons    1    Berikut adalah bentuk hadiah yang bisa Kamu berikan ke nomor tujuan Kamu    Beli Pulsa    Beli Paket

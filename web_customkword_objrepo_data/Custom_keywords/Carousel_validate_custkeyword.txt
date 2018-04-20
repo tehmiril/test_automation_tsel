@@ -29,3 +29,9 @@ Validate_VA_carousel_payment
     Validate_carousel_items    ${order}    ${Payment_titleB}    ${Payment_subtitleB}    ${Payment_button1B}
     Validate_carousel_items    ${order}    ${Payment_titleC}    ${Payment_subtitleC}    ${Payment_button1C}
     Validate_carousel_items    ${order}    ${Payment_titleD}    \    ${Payment_button1D}
+
+Validate_VA_carousel_ebanking
+    [Arguments]    ${order}
+    Check_VA_response_carousel_exists    ${order}
+    Validate_carousel_items    ${order}    ${EBanking_titleA}    ${EBanking_subtitleA}    ${EBanking_button1A}
+    Validate_carousel_items    ${order}    ${EBanking_titleB}    ${EBanking_subtitleB}    ${EBanking_button1B}

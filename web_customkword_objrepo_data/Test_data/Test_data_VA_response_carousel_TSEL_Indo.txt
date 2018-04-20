@@ -24,3 +24,19 @@ ${Menu_utama_TSEL_subtitleE}    Kamu punya pertanyaan? Temukan jawabannya di sin
 ${Menu_utama_TSEL_button1E}    FAQ
 ${Menu_utama_TSEL_button2E}    GraPARI Terdekat
 ${Menu_utama_TSEL_button3E}    Kontak Live Agent
+${Payment_titleA}    Kartu Kredit
+${Payment_button1A}    Kartu Kredit
+${Payment_titleB}    E-Banking
+${Payment_subtitleB}    Bayar Dengan E-Banking
+${Payment_button1B}    E-Banking
+${Payment_titleC}    TCASH
+${Payment_subtitleC}    Bayar Dengan TCASH
+${Payment_button1C}    TCASH
+${Payment_titleD}    Batalkan
+${Payment_button1D}    Batalkan
+${EBanking_titleA}    Bank Mandiri
+${EBanking_subtitleA}    Bayar Dengan Clickpay
+${EBanking_button1A}    Pilih
+${EBanking_titleB}    Bank Permata
+${EBanking_subtitleB}    Bayar Dengan PermataNet
+${EBanking_button1B}    Pilih

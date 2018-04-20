@@ -120,3 +120,9 @@ Count_b_c
     ${count_e}    Get Element Count    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="" and text()="${current_carousel_title}"]/ancestor::*[@class="_3cne"]/following-sibling::div//a[contains(.,"${current_carousel_button}")]
     Run Keyword If    ${count_e}>0    Set Suite Variable    ${b_c_xpath}    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="" and text()="${current_carousel_title}"]/ancestor::*[@class="_3cne"]/following-sibling::div//a[contains(.,"${current_carousel_button}")]
     ...    ELSE    Fail    No Button Found
+
+Validate_prepaid_number
+    [Arguments]    ${order}
+    ${tb_visible}    Run Keyword And Return Status    Check_VA_response_text_with_buttons    ${order}    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
+    Run Keyword If    ${tb_visible}    Click_Button_From_Response    ${order}    Ya
+    ...    ELSE    No Operation    #Check_VA_response_text    ${order}    Kamu bisa memilih nominal pulsa dibawah ini.
