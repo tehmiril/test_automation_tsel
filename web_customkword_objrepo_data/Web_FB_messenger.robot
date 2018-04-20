@@ -24,6 +24,7 @@ Resource          Test_data/URL_data.txt
 Resource          Test_data/Test_data_VA_response_Indo.txt
 Resource          Test_data/Test_data_VA_response_carousel_TSEL_Indo.txt
 Resource          Test_data/Test_data_payment.txt
+Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
 
 *** Test Cases ***
 001 - Non-Telkomsel user who just started talking to VA
@@ -638,9 +639,13 @@ Resource          Test_data/Test_data_payment.txt
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
-[X] 074- User wants to participate CES in VA - finished
+074- User wants to participate CES in VA - finished
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Beli Pulsa
+    Cancel_and_closing_session
+    Greet_VA_Indo    ${VA_GreetNonTsel}
+    Closing_session
 
 [AGENT RELATED] 075- User wants to participate CES in Agent - finished
     [Tags]    Non-Telkomsel_FB
