@@ -19,6 +19,6 @@ Check_logged_in_user
     ...    AND    Login_messenger_actual    ${email}    ${password}
 
 Logout_messenger
-    [Documentation]    Logout from Farcebook. At the moment only close driver and re-open new browser. As Log Out button is currently not detected.
+    [Documentation]    Logout from Facebook. At the moment only close driver and re-open new browser. As Log Out button is currently not detected.
     Close Browser
     Open_chrome    ${URLmessengerTSEL}

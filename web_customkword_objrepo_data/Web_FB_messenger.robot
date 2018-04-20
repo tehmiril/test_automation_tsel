@@ -64,7 +64,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Click_carousel_button_on_specific_location    2    1    Pilih
     Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel    #di sekitar Jakarta Selatan yang dapat Kamu kunjungi nih
     Check_VA_response_carousel_exists    2
-    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    3    ${VA_question_1}
 
 006 - Non-Telkomsel user who is interested in using KartuHalo
     [Tags]    Non-Telkomsel_FB
@@ -81,7 +81,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Click_carousel_button_on_specific_location    2    1    Pilih
     Check_VA_response_text    1    Berikut info GraPARI di sekitar    #Jakarta Selatan ya
     Check_VA_response_carousel_exists    2
-    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    3    ${VA_question_1}
     #Click_button_carousel    2    GraPARI SETUI    Buka di Google Maps
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
     Closing_session
@@ -101,7 +101,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Click_carousel_button_on_specific_location    2    1    Pilih
     Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel    #di sekitar Jakarta Selatan yang dapat Kamu kunjungi nih
     Check_VA_response_carousel_exists    2
-    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    3    ${VA_question_1}
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
     Closing_session
 
@@ -119,7 +119,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Click_carousel_button_on_specific_location    2    1    Pilih
     Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Medan yang dapat Kamu kunjungi nih
     Check_VA_response_carousel_exists    2
-    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    3    ${VA_question_1}
     Click_carousel_button_on_specific_location    2    3    Buka di Google Maps
     Closing_session
 
@@ -140,7 +140,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Click_carousel_button_on_specific_location    2    1    Pilih
     Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar    #Jakarta Selatan yang dapat Kamu kunjungi nih
     Check_VA_response_carousel_exists    2
-    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    3    ${VA_question_1}
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
     Closing_session
 
@@ -173,12 +173,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Check_VA_response_text    2    ${VA_question_1}
     User_input    cara isi ulang tcash gmn ya?
     Check_VA_response_text    1    Kamu bisa mengisi saldo TCASH Kamu dengan cara-cara berikut
-    Check_VA_response_carousel_exists    2
-    Validate_carousel_items    2    Mobile Banking    Ikuti cara berikut untuk isi saldo TCASH melalui mobile/sms    Lihat Caranya
-    Validate_carousel_items    2    Internet Banking    Ikuti cara berikut untuk isi saldo TCASH melalui internet banking    Lihat Caranya
-    Validate_carousel_items    2    ATM Bersama    Ikuti cara berikut untuk isi saldo TCASH melalui ATM    Lihat Caranya
-    Validate_carousel_items    2    GraPARI    Kamu bisa pergi ke GraPARI untuk isi saldo TCASH    Cari GraPARI
-    Validate_carousel_items    2    Retail Store    Kunjungi retail store terdekat untuk isi saldo TCASH    Lihat Caranya
+    Validate_VA_carousel_tcash    2
     Click_button_carousel    2    Mobile Banking    Lihat Caranya
     Check_VA_response_image    1
     Check_VA_response_text    2    ${VA_question_1}
@@ -216,7 +211,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Validate_carousel_items    2    MyGraPARI Terdekat    Dapatkan SIM card 4G di GraPARI dengan membawa ID Card Kamu \ \ \ \    MyGraPARI Terdekat
     Validate_carousel_items    2    GraPARI Terdekat    Dapatkan SIM card 4G di GraPARI dengan membawa ID Card Kamu \ \ \ \    GraPARI Terdekat
     Validate_carousel_items    2    Registrasi Online    SIM card 4G akan dikirim ke rumah    Registrasi Online
-    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    3    ${VA_question_1}
     Click_button_carousel    2    GraPARI Terdekat    GraPARI Terdekat
     Check_VA_response_text    1    Tuliskan lokasi yang Kamu cari atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu untuk mendapatkan GraPARI terdekat
     User_input    jakarta selatan
@@ -226,7 +221,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Click_carousel_button_on_specific_location    2    1    Pilih
     Check_VA_response_text    1    Berikut info GraPARI di sekitar    #Jakarta Selatan ya
     Check_VA_response_carousel_exists    2
-    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    3    ${VA_question_1}
     Closing_session
 
 013(backup) - User perform Inquire 4G Upgrade and Find Nearest Store
@@ -245,7 +240,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Validate_carousel_items    2    MyGraPARI Terdekat    Dapatkan SIM card 4G di GraPARI dengan membawa ID Card Kamu \ \ \ \    MyGraPARI Terdekat
     Validate_carousel_items    2    GraPARI Terdekat    Dapatkan SIM card 4G di GraPARI dengan membawa ID Card Kamu \ \ \ \    GraPARI Terdekat
     Validate_carousel_items    2    Registrasi Online    SIM card 4G akan dikirim ke rumah    Registrasi Online
-    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    3    ${VA_question_1}
     Click_button_carousel    2    GraPARI Terdekat    GraPARI Terdekat
     Check_VA_response_text    1    Tuliskan lokasi yang Kamu cari atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu untuk mendapatkan GraPARI terdekat
     User_input    jakarta selatan
@@ -255,7 +250,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Click_carousel_button_on_specific_location    2    1    Pilih
     Check_VA_response_text    1    Berikut info GraPARI di sekitar    #Jakarta Selatan ya
     Check_VA_response_carousel_exists    2
-    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    3    ${VA_question_1}
     Closing_session
 
 [X] 014 - User want to search a grapari that opens on a specific day
@@ -272,7 +267,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     User_input    Sydney
     Click_carousel_button_on_specific_location    2    1    Pilih
     Check_VA_response_text    1    Mohon maaf, Veronika tidak menemukan adanya outlet Telkomsel di dekat sydney
-    Check_VA_response_text    2    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 
 [READY TO TEST] 016 - User want to buy voucher data
@@ -337,7 +332,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Check_VA_response_image    2
     Check_VA_response_text_with_2buttons    3    Apakah Kamu juga ingin melakukan pengisian pulsa?    Ya    Tidak
     Click_Button_From_Response    3    Tidak
-    Check_VA_response_text    1    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    1    ${VA_question_1}
     Closing_session
 
 019 - User perform inquire outlet location
@@ -352,7 +347,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Click_button_carousel    2    Jakarta Selatan    Pilih
     Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Jakarta Selatan yang dapat Kamu kunjungi nih
     Check_VA_response_carousel_exists    2
-    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    3    ${VA_question_1}
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
     Closing_session
 
@@ -380,19 +375,19 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Click_button_carousel    2    iOS (Apple)    Apple
     Check_VA_response_text    1    Veronika pandu ya :) ${\n}Untuk pengaturan Caller ID di handphone Apple, Kamu bisa ikuti langkah-langkah berikut:
     Check_VA_response_image    2
-    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    3    ${VA_question_1}
     User_input    Mau setting caller id di android gmn ya?
     Check_VA_response_text    1    Veronika pandu ya :) ${\n}Untuk pengaturan Caller ID di handphone Android, Kamu bisa ikuti langkah-langkah berikut:
     Check_VA_response_image    2
-    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    3    ${VA_question_1}
     User_input    Mau setting caller id di windows phone gmn ya?
     Check_VA_response_text    1    Veronika pandu ya :) ${\n}Untuk pengaturan Caller ID di handphone Windows Phone, Kamu bisa ikuti langkah-langkah berikut:
     Check_VA_response_image    2
-    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    3    ${VA_question_1}
     User_input    Mau setting caller id di blackberry gmn ya?
     Check_VA_response_text    1    Veronika pandu ya :) ${\n}Untuk pengaturan Caller ID di handphone Blackberry, Kamu bisa ikuti langkah-langkah berikut:
     Check_VA_response_image    2
-    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    3    ${VA_question_1}
     Closing_session
 
 [X] 021- User complain about his internet connection
@@ -414,7 +409,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Click_carousel_button_on_specific_location    2    1    Pilih
     Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar    #Jakarta Selatan yang dapat Kamu kunjungi nih
     Check_VA_response_carousel_exists    2
-    Check_VA_response_text    3    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    3    ${VA_question_1}
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
     Closing_session
 
@@ -567,17 +562,22 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
-[X] 056- Postpaid User ask his credit limit
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+056- Postpaid User ask his credit limit
+    [Tags]    Telkomsel_FB_postpaid
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    Credit limit saya berapa?
+    Validate_postpaid_number    1
+    Check_VA_response_text    1    Setelah Veronika cek, batas pemakaian domestik Kamu sebesar Rp300.000 perbulan dan roaming sebesar Rp0 perbulan.
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
 
 [X] 057- Postpaid User ask his credit limit
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
-[POSTPAID PUK] 058- User perform request PIN and PUK
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+[TCARE PIN-PUK] 058- User perform request PIN and PUK
+    [Tags]    Telkomsel_FB_postpaid
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
 
 [X] 059- Postpaid User who has no outstanding bill try to perform pay bill directly on VA and get told that he or she has no bill to pay
     [Tags]    Non-Telkomsel_FB
@@ -615,17 +615,37 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
-[TCASH RELATED] 068- User wants to know how to cash in Tcash
+068- User wants to know how to cash in Tcash
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    cara isi ulang tcash gmn ya?
+    Check_VA_response_text    1    Kamu bisa mengisi saldo TCASH Kamu dengan cara-cara berikut
+    Validate_VA_carousel_tcash    2
+    Click_button_carousel    2    Internet Banking    Lihat Caranya
+    Check_VA_response_image    1
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
 
 [X] 069- User wants to know how to cash in Tcash
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
-[X] 070- User wants to know how to cash in Tcash
+070- User wants to know how to cash in Tcash
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    cara isi saldo tcash gimana ya?
+    Check_VA_response_text    1    Kamu bisa mengisi saldo TCASH Kamu dengan cara-cara berikut
+    Validate_VA_carousel_tcash    2
+    Click_button_carousel    2    GraPARI    Cari GraPARI
+    Check_VA_response_text    1    Tuliskan lokasi yang Kamu cari atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu untuk mendapatkan GraPARI terdekat
+    User_input    jakarta selatan
+    Check_VA_response_text    1    Lokasi GraPARI sekitar mana yang Kamu maksud?
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_response_text    1    Berikut info GraPARI di sekitar    #Jakarta Selatan ya
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    ${VA_question_1}
+    Closing_session
 
 [X] 071- User wants to know how to cash in Tcash
     [Tags]    Non-Telkomsel_FB
@@ -674,12 +694,12 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 
-[x] 086- User asks for his credit limit
+086- User asks for his credit limit
     [Tags]    Telkomsel_FB_postpaid
     Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
     User_input    kredit limit saya berapa?
     Validate_postpaid_number    1
-    Check_VA_response_text    1    Setelah Veronika cek, Kamu memiliki pemakaian sementara sebesar
+    Check_VA_response_text    1    Setelah Veronika cek, batas pemakaian domestik Kamu sebesar Rp300.000 perbulan dan roaming sebesar Rp0 perbulan.
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 
@@ -688,7 +708,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
     User_input    berapa usage saya?
     Validate_postpaid_number    1
-    Check_VA_response_text    1    Setelah Veronika cek, batas pemakaian domestik Kamu sebesar Rp300.000 perbulan dan roaming sebesar Rp0 perbulan.
+    Check_VA_response_text    1    Setelah Veronika cek, Kamu memiliki pemakaian sementara sebesar
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 

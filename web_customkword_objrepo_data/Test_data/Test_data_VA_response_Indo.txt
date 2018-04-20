@@ -48,3 +48,18 @@ ${Produk_subtitleD}    Dapatkan lebih banyak benefit premium dengan Halo Kick!
 ${Produk_button1D}    Info Halo Kick
 ${Produk_button2D}    Daftar kartuHalo
 ${Produk_button3D}    Beli di GraPARI
+${TCASH_titleA}    Mobile Banking
+${TCASH_subtitleA}    Ikuti cara berikut untuk isi saldo TCASH melalui mobile/sms
+${TCASH_button1A}    Lihat Caranya
+${TCASH_titleB}    ATM Bersama
+${TCASH_subtitleB}    Ikuti cara berikut untuk isi saldo TCASH melalui ATM
+${TCASH_button1B}    Lihat Caranya
+${TCASH_titleC}    GraPARI
+${TCASH_subtitleC}    Kamu bisa pergi ke GraPARI untuk isi saldo TCASH
+${TCASH_button1C}    Cari GraPARI
+${TCASH_titleD}    Retail Store
+${TCASH_subtitleD}    Kunjungi retail store terdekat untuk isi saldo TCASH
+${TCASH_button1D}    Lihat Caranya
+${TCASH_titleE}    Internet Banking
+${TCASH_subtitleE}    Ikuti cara berikut untuk isi saldo TCASH melalui internet banking
+${TCASH_button1E}    Lihat Caranya

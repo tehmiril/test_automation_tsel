@@ -5,7 +5,6 @@ Validate_VA_carousel_produk
     Validate_carousel_items    2    ${Produk_titleB}    ${Produk_subtitleB}    ${Produk_button1B}    ${Produk_button2B}    ${Produk_button3B}
     Validate_carousel_items    2    ${Produk_titleC}    ${Produk_subtitleC}    ${Produk_button1C}    ${Produk_button2C}    ${Produk_button3C}
     Validate_carousel_items    2    ${Produk_titleD}    ${Produk_subtitleD}    ${Produk_button1D}    ${Produk_button2D}    ${Produk_button3D}
-    Sleep    2s
 
 Validate_VA_carousel_main_menu_non_tsel
     [Arguments]    ${order}
@@ -35,3 +34,11 @@ Validate_VA_carousel_ebanking
     Check_VA_response_carousel_exists    ${order}
     Validate_carousel_items    ${order}    ${EBanking_titleA}    ${EBanking_subtitleA}    ${EBanking_button1A}
     Validate_carousel_items    ${order}    ${EBanking_titleB}    ${EBanking_subtitleB}    ${EBanking_button1B}
+
+Validate_VA_carousel_tcash
+    [Arguments]    ${order}
+    Validate_carousel_items    ${order}    ${TCASH_titleA}    ${TCASH_subtitleA}    ${TCASH_button1A}
+    Validate_carousel_items    ${order}    ${TCASH_titleB}    ${TCASH_subtitleB}    ${TCASH_button1B}
+    Validate_carousel_items    ${order}    ${TCASH_titleC}    ${TCASH_subtitleC}    ${TCASH_button1C}
+    Validate_carousel_items    ${order}    ${TCASH_titleD}    ${TCASH_subtitleD}    ${TCASH_button1D}
+    Validate_carousel_items    ${order}    ${TCASH_titleE}    ${TCASH_subtitleE}    ${TCASH_button1E}
