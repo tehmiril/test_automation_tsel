@@ -355,7 +355,7 @@ Resource          Test_data/Test_data_payment.txt
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
     Closing_session
 
-[MINUS NO SUBTITLE] 020- User perform setting Caller ID \ for Apple, Android, Windows Phone, and Blackberry
+[MINUS NO SUBTITLE] 020- User perform setting Caller ID for Apple, Android, Windows Phone, and Blackberry
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
@@ -578,7 +578,7 @@ Resource          Test_data/Test_data_payment.txt
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
-[X] 059- Postpaid User who has no outstanding bill try to perform pay bill directly on VA and get told that he/she has no bill to pay
+[X] 059- Postpaid User who has no outstanding bill try to perform pay bill directly on VA and get told that he or she has no bill to pay
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
@@ -654,6 +654,60 @@ Resource          Test_data/Test_data_payment.txt
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
+[AGENT RELATED] 078- User wants to participate CES in Agent
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[x] 084- User want to check his or her last invoice date and amount
+    [Tags]    Telkomsel_FB_postpaid
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    Invoice terakhir saya
+    Validate_postpaid_number    1
+    Check_VA_response_text_with_buttons    1    Veronika perlu tau nih, apakah yang Kamu maksud adalah penggunaan saat ini atau tagihan ?    Penggunaan    Tagihan
+    Click_Button_From_Response    1    Tagihan
+    Check_VA_response_text    1    Kamu sudah melunasi tagihan Kamu sebesar
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
+
+[x] 086- User asks for his credit limit
+    [Tags]    Telkomsel_FB_postpaid
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    kredit limit saya berapa?
+    Validate_postpaid_number    1
+    Check_VA_response_text    1    Setelah Veronika cek, Kamu memiliki pemakaian sementara sebesar
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
+
+[x] 088- User asks about his usage
+    [Tags]    Telkomsel_FB_postpaid
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    berapa usage saya?
+    Validate_postpaid_number    1
+    Check_VA_response_text    1    Setelah Veronika cek, batas pemakaian domestik Kamu sebesar Rp300.000 perbulan dan roaming sebesar Rp0 perbulan.
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
+
+[x] 090- Prepaid user who wants to explore the loyalty card
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    Click_carousel_button_on_specific_location    2    4    Info POINTASTIC DEAL
+
+[x] 092- User Inquire Active Subscribed Offer -- error 503 backend fetch error
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    User_input    Paket saya yang aktif apa aja ya?
+    Validate_prepaid_number    1
+    Check_VA_response_text    1    setelah Veronika cek, berikut adalah paket aktif yang diaktifkan melalui myTelkomsel Apps dan Veronika untuk nomor handphone +6282110685202 :
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau mengetahui kuota Kamu saat ini?    Ya    Tidak
+    Click_Button_From_Response    2    Tidak
+    Check_VA_response_text    1    ${VA_question_1}
+    User_input    Saya langganan paket apa aja ya?
+    Check_VA_response_text    1    Saat ini Veronika hanya bisa menampilkan paket yang diaktifkan di MyTelkomsel apps atau Veronika
+    Check_VA_response_text    1    ${VA_question_1}
+    Closing_session
+
 094- User want to reload but cancel in the middle of conversation
     [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
@@ -673,7 +727,7 @@ Resource          Test_data/Test_data_payment.txt
     Pay_with_Mandiri_CP    FAIL
     Closing_session
 
-[x] 098- User ask something that VA doesn’t understand and directed to FAQ
+098- User ask something that VA doesn’t understand and directed to FAQ
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    ${random_question_sholat}
@@ -742,7 +796,7 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    1    silakan pilih salah satu opsi pembayaran di bawah ini.
     Validate_VA_carousel_payment    2
 
-[x] 118- User wants to perform Send Gift from Prepaid or Postpaid Number to Prepaid/Postpaid Number
+[x] 118- User wants to perform Send Gift from Prepaid or Postpaid Number to Prepaid or Postpaid Number
     [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}

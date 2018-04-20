@@ -22,3 +22,6 @@ ${give_rec}       10
 ${inactive_number}    08
 ${other_prepaid_number}    081310365118
 ${postpaid_dest_number}    08
+${emailPostpaid}    taacnindonesia03@gmail.com
+${passwordPostpaid}    Welcome01!
+${postpaid_number}    081314415099

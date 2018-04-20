@@ -126,3 +126,9 @@ Validate_prepaid_number
     ${tb_visible}    Run Keyword And Return Status    Check_VA_response_text_with_buttons    ${order}    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
     Run Keyword If    ${tb_visible}    Click_Button_From_Response    ${order}    Ya
     ...    ELSE    No Operation    #Check_VA_response_text    ${order}    Kamu bisa memilih nominal pulsa dibawah ini.
+
+Validate_postpaid_number
+    [Arguments]    ${order}
+    ${tb_visible}    Run Keyword And Return Status    Check_VA_response_text_with_buttons    ${order}    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6281314415099 ?    Ya    Tidak
+    Run Keyword If    ${tb_visible}    Click_Button_From_Response    ${order}    Ya
+    ...    ELSE    No Operation    #Check_VA_response_text    ${order}    Kamu bisa memilih nominal pulsa dibawah ini.
