@@ -23,9 +23,10 @@ Enter_MCP_details
 Check_MCP_payment_status
     [Arguments]    ${status}
     SeleniumLibrary.Click Element    ${MCP_submit_obj}
+    SeleniumLibrary.Capture Page Screenshot    CCpayment_${status}_${TEST NAME}.png
     Sleep    2s
     Select Window    url=${first_url}
-    Run Keyword If    '${status}'=='FAIL'    Run Keywords    Check_VA_response_text_with_buttons    1    Maaf, pembayaran Kamu gagal, apakah Kamu ingin mencoba kembali?    Ya
+    Run Keyword If    '${status}'=='FAIL'    Run Keywords    Check_VA_response_text_with_buttons    3    Maaf, pembayaran Kamu gagal, apakah Kamu ingin mencoba kembali?    Ya
     ...    Tidak
-    ...    AND    Click_Button_From_Response    1    Tidak
+    ...    AND    Click_Button_From_Response    3    Tidak
     ...    AND    Check_VA_response_text    1    ${VA_question_1}

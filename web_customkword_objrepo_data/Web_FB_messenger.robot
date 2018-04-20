@@ -654,7 +654,7 @@ Resource          Test_data/Test_data_payment.txt
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
-[x] 094- User want to reload but cancel in the middle of conversation
+094- User want to reload but cancel in the middle of conversation
     [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
@@ -671,7 +671,6 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    2    ${VA_question_1}
     Click_button_carousel    1    Bank Mandiri    Pilih
     Pay_with_Mandiri_CP    FAIL
-    Check_VA_response_text_with_buttons    3    Maaf, pembayaran Kamu gagal, apakah Kamu ingin mencoba kembali?    Ya    Tidak
     Closing_session
 
 [x] 098- User ask something that VA doesn’t understand and directed to FAQ

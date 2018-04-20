@@ -31,6 +31,7 @@ Enter_CC_details
 Check_CC_payment_status
     [Arguments]    ${status}
     SeleniumLibrary.Click Element    ${CC_submit_obj}
+    SeleniumLibrary.Capture Page Screenshot    CCpayment_${status}_${TEST NAME}.png
     Sleep    2s
     Run Keyword If    '${status}'=='FAIL'    Element Should Be Visible    ${CC_invalidcardalert_obj}
     Sleep    3s
