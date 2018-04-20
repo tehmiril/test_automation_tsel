@@ -539,8 +539,34 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 [X] 050- User wants to book an appointment at GraPARI
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    User_input    mau bikin janji di grapari
+    Check_VA_response_text    1    Kamu sekarang berada dimana? Silakan share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu atau ketik langsung lokasi yang Kamu maksud
+    User_input    jakarta selatan
+    Check_VA_response_text    1    Lokasi GraPARI sekitar mana yang Kamu maksud?
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_response_text    1    Berikut info GraPARI di sekitar    #Jakarta Selatan ya
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    ${VA_question_1}
+    Click_carousel_button_on_specific_location    2    1    Buat Reservasi
+    Validate_prepaid_number    1
+    Check_VA_response_text    1    Silahkan pilih kebutuhan Kamu
+    Validate_VA_carousel_appointment    2
+    Click_button_carousel    2    Keluhan dan Informasi    Pilih Layanan
+    Check_VA_response_text    1    Teman Veronika, dari agen Telkomsel juga bisa membantu memenuhi kebutuhan Kamu mengenai informasi atau keluhan.
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau disambungkan dengan agen Telkomsel?    Ya    Tidak
+    Click_Button_From_Response    2    Tidak
+    Check_VA_response_text    1    Kamu mau reservasi untuk kapan?
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    4    17:00-21:00 WIB
+    Check_VA_response_text    1    Berikut waktu yang bisa Kamu pilih
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    4    20:30-21:00 WIB
+    Check_VA_response_text    1    20:30 WIB Layanan: Keluhan dan Informasi Segera konfirmasi detail berikut untuk mendapatkan jadwal yang Kamu inginkan
+    Check_VA_response_text_with_buttons    2    Apakah detail di atas sudah benar    Ya Benar    Bukan Itu    Batal
+    #Click_Button_From_Response    2    Ya Benar
 
 [X] 051- User want to know about detail information about his/her reservation
     [Tags]    Non-Telkomsel_FB

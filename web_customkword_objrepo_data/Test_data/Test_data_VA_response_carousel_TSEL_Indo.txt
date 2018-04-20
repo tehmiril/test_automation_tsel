@@ -47,3 +47,7 @@ ${EBanking_button1B}    Pilih
 @{Kuota_Postpaid_B}    SMS    Lihat Kuota SMS
 @{Kuota_Postpaid_C}    Voice    Lihat Kuota Telepon
 @{Kuota_Postpaid_D}    Ekstra Pulsa    Lihat Ekstra Pulsa
+@{Appointment_A}    Cashier    Pilih Layanan
+@{Appointment_B}    Keluhan dan Informasi    Pilih Layanan
+@{Appointment_C}    Aktivasi layanan dan Pasang Baru    Pilih Layanan
+@{Appointment_D}    Batal    Batal

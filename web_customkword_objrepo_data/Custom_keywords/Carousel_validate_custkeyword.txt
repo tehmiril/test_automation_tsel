@@ -38,6 +38,14 @@ Validate_VA_carousel_kuota_postpaid
     Validate_carousel_items    ${order}    @{Kuota_Postpaid_C}[0]    \    @{Kuota_Postpaid_C}[1]
     Validate_carousel_items    ${order}    @{Kuota_Postpaid_D}[0]    \    @{Kuota_Postpaid_D}[1]
 
+Validate_VA_carousel_appointment
+    [Arguments]    ${order}
+    Check_VA_response_carousel_exists    ${order}
+    Validate_carousel_items    ${order}    @{Appointment_A}[0]    \    @{Appointment_A}[1]
+    Validate_carousel_items    ${order}    @{Appointment_B}[0]    \    @{Appointment_B}[1]
+    Validate_carousel_items    ${order}    @{Appointment_C}[0]    \    @{Appointment_C}[1]
+    Validate_carousel_items    ${order}    @{Appointment_D}[0]    \    @{Appointment_D}[1]
+
 Validate_VA_carousel_payment
     [Arguments]    ${order}
     Check_VA_response_carousel_exists    ${order}
