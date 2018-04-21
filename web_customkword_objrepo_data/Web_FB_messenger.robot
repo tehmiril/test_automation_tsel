@@ -291,15 +291,6 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 
-[READY TO TEST] 017 - User wants to know about voucher information
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${email}    ${password}
-    Greet_VA_Indo    ${VA_Greet1}
-    User_input    mau tau info voucher telkomsel
-    Check_VA_response_text    1    Oke Lightning Diamond, Telkomsel menyediakan berbagai macam voucher isi ulang sesuai kebutuhan Kamu
-    Check_VA_response_text_with_buttons    2    Kamu pake simPATI, Loop, atau Kartu As?    SimPATI    Loop    Kartu As
-    Cancel_and_closing_session
-
 017 - User wants to know about voucher information
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${email}    ${password}
@@ -393,35 +384,30 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Check_VA_response_text    3    ${VA_question_1}
     Closing_session
 
-[X] 021- User complain about his internet connection
+[DEPRECATED] 021- User complain about his internet connection
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${email}    ${password}
 
 [AGENT INVOLVED] 022 - User complain about his internet service and agree to connect to agent
 
-[X] 023- Smalltalk
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
-    User_input    aku bosan nih
-    Check_VA_response_text    1    Kamu bisa mengisi ulang pulsa dengan nominal tersebut di GraPARI maupun di outlet terdekat.
-    Check_VA_response_text    2    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
-    User_input    Jakarta Selatan
-    Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
-    Check_VA_response_carousel_exists    2
-    #Click_button_carousel    2    Jakarta Selatan    Pilih
-    Click_carousel_button_on_specific_location    2    1    Pilih
-    Check_VA_response_text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar    #Jakarta Selatan yang dapat Kamu kunjungi nih
-    Check_VA_response_carousel_exists    2
-    Check_VA_response_text    3    ${VA_question_1}
-    Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
-    Closing_session
-
-[X] 024- User wants to have a small talk with Veronika
+023- Smalltalk
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    aku bosan nih
     Check_VA_response_text    1    @{randomBoredIndo}
+    Check_VA_response_text_with_2buttons    2    Apakah Kamu mau?    Ya    Tidak
+    Click_Button_From_Response    2    Tidak
+    Check_VA_response_text    1    ${VA_question_1}
+    Closing_session
+    Closing_session
+
+[Too Big Random] 024- User wants to have a small talk with Veronika
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    User_input    aku bosan nih
+    Check_VA_response_text    1    @{randomBoredIndo}
     Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
+    Click_Button_From_Response    2    Ya
 
 [X] 025- User expresses harsh comment and ask random question to Veronika
     [Tags]    Non-Telkomsel_FB
