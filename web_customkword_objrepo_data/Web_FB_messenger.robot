@@ -466,25 +466,58 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
-[X] 032- Prepaid User ask for Recharge History
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+032- Prepaid User ask for Recharge History
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    User_input    saya pernah beli pulsa berapa aja?
+    Validate_prepaid_number    1
+    Check_VA_response_text    1    berikut 3 pembelian pulsa terakhir yang Veronika temukan
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
 
 [X] 033- Prepaid User perform Get Invoice Date & Amount
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
-[X] 034- Prepaid user who wants to topup using credit card
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+034- Prepaid user who wants to topup using credit card
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    Click_button_carousel    2    Profil Kamu    Beli Pulsa
+    Validate_prepaid_number    1
+    Check_VA_response_text    1    Kamu bisa memilih nominal pulsa dibawah ini.
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_response_text    1    silakan pilih salah satu opsi pembayaran di bawah ini.
+    Validate_VA_carousel_payment    2
+    Click_carousel_button_on_specific_location    2    1    Kartu Kredit
+    Pay_with_credit_card    FAIL
+    Cancel_and_closing_session
 
 [MANDIRI RELATED] 035- Prepaid user who wants to topup using Mandiri ClickPay
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 [X] 036- Prepaid user who wants to topup using PermataNet
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    Click_button_carousel    2    Profil Kamu    Beli Pulsa
+    Validate_prepaid_number    1
+    Check_VA_response_text    1    Kamu bisa memilih nominal pulsa dibawah ini.
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_response_text    1    silakan pilih salah satu opsi pembayaran di bawah ini.
+    Validate_VA_carousel_payment    2
+    Click_button_carousel    2    E-Banking    E-Banking
+    Validate_VA_carousel_ebanking    1
+    Check_VA_response_text    2    ${VA_question_1}
+    Click_button_carousel    1    Bank Permata    Pilih
+    #Pay_with_PermataNet    FAIL
+    Closing_session
 
 [X] 037- Prepaid user who wants top up his credit using TCASH but doesn't have a TCASH account yet
     [Tags]    Non-Telkomsel_FB
@@ -515,16 +548,25 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 [X] 044- Prepaid user who wants to purchase the package that VA offers
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    Click_carousel_button_on_specific_location    2    2    Beli Paket Favorit
+    Validate_prepaid_number    1
+    Closing_session
 
 [X] 045- User want to see the detail information of ongoing promotion
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 [X] 046- User want to see all promotion
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    Click_carousel_button_on_specific_location    2    3    Lihat Semua Promo
+    Check_VA_response_text    1    Berikut adalah promosi-promosi menarik dari Telkomsel.
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    ${VA_question_1}
+    Closing_session
 
 [X] 047- Prepaid user who wants to explore the loyalty card
     [Tags]    Non-Telkomsel_FB
