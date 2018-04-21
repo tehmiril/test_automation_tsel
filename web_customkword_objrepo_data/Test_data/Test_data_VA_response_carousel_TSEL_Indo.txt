@@ -51,3 +51,11 @@ ${EBanking_button1B}    Pilih
 @{Appointment_B}    Keluhan dan Informasi    Pilih Layanan
 @{Appointment_C}    Aktivasi layanan dan Pasang Baru    Pilih Layanan
 @{Appointment_D}    Batal    Batal
+@{Konfigurasi_A}    Konfigurasi terkait Internet    Refresh Jaringan    Setting APN
+@{Konfigurasi_B}    Konfigurasi terkait SMS    Refresh Jaringan    Pengaturan Pusat SMS
+@{Konfigurasi_C}    Konfigurasi terkait telepon    Refresh Jaringan    Pengaturan Caller ID
+@{Konfigurasi_D}    Konfigurasi lain    Pengalihan Panggilan    Fixed Dial Number
+@{callerID_A}     iOS (Apple)    iPhone    Apple
+@{callerID_B}     Android    Samsung, LG, Lenovo, Asus, Xiaomi, OPPO    Android
+@{callerID_C}     Windows Phone    Nokia Lumia    Windows Phone
+@{callerID_D}     Blackberry    Blackberry    Blackberry

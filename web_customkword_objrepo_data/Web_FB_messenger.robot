@@ -351,27 +351,18 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
     Closing_session
 
-[MINUS NO SUBTITLE] 020- User perform setting Caller ID for Apple, Android, Windows Phone, and Blackberry
-    [Tags]    Non-Telkomsel_FB
+020- User perform setting Caller ID for Apple, Android, Windows Phone, and Blackberry
+    [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     Click_button_carousel    2    Bantuan Lainnya    FAQ
     Check_VA_response_carousel_exists    1
-    #Validate_carousel_items    2    FAQ
     Click_button_carousel    1    FAQ    Info Konfigurasi
     Check_VA_response_text    1    Berikut Veronika berikan jenis konfigurasi yang bisa Kamu pilih ya
-    Check_VA_response_carousel_exists    2
-    Validate_carousel_items    2    Konfigurasi terkait Internet    Refresh Jaringan    Setting APN
-    Validate_carousel_items    2    Konfigurasi terkait SMS    \    Refresh Jaringan    Pengaturan Pusat SMS
-    Validate_carousel_items    2    Konfigurasi terkait telepon    \    Refresh Jaringan    Pengaturan Caller ID
-    Validate_carousel_items    2    Konfigurasi lain    \    Refresh Jaringan    Pengaturan Pusat SMS
-    Click_button_carousel    1    Konfigurasi terkait telepon    Refresh Jaringan    Pengaturan Caller ID
+    Validate_VA_carousel_konfigurasi    2
+    Click_button_carousel    2    Konfigurasi terkait telepon    Pengaturan Caller ID
     Check_VA_response_text    1    Untuk membantu Kamu terkait hal ini, silakan pilih salah satu ya
-    Check_VA_response_carousel_exists    2
-    Validate_carousel_items    2    iOS (Apple)    iPhone    Apple
-    Validate_carousel_items    2    Android    Samsung, LG, Lenovo, Asus, Xiaomi, OPPO    Android
-    Validate_carousel_items    2    Windows Phone    Nokia Lumia    Windows Phone
-    Validate_carousel_items    2    Blackberry    Blackberry    Blackberry
+    Validate_VA_carousel_konfigurasi_callerID    2
     Click_button_carousel    2    iOS (Apple)    Apple
     Check_VA_response_text    1    Veronika pandu ya :) ${\n}Untuk pengaturan Caller ID di handphone Apple, Kamu bisa ikuti langkah-langkah berikut:
     Check_VA_response_image    2
@@ -379,7 +370,8 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     User_input    Mau setting caller id di android gmn ya?
     Check_VA_response_text    1    Veronika pandu ya :) ${\n}Untuk pengaturan Caller ID di handphone Android, Kamu bisa ikuti langkah-langkah berikut:
     Check_VA_response_image    2
-    Check_VA_response_text    3    ${VA_question_1}
+    Check_VA_response_image    3
+    Check_VA_response_text    4    ${VA_question_1}
     User_input    Mau setting caller id di windows phone gmn ya?
     Check_VA_response_text    1    Veronika pandu ya :) ${\n}Untuk pengaturan Caller ID di handphone Windows Phone, Kamu bisa ikuti langkah-langkah berikut:
     Check_VA_response_image    2

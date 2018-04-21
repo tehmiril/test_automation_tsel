@@ -68,3 +68,19 @@ Validate_VA_carousel_tcash
     Validate_carousel_items    ${order}    ${TCASH_titleC}    ${TCASH_subtitleC}    ${TCASH_button1C}
     Validate_carousel_items    ${order}    ${TCASH_titleD}    ${TCASH_subtitleD}    ${TCASH_button1D}
     Validate_carousel_items    ${order}    ${TCASH_titleE}    ${TCASH_subtitleE}    ${TCASH_button1E}
+
+Validate_VA_carousel_konfigurasi
+    [Arguments]    ${order}
+    Check_VA_response_carousel_exists    ${order}
+    Validate_carousel_items    ${order}    @{Konfigurasi_A}[0]    \    @{Konfigurasi_A}[1]    @{Konfigurasi_A}[2]
+    Validate_carousel_items    ${order}    @{Konfigurasi_B}[0]    \    @{Konfigurasi_B}[1]    @{Konfigurasi_B}[2]
+    Validate_carousel_items    ${order}    @{Konfigurasi_C}[0]    \    @{Konfigurasi_C}[1]    @{Konfigurasi_C}[2]
+    Validate_carousel_items    ${order}    @{Konfigurasi_D}[0]    \    @{Konfigurasi_D}[1]    @{Konfigurasi_D}[2]
+
+Validate_VA_carousel_konfigurasi_callerID
+    [Arguments]    ${order}
+    Check_VA_response_carousel_exists    ${order}
+    Validate_carousel_items    ${order}    @{callerID_A}[0]    @{callerID_A}[1]    @{callerID_A}[2]
+    Validate_carousel_items    ${order}    @{callerID_B}[0]    @{callerID_B}[1]    @{callerID_B}[2]
+    Validate_carousel_items    ${order}    @{callerID_C}[0]    @{callerID_C}[1]    @{callerID_C}[2]
+    Validate_carousel_items    ${order}    @{callerID_D}[0]    @{callerID_D}[1]    @{callerID_D}[2]
