@@ -196,6 +196,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Closing_session
 
 013 - User perform Inquire 4G Upgrade and Find Nearest Store
+    [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     Click_button_carousel    2    Bantuan Lainnya    FAQ
@@ -253,10 +254,17 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Check_VA_response_text    3    ${VA_question_1}
     Closing_session
 
-[X] 014 - User want to search a grapari that opens on a specific day
+014 - User want to search a grapari that opens on a specific day
     [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     User_input    grapari yang buka di hari minggu di jakarta selatan
+    Check_VA_response_text    1    Lokasi GraPARI sekitar mana yang Kamu maksud?
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_response_text    1    Berikut GraPARI di Jakarta Selatan yang sesuai dengan kondisi Kamu
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    ${VA_question_1}
+    Closing_session
 
 015 - User want to buy a starter pack
     [Tags]    Non-Telkomsel_FB
@@ -270,7 +278,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 
-[READY TO TEST] 016 - User want to buy voucher data
+016 - User want to buy voucher data
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    mau beli voucher data
@@ -278,6 +286,9 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Check_VA_response_text    2    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
     User_input    Sydney
     Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_response_text    1    Mohon maaf, Veronika tidak menemukan adanya outlet Telkomsel di dekat sydney
+    Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 
 [READY TO TEST] 017 - User wants to know about voucher information
