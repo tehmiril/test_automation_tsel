@@ -411,10 +411,9 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
 
 [X] 025- User expresses harsh comment and ask random question to Veronika
     [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
-    User_input    aku bosan nih
-    Check_VA_response_text    1    @{randomBoredIndo}
-    Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    User_input    Vero jahat banget sih
 
 [WALL POSTING INVOLVED] 026- User wrote a wallpost in the last 3 days that VA can handle
     [Tags]    Non-Telkomsel_FB
@@ -437,12 +436,19 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Check_VA_response_text    1    @{randomBoredIndo}
     Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
 
-[X] 029- User Inquire Active Subscribed Offer
+029- User Inquire Active Subscribed Offer
     [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
-    User_input    aku bosan nih
-    Check_VA_response_text    1    @{randomBoredIndo}
-    Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    User_input    Paket saya yang aktif apa aja ya?
+    Check_VA_response_text    1    Oke M Testaut, setelah Veronika cek, berikut adalah paket aktif yang diaktifkan melalui myTelkomsel Apps dan Veronika untuk nomor handphone +6282110685202 :
+    Check_VA_response_text_with_2buttons    2    Apakah Kamu mau mengetahui kuota Kamu saat ini?    Ya    Tidak
+    Click_Button_From_Response    2    Tidak
+    Check_VA_response_text    1    ${VA_question_1}
+    User_input    saya langganan paket apa aja ya?
+    Check_VA_response_text    1    Saat ini Veronika hanya bisa menampilkan paket yang diaktifkan di MyTelkomsel apps atau Veronika
+    Check_VA_response_text    1    ${VA_question_1}
+    Closing_session
 
 [X] 030- User inquire for hot offer
     [Tags]    Non-Telkomsel_FB
@@ -453,7 +459,24 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
 
 [X] 031- User perform inquire subscribed main offering, package terms & condition and subscribed offer
     [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    Login_messenger    ${email}    ${password}
+    User_input    priceplan saya apaan ya?
+    Check_VA_response_text_with_2buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
+    Click_Button_From_Response    1    Ya
+    Check_VA_response_text    1    Oke M Testaut, setelah Veronika cek, saat ini nomor +6282110685202 terdaftar menggunakan PP simPATI Go Discover yang aktif sampai dengan tanggal 22-Desember-2018.
+    Check_VA_response_text    1    ${VA_question_1}
+    User_input    paket terbaik buat saya apaan ya?
+    Check_VA_response_carousel_exists    1
+    Click_button_carousel    1    Paket Internet    Pilih
+    Check_VA_response_text    1    Oke M Testaut, Veronika menyediakan pilihan paket Paket Internet yang dapat Kamu beli di bawah ini
+    Check_VA_response_carousel_exists    2
+    Click_button_carousel    2    Paket Internet Seharian 1 GB    Detail
+    Check_VA_response_text    1    Berikut adalah syarat & ketentuan untuk Paket Internet Seharian 1 GB
+    Check_VA_response_text    2    Paket Internet berlaku untuk 1 hari, dengan kuota :
+    Check_VA_response_text    2    1 GB Internet untuk akses internet di jaringan 2G/3G/4G berlaku s.d pukul 23.59
+    Check_VA_response_text    3    1. Paket berlaku hanya untuk pemakaian domestik (tidak berlalu untuk Internasional Roaming yang akan dikenakan biaya terpisah).
+    Check_VA_response_text_with_2buttons    4    Apakah Kamu ingin membeli paket tersebut?    Ya    Tidak
+    Cancel_and_closing_session
 
 032- Prepaid User ask for Recharge History
     [Tags]    Telkomsel_FB
