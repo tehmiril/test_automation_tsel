@@ -66,7 +66,7 @@ tester2
     Click_Button_From_Response    2    Jakarta Timur    NONE    #Police Banda Aceh    NONE
     Check_VA_response_text    3    Veronika menemukan beberapa outlet Telkomsel di sekitar Jakarta Timur yang dapat Kamu kunjungi nih
     Check_VA_response_text_with_buttons    4    Berikut GraPARI dan outlet terdekat di sekitarmu
-    Check_VA_response_text    5    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    5    ${VA_question_1}
     Cancel_and_closing_session
 
 006 - Non-Telkomsel user who is interested in using KartuHalo
@@ -81,11 +81,11 @@ tester2
     Check_VA_response_text    1    Lokasi GraPARI sekitar mana yang Kamu maksud?
     Check_VA_response_text_with_buttons    2    Lokasi yang Veronika temukan:
     Click_Button_From_Response    2    Jakarta Timur    NONE    #Police Banda Aceh    NONE
-    Check_VA_response_text    3    Berikut info GraPARI di sekitar Police Banda Aceh ya
+    Check_VA_response_text    3    Berikut info GraPARI di sekitar Jakarta Timur ya
     Check_VA_response_text_with_buttons    4    Show GraPARI
     Click_Button_From_Response    4    GraPARI PONDOK BAMBU    NONE    #SETUI    NONE
     Check_VA_response_text_with_buttons    5    Apa lagi yang kamu butuhkan?    Lihat di Google Maps    Buat Reservasi
-    Check_VA_response_text    6    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    6    ${VA_question_1}
     Click_Button_From_Response    5    Lihat di Google Maps    NONE
     Closing_session
 
@@ -103,7 +103,7 @@ tester2
     Click_Button_From_Response    2    Jakarta Timur    NONE
     Check_VA_response_text    3    Veronika menemukan beberapa outlet Telkomsel di sekitar Jakarta Timur yang dapat Kamu kunjungi nih
     Check_VA_response_text_with_buttons    4    Berikut GraPARI dan outlet terdekat di sekitarmu
-    Check_VA_response_text    5    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    5    ${VA_question_1}
     Click_Button_From_Response    4    NAZWA CELL SELASA    NONE
     Closing_session
 
@@ -121,7 +121,7 @@ tester2
     Click_Button_From_Response    2    Jakarta Timur    NONE
     Check_VA_response_text    3    Veronika menemukan beberapa outlet Telkomsel di sekitar Jakarta Timur yang dapat Kamu kunjungi nih
     Check_VA_response_text_with_buttons    4    Berikut GraPARI dan outlet terdekat di sekitarmu
-    Check_VA_response_text    5    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    5    ${VA_question_1}
     Click_Button_From_Response    4    NAZWA CELL SELASA    NONE
     Closing_session
 
@@ -142,7 +142,7 @@ tester2
     Click_Button_From_Response    2    Jakarta Timur    NONE
     Check_VA_response_text    3    Veronika menemukan beberapa outlet Telkomsel di sekitar Jakarta Timur yang dapat Kamu kunjungi nih
     Check_VA_response_text_with_buttons    4    Berikut GraPARI dan outlet terdekat di sekitarmu
-    Check_VA_response_text    5    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    5    ${VA_question_1}
     Click_Button_From_Response    4    NAZWA CELL SELASA    NONE
     Closing_session
 
@@ -193,6 +193,83 @@ tester2
     Check_VA_response_text_with_buttons    1    Untuk upgrade ke kartu SIM 4G, ganti kartu SIM lama Kamu dengan kartu SIM 4G ya. Pergantian kartu tidak akan mengubah nomor Telkomsel Kamu. Berikut adalah beberapa cara untuk mendapatkannya:    MyGraPARI Terdekat    GraPARI Terdekat    Registrasi Online
     Click_Button_From_Response    1    MyGraPARI Terdekat    NONE
     Closing_session
+
+[NO FAQ button] 013 - User perform Inquire 4G Upgrade and Find Nearest Store
+    [Tags]    Telkomsel_Telegram
+    Greet_VA_Indo    ${VA_Greet1}
+    Click_Button_From_Response    2    Bantuan Lainnya    Bantuan Lainnya
+
+014 - User want to search a grapari that opens on a specific day
+    [Tags]    Non-Telkomsel_Telegram
+    User_input    grapari yang buka di hari minggu di jakarta selatan
+    Check_VA_response_text    1    Lokasi GraPARI sekitar mana yang Kamu maksud?
+    Check_VA_response_text_with_buttons    2    Lokasi yang Veronika temukan:
+    Click_Button_From_Response    2    Jakarta Selatan    NONE
+    Check_VA_response_text    1    Berikut GraPARI di Jakarta Selatan yang sesuai dengan kondisi Kamu
+    Check_VA_response_text_with_buttons    2    Show GraPARI
+    Cancel_and_closing_session
+
+015 - User want to buy a starter pack
+    [Tags]    Non-Telkomsel_Telegram
+    User_input    mau beli perdana
+    Check_VA_response_text    1    Kamu bisa mendapatkan perdana Telkomsel di GraPARI maupun di outlet terdekat
+    Check_VA_response_text    2    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
+    User_input    Sydney
+    Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
+    Check_VA_response_text_with_buttons    2    Lokasi yang Veronika temukan:
+    Click_Button_From_Response    2    Sydney    NONE
+    Check_VA_response_text    3    Mohon maaf, Veronika tidak menemukan adanya outlet Telkomsel di dekat sydney
+    Check_VA_response_text    4    ${VA_question_1}
+    Closing_session
+
+016 - User want to buy voucher data
+    [Tags]    Non-Telkomsel_Telegram
+    User_input    mau beli voucher data
+    Check_VA_response_text    1    Voucher data bisa Kamu dapatkan di outlet terdekat
+    Check_VA_response_text    2    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
+    User_input    Sydney
+    Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
+    Check_VA_response_text_with_buttons    2    Lokasi yang Veronika temukan:
+    Click_Button_From_Response    2    Sydney    NONE
+    Check_VA_response_text    3    Mohon maaf, Veronika tidak menemukan adanya outlet Telkomsel di dekat sydney
+    Check_VA_response_text    4    ${VA_question_1}
+    Closing_session
+
+017 - User wants to know about voucher information
+    [Tags]    Non-Telkomsel_Telegram
+    Greet_VA_Indo    ${VA_Greet1}
+    User_input    mau tau info voucher telkomsel
+    Check_VA_response_text    1    Telkomsel menyediakan berbagai macam voucher isi ulang sesuai kebutuhan Kamu
+    Check_VA_response_text_with_buttons    2    Kamu pake simPATI, Loop, atau Kartu As?    SimPATI    Loop    Kartu As
+    Cancel_and_closing_session
+
+[NO FAQ button] 018 - User explore the FAQ menu and read about voucher information
+    [Tags]    Telkomsel_Telegram
+    Greet_VA_Indo    ${VA_Greet1}
+
+019 - User perform inquire outlet location
+    [Tags]    Non-Telkomsel_Telegram
+    User_input    beli pulsa 10000
+    Check_VA_response_text    1    Saat ini Veronika hanya menyediakan nominal pulsa: 50.000, 100.000, 150.000, 200.000, dan 300.000. Jika Kamu tetap ingin mengisi ulang pulsa dengan nominal yang Kamu mau, Veronika bisa membantu menemukan lokasi GraPARI atau outlet terdekat di tempat Kamu berada#Kamu bisa mengisi ulang pulsa dengan nominal tersebut di GraPARI maupun di outlet terdekat.
+    Check_VA_response_text    2    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
+    User_input    jakarta timur
+    Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
+    Check_VA_response_text_with_buttons    2    Lokasi yang Veronika temukan:
+    Click_Button_From_Response    2    Jakarta Timur    NONE
+    Check_VA_response_text    3    Veronika menemukan beberapa outlet Telkomsel di sekitar Jakarta Timur yang dapat Kamu kunjungi nih
+    Check_VA_response_text_with_buttons    4    Berikut GraPARI dan outlet terdekat di sekitarmu
+    Check_VA_response_text    5    ${VA_question_1}
+    Click_Button_From_Response    4    NAZWA CELL SELASA    NONE
+    Closing_session
+
+[NO FAQ button] 020- User perform setting Caller ID for Apple, Android, Windows Phone, and Blackberry
+    [Tags]    Telkomsel_Telegram
+    Greet_VA_Indo    ${VA_Greet1}
+
+[DEPRECATED] 021- User complain about his internet connection
+    [Tags]    Non-Telkomsel_Telegram
+
+[AGENT INVOLVED] 022 - User complain about his internet service and agree to connect to agent
 
 [x] 052 - Postpaid user wants to change his number (vice versa)
     [Tags]    Telkomsel_Telegram
