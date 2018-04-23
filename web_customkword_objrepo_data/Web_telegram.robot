@@ -10,6 +10,8 @@ Library           Collections
 Resource          Local_path.txt
 Resource          Custom_keywords/Browser_custkeyword.txt
 Resource          Custom_keywords/SMS_web_custom_keywords.txt
+Resource          Custom_keywords/Credit_card_payment_custkeyword.txt
+Resource          Custom_keywords/EBanking_payment_custkeyword.txt
 Resource          Telegram/Test_data_user_input_Telegram_Indo.txt
 Resource          Telegram/Text_with_buttons_custkeyword_Telegram.txt
 Resource          Telegram/Detailed_custkeyword_Telegram.txt
@@ -17,6 +19,8 @@ Resource          Telegram/Generic_custkeyword_Telegram.txt
 Resource          Telegram/Object_repository_Telegram.txt
 Resource          Telegram/Test_data_VA_response_Telegram_Indo.txt
 Resource          Test_data/URL_data.txt
+Resource          Object_repository/Payment_pages_object_repo.txt
+Resource          Test_data/Test_data_payment.txt
 
 *** Test Cases ***
 001 - Non-Telkomsel user who just started talking to VA
@@ -373,6 +377,106 @@ tester2
     Check_VA_response_text    1    berikut 3 pembelian pulsa terakhir yang Veronika temukan
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
+
+[X] 033- Prepaid User perform Get Invoice Date & Amount
+    [Tags]    Telkomsel_Telegram
+
+034- Prepaid user who wants to topup using credit card
+    [Tags]    Telkomsel_Telegram
+    Greet_VA_Indo    ${VA_Greet1}
+    Click_Button_From_Response    2    Beli Paket dan Tukar POIN    Beli Paket dan Tukar POIN
+    Check_VA_response_text_with_buttons    1    Berikut pilihan layanan yang tersedia:    Beli Pulsa    Beli Paket    Telkomsel POIN
+    Click_Button_From_Response    1    Beli Pulsa    Beli Pulsa
+    Check_VA_response_text    1    Kamu bisa memilih nominal pulsa dibawah ini.
+    Check_VA_response_text_with_buttons    2    Voucher Nominal    Rp50.000    Rp100.000    Rp150.000    Rp200.000
+    ...    Rp300.000
+    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
+    Click_Button_From_Response    2    Rp50.000    NONE
+    Check_VA_response_text    4    silakan pilih salah satu opsi pembayaran di bawah ini.
+    Check_VA_response_text_with_buttons    5    Pilihan Metode Pembayaran    Kartu Kredit    E-Banking    TCASH    Batalkan
+    Click_Button_From_Response    5    Kartu Kredit    NONE
+    Pay_with_credit_card    FAIL
+    Click_Button_From_Response    5    Batalkan    NONE
+    Check_VA_response_text    6    Adakah hal lain yang bisa dibantu?
+    Check_VA_response_text    7    Silakan pilih salah satu pilihan dibawah ini atau ketik layanan lain yang dibutuhkan
+    Closing_session
+
+[MANDIRI RELATED] 035- Prepaid user who wants to topup using Mandiri ClickPay
+    [Tags]    Telkomsel_Telegram
+
+[x] 036- Prepaid user who wants to topup using PermataNet
+    [Tags]    Telkomsel_Telegram
+    Greet_VA_Indo    ${VA_Greet1}
+    Click_Button_From_Response    2    Beli Paket dan Tukar POIN    Beli Paket dan Tukar POIN
+    Check_VA_response_text_with_buttons    1    Berikut pilihan layanan yang tersedia:    Beli Pulsa    Beli Paket    Telkomsel POIN
+    Click_Button_From_Response    1    Beli Pulsa    Beli Pulsa
+    Check_VA_response_text    1    Kamu bisa memilih nominal pulsa dibawah ini.
+    Check_VA_response_text_with_buttons    2    Voucher Nominal    Rp50.000    Rp100.000    Rp150.000    Rp200.000
+    ...    Rp300.000
+    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
+    Click_Button_From_Response    2    Rp50.000    NONE
+    Check_VA_response_text    4    silakan pilih salah satu opsi pembayaran di bawah ini.
+    Check_VA_response_text_with_buttons    5    Pilihan Metode Pembayaran    Kartu Kredit    E-Banking    TCASH    Batalkan
+    Click_Button_From_Response    5    E-Banking    NONE
+    Check_VA_response_text_with_buttons    6    Pilihan Metode Pembayaran    Bank Mandiri    Bank Permata    Bank Danamon
+    Check_VA_response_text    7    ${VA_question_1}
+    Click_Button_From_Response    6    Bank Permata    NONE
+    #Pay_with_PermataNet    FAIL
+    User_input    Tidak
+    Closing_session
+
+[X] 037- Prepaid user who wants top up his credit using TCASH but doesn't have a TCASH account yet
+    [Tags]    Telkomsel_Telegram
+
+[TCASH RELATED] 038- Prepaid user who wants top up his credit using TCASH
+    [Tags]    Telkomsel_Telegram
+
+[TCASH RELATED] 039- User perform reload using TCASH but has insufficient balance
+    [Tags]    Telkomsel_Telegram
+
+[MANDIRI RELATED] 040- Prepaid user who wants to top up using E-Banking (Mandiri ClickPay)
+    [Tags]    Telkomsel_Telegram
+
+[MANDIRI RELATED] 041- Prepaid user who wants to top up using E-Banking (PermataNet)
+    [Tags]    Telkomsel_Telegram
+
+[TCASH RELATED] 042- Prepaid user who performs top up through TCASH
+    [Tags]    Telkomsel_Telegram
+
+[X] 043- Prepaid users who ask about registration status
+    [Tags]    Non-Telkomsel_Telegram
+
+[X] 044- Prepaid user who wants to purchase the package that VA offers
+    [Tags]    Telkomsel_Telegram
+    Greet_VA_Indo    ${VA_Greet1}
+    Click_carousel_button_on_specific_location    2    2    Beli Paket Favorit
+    Validate_prepaid_number    1
+    Closing_session
+
+[X] 045- User want to see the detail information of ongoing promotion
+    [Tags]    Non-Telkomsel_Telegram
+
+[X] 046- User want to see all promotion
+    [Tags]    Telkomsel_Telegram
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    Click_carousel_button_on_specific_location    2    3    Lihat Semua Promo
+    Check_VA_response_text    1    Berikut adalah promosi-promosi menarik dari Telkomsel.
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    ${VA_question_1}
+    Closing_session
+
+[X] 047- Prepaid user who wants to explore the loyalty card
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[POINTASTIC DEALS] 048- User want to know and participate on POINTASTIC DEALS (optional)
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[POINTASTIC DEALS] 049- User want to know and participate on POINTASTIC DEALS (optional)
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 [x] 052 - Postpaid user wants to change his number (vice versa)
     [Tags]    Telkomsel_Telegram
