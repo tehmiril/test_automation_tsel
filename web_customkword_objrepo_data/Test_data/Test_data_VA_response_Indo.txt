@@ -1,4 +1,4 @@
-*** Variables ***
+﻿*** Variables ***
 ${VA_notunderstand_1}    Maaf    #Maaf, Veronika belum mengerti apa yang Kamu tulis karena masih dalam proses belajar.    # Maaf, Veronika tidak mengerti kata-kata yang Kamu tulis
 ${VA_notunderstand_2}    Tolong perjelas    #Tolong perjelas yang Kamu maksud ya
 ${VA_notunderstand_3}    Saat ini    #Saat ini Veronika belum bisa memenuhi keinginan Kamu.    #Saat ini, Veronika belum mengerti permintaan Kamu
@@ -31,6 +31,7 @@ ${VA_Main_Menu_TSEL}    Berikut adalah informasi untuk nomor Kamu +6282110685202
 ${VA_Main_Menu_PostPaid}    Berikut adalah informasi untuk nomor Kamu +6281314415099
 ${VA_change_number_info}    Ketik 'Ganti nomor' untuk beralih ke nomor handphone lainnya
 ${VA_give_options}    Silakan pilih salah satu opsi di atas atau ketik layanan lain yang dibutuhkan
+@{randomBoredIndo}    Dari pada males nggak jelas, mending bermain sama Veronika.    Dari pada mager sendirian, lebih baik ditemenin sama Veronika sambil ngobrol asik.    Bosen nggak tahu mau ngapain? Veronika punya obrolan asik nih       Tenang ya, Kamu pasti bisa melewati ini dengan baik. Veronika mencoba jadi teman ngobrol Kamu nih.
 ${Produk_titleA}    SimPATI Combo
 ${Produk_subtitleA}    Aktifkan paket internet kualitas jaringan terbaik
 ${Produk_button1A}    Info SimPATI Combo

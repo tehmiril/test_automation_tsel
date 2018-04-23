@@ -16,7 +16,6 @@ ${select_Rate}    Kecepatan Respon
 ${see_products}    Lihat semua produk
 ${emailNonTsel}    automated.test.ride@gmail.com
 ${passwordNonTsel}    automated1234
-@{randomBoredIndo}    Dari pada males nggak jelas, mending bermain sama Veronika.    Dari pada mager sendirian, lebih baik ditemenin sama Veronika sambil ngobrol asik.    Bosen nggak tahu mau ngapain? Veronika punya obrolan asik nih
 ${message_header}    Telkomsel
 ${give_rec}       10
 ${inactive_number}    08

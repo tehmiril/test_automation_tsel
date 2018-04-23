@@ -25,3 +25,4 @@ ${VA_thanksRate}    Terima kasih    #atas penilaiannya
 ${VA_gives_FAQ}    Berikut adalah beberapa solusi Veronika    #untuk membantu menjawab pertanyaan Kamu ya
 ${VA_GreetNonTsel}    Hai Irs Irs, selamat datang di GraPARI Virtual Telkomsel!
 ${VA_ask_rec}     Seberapa besarkah keinginan Kamu untuk merekomendasikan Telkomsel kepada keluarga atau teman?
+@{randomBoredIndo}    Dari pada males nggak jelas, mending bermain sama Veronika.    Dari pada mager sendirian, lebih baik ditemenin sama Veronika sambil ngobrol asik.    Bosen nggak tahu mau ngapain? Veronika punya obrolan asik nih    Tenang ya, Kamu pasti bisa melewati ini dengan baik. Veronika mencoba jadi teman ngobrol Kamu nih.

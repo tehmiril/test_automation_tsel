@@ -170,7 +170,7 @@ tester2
     #Click_button_carousel    2    Info    TCASH FAQ
     Cancel_and_closing_session
 
-011 - TCASH Information
+[x] 011 - TCASH Information
     [Tags]    Telkomsel_Telegram
     User_input    cara aktifkan tcash gmn ya?
     Check_VA_response_text    1    TCASH dapat dinikmati oleh seluruh pelanggan Telkomsel baik pascabayar (kartuHalo) maupun prabayar (simPATI, Kartu As, dan Loop). Tekan *800*88*6DigitPIN# di HP Kamu. Untuk pengguna baru, tentukan 6 digit PIN Kamu sendiri.
@@ -270,6 +270,109 @@ tester2
     [Tags]    Non-Telkomsel_Telegram
 
 [AGENT INVOLVED] 022 - User complain about his internet service and agree to connect to agent
+
+023- Smalltalk
+    [Tags]    Non-Telkomsel_Telegram
+    User_input    aku bosan nih
+    Check_VA_response_text    1    @{randomBoredIndo}
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
+    Click_Button_From_Response    2    Tidak    Tidak
+    Check_VA_response_text    1    ${VA_question_1}
+    Closing_session
+
+024- User wants to have a small talk with Veronika
+    [Tags]    Non-Telkomsel_Telegram
+    User_input    aku bosan nih
+    Check_VA_response_text    1    @{randomBoredIndo}
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
+    Click_Button_From_Response    2    Ya    Ya
+    Check_VA_response_text    1    Berikut obrolan menarik yang dapat dipilih untuk mengatasi kebosanan Kamu :)
+    Check_VA_response_text_with_buttons    2    Ngobrol dengan Veronika
+    Click_Button_From_Response    2    Kuis    NONE
+    User_input    ${cancel_answer}
+    User_input    aku sedih nih
+    Check_VA_response_text    1    @{randomBoredIndo}
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
+    Click_Button_From_Response    2    Ya    Ya
+    Click_Button_From_Response    2    Humor    NONE
+    Check_VA_response_text_with_buttons    2    Gimana lucu kan humor Veronika? Lihat yang lain lagi yuk    Mau Lihat Lagi    Topik Lain    Sudah Cukup
+    Click_Button_From_Response    2    Topik Lain    Topik Lain
+    Check_VA_response_text    1    Berikut obrolan menarik yang dapat dipilih agar Kamu tidak sedih lagi :)
+    Check_VA_response_text_with_buttons    2    Ngobrol dengan Veronika
+    Click_Button_From_Response    2    Travel    NONE
+    Check_VA_response_text    2    Apakah Kamu mau lihat yang lain?
+    Closing_session
+
+[X] 025- User expresses harsh comment and ask random question to Veronika
+    [Tags]    Non-Telkomsel_Telegram
+    Greet_VA_Indo    ${VA_Greet1}
+    User_input    Vero jahat banget sih
+
+[WALL POSTING INVOLVED] 026- User wrote a wallpost in the last 3 days that VA can handle
+    [Tags]    Non-Telkomsel_Telegram
+    User_input    aku bosan nih
+    Check_VA_response_text    1    @{randomBoredIndo}
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
+
+[AGENT INVOLVED] 027- User is VVIP and want to connect to agent
+    [Tags]    Non-Telkomsel_Telegram
+    User_input    aku bosan nih
+    Check_VA_response_text    1    @{randomBoredIndo}
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
+
+[AGENT INVOLVED] 028- User is VVIP and want to connect to agent
+    [Tags]    Non-Telkomsel_Telegram
+    User_input    aku bosan nih
+    Check_VA_response_text    1    @{randomBoredIndo}
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
+
+029- User Inquire Active Subscribed Offer
+    [Tags]    Telkomsel_Telegram
+    Greet_VA_Indo    ${VA_Greet1}
+    User_input    Paket saya yang aktif apa aja ya?
+    Check_VA_response_text    1    setelah Veronika cek, berikut adalah paket aktif yang diaktifkan melalui myTelkomsel Apps dan Veronika untuk nomor handphone +6282110685202 :
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau mengetahui kuota Kamu saat ini?    Ya    Tidak
+    Click_Button_From_Response    2    Tidak    Tidak
+    Check_VA_response_text    1    ${VA_question_1}
+    User_input    saya langganan paket apa aja ya?
+    Check_VA_response_text    1    Saat ini Veronika hanya bisa menampilkan paket yang diaktifkan di MyTelkomsel apps atau Veronika
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
+
+[X] 030- User inquire for hot offer
+    [Tags]    Telkomsel_Telegram
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    aku bosan nih
+    Check_VA_response_text    1    @{randomBoredIndo}
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
+
+031- User perform inquire subscribed main offering, package terms & condition and subscribed offer
+    [Tags]    Telkomsel_Telegram
+    User_input    priceplan saya apaan ya?
+    Check_VA_response_text_with_buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
+    Click_Button_From_Response    1    Ya    Ya
+    Check_VA_response_text    1    setelah Veronika cek, saat ini nomor +6282110685202 terdaftar menggunakan PP simPATI Go Discover yang aktif sampai dengan tanggal 22-Desember-2018.
+    Check_VA_response_text    2    ${VA_question_1}
+    User_input    paket terbaik buat saya apaan ya?
+    Check_VA_response_text_with_buttons    1    Pengelompokkan Paket    BestDeal    Paket Internet
+    Click_Button_From_Response    1    Paket Internet    NONE
+    Check_VA_response_text    2    Veronika menyediakan pilihan paket Paket Internet yang dapat Kamu beli di bawah ini
+    Check_VA_response_text_with_buttons    3    Pilihan Paket
+    Check_VA_response_text    4    Silakan lihat keyboard untuk tombol navigasi
+    Check_VA_response_text    5    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
+    Click_Button_From_Response    3    Paket Internet Seharian 1 GB - Rp10Rb    NONE
+    Check_VA_response_text    6    Paket Internet berlaku untuk 1 hari, dengan kuota : 1 GB Internet untuk akses internet di jaringan 2G/3G/4G berlaku s.d pukul 23.59
+    Check_VA_response_text    7    Harga: Rp10Rb Berlaku: 1 hari
+    Check_VA_response_text_with_buttons    8    Paket Pilihan:    Beli    Detail    Lihat Daftar Paket
+    Cancel_and_closing_session
+
+032- Prepaid User ask for Recharge History
+    [Tags]    Telkomsel_Telegram
+    Greet_VA_Indo    ${VA_Greet1}
+    User_input    saya pernah beli pulsa berapa aja?
+    Check_VA_response_text    1    berikut 3 pembelian pulsa terakhir yang Veronika temukan
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
 
 [x] 052 - Postpaid user wants to change his number (vice versa)
     [Tags]    Telkomsel_Telegram
