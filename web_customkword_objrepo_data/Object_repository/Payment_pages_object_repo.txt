@@ -10,3 +10,6 @@ ${CC_invalidcardalert_obj}    //*[@id="validationAlert"]/span[contains(text(),"I
 ${MCP_cardno_obj}    id:nmrkrt
 ${MCP_token_obj}    id:tokenmdr
 ${MCP_submit_obj}    //*[@class="btn btn-success btn-block"]
+${Danamon_userID_obj}    //*[@name="txtAccessCode"]
+${Danamon_pwd_obj}    //*[@name="txtPin"]
+${Danamon_login_obj}    //*[@name="cmdLogin"]

@@ -144,7 +144,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Click_carousel_button_on_specific_location    2    1    Buka di Google Maps
     Closing_session
 
-010 - TCASH Information
+010 - User perform inquire TCASH information
     [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     User_input    TCASH itu apaan sih?
@@ -165,7 +165,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Click_button_carousel    2    Dapatkan TCASH    Pesan Sticker
     Cancel_and_closing_session
 
-011 - TCASH Information
+011 - User perform inquire TCASH information
     [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     User_input    cara aktifkan tcash gmn ya?
@@ -998,6 +998,15 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Check_VA_response_text    1    Veronika menyediakan beberapa pilihan Mobile Legend yang bisa Kamu pilih
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
+    Click_button_carousel    2    Diamond ML 82500 275 Diamond    Beli
+    Check_VA_response_text_with_buttons    1    Setelah Veronika cek, pulsa Kamu tidak mencukupi untuk pembelian voucher ini. Apakah kamu mau mengisi pulsa atau memilih paket lainnya?    Isi Pulsa    Pilih Voucher Lainnya
+    Click_Button_From_Response    1    Pilih Voucher Lainnya
+    Check_VA_response_text    1    Berikut adalah kategori voucher games yang bisa kamu pilih
+    Validate_VA_carousel_voucher_games    2
+    Click_button_carousel    2    Mobile Legend    Pilih
+    Check_VA_response_text    1    Veronika menyediakan beberapa pilihan Mobile Legend yang bisa Kamu pilih
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
     Click_button_carousel    2    Diamond ML 5500 19 Diamond    Beli
     Check_VA_response_image    1
     Check_VA_response_text_additional    2    Untuk mengetahui User ID Anda, Silakan Klik menu profile dibagian kiri atas pada menu utama game. Dan user ID akan terlihat dibagian bawah Nama Karakter Game Anda. Silakan masukan User ID dan Zona ID Anda untuk menyelesaikan transaksi. Contoh: Untuk 12345678(1234), maka User ID adalah 12345678 dan Zona ID adalah 1234.
@@ -1009,4 +1018,23 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Click_Button_From_Response    1    Ya
     Check_VA_response_text    1    Sebentar lagi akan ada SMS dari 99433 yang akan masuk ke nomor handphone Kamu. Ikuti instruksinya ya
     Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
+
+[x] 134- Prepaid user who wants to topup using E-Banking (Danamon)
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    Click_button_carousel    2    Profil Kamu    Beli Pulsa
+    Validate_prepaid_number    1
+    Check_VA_response_text    1    Kamu bisa memilih nominal pulsa dibawah ini.
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_response_text    1    silakan pilih salah satu opsi pembayaran di bawah ini.
+    Validate_VA_carousel_payment    2
+    Click_button_carousel    2    E-Banking    E-Banking
+    Validate_VA_carousel_ebanking    1
+    Check_VA_response_text    2    ${VA_question_1}
+    Click_button_carousel    1    Bank Danamon    Pilih
+    #Pay_with_Danamon    FAIL
     Closing_session
