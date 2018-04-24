@@ -474,7 +474,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Check_VA_response_text    1    Berikut adalah syarat & ketentuan untuk Paket Internet Seharian 1 GB
     Check_VA_response_text    2    Paket Internet berlaku untuk 1 hari, dengan kuota :
     Check_VA_response_text    2    1 GB Internet untuk akses internet di jaringan 2G/3G/4G berlaku s.d pukul 23.59
-    Check_VA_response_text    3    1. Paket berlaku hanya untuk pemakaian domestik (tidak berlalu untuk Internasional Roaming yang akan dikenakan biaya terpisah).
+    #Check_VA_response_text    3    1. Paket berlaku hanya untuk pemakaian domestik (tidak berlalu untuk Internasional Roaming yang akan dikenakan biaya terpisah).
     Check_VA_response_text_with_2buttons    4    Apakah Kamu ingin membeli paket tersebut?    Ya    Tidak
     Cancel_and_closing_session
 
@@ -488,9 +488,14 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 
-[X] 033- Prepaid User perform Get Invoice Date & Amount
+033- Prepaid User perform Get Invoice Date & Amount
     [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    User_input    saya udah bayar tagihan belum ya bulan ini?
+    Check_VA_response_text    1    Pengecekan tagihan hanya dapat dilakukan oleh pelanggan kartuHalo.
+    Check_VA_response_text    2    Ada lagi yang bisa Veronika bantu?
+    Closing_session
 
 034- Prepaid user who wants to topup using credit card
     [Tags]    Telkomsel_FB
@@ -531,9 +536,28 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     #Pay_with_PermataNet    FAIL
     Closing_session
 
-[X] 037- Prepaid user who wants top up his credit using TCASH but doesn't have a TCASH account yet
+037- Prepaid user who wants top up his credit using TCASH but doesn't have a TCASH account yet
     [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    Login_messenger    ${email}    ${password}
+    User_input    Mau isi pulsa dong
+    Check_VA_response_text_with_2buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
+    Click_Button_From_Response    1    Ya
+    Check_VA_response_text    1    Oke M Testaut, Kamu bisa memilih nominal pulsa dibawah ini.
+    Check_VA_response_carousel_exists    2
+    Validate_carousel_items    2    Rp50.000    Berlaku 45 Hari    Pilih
+    Validate_carousel_items    2    Rp100.000    Berlaku 60 Hari    Pilih
+    Validate_carousel_items    2    Rp150.000    Berlaku 120 Hari    Pilih
+    Validate_carousel_items    2    Rp200.000    Berlaku 150 Hari    Pilih
+    Validate_carousel_items    2    Rp300.000    Berlaku 180 Hari    Pilih
+    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
+    Click_button_carousel    2    Rp50.000    Pilih
+    Check_VA_response_text    1    Oke M Testaut, untuk melanjutkan pengisian pulsa sebesar Rp50000, silakan pilih salah satu opsi pembayaran di bawah ini.
+    Check_VA_response_carousel_exists    2
+    Validate_VA_carousel_payment    2
+    Click_carousel_button_on_specific_location    2    3    TCASH
+    Check_VA_response_text    1    Saat ini, Kamu belum terdaftar sebagai pelanggan TCASH. Untuk melanjutkan transaksi ini, silakan pilih cara pembayaran lain di atas
+    Check_VA_response_text    2    Ada lagi yang bisa Veronika bantu?
+    Closing_session
 
 [TCASH RELATED] 038- Prepaid user who wants top up his credit using TCASH
     [Tags]    Non-Telkomsel_FB
