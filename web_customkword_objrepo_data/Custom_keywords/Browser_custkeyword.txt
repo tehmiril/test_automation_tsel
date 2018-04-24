@@ -53,7 +53,9 @@ Check_opened_URL
 
 Check_tags
     Set Suite Variable    ${current_tag}    @{TEST TAGS}[0]
-    Run Keyword If    '${prev_tag}'=='NONE' or '${current_tag}'!='${prev_tag}'    Open_chrome_based_on_tag
+    Run Keyword If    '${prev_tag}'=='NONE'    Open_chrome_based_on_tag
+    ...    ELSE IF    '${current_tag}'!='${prev_tag}'    Run Keywords    Close Browser
+    ...    AND    Open_chrome_based_on_tag
     ...    ELSE IF    '${current_tag}'=='${prev_tag}'    No Operation
 
 Open_chrome_based_on_tag

@@ -619,55 +619,45 @@ tester2
     Cancel_and_closing_session
 
 [X] 071- User wants to know how to cash in Tcash
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Non-Telkomsel_Telegram
 
 [TCASH RELATED] 072- Prepaid Telkomsel User failed to recharge using Tcash and informed how to top up tcash balance
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Non-Telkomsel_Telegram
 
 [X] 073- User wants to know how to Top Up Tcash Balance through Tcash FAQ
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Non-Telkomsel_Telegram
 
 074- User wants to participate CES in VA - finished
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Non-Telkomsel_Telegram
     User_input    Beli Pulsa
     Cancel_and_closing_session
     Greet_VA_Indo    ${VA_GreetNonTsel}
     Closing_session
 
 [AGENT RELATED] 075- User wants to participate CES in Agent - finished
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Non-Telkomsel_Telegram
 
 [AGENT RELATED] 076- User wants to participate CES in Agent - finished
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Non-Telkomsel_Telegram
 
 [AGENT RELATED] 077- User wants to participate CES in Agent - not finished
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Non-Telkomsel_Telegram
 
 [AGENT RELATED] 078- User wants to participate CES in Agent
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Non-Telkomsel_Telegram
 
-[x] 084- User want to check his or her last invoice date and amount
-    [Tags]    Telkomsel_FB_postpaid
-    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+084- User want to check his or her last invoice date and amount
+    [Tags]    Telkomsel_Telegram_Postpaid
     User_input    Invoice terakhir saya
     Validate_postpaid_number    1
     Check_VA_response_text_with_buttons    1    Veronika perlu tau nih, apakah yang Kamu maksud adalah penggunaan saat ini atau tagihan ?    Penggunaan    Tagihan
-    Click_Button_From_Response    1    Tagihan
+    Click_Button_From_Response    1    Tagihan    Tagihan
     Check_VA_response_text    1    Kamu sudah melunasi tagihan Kamu sebesar
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 
 086- User asks for his credit limit
-    [Tags]    Telkomsel_FB_postpaid
-    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    [Tags]    Telkomsel_Telegram_Postpaid
     User_input    kredit limit saya berapa?
     Validate_postpaid_number    1
     Check_VA_response_text    1    Setelah Veronika cek, batas pemakaian domestik Kamu sebesar Rp300.000 perbulan dan roaming sebesar Rp0 perbulan.
