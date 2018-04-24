@@ -29,17 +29,6 @@ Resource          Test_data/Test_data_payment.txt
     User_input    Beli Pulsa
     Cancel_and_closing_session
 
-tester2
-    Check_VA_response_text_with_buttons    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini :)    SimPATI    Kartu As    Loop    kartuHaloSimPATI
-    ...    Kartu As    Loop    kartuHalo
-    Click_Button_From_Response    1    Kartu As    Kartu As
-    Check_VA_response_text_with_buttons    1    Berikut adalah informasi tentang produk Kartu As    Info Kartu As Combo    Perdana Kartu As    Beli sekarang
-    Click_Button_From_Response    1    Perdana Kartu As    NONE
-    Check_VA_response_image    2
-    Check_VA_response_text    3    Kamu bisa cari tahu lebih lanjut di https://telkomsel.com/kartu-as
-    Check_VA_response_text_with_buttons    4    Apakah Kamu ingin membeli kartu perdana Kartu As tersebut?    Ya    Tidak
-    Cancel_and_closing_session
-
 002 - Non-Telkomsel who wants to explore VA
     [Tags]    Non-Telkomsel_Telegram
     Greet_VA_Indo    ${VA_GreetNonTsel}
@@ -666,6 +655,7 @@ tester2
 
 [x] 088- User asks about his usage
     [Tags]    Telkomsel_Telegram_Postpaid
+    Greet_VA_Indo    ${VA_GreetPostPaid}
     User_input    berapa usage saya?
     Validate_postpaid_number    1
     Check_VA_response_text    1    Setelah Veronika cek, Kamu memiliki pemakaian sementara sebesar
@@ -675,7 +665,28 @@ tester2
 [x] 090- Prepaid user who wants to explore the loyalty card
     [Tags]    Telkomsel_Telegram
     Greet_VA_Indo    ${VA_Greet1}
-    Click_carousel_button_on_specific_location    2    4    Info POINTASTIC DEAL
+    Click_Button_From_Response    2    Beli Paket dan Tukar POIN    Beli Paket dan Tukar POIN
+    Check_VA_response_text_with_buttons    1    Berikut pilihan layanan yang tersedia:    Beli Pulsa    Beli Paket    Telkomsel POIN
+    Click_Button_From_Response    1    Telkomsel POIN    Telkomsel POIN
+    Check_VA_response_text    1    yang berlaku sampai 31 Desember 2018. Poin tersebut bisa langsung Kamu tukarkan dengan penawaran-penawaran berikut:
+    Check_VA_response_text_with_buttons    2    Penawaran
+    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
+    Check_VA_response_text_with_buttons    4    Silakan lihat keyboard untuk tombol navigasi    Semua Penawaran    Pertanyaan Lain
+    Click_Button_From_Response    4    Semua Penawaran    Semua Penawaran
+    Check_VA_response_text    1    Kamu bisa menukarkan POIN Kamu untuk kategori-kategori berikut:
+    Check_VA_response_text_with_buttons    2    Kategori Penukaran
+    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
+    Click_Button_From_Response    2    Ecommerce    NONE
+    Check_VA_response_text    4    Berikut penawaran Ecommerce yang bisa Kamu tukarkan
+    Check_VA_response_text_with_buttons    5    Penawaran
+    #Check_VA_response_text_with_buttons    6    Silakan lihat keyboard untuk tombol navigasi    Berikutnya    Kategori Lain
+    Click_button_on_specific_location    5    1    NONE
+    Check_VA_response_text    7    Silakan pilih opsi di bawah ini    Tukar POIN    Detail    Kembali
+    Click_Button_From_Response    7    Tukar POIN    Tukar POIN
+    Check_VA_response_text_with_buttons    1    Veronika konfirmasi ya, Kamu akan tukar    Ya    Tidak    Sebelumnya
+    Click_Button_From_Response    1    Tidak    Tidak
+    Check_VA_response_text    1    ${VA_question_1}
+    Closing_session
 
 [x] 092- User Inquire Active Subscribed Offer
     [Tags]    Telkomsel_Telegram_Postpaid
@@ -717,11 +728,12 @@ tester2
     [Tags]    Non-Telkomsel_Telegram
     User_input    ${random_question_sholat}
     Check_VA_response_text    1    ${VA_gives_FAQ}
-    Check_VA_response_carousel_exists    2
-    Click_carousel_button_on_specific_location    2    1    Lihat
+    Check_VA_response_text_with_buttons    2    Alternatif Jawaban
+    Check_VA_response_text    3    ${VA_question_1}
+    Click_button_on_specific_location    2    1    NONE
     Closing_session
 
-110- User wants to perform Send Gift Reload Balance from Prepaid or Postpaid Number to Prepaid Number
+[x] 110- User wants to perform Send Gift Reload Balance from Prepaid or Postpaid Number to Prepaid Number
     [Tags]    Telkomsel_Telegram
     Greet_VA_Indo    ${VA_Greet1}
     User_input    Mau beliin pulsa untuk orang lain
@@ -741,6 +753,15 @@ tester2
     Pay_with_credit_card    FAIL
     Closing_session
 
+[x] 112- User wants to perform Send Gift Purchase Package from Postpaid (Consumer with Block 1 or Block 2 Status) to Prepaid Number
+    [Tags]    Telkomsel_Telegram_Postpaid
+    Greet_VA_Indo    ${VA_GreetPostPaid}
+    User_input    Mau beliin paket buat orang lain
+    Check_VA_response_text    1    Oke, silakan masukkan nomor tujuan yang kamu ingin berikan hadiah
+    User_input    ${other_prepaid_number}
+    Check_VA_response_text_with_buttons    1    Berikut adalah bentuk hadiah yang bisa Kamu berikan ke nomor tujuan Kamu    Beli Pulsa    Beli Paket
+    Cancel_and_closing_session
+
 [x] 114- User wants to perform Send Gift Pay Bill from Postpaid or Prepaid Number to Postpaid Number (Block 3 Status - Voluntary Block)
     [Tags]    Telkomsel_Telegram
     Greet_VA_Indo    ${VA_Greet1}
@@ -758,31 +779,40 @@ tester2
     Check_VA_response_text    1    silakan pilih salah satu opsi pembayaran di bawah ini.
     Validate_VA_carousel_payment    2
 
-[x] 116- User wants to perform Send Gift from Prepaid or Postpaid Number to Prepaid Number
+116- User wants to perform Send Gift from Prepaid or Postpaid Number to Prepaid Number
     [Tags]    Telkomsel_Telegram
     Greet_VA_Indo    ${VA_Greet1}
     User_input    Mau beliin pulsa untuk orang lain
-    Check_VA_response_text_with_buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
-    Click_Button_From_Response    1    Ya
+    #Check_VA_response_text_with_buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
+    #Click_Button_From_Response    1    Ya
     Check_VA_response_text    1    Oke, silakan masukkan nomor tujuan yang kamu ingin berikan hadiah
     User_input    0812ABCDEFG
     Check_VA_response_text    1    Maaf, Veronika belum mengerti apa yang Kamu tulis karena masih dalam proses belajar.
     Check_VA_response_text    2    Maaf, yang Kamu tulis tidak dapat Veronika proses. Tolong tulis hanya nomor Telkomsel Kamu saja sesuai format ya (contoh: 08110000000)
     User_input    ${other_prepaid_number}
     Check_VA_response_text_with_buttons    1    Berikut adalah bentuk hadiah yang bisa Kamu berikan ke nomor tujuan Kamu    Beli Pulsa    Beli Paket
-    Click_Button_From_Response    1    Beli Pulsa
+    Click_Button_From_Response    1    Beli Pulsa    Beli Pulsa
     Check_VA_response_text    1    berikut adalah nominal pulsa yang bisa Kamu belikan untuk nomor ${other_prepaid_number}
-    Check_VA_response_carousel_exists    2
+    Check_VA_response_text_with_buttons    2    Voucher Nominal    Rp50.000    Rp100.000    Rp150.000    Rp200.000
+    ...    Rp300.000
     Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
-    Click_carousel_button_on_specific_location    2    1    Pilih
-    Check_VA_response_text    1    silakan pilih salah satu opsi pembayaran di bawah ini.
-    Validate_VA_carousel_payment    2
+    Click_Button_From_Response    2    ${pulsa_amount}    NONE
+    Check_VA_response_text    4    untuk melanjutkan pengisian pulsa sebesar Rp50000, silakan pilih salah satu opsi pembayaran di bawah ini.
+    Check_VA_response_text_with_buttons    5    Pilihan Metode Pembayaran    Kartu Kredit    E-Banking    TCASH    Batalkan
+    Click_Button_From_Response    5    E-Banking    NONE
+    Check_VA_response_text_with_buttons    6    Pilihan Metode Pembayaran    Bank Mandiri    Bank Permata    Bank Danamon
+    Check_VA_response_text    7    ${VA_question_1}
+    Click_Button_From_Response    6    Bank Mandiri    NONE
+    Pay_with_Mandiri_CP    FAIL
+    Closing_session
 
-[x] 118- User wants to perform Send Gift from Prepaid or Postpaid Number to Prepaid or Postpaid Number
+118- User wants to perform Send Gift from Prepaid or Postpaid Number to Prepaid or Postpaid Number
     [Tags]    Telkomsel_Telegram
     Greet_VA_Indo    ${VA_Greet1}
     User_input    Mau beliin pulsa untuk orang lain
-    Check_VA_response_text_with_buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
-    Click_Button_From_Response    1    Ya
+    #Check_VA_response_text_with_buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
+    #Click_Button_From_Response    1    Ya    Ya
     Check_VA_response_text    1    Oke, silakan masukkan nomor tujuan yang kamu ingin berikan hadiah
     User_input    ${inactive_number}
+    Check_VA_response_text    1    Nomor yang Kamu masukan sudah tidak aktif. Silakan masukan nomor Telkomsel
+    Cancel_and_closing_session

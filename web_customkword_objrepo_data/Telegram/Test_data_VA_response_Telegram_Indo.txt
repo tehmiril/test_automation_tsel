@@ -24,6 +24,7 @@ ${VA_GreetButton2}    Chat in English
 ${VA_endGreet}    Sampai jumpa di chat berikutnya dan semoga harimu menyenangkan ya!    #Terima kasih atas penilaiannya  Jangan lupa untuk chat Veronika lagi ya
 ${VA_askRateReason}    Tolong tulis alasan Kamu ya
 ${VA_thanksRate}    Terima kasih    #atas penilaiannya
-${VA_gives_FAQ}    Berikut adalah beberapa solusi Veronika    #untuk membantu menjawab pertanyaan Kamu ya
+${VA_gives_FAQ}    Veronika punya beberapa alternatif jawaban atas pertanyaan Kamu. Silakan pilih alternatif yang sesuai ya
 ${VA_ask_rec}     Seberapa besarkah keinginan Kamu untuk merekomendasikan Telkomsel kepada keluarga atau teman?
 @{randomBoredIndo}    Dari pada males nggak jelas, mending bermain sama Veronika.    Dari pada mager sendirian, lebih baik ditemenin sama Veronika sambil ngobrol asik.    Bosen nggak tahu mau ngapain? Veronika punya obrolan asik nih    Tenang ya, Kamu pasti bisa melewati ini dengan baik. Veronika mencoba jadi teman ngobrol Kamu nih.
+@{randomClosingIndo}    Terima kasih sudah menghubungi Veronika. Senang bisa membantu    Terima kasih sudah menghubungi Veronika. Chat Veronika lagi ya    Terima kasih senang bisa membantu, semoga harimu menyenangkan    Terima kasih untuk hari ini. Sapa Veronika lagi ya
