@@ -24,3 +24,9 @@ Click_button_URL
     Sleep    7s
     SeleniumLibrary.Capture Page Screenshot    button_URL_${TEST NAME}.png
     Select Window    url=${URL_Telegram}
+
+Validate_postpaid_number
+    [Arguments]    ${order}
+    ${tb_visible}    Run Keyword And Return Status    Check_VA_response_text_with_buttons    ${order}    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6281314415099 ?    Ya    Tidak
+    Run Keyword If    ${tb_visible}    Click_Button_From_Response    ${order}    Ya    Ya
+    ...    ELSE    No Operation    #Check_VA_response_text    ${order}    Kamu bisa memilih nominal pulsa dibawah ini.

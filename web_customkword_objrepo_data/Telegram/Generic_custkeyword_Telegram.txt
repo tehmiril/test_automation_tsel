@@ -9,7 +9,7 @@ Greet_VA_Indo
     ...    ELSE    Run Keywords    Set Suite Variable    ${VA_SecondGreetWording}    Apa yang bisa Veronika bantu hari ini?
     ...    AND    Set Suite Variable    ${VA_ThirdGreetWording}    Silakan ketik layanan yang dibutuhkan atau pilih menu di bawah    #Hai, kawan simPATI! Ada yang bisa Veronika bantu?
     Check_VA_response_text    1    ${greeting_text}
-    Check_VA_response_text    2    ${VA_SecondGreetWording}
+    #Check_VA_response_text    2    ${VA_SecondGreetWording}
     Check_VA_response_image    3
     Check_VA_response_text_with_buttons    3    ${VA_ThirdGreetWording}    ${VA_GreetButton1}    ${VA_GreetButton2}
     Click_Button_From_Response    3    Lihat Menu Utama    Lihat Menu Utama

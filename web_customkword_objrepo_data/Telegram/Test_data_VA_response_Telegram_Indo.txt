@@ -16,6 +16,8 @@ ${VA_validateNumber}    Apakah Kamu bertanya untuk nomor handphone +628131036511
 ${VA_answerKuota2}    Berikut sisa kuota Internet Kamu:
 ${VA_answerKuota3}    Apakah Kamu mau membeli paket tambahan?
 ${VA_Greet1}      Hai Testaut01 , selamat datang di GraPARI Virtual Telkomsel!
+${VA_GreetNonTsel}    Hai Irs Irs, selamat datang di GraPARI Virtual Telkomsel!
+${VA_GreetPostPaid}    selamat datang di GraPARI Virtual Telkomsel!
 ${VA_Greet2}      Apa yang bisa Veronika bantu hari ini?
 ${VA_GreetButton1}    Lihat Menu Utama
 ${VA_GreetButton2}    Chat in English
@@ -23,6 +25,5 @@ ${VA_endGreet}    Sampai jumpa di chat berikutnya dan semoga harimu menyenangkan
 ${VA_askRateReason}    Tolong tulis alasan Kamu ya
 ${VA_thanksRate}    Terima kasih    #atas penilaiannya
 ${VA_gives_FAQ}    Berikut adalah beberapa solusi Veronika    #untuk membantu menjawab pertanyaan Kamu ya
-${VA_GreetNonTsel}    Hai Irs Irs, selamat datang di GraPARI Virtual Telkomsel!
 ${VA_ask_rec}     Seberapa besarkah keinginan Kamu untuk merekomendasikan Telkomsel kepada keluarga atau teman?
 @{randomBoredIndo}    Dari pada males nggak jelas, mending bermain sama Veronika.    Dari pada mager sendirian, lebih baik ditemenin sama Veronika sambil ngobrol asik.    Bosen nggak tahu mau ngapain? Veronika punya obrolan asik nih    Tenang ya, Kamu pasti bisa melewati ini dengan baik. Veronika mencoba jadi teman ngobrol Kamu nih.

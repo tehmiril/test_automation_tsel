@@ -530,24 +530,24 @@ tester2
 054- Postpaid user want to check quota detail information
     [Tags]    Telkomsel_Telegram_Postpaid
     Greet_VA_Indo    ${VA_GreetPostPaid}
-    Click_button_carousel    2    Profil Kamu    Detail Kuota
-    Validate_postpaid_number    1
+    Click_Button_From_Response    2    Profil Kamu    Profil Kamu
+    Check_VA_response_text_with_buttons    1    Berikut informasi yang dapat Veronika berikan terkait dengan Profile Kamu    Sisa Kuota    Tagihan/Pulsa    Info PUK
+    Click_Button_From_Response    1    Sisa Kuota    Sisa Kuota
+    #Validate_postpaid_number    1
     Check_VA_response_text    1    silakan pilih jenis sisa kuota yang ingin Kamu ketahui
-    Validate_VA_carousel_kuota_postpaid    2
-    Click_button_carousel    2    SMS    Lihat Kuota SMS
+    Check_VA_response_text_with_buttons    2    Jenis Kuota    Internet    SMS    Telepon    Ekstra Pulsa
+    Click_Button_From_Response    2    SMS    SMS
     Check_VA_response_text    1    Berikut sisa kuota SMS Kamu: 1. SMS Tsel
     Check_VA_response_text_with_buttons    2    Apakah Kamu mau membeli paket tambahan?    Ya    Tidak
-    Click_Button_From_Response    2    Tidak
+    Click_Button_From_Response    2    Tidak    Tidak
     Check_VA_response_text    1    ${VA_question_1}
     Closing_session
 
 [KARTUHALO REGISTRATION] 055- User want to add kartuHalo subscripton
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Telkomsel_Telegram_Postpaid
 
 056- Postpaid User ask his credit limit
-    [Tags]    Telkomsel_FB_postpaid
-    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    [Tags]    Telkomsel_Telegram_Postpaid
     User_input    Credit limit saya berapa?
     Validate_postpaid_number    1
     Check_VA_response_text    1    Setelah Veronika cek, batas pemakaian domestik Kamu sebesar Rp300.000 perbulan dan roaming sebesar Rp0 perbulan.
@@ -555,48 +555,37 @@ tester2
     Closing_session
 
 [X] 057- Postpaid User ask his credit limit
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Telkomsel_Telegram_Postpaid
 
 [TCARE PIN-PUK] 058- User perform request PIN and PUK
-    [Tags]    Telkomsel_FB_postpaid
-    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    [Tags]    Telkomsel_Telegram_Postpaid
 
 [X] 059- Postpaid User who has no outstanding bill try to perform pay bill directly on VA and get told that he or she has no bill to pay
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Telkomsel_Telegram_Postpaid
 
 [X] 060- User want to pay his bill but the payment failed for three times
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Telkomsel_Telegram_Postpaid
 
 [MANDIRI RELATED] 061- User perform pay bill using Mandiri ClickPay (2)
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Telkomsel_Telegram_Postpaid
 
 [TCASH RELATED] 062- User perform pay bill using TCASH
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Telkomsel_Telegram_Postpaid
 
 [MANDIRI RELATED] 063- User perform pay bill using PermataNet (2)
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Telkomsel_Telegram_Postpaid
 
 [X] 064- User perform pay bill using credit card
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Telkomsel_Telegram_Postpaid
 
 [X] 065- User perform pay bill using Mandiri ClickPay
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Telkomsel_Telegram_Postpaid
 
 [X] 066- User perform pay bill using PermataNet
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Telkomsel_Telegram_Postpaid
 
 [TCASH RELATED] 067- User wants to know how to cash in Tcash
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Telkomsel_Telegram_Postpaid
 
 068- User wants to know how to cash in Tcash
     [Tags]    Non-Telkomsel_FB
