@@ -16,6 +16,7 @@ Validate_VA_carousel_main_menu_non_tsel
 
 Validate_VA_carousel_main_menu_tsel
     [Arguments]    ${order}
+    Sleep    2s
     Check_VA_response_carousel_exists    ${order}
     Validate_carousel_items    ${order}    ${Menu_utama_TSEL_titleA}    ${Menu_utama_TSEL_subtitleA}    ${Menu_utama_TSEL_button1A}    ${Menu_utama_TSEL_button2A}    ${Menu_utama_TSEL_button3A}
     Validate_carousel_items    ${order}    ${Menu_utama_TSEL_titleB}    ${Menu_utama_TSEL_subtitleB}    ${Menu_utama_TSEL_button1B}    ${Menu_utama_TSEL_button2B}    ${Menu_utama_TSEL_button3B}
@@ -59,6 +60,7 @@ Validate_VA_carousel_ebanking
     Check_VA_response_carousel_exists    ${order}
     Validate_carousel_items    ${order}    ${EBanking_titleA}    ${EBanking_subtitleA}    ${EBanking_button1A}
     Validate_carousel_items    ${order}    ${EBanking_titleB}    ${EBanking_subtitleB}    ${EBanking_button1B}
+    Validate_carousel_items    ${order}    @{EBanking_C}[0]    @{EBanking_C}[1]    @{EBanking_C}[2]
 
 Validate_VA_carousel_tcash
     [Arguments]    ${order}
@@ -84,3 +86,10 @@ Validate_VA_carousel_konfigurasi_callerID
     Validate_carousel_items    ${order}    @{callerID_B}[0]    @{callerID_B}[1]    @{callerID_B}[2]
     Validate_carousel_items    ${order}    @{callerID_C}[0]    @{callerID_C}[1]    @{callerID_C}[2]
     Validate_carousel_items    ${order}    @{callerID_D}[0]    @{callerID_D}[1]    @{callerID_D}[2]
+
+Validate_VA_carousel_voucher_games
+    [Arguments]    ${order}
+    Check_VA_response_carousel_exists    ${order}
+    Validate_carousel_items    ${order}    @{vouchergames_A}[0]    \    @{vouchergames_A}[1]
+    Validate_carousel_items    ${order}    @{vouchergames_B}[0]    \    @{vouchergames_B}[1]
+    Validate_carousel_items    ${order}    @{vouchergames_C}[0]    \    @{vouchergames_C}[1]

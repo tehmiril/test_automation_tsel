@@ -37,3 +37,21 @@ Click_additional_Yes
     SeleniumLibrary.Click Element    (${yabutton_obj})[${totalYa}]
     Set Suite Variable    ${current_user_input}    Ya
     Run Keyword    Count_message_bubble_user_input    ${current_user_input}
+
+Check_VA_response_text_additional
+    [Arguments]    ${order}    @{expected_text}
+    [Documentation]    Deprecated --- User input becomes the baseline in finding/validating VA responses.
+    ...    This keyword is created to find (second) VA response which is not part of the same bubble as the first response. The last user input cannot be used as a baseline.
+    Wait Until Keyword Succeeds    1 minute    5s    SeleniumLibrary.Element Should Be Visible    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*[${order}]
+    ${classname}    SeleniumLibrary.Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*[${order}]/descendant::*[contains(@class,"clearfix _o46")]    class
+    Should Be Equal As Strings    ${classname}    ${VA_textcarousel_bubble}
+    : FOR    ${item}    IN    @{expected_text}
+    \    ${status_text}    Run Keyword And Return Status    Check_VA_response_text_actual_additional    ${current_user_input}    ${current_total_user_message}    ${order}
+    \    ...    ${item}
+    \    Run Keyword If    ${status_text}    Exit For Loop
+
+Check_VA_response_text_actual_additional
+    [Arguments]    ${user_input}    ${total_user_input}    ${order}    ${expected_text}
+    ${textresponse}    SeleniumLibrary.Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${user_input}")])[${total_user_input}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*[${order}]/descendant::*[contains(@class,"clearfix _o46")]/div    body
+    ${textresponse2}=    Remove String Using Regexp    ${textresponse}    (\r\n|\r|\n)
+    Should Contain    ${textresponse2}    ${expected_text}

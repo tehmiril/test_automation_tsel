@@ -915,13 +915,12 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Check_VA_response_text    1    silakan pilih salah satu opsi pembayaran di bawah ini.
     Validate_VA_carousel_payment    2
 
-[x] 116- User wants to perform Send Gift from Prepaid or Postpaid Number to Prepaid Number
+116- User wants to perform Send Gift from Prepaid or Postpaid Number to Prepaid Number
     [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     User_input    Mau beliin pulsa untuk orang lain
-    Check_VA_response_text_with_buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
-    Click_Button_From_Response    1    Ya
+    Validate_prepaid_number    1
     Check_VA_response_text    1    Oke, silakan masukkan nomor tujuan yang kamu ingin berikan hadiah
     User_input    0812ABCDEFG
     Check_VA_response_text    1    Maaf, Veronika belum mengerti apa yang Kamu tulis karena masih dalam proses belajar.
@@ -935,13 +934,79 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Click_carousel_button_on_specific_location    2    1    Pilih
     Check_VA_response_text    1    silakan pilih salah satu opsi pembayaran di bawah ini.
     Validate_VA_carousel_payment    2
+    Click_button_carousel    2    E-Banking    E-Banking
+    Validate_VA_carousel_ebanking    1
+    Check_VA_response_text    2    ${VA_question_1}
+    Click_button_carousel    1    Bank Mandiri    Pilih
+    Pay_with_Mandiri_CP    FAIL
+    Closing_session
 
-[x] 118- User wants to perform Send Gift from Prepaid or Postpaid Number to Prepaid or Postpaid Number
+118- User wants to perform Send Gift from Prepaid or Postpaid Number to Prepaid or Postpaid Number
     [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     User_input    Mau beliin pulsa untuk orang lain
-    Check_VA_response_text_with_buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
-    Click_Button_From_Response    1    Ya
+    Validate_prepaid_number    1
     Check_VA_response_text    1    Oke, silakan masukkan nomor tujuan yang kamu ingin berikan hadiah
     User_input    ${inactive_number}
+    Check_VA_response_text    1    Nomor yang Kamu masukan sudah tidak aktif. Silakan masukan nomor Telkomsel
+    Cancel_and_closing_session
+
+126- Prepaid user want to purchase Mobile Legend voucher games
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    User_input    mau beli voucher games
+    Check_VA_response_text    1    Berikut adalah kategori voucher games yang bisa kamu pilih
+    Validate_VA_carousel_voucher_games    2
+    Click_button_carousel    2    Mobile Legend    Pilih
+    Check_VA_response_text    1    Veronika menyediakan beberapa pilihan Mobile Legend yang bisa Kamu pilih
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
+    Click_button_carousel    2    Diamond ML 5500 19 Diamond    Beli
+    Check_VA_response_image    1
+    Check_VA_response_text_additional    2    Untuk mengetahui User ID Anda, Silakan Klik menu profile dibagian kiri atas pada menu utama game. Dan user ID akan terlihat dibagian bawah Nama Karakter Game Anda. Silakan masukan User ID dan Zona ID Anda untuk menyelesaikan transaksi. Contoh: Untuk 12345678(1234), maka User ID adalah 12345678 dan Zona ID adalah 1234.
+    Check_VA_response_text_additional    3    Tolong ketik User ID Kamu ya
+    User_input    57343536
+    Check_VA_response_text    1    Tolong ketik Zone ID Kamu ya
+    User_input    2090
+    Check_VA_response_text_with_buttons    1    Veronika pastikan lagi ya. Kamu ingin membeli Mobile Legend dengan harga Rp5,5k untuk nomor handphone +6282110685202 ?    Ya    Tidak
+    Click_Button_From_Response    1    Ya
+    Check_VA_response_text    1    Sebentar lagi akan ada SMS dari 99433 yang akan masuk ke nomor handphone Kamu. Ikuti instruksinya ya
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
+
+128- Postpaid user want to purchase Mobile Legend voucher games
+    [Tags]    Telkomsel_FB_postpaid
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    Greet_VA_Indo    ${VA_GreetPostPaid}
+    User_input    mau beli voucher games
+    Check_VA_response_text    1    Berikut adalah kategori voucher games yang bisa kamu pilih
+    Check_VA_response_carousel_exists    2
+    Cancel_and_closing_session
+
+[AGENT RELATED] 130- Block 3 postpaid user want to purchase Mobile Legend voucher games
+
+[x] 132- Prepaid user who has insufficient prepaid balance purchase mobile legend voucher
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    User_input    mau beli voucher games
+    Check_VA_response_text    1    Berikut adalah kategori voucher games yang bisa kamu pilih
+    Validate_VA_carousel_voucher_games    2
+    Click_button_carousel    2    Mobile Legend    Pilih
+    Check_VA_response_text    1    Veronika menyediakan beberapa pilihan Mobile Legend yang bisa Kamu pilih
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
+    Click_button_carousel    2    Diamond ML 5500 19 Diamond    Beli
+    Check_VA_response_image    1
+    Check_VA_response_text_additional    2    Untuk mengetahui User ID Anda, Silakan Klik menu profile dibagian kiri atas pada menu utama game. Dan user ID akan terlihat dibagian bawah Nama Karakter Game Anda. Silakan masukan User ID dan Zona ID Anda untuk menyelesaikan transaksi. Contoh: Untuk 12345678(1234), maka User ID adalah 12345678 dan Zona ID adalah 1234.
+    Check_VA_response_text_additional    3    Tolong ketik User ID Kamu ya
+    User_input    57343536
+    Check_VA_response_text    1    Tolong ketik Zone ID Kamu ya
+    User_input    2090
+    Check_VA_response_text_with_buttons    1    Veronika pastikan lagi ya. Kamu ingin membeli Mobile Legend dengan harga Rp5,5k untuk nomor handphone +6282110685202 ?    Ya    Tidak
+    Click_Button_From_Response    1    Ya
+    Check_VA_response_text    1    Sebentar lagi akan ada SMS dari 99433 yang akan masuk ke nomor handphone Kamu. Ikuti instruksinya ya
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session

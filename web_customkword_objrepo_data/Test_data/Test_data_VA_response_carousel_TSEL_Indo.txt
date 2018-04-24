@@ -43,6 +43,7 @@ ${EBanking_button1A}    Pilih
 ${EBanking_titleB}    Bank Permata
 ${EBanking_subtitleB}    Bayar Dengan PermataNet
 ${EBanking_button1B}    Pilih
+@{EBanking_C}     Bank Danamon    Bayar Dengan Danamon Online    Pilih
 @{Kuota_Postpaid_A}    Internet    Lihat Kuota Internet
 @{Kuota_Postpaid_B}    SMS    Lihat Kuota SMS
 @{Kuota_Postpaid_C}    Voice    Lihat Kuota Telepon
@@ -59,3 +60,6 @@ ${EBanking_button1B}    Pilih
 @{callerID_B}     Android    Samsung, LG, Lenovo, Asus, Xiaomi, OPPO    Android
 @{callerID_C}     Windows Phone    Nokia Lumia    Windows Phone
 @{callerID_D}     Blackberry    Blackberry    Blackberry
+@{vouchergames_A}    Voucher STEAM    Pilih
+@{vouchergames_B}    Mobile Legend    Pilih
+@{vouchergames_C}    Voucher Garena    Pilih
