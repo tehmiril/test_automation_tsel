@@ -588,36 +588,35 @@ tester2
     [Tags]    Telkomsel_Telegram_Postpaid
 
 068- User wants to know how to cash in Tcash
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Non-Telkomsel_Telegram
     User_input    cara isi ulang tcash gmn ya?
     Check_VA_response_text    1    Kamu bisa mengisi saldo TCASH Kamu dengan cara-cara berikut
-    Validate_VA_carousel_tcash    2
-    Click_button_carousel    2    Internet Banking    Lihat Caranya
-    Check_VA_response_image    1
-    Check_VA_response_text    2    ${VA_question_1}
+    Check_VA_response_text_with_buttons    2    Pilihan yang Tersedia    Mobile Banking    Internet Banking    ATM Bersama    GraPARI
+    ...    Retail Store
+    Click_Button_From_Response    2    Internet Banking    NONE
+    Check_VA_response_image    3
+    Check_VA_response_text    4    ${VA_question_1}
     Closing_session
 
 [X] 069- User wants to know how to cash in Tcash
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Non-Telkomsel_Telegram
 
 070- User wants to know how to cash in Tcash
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Non-Telkomsel_Telegram
     User_input    cara isi saldo tcash gimana ya?
     Check_VA_response_text    1    Kamu bisa mengisi saldo TCASH Kamu dengan cara-cara berikut
-    Validate_VA_carousel_tcash    2
-    Click_button_carousel    2    GraPARI    Cari GraPARI
-    Check_VA_response_text    1    Tuliskan lokasi yang Kamu cari atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu untuk mendapatkan GraPARI terdekat
+    Check_VA_response_text_with_buttons    2    Pilihan yang Tersedia    Mobile Banking    Internet Banking    ATM Bersama    GraPARI
+    ...    Retail Store
+    Click_Button_From_Response    2    GraPARI    NONE
+    Check_VA_response_text    3    Tuliskan lokasi yang Kamu cari atau share location Kamu menggunakan tombol menu telegram yang terletak di daerah bawah layar Kamu untuk mendapatkan GraPARI terdekat
     User_input    jakarta selatan
     Check_VA_response_text    1    Lokasi GraPARI sekitar mana yang Kamu maksud?
-    Check_VA_response_carousel_exists    2
-    Click_carousel_button_on_specific_location    2    1    Pilih
-    Check_VA_response_text    1    Berikut info GraPARI di sekitar    #Jakarta Selatan ya
-    Check_VA_response_carousel_exists    2
-    Check_VA_response_text    3    ${VA_question_1}
-    Closing_session
+    Check_VA_response_text_with_buttons    2    Lokasi yang Veronika temukan:
+    Click_button_on_specific_location    2    1    NONE
+    Check_VA_response_text    3    Berikut info GraPARI di sekitar    #Jakarta Selatan ya
+    Check_VA_response_text_with_buttons    4    Show GraPARI
+    #Check_VA_response_text    5    ${VA_question_1}
+    Cancel_and_closing_session
 
 [X] 071- User wants to know how to cash in Tcash
     [Tags]    Non-Telkomsel_FB

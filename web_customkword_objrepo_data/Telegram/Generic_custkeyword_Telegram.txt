@@ -31,16 +31,13 @@ Click_Button_From_Response
     Make_screenshot_click    ${r_button}
 
 Click_button_on_specific_location
-    [Arguments]    ${order}    ${button}    ${expected_input}
-    [Documentation]    This keyword can be used to click (any) button that is part of the VA response.
-    Run Keyword If    '${tb_validated}'=='${FALSE}'    Check_VA_response_text_with_buttons    ${order}    ${EMPTY}    ${r_button}
-    ...    ELSE    Loop_through_buttons_in_the_response    ${r_button}    ${current_amount_buttons}
-    SeleniumLibrary.Click Element    ${xpath_item}[${b_index}]
+    [Arguments]    ${order}    ${button_index}    ${expected_input}
+    [Documentation]    This keyword can be used to click a button on a specific index that is visible on the message part, not keybpard
+    SeleniumLibrary.Click Element    (//div[@class="im_message_text" and text()="${current_user_input}"])[${current_total_user_message}]/ancestor::div[contains(@class,"im_history_message_wrap")]/following-sibling::*[${current_order}]/descendant::*[@class="im_message_keyboard"]/descendant::*[@class="btn reply_markup_button"][${button_index}]
     Sleep    10s
     ${pop_up_visible}    Run Keyword And Return Status    Element Should Be Visible    //*[@class="confirm_modal_wrap md_simple_modal_wrap"]
     Run Keyword If    ${pop_up_visible}    Click_button_URL
-    ...    ELSE    Click_button_actual    ${r_button}    ${expected_input}
-    Make_screenshot_click    ${r_button}
+    Make_screenshot_click    click_index_${button_index}
 
 User_input
     [Arguments]    ${input_text}
