@@ -28,5 +28,5 @@ Check_MCP_payment_status
     Sleep    5s
     Run Keyword If    '${status}'=='FAIL'    Run Keywords    Check_VA_response_text_with_buttons    3    Maaf, pembayaran Kamu gagal, apakah Kamu ingin mencoba kembali?    Ya
     ...    Tidak
-    ...    AND    Click_Button_From_Response    3    Tidak
+    ...    AND    Click_Button_From_Response    3    Tidak    Tidak
     ...    AND    Check_VA_response_text    1    ${VA_question_1}
