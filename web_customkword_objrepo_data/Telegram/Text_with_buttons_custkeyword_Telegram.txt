@@ -37,3 +37,23 @@ Loop_through_buttons_in_the_response
     \    Run Keyword If    ${status_button}    Run Keywords    Set Suite Variable    ${b_index}    ${index}
     \    ...    AND    Exit For Loop
     [Return]    ${status_button}
+
+Make_screenshot_click
+    [Arguments]    ${c_button}
+    ${input_s}    Remove String Using Regexp    ${c_button}    [^a-zA-Z0-9]
+    SeleniumLibrary.Capture Page Screenshot    ${input_s}_${TEST NAME}.png
+
+Validate_prepaid_number
+    [Arguments]    ${order}    ${reservation_type}
+    ${tb_visible}    Run Keyword And Return Status    Check_VA_response_text_with_buttons    ${order}    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
+    Run Keyword If    ${tb_visible}    Run Keywords    Click_Button_From_Response    ${order}    Ya
+    ...    AND    Reservation_grouping    1    ${reservation_type}
+    ...    ELSE    No Operation    #Check_VA_response_text    ${order}    Kamu bisa memilih nominal pulsa dibawah ini.
+
+Reservation_grouping
+    [Arguments]    ${order}    ${reservation_type}
+    Check_VA_response_text    ${order}    Silahkan pilih kebutuhan Kamu
+    Click_Button_From_Response    ${order}+1    ${reservation_type}    NONE
+    Run Keyword If    '${reservation_type}'=='Keluhan dan Informasi'    Run Keywords    Check_VA_response_text    ${order}+2    Teman Veronika, dari agen Telkomsel juga bisa membantu memenuhi kebutuhan Kamu
+    ...    AND    Check_VA_response_text_with_buttons    ${order}+3    Apakah Kamu mau disambungkan dengan agen Telkomsel?    Ya    Tidak
+    ...    AND    Click_Button_From_Response    ${order}+3    Tidak    Tidak

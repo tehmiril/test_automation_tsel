@@ -458,7 +458,6 @@ tester2
 
 [X] 046- User want to see all promotion
     [Tags]    Telkomsel_Telegram
-    Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     Click_carousel_button_on_specific_location    2    3    Lihat Semua Promo
     Check_VA_response_text    1    Berikut adalah promosi-promosi menarik dari Telkomsel.
@@ -467,16 +466,49 @@ tester2
     Closing_session
 
 [X] 047- Prepaid user who wants to explore the loyalty card
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Non-Telkomsel_Telegram
 
 [POINTASTIC DEALS] 048- User want to know and participate on POINTASTIC DEALS (optional)
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Non-Telkomsel_Telegram
 
 [POINTASTIC DEALS] 049- User want to know and participate on POINTASTIC DEALS (optional)
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    [Tags]    Non-Telkomsel_Telegram
+
+[TOO MANY DYNAMIC CONTENTS] 050- User wants to book an appointment at GraPARI
+    [Tags]    Telkomsel_Telegram
+    User_input    mau bikin janji di grapari
+    Check_VA_response_text    1    Kamu sekarang berada dimana? Silakan share location Kamu menggunakan tombol menu telegram yang terletak di daerah bawah layar Kamu atau ketik langsung lokasi yang Kamu maksud
+    User_input    jakarta selatan
+    Check_VA_response_text    1    Lokasi GraPARI sekitar mana yang Kamu maksud?
+    Check_VA_response_text_with_buttons    2    Lokasi yang Veronika temukan:
+    Click_Button_From_Response    2    Jakarta Selatan    NONE
+    Check_VA_response_text    3    Berikut GraPARI di Jakarta Selatan yang sesuai dengan kondisi Kamu
+    Check_VA_response_text_with_buttons    4    Show GraPARI
+    Click_Button_From_Response    4    LOOP STATION MAHAKAM    NONE
+    Check_VA_response_text_with_buttons    5    ${VA_question_1}    Lihat di Google Maps    Buat Reservasi
+    Check_VA_response_text    6    ${VA_question_1}
+    Click_Button_From_Response    5    Buat Reservasi    NONE
+    Validate_prepaid_number    7
+    Check_VA_response_text    7    Silahkan pilih kebutuhan Kamu
+    Check_VA_response_text    8    Pilihan Layanan    Cashier    Keluhan dan Informasi    Aktivasi layanan dan Pasang baru    Batal
+    Click_Button_From_Response    8    Keluhan dan Informasi    NONE
+    #Validate_prepaid_number    1
+    Check_VA_response_text    9    Teman Veronika, dari agen Telkomsel juga bisa membantu memenuhi kebutuhan Kamu mengenai informasi atau keluhan.
+    Check_VA_response_text_with_buttons    10    Apakah Kamu mau disambungkan dengan agen Telkomsel?    Ya    Tidak
+    Click_Button_From_Response    2    Tidak    Tidak
+    Check_VA_response_text    1    Kamu mau reservasi untuk kapan?
+    Check_VA_response_text_with_buttons    2    Pilihan Tanggal
+    Check_VA_response_text_with_buttons    3    Silakan lihat keyboard untuk tombol navigasi    Berikutnya    Ganti Lokasi    Batal
+    Click_button_on_specific_location    2    5    NONE
+    Check_VA_response_text    4    Berikut waktu yang bisa Kamu pilih
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    4    20:30-21:00 WIB
+    Check_VA_response_text    1    20:30 WIB Layanan: Keluhan dan Informasi Segera konfirmasi detail berikut untuk mendapatkan jadwal yang Kamu inginkan
+    Check_VA_response_text_with_buttons    2    Apakah detail di atas sudah benar    Ya Benar    Bukan Itu    Batal
+    #Click_Button_From_Response    2    Ya Benar
+
+[X] 051- User want to know about detail information about his/her reservation
+    [Tags]    Non-Telkomsel_Telegram
 
 [x] 052 - Postpaid user wants to change his number (vice versa)
     [Tags]    Telkomsel_Telegram
@@ -491,3 +523,293 @@ tester2
     Check_VA_response_text    1    Oke, Veronika sudah berhasil memverifikasi nomor telepon Kamu ya.
     Check_VA_response_text    2    ${VA_Greet1}
     Closing_session
+
+[X] 053- Postpaid user who has outstanding bill wants to pay his bill
+    [Tags]    Telkomsel_Telegram_Postpaid
+
+054- Postpaid user want to check quota detail information
+    [Tags]    Telkomsel_Telegram_Postpaid
+    Greet_VA_Indo    ${VA_GreetPostPaid}
+    Click_button_carousel    2    Profil Kamu    Detail Kuota
+    Validate_postpaid_number    1
+    Check_VA_response_text    1    silakan pilih jenis sisa kuota yang ingin Kamu ketahui
+    Validate_VA_carousel_kuota_postpaid    2
+    Click_button_carousel    2    SMS    Lihat Kuota SMS
+    Check_VA_response_text    1    Berikut sisa kuota SMS Kamu: 1. SMS Tsel
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau membeli paket tambahan?    Ya    Tidak
+    Click_Button_From_Response    2    Tidak
+    Check_VA_response_text    1    ${VA_question_1}
+    Closing_session
+
+[KARTUHALO REGISTRATION] 055- User want to add kartuHalo subscripton
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+056- Postpaid User ask his credit limit
+    [Tags]    Telkomsel_FB_postpaid
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    Credit limit saya berapa?
+    Validate_postpaid_number    1
+    Check_VA_response_text    1    Setelah Veronika cek, batas pemakaian domestik Kamu sebesar Rp300.000 perbulan dan roaming sebesar Rp0 perbulan.
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
+
+[X] 057- Postpaid User ask his credit limit
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[TCARE PIN-PUK] 058- User perform request PIN and PUK
+    [Tags]    Telkomsel_FB_postpaid
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+
+[X] 059- Postpaid User who has no outstanding bill try to perform pay bill directly on VA and get told that he or she has no bill to pay
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 060- User want to pay his bill but the payment failed for three times
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[MANDIRI RELATED] 061- User perform pay bill using Mandiri ClickPay (2)
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[TCASH RELATED] 062- User perform pay bill using TCASH
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[MANDIRI RELATED] 063- User perform pay bill using PermataNet (2)
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 064- User perform pay bill using credit card
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 065- User perform pay bill using Mandiri ClickPay
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 066- User perform pay bill using PermataNet
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[TCASH RELATED] 067- User wants to know how to cash in Tcash
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+068- User wants to know how to cash in Tcash
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    cara isi ulang tcash gmn ya?
+    Check_VA_response_text    1    Kamu bisa mengisi saldo TCASH Kamu dengan cara-cara berikut
+    Validate_VA_carousel_tcash    2
+    Click_button_carousel    2    Internet Banking    Lihat Caranya
+    Check_VA_response_image    1
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
+
+[X] 069- User wants to know how to cash in Tcash
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+070- User wants to know how to cash in Tcash
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    cara isi saldo tcash gimana ya?
+    Check_VA_response_text    1    Kamu bisa mengisi saldo TCASH Kamu dengan cara-cara berikut
+    Validate_VA_carousel_tcash    2
+    Click_button_carousel    2    GraPARI    Cari GraPARI
+    Check_VA_response_text    1    Tuliskan lokasi yang Kamu cari atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu untuk mendapatkan GraPARI terdekat
+    User_input    jakarta selatan
+    Check_VA_response_text    1    Lokasi GraPARI sekitar mana yang Kamu maksud?
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_response_text    1    Berikut info GraPARI di sekitar    #Jakarta Selatan ya
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    ${VA_question_1}
+    Closing_session
+
+[X] 071- User wants to know how to cash in Tcash
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[TCASH RELATED] 072- Prepaid Telkomsel User failed to recharge using Tcash and informed how to top up tcash balance
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[X] 073- User wants to know how to Top Up Tcash Balance through Tcash FAQ
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+074- User wants to participate CES in VA - finished
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Beli Pulsa
+    Cancel_and_closing_session
+    Greet_VA_Indo    ${VA_GreetNonTsel}
+    Closing_session
+
+[AGENT RELATED] 075- User wants to participate CES in Agent - finished
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[AGENT RELATED] 076- User wants to participate CES in Agent - finished
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[AGENT RELATED] 077- User wants to participate CES in Agent - not finished
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[AGENT RELATED] 078- User wants to participate CES in Agent
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+[x] 084- User want to check his or her last invoice date and amount
+    [Tags]    Telkomsel_FB_postpaid
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    Invoice terakhir saya
+    Validate_postpaid_number    1
+    Check_VA_response_text_with_buttons    1    Veronika perlu tau nih, apakah yang Kamu maksud adalah penggunaan saat ini atau tagihan ?    Penggunaan    Tagihan
+    Click_Button_From_Response    1    Tagihan
+    Check_VA_response_text    1    Kamu sudah melunasi tagihan Kamu sebesar
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
+
+086- User asks for his credit limit
+    [Tags]    Telkomsel_FB_postpaid
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    kredit limit saya berapa?
+    Validate_postpaid_number    1
+    Check_VA_response_text    1    Setelah Veronika cek, batas pemakaian domestik Kamu sebesar Rp300.000 perbulan dan roaming sebesar Rp0 perbulan.
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
+
+[x] 088- User asks about his usage
+    [Tags]    Telkomsel_FB_postpaid
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    berapa usage saya?
+    Validate_postpaid_number    1
+    Check_VA_response_text    1    Setelah Veronika cek, Kamu memiliki pemakaian sementara sebesar
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
+
+[x] 090- Prepaid user who wants to explore the loyalty card
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    Click_carousel_button_on_specific_location    2    4    Info POINTASTIC DEAL
+
+[x] 092- User Inquire Active Subscribed Offer -- error 503 backend fetch error
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    User_input    Paket saya yang aktif apa aja ya?
+    Validate_prepaid_number    1
+    Check_VA_response_text    1    setelah Veronika cek, berikut adalah paket aktif yang diaktifkan melalui myTelkomsel Apps dan Veronika untuk nomor handphone +6282110685202 :
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau mengetahui kuota Kamu saat ini?    Ya    Tidak
+    Click_Button_From_Response    2    Tidak
+    Check_VA_response_text    1    ${VA_question_1}
+    User_input    Saya langganan paket apa aja ya?
+    Check_VA_response_text    1    Saat ini Veronika hanya bisa menampilkan paket yang diaktifkan di MyTelkomsel apps atau Veronika
+    Check_VA_response_text    1    ${VA_question_1}
+    Closing_session
+
+094- User want to reload but cancel in the middle of conversation
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    Click_button_carousel    2    Profil Kamu    Beli Pulsa
+    Validate_prepaid_number    1
+    Check_VA_response_text    1    Kamu bisa memilih nominal pulsa dibawah ini.
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_response_text    1    silakan pilih salah satu opsi pembayaran di bawah ini.
+    Validate_VA_carousel_payment    2
+    Click_button_carousel    2    E-Banking    E-Banking
+    Validate_VA_carousel_ebanking    1
+    Check_VA_response_text    2    ${VA_question_1}
+    Click_button_carousel    1    Bank Mandiri    Pilih
+    Pay_with_Mandiri_CP    FAIL
+    Closing_session
+
+098- User ask something that VA doesn’t understand and directed to FAQ
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    ${random_question_sholat}
+    Check_VA_response_text    1    ${VA_gives_FAQ}
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Lihat
+    Closing_session
+
+110- User wants to perform Send Gift Reload Balance from Prepaid or Postpaid Number to Prepaid Number
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    User_input    Mau beliin pulsa untuk orang lain
+    Validate_prepaid_number    1
+    Check_VA_response_text    1    Oke, silakan masukkan nomor tujuan yang kamu ingin berikan hadiah
+    User_input    ${other_prepaid_number}
+    Check_VA_response_text_with_buttons    1    Berikut adalah bentuk hadiah yang bisa Kamu berikan ke nomor tujuan Kamu    Beli Pulsa    Beli Paket
+    Click_Button_From_Response    1    Beli Pulsa
+    Check_VA_response_text    1    berikut adalah nominal pulsa yang bisa Kamu belikan untuk nomor ${other_prepaid_number}
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_response_text    1    silakan pilih salah satu opsi pembayaran di bawah ini.
+    Validate_VA_carousel_payment    2
+    Click_carousel_button_on_specific_location    2    1    Kartu Kredit
+    #This needs to be updated with PASS once credit card details are correct
+    Pay_with_credit_card    FAIL
+    Closing_session
+
+[x] 114- User wants to perform Send Gift Pay Bill from Postpaid or Prepaid Number to Postpaid Number (Block 3 Status - Voluntary Block)
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    User_input    Mau bayar tagihan untuk orang lain
+    Check_VA_response_text_with_buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
+    Click_Button_From_Response    1    Ya
+    Check_VA_response_text    1    Oke, silakan masukkan nomor tujuan yang kamu ingin berikan hadiah
+    User_input    ${postpaid_dest_number}
+    Check_VA_response_text_with_buttons    1    Berikut adalah bentuk hadiah yang bisa Kamu berikan ke nomor tujuan Kamu    Beli Pulsa    Beli Paket
+    Click_Button_From_Response    1    Beli Pulsa
+    Check_VA_response_text    1    berikut adalah nominal pulsa yang bisa Kamu belikan untuk nomor ${postpaid_dest_number}
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_response_text    1    silakan pilih salah satu opsi pembayaran di bawah ini.
+    Validate_VA_carousel_payment    2
+
+[x] 116- User wants to perform Send Gift from Prepaid or Postpaid Number to Prepaid Number
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    User_input    Mau beliin pulsa untuk orang lain
+    Check_VA_response_text_with_buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
+    Click_Button_From_Response    1    Ya
+    Check_VA_response_text    1    Oke, silakan masukkan nomor tujuan yang kamu ingin berikan hadiah
+    User_input    0812ABCDEFG
+    Check_VA_response_text    1    Maaf, Veronika belum mengerti apa yang Kamu tulis karena masih dalam proses belajar.
+    Check_VA_response_text    2    Maaf, yang Kamu tulis tidak dapat Veronika proses. Tolong tulis hanya nomor Telkomsel Kamu saja sesuai format ya (contoh: 08110000000)
+    User_input    ${other_prepaid_number}
+    Check_VA_response_text_with_buttons    1    Berikut adalah bentuk hadiah yang bisa Kamu berikan ke nomor tujuan Kamu    Beli Pulsa    Beli Paket
+    Click_Button_From_Response    1    Beli Pulsa
+    Check_VA_response_text    1    berikut adalah nominal pulsa yang bisa Kamu belikan untuk nomor ${other_prepaid_number}
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_response_text    1    silakan pilih salah satu opsi pembayaran di bawah ini.
+    Validate_VA_carousel_payment    2
+
+[x] 118- User wants to perform Send Gift from Prepaid or Postpaid Number to Prepaid or Postpaid Number
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    User_input    Mau beliin pulsa untuk orang lain
+    Check_VA_response_text_with_buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
+    Click_Button_From_Response    1    Ya
+    Check_VA_response_text    1    Oke, silakan masukkan nomor tujuan yang kamu ingin berikan hadiah
+    User_input    ${inactive_number}
