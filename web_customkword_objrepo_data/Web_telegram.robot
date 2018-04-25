@@ -854,34 +854,40 @@ Resource          Test_data/Test_data_payment.txt
 
 [AGENT RELATED] 130- Block 3 postpaid user want to purchase Mobile Legend voucher games
 
-[x] 132- Prepaid user who has insufficient prepaid balance purchase mobile legend voucher
+132- Prepaid user who has insufficient prepaid balance purchase mobile legend voucher
     [Tags]    Telkomsel_Telegram
     Greet_VA_Indo    ${VA_Greet1}
     User_input    mau beli voucher games
-    Check_VA_response_text    1    Berikut adalah kategori voucher games yang bisa kamu pilih
-    Validate_VA_carousel_voucher_games    2
-    Click_button_carousel    2    Mobile Legend    Pilih
+    Check_VA_response_text_with_buttons    1    Berikut adalah kategori voucher games yang bisa kamu pili
+    Click_Button_From_Response    1    Mobile Legend    Mobile Legend
     Check_VA_response_text    1    Veronika menyediakan beberapa pilihan Mobile Legend yang bisa Kamu pilih
-    Check_VA_response_carousel_exists    2
+    Check_VA_response_text_with_buttons    2    Pilih Kategori
     Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
-    Click_button_carousel    2    Diamond ML 82500 275 Diamond    Beli
+    #Check_VA_response_text_with_buttons    4    Silakan lihat keyboard untuk tombol navigasi    Berikutnya    Kategori Lain
+    #Click_Button_From_Response    2    Diamond ML 5500 19 Diamond    NONE
+    Click_button_on_specific_location    2    1    NONE
+    Check_VA_response_text_with_buttons    7    Paket Pilihan:    Beli    Detail    Lihat Daftar Voucher
+    Click_Button_From_Response    7    Beli    Beli
     Check_VA_response_text_with_buttons    1    Setelah Veronika cek, pulsa Kamu tidak mencukupi untuk pembelian voucher ini. Apakah kamu mau mengisi pulsa atau memilih paket lainnya?    Isi Pulsa    Pilih Voucher Lainnya
-    Click_Button_From_Response    1    Pilih Voucher Lainnya
-    Check_VA_response_text    1    Berikut adalah kategori voucher games yang bisa kamu pilih
-    Validate_VA_carousel_voucher_games    2
-    Click_button_carousel    2    Mobile Legend    Pilih
+    Click_Button_From_Response    1    Pilih Voucher Lainnya    Pilih Voucher Lainnya
+    Check_VA_response_text_with_buttons    1    Berikut adalah kategori voucher games yang bisa kamu pilih
+    Click_Button_From_Response    1    Mobile Legend    Mobile Legend
     Check_VA_response_text    1    Veronika menyediakan beberapa pilihan Mobile Legend yang bisa Kamu pilih
-    Check_VA_response_carousel_exists    2
+    Check_VA_response_text_with_buttons    2    Pilih Kategori
     Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
-    Click_button_carousel    2    Diamond ML 5500 19 Diamond    Beli
+    Click_button_on_specific_location    2    4    NONE
+    Check_VA_response_text    5    19 Diamond Mobile Legends seharga Rp 5,500 (sudah termasuk PPN). Diamond bisa digunakan untuk membeli Hero atau Skin favorit kamu.
+    Check_VA_response_text    6    Harga: 5500
+    Check_VA_response_text_with_buttons    7    Paket Pilihan:    Beli    Detail    Lihat Daftar Voucher
+    Click_Button_From_Response    7    Beli    Beli
     Check_VA_response_image    1
-    Check_VA_response_text_additional    2    Untuk mengetahui User ID Anda, Silakan Klik menu profile dibagian kiri atas pada menu utama game. Dan user ID akan terlihat dibagian bawah Nama Karakter Game Anda. Silakan masukan User ID dan Zona ID Anda untuk menyelesaikan transaksi. Contoh: Untuk 12345678(1234), maka User ID adalah 12345678 dan Zona ID adalah 1234.
-    Check_VA_response_text_additional    3    Tolong ketik User ID Kamu ya
+    Check_VA_response_text    2    Untuk mengetahui User ID Anda, Silakan Klik menu profile dibagian kiri atas pada menu utama game. Dan user ID akan terlihat dibagian bawah Nama Karakter Game Anda. Silakan masukan User ID dan Zona ID Anda untuk menyelesaikan transaksi. Contoh: Untuk 12345678(1234), maka User ID adalah 12345678 dan Zona ID adalah 1234.
+    Check_VA_response_text    3    Tolong ketik User ID Kamu ya
     User_input    57343536
     Check_VA_response_text    1    Tolong ketik Zone ID Kamu ya
     User_input    2090
     Check_VA_response_text_with_buttons    1    Veronika pastikan lagi ya. Kamu ingin membeli Mobile Legend dengan harga Rp5,5k untuk nomor handphone +6282110685202 ?    Ya    Tidak
-    Click_Button_From_Response    1    Ya
+    Click_Button_From_Response    1    Ya    Ya
     Check_VA_response_text    1    Sebentar lagi akan ada SMS dari 99433 yang akan masuk ke nomor handphone Kamu. Ikuti instruksinya ya
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
