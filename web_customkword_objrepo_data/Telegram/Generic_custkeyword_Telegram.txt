@@ -90,7 +90,7 @@ Check_VA_response_image
 
 Cancel_and_closing_session
     User_input    ${cancel_answer}
-    Sleep    3s
+    Sleep    5s
     ${cancel_response}    Run Keyword And Return Status    Check_VA_response_text_actual    ${current_user_input}    ${current_total_user_message}    1    ${VA_cancel}
     Run Keyword If    ${cancel_response}    Run Keywords    Check_VA_response_text    2    ${VA_question_1}
     ...    AND    Closing_session

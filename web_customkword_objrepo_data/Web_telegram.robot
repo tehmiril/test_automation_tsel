@@ -139,42 +139,35 @@ Resource          Test_data/Test_data_payment.txt
     Click_Button_From_Response    4    NAZWA CELL SELASA    NONE
     Closing_session
 
-[x] 010 - User perform inquire TCASH information
+010 - User perform inquire TCASH information
     [Tags]    Telkomsel_Telegram
     User_input    TCASH itu apaan sih?
     Check_VA_response_text    1    TCASH adalah layanan uang elektronik dari Telkomsel yang telah mendapatkan izin dari Bank Indonesia. Berbeda dengan pulsa, TCASH dapat digunakan untuk bayar tagihan, bayar merchant, isi pulsa, kirim uang, dan banyak lagi.
     Check_VA_response_text_with_buttons    2    TCASH info    Dapatkan di GraPARI    Pesan Sticker    Promo TCASH    Merchant TCASH
     ...    TCASH FAQ    Pertanyaan Lain
-    User_input    apa sih untungnya pake tcash?
+    User_input    keuntungan tcash
     Check_VA_response_image    1
     Check_VA_response_text_with_buttons    2    Apa Kamu mau tahu lebih banyak tentang TCASH?    Ya    Tidak
-    User_input    Apa sih bedanya tcash basic dan full service?
+    User_input    bedanya tcash basic sama full service
     Check_VA_response_image    1
     Check_VA_response_text    2    ${VA_question_1}
-    User_input    Tcash ada promo apa aja ya?
+    User_input    tcash info
     Check_VA_response_text    1    TCASH adalah layanan uang elektronik dari Telkomsel yang telah mendapatkan izin dari Bank Indonesia. Berbeda dengan pulsa, TCASH dapat digunakan untuk bayar tagihan, bayar merchant, isi pulsa, kirim uang, dan banyak lagi.
-    Validate_carousel_items    2    Promo TCASH    \    Merchant TCASH
-    Validate_carousel_items    2    Info    \    Pertanyaan Lain
-    Validate_carousel_items    2    Dapatkan TCASH    \    Dapatkan di GraPARI
-    Validate_carousel_items    2    Promo TCASH    Dapatkan diskon menarik di merchant mitra TCASH    Merchant TCASH
-    Validate_carousel_items    2    Info    Informasi mengenai TCASH    Pertanyaan Lain
-    #Validate_carousel_items    2    Dapatkan TCASH    Dapatkan TCASH di GraPARI atau dikirimkan ke rumah Kamu    Dapatkan di GraPARI
-    Click_button_carousel    2    Dapatkan TCASH    Pesan Sticker
-    #Click_button_carousel    2    Info    TCASH FAQ
+    Check_VA_response_text_with_buttons    2    TCASH info    Dapatkan di GraPARI    Pesan Sticker    Promo TCASH    Merchant TCASH
+    ...    TCASH FAQ    Pertanyaan Lain
+    Click_Button_From_Response    2    Promo TCASH    NONE
+    Click_Button_From_Response    2    Pesan Sticker    NONE
     Cancel_and_closing_session
 
-[x] 011 - User perform inquire TCASH information
+011 - User perform inquire TCASH information
     [Tags]    Telkomsel_Telegram
-    User_input    cara aktifkan tcash gmn ya?
+    User_input    cara aktifkan tcash
     Check_VA_response_text    1    TCASH dapat dinikmati oleh seluruh pelanggan Telkomsel baik pascabayar (kartuHalo) maupun prabayar (simPATI, Kartu As, dan Loop). Tekan *800*88*6DigitPIN# di HP Kamu. Untuk pengguna baru, tentukan 6 digit PIN Kamu sendiri.
     Check_VA_response_text    2    ${VA_question_1}
-    User_input    cara isi ulang tcash gmn ya?
+    User_input    cara isi ulang tcash
     Check_VA_response_text    1    Kamu bisa mengisi saldo TCASH Kamu dengan cara-cara berikut
     Check_VA_response_text_with_buttons    2    Pilihan yang Tersedia    Mobile Banking    Internet Banking    ATM Bersama    GraPARI
     ...    Retail Store
-    Click_Button_From_Response    2    Mobile Banking    NONE
-    Check_VA_response_image    3
-    Check_VA_response_text    4    ${VA_question_1}
     User_input    saya lupa pin tcash
     Check_VA_response_text    1    Kamu dapat mendatangi GraPARI terdekat atau hubungi Call Centre 188 untuk mengajukan reset PIN TCASH. Pelanggan Basic Service akan diupgrade menjadi Full Service agar dapat melakukan reset PIN.
     Check_VA_response_text    2    ${VA_question_1}
