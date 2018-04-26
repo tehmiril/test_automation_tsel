@@ -325,12 +325,15 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 
-[X] 030- User inquire for hot offer
+030- User inquire for hot offer
     [Tags]    Telkomsel_Telegram
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
-    User_input    aku bosan nih
-    Check_VA_response_text    1    @{randomBoredIndo}
-    Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
+    User_input    mau lihat internet promo
+    Check_VA_response_text    1    Berikut adalah promosi-promosi menarik dari Telkomsel.
+    Check_VA_response_text_with_buttons    2    Promosi Saat Ini
+    Click_button_on_specific_location    2    1    NONE
+    Check_VA_response_text    4    ${VA_question_1}
+    Click_Button_From_Response    3    Detail Promosi    NONE
+    Closing_session
 
 031- User perform inquire subscribed main offering, package terms & condition and subscribed offer
     [Tags]    Telkomsel_Telegram
@@ -360,8 +363,14 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 
-[X] 033- Prepaid User perform Get Invoice Date & Amount
+033- Prepaid User perform Get Invoice Date & Amount
     [Tags]    Telkomsel_Telegram
+    User_input    Saya udah bayar tagihan belum ya bulan ini?
+    Check_VA_response_text_with_buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
+    Click_Button_From_Response    1    Ya    Ya
+    Check_VA_response_text    1    Pengecekan tagihan hanya dapat dilakukan oleh pelanggan kartuHalo.
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
 
 034- Prepaid user who wants to topup using credit card
     [Tags]    Telkomsel_Telegram
@@ -386,7 +395,7 @@ Resource          Test_data/Test_data_payment.txt
 [MANDIRI RELATED] 035- Prepaid user who wants to topup using Mandiri ClickPay
     [Tags]    Telkomsel_Telegram
 
-[x] 036- Prepaid user who wants to topup using PermataNet
+[USE CAPTCHA] 036- Prepaid user who wants to topup using PermataNet
     [Tags]    Telkomsel_Telegram
     Greet_VA_Indo    ${VA_Greet1}
     Click_Button_From_Response    2    Beli Paket dan Tukar POIN    Beli Paket dan Tukar POIN
@@ -407,8 +416,21 @@ Resource          Test_data/Test_data_payment.txt
     User_input    Tidak
     Closing_session
 
-[X] 037- Prepaid user who wants top up his credit using TCASH but doesn't have a TCASH account yet
+037- Prepaid user who wants top up his credit using TCASH but doesn't have a TCASH account yet
     [Tags]    Telkomsel_Telegram
+    Greet_VA_Indo    ${VA_Greet1}
+    User_input    Mau isi pulsa dong
+    Check_VA_response_text    1    Kamu bisa memilih nominal pulsa dibawah ini.
+    Check_VA_response_text_with_buttons    2    Voucher Nominal    Rp50.000    Rp100.000    Rp150.000    Rp200.000
+    ...    Rp300.000
+    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
+    Click_Button_From_Response    2    Rp50.000    NONE
+    Check_VA_response_text    4    silakan pilih salah satu opsi pembayaran di bawah ini.
+    Check_VA_response_text_with_buttons    5    Pilihan Metode Pembayaran    Kartu Kredit    E-Banking    TCASH    Batalkan
+    Click_Button_From_Response    5    TCASH    NONE
+    Check_VA_response_text    1    Saat ini, Kamu belum terdaftar sebagai pelanggan TCASH. Untuk melanjutkan transaksi ini, silakan pilih cara pembayaran lain di atas
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
 
 [TCASH RELATED] 038- Prepaid user who wants top up his credit using TCASH
     [Tags]    Telkomsel_Telegram
@@ -419,7 +441,7 @@ Resource          Test_data/Test_data_payment.txt
 [MANDIRI RELATED] 040- Prepaid user who wants to top up using E-Banking (Mandiri ClickPay)
     [Tags]    Telkomsel_Telegram
 
-[MANDIRI RELATED] 041- Prepaid user who wants to top up using E-Banking (PermataNet)
+[USE CAPTCHA] 041- Prepaid user who wants to top up using E-Banking (PermataNet)
     [Tags]    Telkomsel_Telegram
 
 [TCASH RELATED] 042- Prepaid user who performs top up through TCASH
@@ -438,14 +460,13 @@ Resource          Test_data/Test_data_payment.txt
 [X] 045- User want to see the detail information of ongoing promotion
     [Tags]    Non-Telkomsel_Telegram
 
-[X] 046- User want to see all promotion
+046- User want to see all promotion
     [Tags]    Telkomsel_Telegram
     Greet_VA_Indo    ${VA_Greet1}
-    Click_carousel_button_on_specific_location    2    3    Lihat Semua Promo
+    Click_Button_From_Response    1    Promosi    Promosi
     Check_VA_response_text    1    Berikut adalah promosi-promosi menarik dari Telkomsel.
-    Check_VA_response_carousel_exists    2
-    Check_VA_response_text    3    ${VA_question_1}
-    Closing_session
+    Check_VA_response_text_with_buttons    2    Promosi Saat Ini
+    Cancel_and_closing_session
 
 [X] 047- Prepaid user who wants to explore the loyalty card
     [Tags]    Non-Telkomsel_Telegram
@@ -456,37 +477,38 @@ Resource          Test_data/Test_data_payment.txt
 [POINTASTIC DEALS] 049- User want to know and participate on POINTASTIC DEALS (optional)
     [Tags]    Non-Telkomsel_Telegram
 
-[TOO MANY DYNAMIC CONTENTS] 050- User wants to book an appointment at GraPARI
+[x] 050- User wants to book an appointment at GraPARI
     [Tags]    Telkomsel_Telegram
+    Greet_VA_Indo    ${VA_Greet1}
     User_input    mau bikin janji di grapari
     Check_VA_response_text    1    Kamu sekarang berada dimana? Silakan share location Kamu menggunakan tombol menu telegram yang terletak di daerah bawah layar Kamu atau ketik langsung lokasi yang Kamu maksud
     User_input    jakarta selatan
     Check_VA_response_text    1    Lokasi GraPARI sekitar mana yang Kamu maksud?
     Check_VA_response_text_with_buttons    2    Lokasi yang Veronika temukan:
-    Click_Button_From_Response    2    Jakarta Selatan    NONE
+    Click_button_on_specific_location    2    1    NONE
     Check_VA_response_text    3    Berikut GraPARI di Jakarta Selatan yang sesuai dengan kondisi Kamu
     Check_VA_response_text_with_buttons    4    Show GraPARI
-    Click_Button_From_Response    4    LOOP STATION MAHAKAM    NONE
+    Click_button_on_specific_location    4    1    NONE
     Check_VA_response_text_with_buttons    5    ${VA_question_1}    Lihat di Google Maps    Buat Reservasi
     Check_VA_response_text    6    ${VA_question_1}
     Click_Button_From_Response    5    Buat Reservasi    NONE
-    Validate_prepaid_number    7
     Check_VA_response_text    7    Silahkan pilih kebutuhan Kamu
-    Check_VA_response_text    8    Pilihan Layanan    Cashier    Keluhan dan Informasi    Aktivasi layanan dan Pasang baru    Batal
+    Check_VA_response_text_with_buttons    8    Pilihan Layanan    Cashier    Keluhan dan Informasi    Aktivasi layanan dan Pasang Baru    Batal
     Click_Button_From_Response    8    Keluhan dan Informasi    NONE
-    #Validate_prepaid_number    1
     Check_VA_response_text    9    Teman Veronika, dari agen Telkomsel juga bisa membantu memenuhi kebutuhan Kamu mengenai informasi atau keluhan.
     Check_VA_response_text_with_buttons    10    Apakah Kamu mau disambungkan dengan agen Telkomsel?    Ya    Tidak
-    Click_Button_From_Response    2    Tidak    Tidak
+    Click_Button_From_Response    10    Tidak    Tidak
     Check_VA_response_text    1    Kamu mau reservasi untuk kapan?
     Check_VA_response_text_with_buttons    2    Pilihan Tanggal
-    Check_VA_response_text_with_buttons    3    Silakan lihat keyboard untuk tombol navigasi    Berikutnya    Ganti Lokasi    Batal
+    #Check_VA_response_text_with_buttons    3    Silakan lihat keyboard untuk tombol navigasi    Berikutnya    Ganti Lokasi    Batal
     Click_button_on_specific_location    2    5    NONE
-    Check_VA_response_text    4    Berikut waktu yang bisa Kamu pilih
-    Check_VA_response_carousel_exists    2
-    Click_carousel_button_on_specific_location    2    4    20:30-21:00 WIB
-    Check_VA_response_text    1    20:30 WIB Layanan: Keluhan dan Informasi Segera konfirmasi detail berikut untuk mendapatkan jadwal yang Kamu inginkan
-    Check_VA_response_text_with_buttons    2    Apakah detail di atas sudah benar    Ya Benar    Bukan Itu    Batal
+    Check_VA_response_text_with_buttons    4    Pilihan Slot Waktu
+    Click_button_on_specific_location    4    3    NONE
+    Check_VA_response_text    5    Berikut waktu yang bisa Kamu pilih
+    Check_VA_response_text_with_buttons    6    Pilihan Waktu
+    Click_button_on_specific_location    6    8    NONE
+    Check_VA_response_text    8    Layanan: Keluhan dan Informasi Segera konfirmasi detail berikut untuk mendapatkan jadwal yang Kamu inginkan
+    Check_VA_response_text_with_buttons    9    Apakah detail di atas sudah benar    Ya Benar    Bukan Itu    Batal
     #Click_Button_From_Response    2    Ya Benar
 
 [X] 051- User want to know about detail information about his/her reservation

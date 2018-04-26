@@ -494,7 +494,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Greet_VA_Indo    ${VA_Greet1}
     User_input    saya udah bayar tagihan belum ya bulan ini?
     Check_VA_response_text    1    Pengecekan tagihan hanya dapat dilakukan oleh pelanggan kartuHalo.
-    Check_VA_response_text    2    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 
 034- Prepaid user who wants to topup using credit card
@@ -556,7 +556,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Validate_VA_carousel_payment    2
     Click_carousel_button_on_specific_location    2    3    TCASH
     Check_VA_response_text    1    Saat ini, Kamu belum terdaftar sebagai pelanggan TCASH. Untuk melanjutkan transaksi ini, silakan pilih cara pembayaran lain di atas
-    Check_VA_response_text    2    Ada lagi yang bisa Veronika bantu?
+    Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 
 [TCASH RELATED] 038- Prepaid user who wants top up his credit using TCASH
@@ -987,7 +987,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
 
 [AGENT RELATED] 130- Block 3 postpaid user want to purchase Mobile Legend voucher games
 
-[x] 132- Prepaid user who has insufficient prepaid balance purchase mobile legend voucher
+132- Prepaid user who has insufficient prepaid balance purchase mobile legend voucher
     [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
@@ -999,8 +999,8 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
     Click_button_carousel    2    Diamond ML 82500 275 Diamond    Beli
-    Check_VA_response_text_with_buttons    1    Setelah Veronika cek, pulsa Kamu tidak mencukupi untuk pembelian voucher ini. Apakah kamu mau mengisi pulsa atau memilih paket lainnya?    Isi Pulsa    Pilih Voucher Lainnya
-    Click_Button_From_Response    1    Pilih Voucher Lainnya
+    Check_VA_response_text_with_buttons    1    Setelah Veronika cek, pulsa Kamu tidak mencukupi untuk pembelian voucher ini. Apakah kamu mau mengisi pulsa atau memilih paket lainnya?    Isi Pulsa    Pilih Voucher Lainny...
+    Click_Button_From_Response    1    Pilih Voucher Lainny...
     Check_VA_response_text    1    Berikut adalah kategori voucher games yang bisa kamu pilih
     Validate_VA_carousel_voucher_games    2
     Click_button_carousel    2    Mobile Legend    Pilih
