@@ -42,6 +42,42 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Check_VA_response_text    1    Agar permintaan Kamu dapat diproses lebih lanjut, tolong tulis nomor Telkomsel Kamu yang valid ya (contoh: 08110000000)
     Cancel_and_closing_session
 
+004- Non-Telkomsel user who greets VA for the first time and explore VA
+    [Tags]    Non-Telkomsel_FB
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    Greet_VA_Indo    ${VA_GreetNonTsel}
+    Click_button_carousel    1    Jelajah Produk Telkomsel    Beralih ke Telkomsel
+    Check_VA_response_text    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini
+    Validate_VA_carousel_produk
+    Click_button_carousel    2    SimPATI Combo    Info SimPATI Combo
+    Click_button_carousel    2    SimPATI Combo    Perdana SimPATI
+    Check_VA_response_image    1
+    Check_VA_response_text    2    Kamu bisa cari tahu lebih lanjut di https://telkomsel.com/simpati
+    Check_VA_response_text_with_buttons    3    Apakah Kamu ingin membeli kartu perdana simPATI tersebut?    Ya    Tidak
+    Click_Button_From_Response    3    Tidak
+    Check_VA_response_text    1    ${VA_question_1}
+    User_input    Perdana yang cocok buat saya
+    Check_VA_response_text    1    Oke, Veronika bantu carikan produk Telkomsel yang cocok buat Kamu ya
+    Check_VA_response_text_with_buttons    2    Sebelumnya, tolong jawab 3 pertanyaan singkat berikut ini    Mulai    Lihat Semua Produk
+    Click_Button_From_Response    2    Lihat Semua Produk
+    Check_VA_response_text    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini
+    Validate_VA_carousel_produk
+    Click_button_carousel    2    Loop Cash    Info Loop Cash
+    Click_button_carousel    2    Loop Cash    Perdana Loop
+    Check_VA_response_image    1
+    Check_VA_response_text    2    Kamu bisa cari tahu lebih lanjut di https://telkomsel.com/loop
+    Check_VA_response_text_with_buttons    3    Apakah Kamu ingin membeli kartu perdana Loop tersebut?    Ya    Tidak
+    Click_Button_From_Response    3    Ya
+    Check_VA_response_text    1    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
+    User_input    jakarta selatan
+    Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_response_text    1
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    ${VA_question_1}
+    Closing_session
+
 005 - Non-Telkomsel user who is wondering about Telkomsel products
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}

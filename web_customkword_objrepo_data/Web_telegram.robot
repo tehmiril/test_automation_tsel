@@ -623,8 +623,26 @@ Resource          Test_data/Test_data_payment.txt
 [X] 057- Postpaid User ask his credit limit
     [Tags]    Telkomsel_Telegram_Postpaid
 
-[TCARE PIN-PUK] 058- User perform request PIN and PUK
+[X] 058- User perform request PIN and PUK
     [Tags]    Telkomsel_Telegram_Postpaid
+    Greet_VA_Indo    ${VA_GreetPostPaid}
+    User_input    riwayat pembayaran
+    Check_VA_response_text    1    berikut 3 pembayaran terakhir yang Veronika temukan untuk nomor +6281314415099 :
+    Check_VA_response_text    2    ${VA_question_1}
+    User_input    lihat menu utama
+    Check_VA_response_text_with_buttons    2    Silakan pilih salah satu pilihan dibawah ini atau ketik layanan lain yang dibutuhkan
+    Click_Button_From_Response    2    Profil Kamu    Profil Kamu
+    Check_VA_response_text_with_buttons    1    Berikut informasi yang dapat Veronika berikan terkait dengan Profile Kamu    Sisa Kuota    Tagihan/Pulsa    Info PUK
+    Click_Button_From_Response    1    Info PUK    Info PUK
+    Check_VA_response_text    1    Untuk mendapatkan PUK untuk nomor handphone Kamu, Veronika membutuhkan verifikasi lebih lanjut.
+    Check_VA_response_text_with_buttons    2    Pilih verifikasi menggunakan PIN T-Care atau 3 nomor yang dihubungi satu bulan terakhir. Jika nomor Kamu terblokir, verifikasi pilihan kedua sangat disarankan    PIN T-Care    Nomor Telepon
+    Click_Button_From_Response    2    PIN T-Care    PIN T-Care
+    Check_VA_response_text    1    Silakan masukkan PIN T-Care Kamu ya. Jika kamu belum memiliki PIN T-Care silakan ketik "PIN" kirim SMS ke 111 (kartuHalo) atau 116 (simPATI, KARTU As, LOOP)
+    Check_VA_response_text    2    Kamu bisa ketik 'batal' jika Kamu tidak lagi membutuhkan informasi PUK
+    User_input    ${PIN_TCARE}
+    Check_VA_response_text    1    ${VA_verify_PUK}
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
 
 059- Postpaid User who has no outstanding bill try to perform pay bill directly on VA and get told that he or she has no bill to pay
     [Tags]    Telkomsel_Telegram_Postpaid
