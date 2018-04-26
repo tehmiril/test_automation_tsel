@@ -293,7 +293,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
 
 017 - User wants to know about voucher information
     [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${email}    ${password}
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     Greet_VA_Indo    ${VA_Greet1}
     User_input    mau tau info voucher telkomsel
     Check_VA_response_text    1    Oke Lightning Diamond, Telkomsel menyediakan berbagai macam voucher isi ulang sesuai kebutuhan Kamu
@@ -301,7 +301,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Cancel_and_closing_session
 
 018 - User explore the FAQ menu and read about voucher information
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     Click_button_carousel    2    Bantuan Lainnya    FAQ
@@ -402,7 +402,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Closing_session
 
 [Too Big Random] 024- User wants to have a small talk with Veronika
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     User_input    aku bosan nih
     Check_VA_response_text    1    @{randomBoredIndo}
@@ -410,7 +410,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Click_Button_From_Response    2    Ya
 
 [X] 025- User expresses harsh comment and ask random question to Veronika
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     User_input    Vero jahat banget sih
@@ -437,7 +437,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
 
 029- User Inquire Active Subscribed Offer
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     User_input    Paket saya yang aktif apa aja ya?
@@ -450,15 +450,21 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Check_VA_response_text    1    ${VA_question_1}
     Closing_session
 
-[X] 030- User inquire for hot offer
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
-    User_input    aku bosan nih
-    Check_VA_response_text    1    @{randomBoredIndo}
-    Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
+030- User inquire for hot offer
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    User_input    mau lihat internet promo
+    Check_VA_response_text    1    Berikut adalah promosi-promosi menarik dari Telkomsel.
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    2    Detail Promosi
+    Check_VA_response_text    3    ${VA_question_1}
+    User_input    ga jadi ah
+    Check_VA_response_text    1    ${VA_cancel}
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
 
 [X] 031- User perform inquire subscribed main offering, package terms & condition and subscribed offer
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     User_input    priceplan saya apaan ya?
     Check_VA_response_text_with_2buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
@@ -489,7 +495,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Closing_session
 
 033- Prepaid User perform Get Invoice Date & Amount
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     User_input    saya udah bayar tagihan belum ya bulan ini?
@@ -537,7 +543,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Closing_session
 
 037- Prepaid user who wants top up his credit using TCASH but doesn't have a TCASH account yet
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     User_input    Mau isi pulsa dong
     Check_VA_response_text_with_2buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
