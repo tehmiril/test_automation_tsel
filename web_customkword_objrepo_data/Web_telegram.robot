@@ -426,7 +426,7 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text_with_buttons    2    Voucher Nominal    Rp50.000    Rp100.000    Rp150.000    Rp200.000
     ...    Rp300.000
     Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
-    Click_Button_From_Response    2    Rp50.000    NONE
+    Click_Button_From_Response    2    Rp150.000    NONE
     Check_VA_response_text    4    silakan pilih salah satu opsi pembayaran di bawah ini.
     Check_VA_response_text_with_buttons    5    Pilihan Metode Pembayaran    Kartu Kredit    E-Banking    TCASH    Batalkan
     Click_Button_From_Response    5    Kartu Kredit    NONE
@@ -436,8 +436,25 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    7    Silakan pilih salah satu pilihan dibawah ini atau ketik layanan lain yang dibutuhkan
     Closing_session
 
-[MANDIRI RELATED] 035- Prepaid user who wants to topup using Mandiri ClickPay
+035- Prepaid user who wants to topup using Mandiri ClickPay
     [Tags]    Telkomsel_Telegram
+    Greet_VA_Indo    ${VA_Greet1}
+    Click_Button_From_Response    2    Beli Paket dan Tukar POIN    Beli Paket dan Tukar POIN
+    Check_VA_response_text_with_buttons    1    Berikut pilihan layanan yang tersedia:    Beli Pulsa    Beli Paket    Telkomsel POIN
+    Click_Button_From_Response    1    Beli Pulsa    Beli Pulsa
+    Check_VA_response_text    1    Kamu bisa memilih nominal pulsa dibawah ini.
+    Check_VA_response_text_with_buttons    2    Voucher Nominal    Rp50.000    Rp100.000    Rp150.000    Rp200.000
+    ...    Rp300.000
+    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
+    Click_Button_From_Response    2    Rp50.000    NONE
+    Check_VA_response_text    4    silakan pilih salah satu opsi pembayaran di bawah ini.
+    Check_VA_response_text_with_buttons    5    Pilihan Metode Pembayaran    Kartu Kredit    E-Banking    TCASH    Batalkan
+    Click_Button_From_Response    5    E-Banking    NONE
+    Check_VA_response_text_with_buttons    6    Pilihan Metode Pembayaran    Bank Mandiri    Bank Permata    Bank Danamon
+    Check_VA_response_text    7    ${VA_question_1}
+    Click_Button_From_Response    6    Bank Mandiri    NONE
+    Pay_with_Mandiri_CP    FAIL
+    Closing_session
 
 [USE CAPTCHA] 036- Prepaid user who wants to topup using PermataNet
     [Tags]    Telkomsel_Telegram
@@ -558,7 +575,7 @@ Resource          Test_data/Test_data_payment.txt
 [X] 051- User want to know about detail information about his/her reservation
     [Tags]    Non-Telkomsel_Telegram
 
-[x] 052 - Postpaid user wants to change his number (vice versa)
+052- Postpaid user wants to change his number (vice versa)
     [Tags]    Telkomsel_Telegram
     Greet_VA_Indo    ${VA_Greet1}
     User_input    Ganti Nomor
@@ -608,8 +625,13 @@ Resource          Test_data/Test_data_payment.txt
 [TCARE PIN-PUK] 058- User perform request PIN and PUK
     [Tags]    Telkomsel_Telegram_Postpaid
 
-[X] 059- Postpaid User who has no outstanding bill try to perform pay bill directly on VA and get told that he or she has no bill to pay
+059- Postpaid User who has no outstanding bill try to perform pay bill directly on VA and get told that he or she has no bill to pay
     [Tags]    Telkomsel_Telegram_Postpaid
+    Greet_VA_Indo    ${VA_GreetPostPaid}
+    User_input    mau bayar tagihan
+    Check_VA_response_text    1    Kamu sudah melunasi tagihan Kamu sebesar
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
 
 [X] 060- User want to pay his bill but the payment failed for three times
     [Tags]    Telkomsel_Telegram_Postpaid

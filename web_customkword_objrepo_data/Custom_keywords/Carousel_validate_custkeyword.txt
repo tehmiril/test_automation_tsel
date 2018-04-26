@@ -93,3 +93,11 @@ Validate_VA_carousel_voucher_games
     Validate_carousel_items    ${order}    @{vouchergames_A}[0]    \    @{vouchergames_A}[1]
     Validate_carousel_items    ${order}    @{vouchergames_B}[0]    \    @{vouchergames_B}[1]
     Validate_carousel_items    ${order}    @{vouchergames_C}[0]    \    @{vouchergames_C}[1]
+
+Validate_VA_carousel_random
+    [Arguments]    ${order}
+    Check_VA_response_carousel_exists    ${order}
+    Validate_carousel_items    ${order}    @{randomresp_A}[0]    @{randomresp_A}[1]    @{randomresp_A}[2]
+    Validate_carousel_items    ${order}    @{randomresp_B}[0]    @{randomresp_B}[1]    @{randomresp_B}[2]
+    Validate_carousel_items    ${order}    @{randomresp_C}[0]    @{randomresp_C}[1]    @{randomresp_C}[2]
+    Validate_carousel_items    ${order}    @{randomresp_D}[0]    @{randomresp_D}[1]    @{randomresp_D}[2]

@@ -401,13 +401,35 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Closing_session
     Closing_session
 
-[Too Big Random] 024- User wants to have a small talk with Veronika
+024- User wants to have a small talk with Veronika
     [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     User_input    aku bosan nih
     Check_VA_response_text    1    @{randomBoredIndo}
     Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
     Click_Button_From_Response    2    Ya
+    Check_VA_response_text    1    Berikut obrolan menarik yang dapat dipilih untuk mengatasi kebosanan Kamu
+    Validate_VA_carousel_random    2
+    Click_button_carousel    2    Kuis    Pilih
+    User_input    ${cancel_answer}
+    Check_VA_response_text    1    ${VA_cancel}
+    Check_VA_response_text    2    ${VA_question_1}
+    User_input    aku sedih nih
+    Check_VA_response_text    1    @{randomBoredIndo}
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
+    Click_Button_From_Response    2    Ya
+    Check_VA_response_text    1    Berikut obrolan menarik yang dapat dipilih agar Kamu tidak sedih lagi
+    Validate_VA_carousel_random    2
+    Click_button_carousel    2    Humor    Pilih
+    Check_VA_response_text_with_buttons    2    Semoga Kamu terhibur dengan humor Veronika ya Apakah Kamu mau lihat yang lain?    Mau Lihat Lagi    Topik Lain    Sudah Cukup
+    Click_Button_From_Response    2    Topik Lain
+    Check_VA_response_text    1    Berikut obrolan menarik yang dapat dipilih agar Kamu tidak sedih lagi
+    Validate_VA_carousel_random    2
+    Click_button_carousel    2    Travel    Pilih
+    #Check_VA_response_text_buttons_additional    2    Apakah Kamu mau lihat yang lain?    Mau Lihat Lagi    Topik Lain    Sudah Cukup
+    #Click_button_from_response_additional    2    Sudah Cukup
+    #Check_VA_response_text    1    ${VA_question_1}
+    Cancel_and_closing_session
 
 [X] 025- User expresses harsh comment and ask random question to Veronika
     [Tags]    Telkomsel_FB
@@ -656,10 +678,6 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
-[X] 052- Postpaid user wants to change his number (vice versa)
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
-
 [X] 053- Postpaid user who has outstanding bill wants to pay his bill
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
@@ -700,9 +718,14 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     [Tags]    Telkomsel_FB_postpaid
     Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
 
-[X] 059- Postpaid User who has no outstanding bill try to perform pay bill directly on VA and get told that he or she has no bill to pay
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+059- Postpaid User who has no outstanding bill try to perform pay bill directly on VA and get told that he or she has no bill to pay
+    [Tags]    Telkomsel_FB_postpaid
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    mau bayar tagihan
+    Validate_postpaid_number    1
+    Check_VA_response_text    1    Kamu sudah melunasi tagihan Kamu sebesar
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
 
 [X] 060- User want to pay his bill but the payment failed for three times
     [Tags]    Non-Telkomsel_FB

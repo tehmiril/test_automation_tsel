@@ -38,9 +38,30 @@ Click_additional_Yes
     Set Suite Variable    ${current_user_input}    Ya
     Run Keyword    Count_message_bubble_user_input    ${current_user_input}
 
+Check_VA_response_text_buttons_additional
+    [Arguments]    ${order}    ${expected_text}    @{expected_buttons}
+    [Documentation]    User input becomes the baseline in finding/validating VA responses.
+    ...    This keyword is created to find (second) VA response which is not part of the same bubble as the first response. The last user input cannot be used as a baseline.
+    ${totalgroupedmessage}    SeleniumLibrary.Get Element Count    ${grouped_message_bubble}
+    Wait Until Keyword Succeeds    15s    3s    SeleniumLibrary.Element Should Be Visible    (${grouped_message_bubble})[${totalgroupedmessage}]/descendant::*[contains(@class,"clearfix _o46")][${order}]
+    ${classname}    SeleniumLibrary.Get Element Attribute    (${grouped_message_bubble})[${totalgroupedmessage}]/descendant::*[contains(@class,"clearfix _o46")][${order}]    class
+    Should Be Equal As Strings    ${classname}    ${VA_textcarousel_bubble}
+    ${textresponse}    SeleniumLibrary.Get Element Attribute    (${grouped_message_bubble})[${totalgroupedmessage}]/descendant::*[contains(@class,"clearfix _o46")][${order}]/div    body
+    Should Contain    ${textresponse}    ${expected_text}
+    : FOR    ${item}    IN    @{expected_buttons}
+    \    ${status_buttons}    Run Keyword And Return Status    SeleniumLibrary.Element Should Be Visible    (${grouped_message_bubble})[${totalgroupedmessage}]/descendant::*[contains(@class,"clearfix _o46")][${order}]/div/following-sibling::*[contains(.,"${item}")]
+    \    Run Keyword If    '${status_buttons}'=='${FALSE}'    Fail    Button ${item} is not found in the response
+
+Click_button_from_response_additional
+    [Arguments]    ${order}    ${expected_button}
+    ${totalButton}    SeleniumLibrary.Get Element Count    //a[text()="${expected_button}"]
+    SeleniumLibrary.Click Element    (//a[text()="${expected_button}"])[${totalButton}]
+    Set Suite Variable    ${current_user_input}    Ya
+    Run Keyword    Count_message_bubble_user_input    ${current_user_input}
+
 Check_VA_response_text_additional
     [Arguments]    ${order}    @{expected_text}
-    [Documentation]    Deprecated --- User input becomes the baseline in finding/validating VA responses.
+    [Documentation]    User input becomes the baseline in finding/validating VA responses.
     ...    This keyword is created to find (second) VA response which is not part of the same bubble as the first response. The last user input cannot be used as a baseline.
     Wait Until Keyword Succeeds    1 minute    5s    SeleniumLibrary.Element Should Be Visible    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*[${order}]
     ${classname}    SeleniumLibrary.Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*[${order}]/descendant::*[contains(@class,"clearfix _o46")]    class
