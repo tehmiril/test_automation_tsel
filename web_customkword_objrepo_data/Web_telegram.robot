@@ -23,13 +23,13 @@ Resource          Object_repository/Payment_pages_object_repo.txt
 Resource          Test_data/Test_data_payment.txt
 
 *** Test Cases ***
-001 - Non-Telkomsel user who just started talking to VA
+001- Non-Telkomsel user who just started talking to VA
     [Tags]    Non-Telkomsel_Telegram
     Greet_VA_Indo    ${VA_GreetNonTsel}
     User_input    Beli Pulsa
     Cancel_and_closing_session
 
-002 - Non-Telkomsel who wants to explore VA
+002- Non-Telkomsel who wants to explore VA
     [Tags]    Non-Telkomsel_Telegram
     Greet_VA_Indo    ${VA_GreetNonTsel}
     Click_Button_From_Response    1    Beli Paket dan Tukar POIN    Beli Paket dan Tukar POIN
@@ -38,7 +38,51 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    1    Agar permintaan Kamu dapat diproses lebih lanjut, tolong tulis nomor Telkomsel Kamu yang valid ya (contoh: 08110000000)
     Cancel_and_closing_session
 
-005 - Non-Telkomsel user who is wondering about Telkomsel products
+003- Telegram user wants to explore VA
+    [Tags]    Non-Telkomsel_Telegram
+    Greet_VA_Indo    ${VA_GreetNonTsel}
+    Click_Button_From_Response    1    Beli Paket dan Tukar POIN    Beli Paket dan Tukar POIN
+    Check_VA_response_text_with_buttons    1    Berikut pilihan layanan yang tersedia: :)    Beli Pulsa    Beli Paket    Telkomsel POIN
+    Click_Button_From_Response    1    Telkomsel POIN    Telkomsel POIN
+    Check_VA_response_text    1    Agar permintaan Kamu dapat diproses lebih lanjut, tolong tulis nomor Telkomsel Kamu yang valid ya (contoh: 08110000000)
+    Cancel_and_closing_session
+
+004- Non-Telkomsel user who greets VA for the first time and explore VA
+    [Tags]    Non-Telkomsel_Telegram
+    Greet_VA_Indo    ${VA_GreetNonTsel}
+    Click_Button_From_Response    1    Jelajahi Produk Telkomsel    Jelajahi Produk Telkomsel
+    Check_VA_response_text_with_buttons    1    Berikut jenis informasi yang bisa Veronika berikan untuk Kamu    Beralih ke Telkomsel    Produk untuk Kamu    Layanan digital
+    Click_Button_From_Response    1    Beralih ke Telkomsel    NONE
+    Check_VA_response_text_with_buttons    2    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini    SimPATI    Kartu As    Loop    kartuHalo
+    Click_Button_From_Response    2    SimPATI    SimPATI
+    Check_VA_response_text_with_buttons    1    Berikut adalah informasi tentang produk SimPATI    Info SimPATI Combo    Perdana SimPATI    Beli sekarang
+    Click_Button_From_Response    1    Info SimPATI Combo    NONE
+    User_input    ${cancel_answer}
+    Check_VA_response_text    1    ${VA_cancel}
+    Check_VA_response_text    2    ${VA_question_1}
+    User_input    perdana yang cocok buat saya
+    Check_VA_response_text    1    Oke, Veronika bantu carikan produk Telkomsel yang cocok buat Kamu ya
+    Check_VA_response_text_with_buttons    2    Sebelumnya, tolong jawab 3 pertanyaan singkat berikut ini    Mulai    Lihat Semua Produk
+    Click_Button_From_Response    2    Lihat Semua Produk    Lihat Semua Produk
+    Check_VA_response_text_with_buttons    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini    SimPATI    Kartu As    Loop    kartuHalo
+    Click_Button_From_Response    1    Loop    Loop
+    Click_Button_From_Response    1    Info Loop Cash    NONE
+    Click_Button_From_Response    1    Perdana Loop    NONE
+    Check_VA_response_image    2
+    Check_VA_response_text    3    Kamu bisa cari tahu lebih lanjut di
+    Check_VA_response_text_with_buttons    4    Apakah Kamu ingin membeli kartu perdana Loop tersebut?    Ya    Tidak
+    Click_Button_From_Response    4    Ya    Ya
+    Check_VA_response_text    1    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu telegram yang terletak di daerah bawah layar Kamu
+    User_input    jakarta selatan
+    Check_VA_response_text    1    Silakan pilih lokasi yang Kamu inginkan
+    Check_VA_response_text_with_buttons    2    Lokasi yang Veronika temukan:
+    Click_button_on_specific_location    1    1    NONE
+    Check_VA_response_text    3    Veronika menemukan beberapa outlet Telkomsel di sekitar Jakarta Selatan yang dapat Kamu kunjungi nih
+    Check_VA_response_text_with_buttons    4    Berikut GraPARI dan outlet terdekat di sekitarmu
+    Check_VA_response_text    5    ${VA_question_1}
+    Closing_session
+
+005- Non-Telkomsel user who is wondering about Telkomsel products
     [Tags]    Non-Telkomsel_Telegram
     User_input    Saran perdana donk
     Check_VA_response_text    1    Oke, Veronika bantu carikan produk Telkomsel yang cocok buat Kamu ya
@@ -62,7 +106,7 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    5    ${VA_question_1}
     Cancel_and_closing_session
 
-006 - Non-Telkomsel user who is interested in using KartuHalo
+006- Non-Telkomsel user who is interested in using KartuHalo
     [Tags]    Non-Telkomsel_Telegram
     User_input    Kartu halo itu apa
     Check_VA_response_text_with_buttons    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini    SimPATI    Kartu As    Loop    kartuHalo
@@ -82,7 +126,7 @@ Resource          Test_data/Test_data_payment.txt
     Click_Button_From_Response    5    Lihat di Google Maps    NONE
     Closing_session
 
-007 - Non-Telkomsel user who wants to know about KartuAs
+007- Non-Telkomsel user who wants to know about KartuAs
     [Tags]    Non-Telkomsel_Telegram
     User_input    Mau tau info KartuAs dong
     Check_VA_response_text_with_buttons    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini    SimPATI    Kartu As    Loop    kartuHalo
@@ -100,7 +144,7 @@ Resource          Test_data/Test_data_payment.txt
     Click_Button_From_Response    4    NAZWA CELL SELASA    NONE
     Closing_session
 
-008 - Non-Telkomsel user who wants to know about SimPATI
+008- Non-Telkomsel user who wants to know about SimPATI
     [Tags]    Non-Telkomsel_Telegram
     User_input    Mau tau info SimPATI dong
     Check_VA_response_text_with_buttons    1    Pilihan yang tepat! Kamu bisa beralih ke produk Telkomsel di bawah ini    SimPATI    Kartu As    Loop    kartuHalo
@@ -118,7 +162,7 @@ Resource          Test_data/Test_data_payment.txt
     Click_Button_From_Response    4    NAZWA CELL SELASA    NONE
     Closing_session
 
-009 - Non-Telkomsel user who wants to know about Loop
+009- Non-Telkomsel user who wants to know about Loop
     [Tags]    Non-Telkomsel_Telegram
     Greet_VA_Indo    ${VA_GreetNonTsel}
     Click_Button_From_Response    1    Jelajahi Produk Telkomsel    Jelajahi Produk Telkomsel
@@ -139,7 +183,7 @@ Resource          Test_data/Test_data_payment.txt
     Click_Button_From_Response    4    NAZWA CELL SELASA    NONE
     Closing_session
 
-010 - User perform inquire TCASH information
+010- User perform inquire TCASH information
     [Tags]    Telkomsel_Telegram
     User_input    TCASH itu apaan sih?
     Check_VA_response_text    1    TCASH adalah layanan uang elektronik dari Telkomsel yang telah mendapatkan izin dari Bank Indonesia. Berbeda dengan pulsa, TCASH dapat digunakan untuk bayar tagihan, bayar merchant, isi pulsa, kirim uang, dan banyak lagi.
@@ -159,7 +203,7 @@ Resource          Test_data/Test_data_payment.txt
     Click_Button_From_Response    2    Pesan Sticker    NONE
     Cancel_and_closing_session
 
-011 - User perform inquire TCASH information
+011- User perform inquire TCASH information
     [Tags]    Telkomsel_Telegram
     User_input    cara aktifkan tcash
     Check_VA_response_text    1    TCASH dapat dinikmati oleh seluruh pelanggan Telkomsel baik pascabayar (kartuHalo) maupun prabayar (simPATI, Kartu As, dan Loop). Tekan *800*88*6DigitPIN# di HP Kamu. Untuk pengguna baru, tentukan 6 digit PIN Kamu sendiri.
@@ -173,19 +217,19 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 
-012 - User want to have a 4G card and order it online
+012- User want to have a 4G card and order it online
     [Tags]    Telkomsel_Telegram
     User_input    gimana caranya dapat sim card 4g
     Check_VA_response_text_with_buttons    1    Untuk upgrade ke kartu SIM 4G, ganti kartu SIM lama Kamu dengan kartu SIM 4G ya. Pergantian kartu tidak akan mengubah nomor Telkomsel Kamu. Berikut adalah beberapa cara untuk mendapatkannya:    MyGraPARI Terdekat    GraPARI Terdekat    Registrasi Online
     Click_Button_From_Response    1    MyGraPARI Terdekat    NONE
     Closing_session
 
-[NO FAQ button] 013 - User perform Inquire 4G Upgrade and Find Nearest Store
+[NO FAQ button] 013- User perform Inquire 4G Upgrade and Find Nearest Store
     [Tags]    Telkomsel_Telegram
     Greet_VA_Indo    ${VA_Greet1}
     Click_Button_From_Response    2    Bantuan Lainnya    Bantuan Lainnya
 
-014 - User want to search a grapari that opens on a specific day
+014- User want to search a grapari that opens on a specific day
     [Tags]    Non-Telkomsel_Telegram
     User_input    grapari yang buka di hari minggu di jakarta selatan
     Check_VA_response_text    1    Lokasi GraPARI sekitar mana yang Kamu maksud?
@@ -195,7 +239,7 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text_with_buttons    2    Show GraPARI
     Cancel_and_closing_session
 
-015 - User want to buy a starter pack
+015- User want to buy a starter pack
     [Tags]    Non-Telkomsel_Telegram
     User_input    mau beli perdana
     Check_VA_response_text    1    Kamu bisa mendapatkan perdana Telkomsel di GraPARI maupun di outlet terdekat
@@ -208,7 +252,7 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    4    ${VA_question_1}
     Closing_session
 
-016 - User want to buy voucher data
+016- User want to buy voucher data
     [Tags]    Non-Telkomsel_Telegram
     User_input    mau beli voucher data
     Check_VA_response_text    1    Voucher data bisa Kamu dapatkan di outlet terdekat
@@ -221,7 +265,7 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    4    ${VA_question_1}
     Closing_session
 
-017 - User wants to know about voucher information
+017- User wants to know about voucher information
     [Tags]    Non-Telkomsel_Telegram
     Greet_VA_Indo    ${VA_Greet1}
     User_input    mau tau info voucher telkomsel
@@ -229,11 +273,11 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text_with_buttons    2    Kamu pake simPATI, Loop, atau Kartu As?    SimPATI    Loop    Kartu As
     Cancel_and_closing_session
 
-[NO FAQ button] 018 - User explore the FAQ menu and read about voucher information
+[NO FAQ button] 018- User explore the FAQ menu and read about voucher information
     [Tags]    Telkomsel_Telegram
     Greet_VA_Indo    ${VA_Greet1}
 
-019 - User perform inquire outlet location
+019- User perform inquire outlet location
     [Tags]    Non-Telkomsel_Telegram
     User_input    beli pulsa 10000
     Check_VA_response_text    1    Saat ini Veronika hanya menyediakan nominal pulsa: 50.000, 100.000, 150.000, 200.000, dan 300.000. Jika Kamu tetap ingin mengisi ulang pulsa dengan nominal yang Kamu mau, Veronika bisa membantu menemukan lokasi GraPARI atau outlet terdekat di tempat Kamu berada#Kamu bisa mengisi ulang pulsa dengan nominal tersebut di GraPARI maupun di outlet terdekat.
@@ -255,7 +299,7 @@ Resource          Test_data/Test_data_payment.txt
 [DEPRECATED] 021- User complain about his internet connection
     [Tags]    Non-Telkomsel_Telegram
 
-[AGENT INVOLVED] 022 - User complain about his internet service and agree to connect to agent
+[AGENT INVOLVED] 022- User complain about his internet service and agree to connect to agent
 
 023- Smalltalk
     [Tags]    Non-Telkomsel_Telegram
