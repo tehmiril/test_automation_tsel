@@ -325,12 +325,13 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
     Click_Button_From_Response    2    Ya    Ya
     Click_Button_From_Response    2    Humor    NONE
-    Check_VA_response_text_with_buttons    2    Gimana lucu kan humor Veronika? Lihat yang lain lagi yuk    Mau Lihat Lagi    Topik Lain    Sudah Cukup
+    #Check_VA_response_text_with_buttons    2    Gimana lucu kan humor Veronika? Lihat yang lain lagi yuk    Mau Lihat Lagi    Topik Lain    Sudah Cukup
     Click_Button_From_Response    2    Topik Lain    Topik Lain
     Check_VA_response_text    1    Berikut obrolan menarik yang dapat dipilih agar Kamu tidak sedih lagi :)
     Check_VA_response_text_with_buttons    2    Ngobrol dengan Veronika
     Click_Button_From_Response    2    Travel    NONE
-    Check_VA_response_text    2    Apakah Kamu mau lihat yang lain?
+    Sleep    3s
+    Click_Button_From_Response    2    Sudah Cukup    Sudah Cukup
     Closing_session
 
 [X] 025- User expresses harsh comment and ask random question to Veronika
@@ -716,6 +717,21 @@ Resource          Test_data/Test_data_payment.txt
 [AGENT RELATED] 078- User wants to participate CES in Agent
     [Tags]    Non-Telkomsel_Telegram
 
+080- User asks about his PUK
+    [Tags]    Telkomsel_Telegram
+    User_input    PUK aku berapa?
+    Check_VA_response_text_with_buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
+    Click_Button_From_Response    1    Ya    Ya
+    Check_VA_response_text    1    Untuk mendapatkan PUK untuk nomor handphone Kamu, Veronika membutuhkan verifikasi lebih lanjut.
+    Check_VA_response_text_with_buttons    2    Pilih verifikasi menggunakan PIN T-Care atau 3 nomor yang dihubungi satu bulan terakhir. Jika nomor Kamu terblokir, verifikasi pilihan kedua sangat disarankan    PIN T-Care    Nomor Telepon
+    Click_Button_From_Response    2    PIN T-Care    PIN T-Care
+    Check_VA_response_text    1    Silakan masukkan PIN T-Care Kamu ya. Jika kamu belum memiliki PIN T-Care silakan ketik "PIN" kirim SMS ke 111 (kartuHalo) atau 116 (simPATI, KARTU As, LOOP)
+    Check_VA_response_text    2    Kamu bisa ketik 'batal' jika Kamu tidak lagi membutuhkan informasi PUK
+    User_input    ${PIN_TCARE}
+    Check_VA_response_text    1    ${VA_verify_PUK}
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
+
 084- User want to check his or her last invoice date and amount
     [Tags]    Telkomsel_Telegram_Postpaid
     User_input    Invoice terakhir saya
@@ -974,8 +990,7 @@ Resource          Test_data/Test_data_payment.txt
     Closing_session
 
 [x] 134- Prepaid user who wants to topup using E-Banking (Danamon)
-    [Tags]    Telkomsel_FB
-    Login_messenger    ${email}    ${password}
+    [Tags]    Telkomsel_Telegram
     Greet_VA_Indo    ${VA_Greet1}
     Click_button_carousel    2    Profil Kamu    Beli Pulsa
     Validate_prepaid_number    1
@@ -991,3 +1006,22 @@ Resource          Test_data/Test_data_payment.txt
     Click_button_carousel    1    Bank Danamon    Pilih
     #Pay_with_Danamon    FAIL
     Closing_session
+
+[x] 142- Telkomsel user with expired internet package want to solve his or her internet package activation
+    [Tags]    Telkomsel_Telegram
+    Greet_VA_Indo    ${VA_Greet1}
+    User_input    internet aku bermasalah
+    Check_VA_response_text    1    Veronika minta maaf atas ketidaknyamanan Kamu
+    Check_VA_response_text    2    Oke, Veronika coba bantu masalah Kamu
+    Check_VA_response_text_with_buttons    3    Setelah Veronika cek, Kamu tidak memiliki paket Internet yang aktif. Apakah Kamu ingin membeli paket Internet?    Ya    Tidak
+    Click_Button_From_Response    3    Ya    Ya
+    Check_VA_response_text    1    Veronika menyediakan pilihan paket Internet yang bisa Kamu pilih
+    Check_VA_response_text_with_buttons    2    Pilihan Paket
+    Click_Button_From_Response    2    Paket Internet Seharian 1 GB - Rp10Rb    NONE
+    Check_VA_response_text_with_buttons    7    Paket Pilihan:    Beli    Detail    Lihat Daftar Paket
+    Click_Button_From_Response    7    Beli    Beli
+    Check_VA_response_text    1    Veronika pastikan lagi ya
+    Check_VA_response_text_with_buttons    2    Kamu ingin mengaktifkan Paket    Ya    Tidak
+    Click_Button_From_Response    2    Ya    Ya
+    Check_VA_response_text    1    Terima kasih untuk konfirmasinya. Sebelum mengaktifkan paket, Veronika akan mengirim password melalui SMS dari TELKOMSEL ke nomor +6282110685202. Silakan tulis password tersebut ya. Password hanya berlaku 3 menit. Kamu bisa ketik 'Password Baru' untuk dikirimkan password baru.
+    Get_OTP

@@ -1,4 +1,4 @@
-*** Variables ***
+﻿*** Variables ***
 ${VA_notunderstand_1}    Maaf    #Maaf, Veronika belum mengerti apa yang Kamu tulis karena masih dalam proses belajar.    # Maaf, Veronika tidak mengerti kata-kata yang Kamu tulis
 ${VA_notunderstand_2}    Tolong perjelas    #Tolong perjelas yang Kamu maksud ya
 ${VA_notunderstand_3}    Saat ini    #Saat ini Veronika belum bisa memenuhi keinginan Kamu.    #Saat ini, Veronika belum mengerti permintaan Kamu
@@ -32,6 +32,7 @@ ${VA_Main_Menu_PostPaid}    Berikut adalah informasi untuk nomor Kamu +628131441
 ${VA_change_number_info}    Ketik 'Ganti nomor' untuk beralih ke nomor handphone lainnya
 ${VA_give_options}    Silakan pilih salah satu opsi di atas atau ketik layanan lain yang dibutuhkan
 @{randomBoredIndo}    Dari pada males nggak jelas, mending bermain sama Veronika.    Dari pada mager sendirian, lebih baik ditemenin sama Veronika sambil ngobrol asik.    Bosen nggak tahu mau ngapain? Veronika punya obrolan asik nih    Tenang ya, Kamu pasti bisa melewati ini dengan baik. Veronika mencoba jadi teman ngobrol Kamu nih.    Kamu pasti kuat deh,menjalani ini semua. Kamu mau nggak Veronika temani?
+${VA_verify_PUK}    Terima kasih untuk verifikasinya. Berikut PUK untuk nomor handphone +6282110685202 PUK 1: 57857754 PUK 2: 86495211
 ${Produk_titleA}    SimPATI Combo
 ${Produk_subtitleA}    Aktifkan paket internet kualitas jaringan terbaik
 ${Produk_button1A}    Info SimPATI Combo

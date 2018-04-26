@@ -28,3 +28,4 @@ ${VA_gives_FAQ}    Veronika punya beberapa alternatif jawaban atas pertanyaan Ka
 ${VA_ask_rec}     Seberapa besarkah keinginan Kamu untuk merekomendasikan Telkomsel kepada keluarga atau teman?
 @{randomBoredIndo}    Dari pada males nggak jelas, mending bermain sama Veronika.    Dari pada mager sendirian, lebih baik ditemenin sama Veronika sambil ngobrol asik.    Bosen nggak tahu mau ngapain? Veronika punya obrolan asik nih    Tenang ya, Kamu pasti bisa melewati ini dengan baik. Veronika mencoba jadi teman ngobrol Kamu nih.
 @{randomClosingIndo}    Terima kasih sudah menghubungi Veronika. Senang bisa membantu    Terima kasih sudah menghubungi Veronika. Chat Veronika lagi ya    Terima kasih senang bisa membantu, semoga harimu menyenangkan    Terima kasih untuk hari ini. Sapa Veronika lagi ya
+${VA_verify_PUK}    Terima kasih untuk verifikasinya. Berikut PUK untuk nomor handphone +6282110685202 PUK 1: 57857754 PUK 2: 86495211
