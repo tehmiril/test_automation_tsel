@@ -577,9 +577,24 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Pay_with_credit_card    FAIL
     Cancel_and_closing_session
 
-[MANDIRI RELATED] 035- Prepaid user who wants to topup using Mandiri ClickPay
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+035- Prepaid user who wants to topup using Mandiri ClickPay
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    Click_button_carousel    2    Profil Kamu    Beli Pulsa
+    Validate_prepaid_number    1
+    Check_VA_response_text    1    Kamu bisa memilih nominal pulsa dibawah ini.
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_response_text    1    silakan pilih salah satu opsi pembayaran di bawah ini.
+    Validate_VA_carousel_payment    2
+    Click_button_carousel    2    E-Banking    E-Banking
+    Validate_VA_carousel_ebanking    1
+    Check_VA_response_text    2    ${VA_question_1}
+    Click_button_carousel    1    Bank Mandiri    Pilih
+    Pay_with_Mandiri_CP    FAIL
+    Closing_session
 
 [X] 036- Prepaid user who wants to topup using PermataNet
     [Tags]    Telkomsel_FB
