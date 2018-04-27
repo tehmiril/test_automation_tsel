@@ -509,8 +509,36 @@ Resource          Test_data/Test_data_payment.txt
 [TCASH RELATED] 042- Prepaid user who performs top up through TCASH
     [Tags]    Telkomsel_Telegram
 
-[X] 043- Prepaid users who ask about registration status
-    [Tags]    Non-Telkomsel_Telegram
+043- Prepaid users who ask about registration status
+    [Tags]    Telkomsel_Telegram
+    Greet_VA_Indo    ${VA_Greet1}
+    User_input    apa aku udah registrasi?
+    Check_VA_response_text    1    Kamu bisa lihat status registrasi kartu prabayar Kamu di https://www.telkomsel.com/cek-prepaid
+    Check_VA_response_text    2    ${VA_question_1}
+    Click_URL    check_prepaid
+    User_input    butuh bantuan
+    Check_VA_response_text    1    selamat datang di GraPARI Virtual Telkomsel. Ada yang bisa Veronika bantu hari ini?
+    Check_VA_response_text_with_buttons    2    Silakan pilih salah satu pilihan dibawah ini atau ketik layanan lain yang dibutuhkan
+    Click_Button_From_Response    2    Profil Kamu    Profil Kamu
+    Check_VA_response_text_with_buttons    1    Berikut informasi yang dapat Veronika berikan terkait dengan Profile Kamu
+    Click_Button_From_Response    1    Sisa Kuota    Sisa Kuota
+    Check_VA_response_text    1    silakan pilih jenis sisa kuota yang ingin Kamu ketahui untuk +6282110685202
+    Check_VA_response_text_with_buttons    2    Jenis Kuota    Internet    SMS    Telepon    Ekstra Pulsa
+    Click_Button_From_Response    2    Internet    Internet
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau membeli paket tambahan?    Ya    Tidak
+    Click_Button_From_Response    2    Tidak    Tidak
+    Check_VA_response_text    1    ${VA_question_1}
+    User_input    Lihat Menu Utama
+    Check_VA_response_text    1    selamat datang di GraPARI Virtual Telkomsel. Ada yang bisa Veronika bantu hari ini?
+    Check_VA_response_text_with_buttons    2    Silakan pilih salah satu pilihan dibawah ini atau ketik layanan lain yang dibutuhkan
+    Click_Button_From_Response    2    Beli Paket dan Tukar POIN    Beli Paket dan Tukar POIN
+    Check_VA_response_text_with_buttons    1    Berikut pilihan layanan yang tersedia:    Beli Pulsa    Beli Paket    Telkomsel POIN
+    Click_Button_From_Response    1    Beli Pulsa    Beli Pulsa
+    Check_VA_response_text    1    Kamu bisa memilih nominal pulsa dibawah ini.
+    Check_VA_response_text_with_buttons    2    Voucher Nominal    Rp50.000    Rp100.000    Rp150.000    Rp200.000
+    ...    Rp300.000
+    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
+    Cancel_and_closing_session
 
 [X] 044- Prepaid user who wants to purchase the package that VA offers
     [Tags]    Telkomsel_Telegram
@@ -673,8 +701,16 @@ Resource          Test_data/Test_data_payment.txt
 [X] 066- User perform pay bill using PermataNet
     [Tags]    Telkomsel_Telegram_Postpaid
 
-[TCASH RELATED] 067- User wants to know how to cash in Tcash
-    [Tags]    Telkomsel_Telegram_Postpaid
+067- User wants to know how to cash in Tcash
+    [Tags]    Non-Telkomsel_Telegram
+    User_input    cara isi ulang tcash gmn ya?
+    Check_VA_response_text    1    Kamu bisa mengisi saldo TCASH Kamu dengan cara-cara berikut
+    Check_VA_response_text_with_buttons    2    Pilihan yang Tersedia    Mobile Banking    Internet Banking    ATM Bersama    GraPARI
+    ...    Retail Store
+    Click_Button_From_Response    2    Mobile Banking    NONE
+    Check_VA_response_image    3
+    Check_VA_response_text    4    ${VA_question_1}
+    Closing_session
 
 068- User wants to know how to cash in Tcash
     [Tags]    Non-Telkomsel_Telegram
@@ -687,8 +723,16 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    4    ${VA_question_1}
     Closing_session
 
-[X] 069- User wants to know how to cash in Tcash
+069- User wants to know how to cash in Tcash
     [Tags]    Non-Telkomsel_Telegram
+    User_input    cara isi ulang tcash gmn ya?
+    Check_VA_response_text    1    Kamu bisa mengisi saldo TCASH Kamu dengan cara-cara berikut
+    Check_VA_response_text_with_buttons    2    Pilihan yang Tersedia    Mobile Banking    Internet Banking    ATM Bersama    GraPARI
+    ...    Retail Store
+    Click_Button_From_Response    2    ATM Bersama    NONE
+    Check_VA_response_image    3
+    Check_VA_response_text    4    ${VA_question_1}
+    Closing_session
 
 070- User wants to know how to cash in Tcash
     [Tags]    Non-Telkomsel_Telegram
@@ -707,14 +751,39 @@ Resource          Test_data/Test_data_payment.txt
     #Check_VA_response_text    5    ${VA_question_1}
     Cancel_and_closing_session
 
-[X] 071- User wants to know how to cash in Tcash
+071- User wants to know how to cash in Tcash
     [Tags]    Non-Telkomsel_Telegram
+    User_input    cara isi saldo tcash gimana ya?
+    Check_VA_response_text    1    Kamu bisa mengisi saldo TCASH Kamu dengan cara-cara berikut
+    Check_VA_response_text_with_buttons    2    Pilihan yang Tersedia    Mobile Banking    Internet Banking    ATM Bersama    GraPARI
+    ...    Retail Store
+    Click_Button_From_Response    2    Retail Store    NONE
+    Check_VA_response_text    1    Kamu bisa isi saldo di toko retail seperti Alfamart dan Indomaret melalui bantuan kasir
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
 
 [TCASH RELATED] 072- Prepaid Telkomsel User failed to recharge using Tcash and informed how to top up tcash balance
     [Tags]    Non-Telkomsel_Telegram
 
-[X] 073- User wants to know how to Top Up Tcash Balance through Tcash FAQ
+073- User wants to know how to Top Up Tcash Balance through Tcash FAQ
     [Tags]    Non-Telkomsel_Telegram
+    Greet_VA_Indo    ${VA_GreetNonTsel}
+    User_input    tcash apaan sih min
+    Check_VA_response_text    1    TCASH adalah layanan uang elektronik dari Telkomsel yang telah mendapatkan izin dari Bank Indonesia. Berbeda dengan pulsa, TCASH dapat digunakan untuk bayar tagihan, bayar merchant, isi pulsa, kirim uang, dan banyak lagi.
+    Check_VA_response_text_with_buttons    2    TCASH info    Dapatkan di GraPARI    Pesan Sticker    Promo TCASH    Merchant TCASH
+    ...    TCASH FAQ    Pertanyaan Lain
+    Click_Button_From_Response    2    TCASH FAQ    NONE
+    Check_VA_response_text_with_buttons    3    TCASH FAQ    Bagaimana cara mengaktifkan TCASH?    Apa itu TCASH Basic/Full Service?    Apa saja kegunaan TCASH    Apa saja kegunaan TCASH
+    ...    Bagaimana cara isi saldo TCASH?
+    Click_Button_From_Response    3    Bagaimana cara isi saldo TCASH?    NONE
+    Check_VA_response_text    4    Kamu juga bisa mengetahui informasi lebih lanjut di https://digitalpayment.telkomsel.com/faq atau ketik 'batal' untuk melihat menu utama
+    Check_VA_response_text    5    Kamu bisa mengisi saldo TCASH Kamu dengan cara-cara berikut
+    Check_VA_response_text_with_buttons    6    Pilihan yang Tersedia    Mobile Banking    Internet Banking    ATM Bersama    GraPARI
+    ...    Retail Store
+    Click_Button_From_Response    6    Internet Banking    NONE
+    Check_VA_response_image    7
+    Check_VA_response_text    8    ${VA_question_1}
+    Closing_session
 
 074- User wants to participate CES in VA - finished
     [Tags]    Non-Telkomsel_Telegram
@@ -734,6 +803,21 @@ Resource          Test_data/Test_data_payment.txt
 
 [AGENT RELATED] 078- User wants to participate CES in Agent
     [Tags]    Non-Telkomsel_Telegram
+
+079- Postpaid user want to check quota detail information
+    [Tags]    Telkomsel_Telegram_Postpaid
+    Greet_VA_Indo    ${VA_GreetPostPaid}
+    Click_Button_From_Response    1    Profil Kamu    Profil Kamu
+    Check_VA_response_text_with_buttons    1    Berikut informasi yang dapat Veronika berikan terkait dengan Profile Kamu
+    Click_Button_From_Response    1    Sisa Kuota    Sisa Kuota
+    Check_VA_response_text    1    silakan pilih jenis sisa kuota yang ingin Kamu ketahui untuk +6281314415099
+    Check_VA_response_text_with_buttons    2    Jenis Kuota    Internet    SMS    Telepon    Ekstra Pulsa
+    Click_Button_From_Response    2    Internet    Internet
+    Check_VA_response_text    1    Berikut sisa kuota Internet Kamu:
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau membeli paket tambahan?    Ya    Tidak
+    Click_Button_From_Response    2    Tidak    Tidak
+    Check_VA_response_text    1    ${VA_question_1}
+    Closing_session
 
 080- User asks about his PUK
     [Tags]    Telkomsel_Telegram
@@ -760,6 +844,14 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 
+085- User want to check his or her historical payment
+    [Tags]    Telkomsel_Telegram_Postpaid
+    Greet_VA_Indo    ${VA_GreetPostPaid}
+    User_input    riwayat pembayaran
+    Check_VA_response_text    1    berikut 3 pembayaran terakhir yang Veronika temukan untuk nomor +6281314415099 :
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
+
 086- User asks for his credit limit
     [Tags]    Telkomsel_Telegram_Postpaid
     User_input    kredit limit saya berapa?
@@ -768,12 +860,26 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 
-[x] 088- User asks about his usage
+088- User asks about his usage
     [Tags]    Telkomsel_Telegram_Postpaid
     Greet_VA_Indo    ${VA_GreetPostPaid}
     User_input    berapa usage saya?
     Validate_postpaid_number    1
     Check_VA_response_text    1    Setelah Veronika cek, Kamu memiliki pemakaian sementara sebesar
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
+
+089- User asks about current balance and PIN TCARE
+    [Tags]    Telkomsel_Telegram
+    User_input    berapa sisa pulsa saya?
+    Check_VA_response_text_with_buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
+    Click_Button_From_Response    1    Ya    Ya
+    Check_VA_response_text    1    Setelah Veronika cek, sisa pulsa untuk nomor +6282110685202
+    Check_VA_response_text_with_buttons    2    Apakah Kamu juga ingin melakukan pengisian pulsa?    Ya    Tidak
+    Click_Button_From_Response    2    Tidak    Tidak
+    Check_VA_response_text    1    ${VA_question_1}
+    User_input    pin tcare aku berapa?
+    Check_VA_response_text    1    PIN T-care untuk nomor handphone +6282110685202 akan Veronika kirimkan melalui SMS
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 

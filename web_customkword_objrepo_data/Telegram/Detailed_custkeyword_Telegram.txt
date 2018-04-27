@@ -17,7 +17,6 @@ Click_button_actual
     Run Keyword If    '${expected_input}'!='NONE'    Run Keywords    Set Suite Variable    ${current_user_input}    ${expected_input}
     ...    AND    Count_message_bubble_user_input    ${current_user_input}
     Set Suite Variable    ${tb_validated}    ${FALSE}
-    SeleniumLibrary.Capture Page Screenshot    button_${r_button}_${TEST NAME}.png
 
 Click_button_URL
     Click Element    //*[@name="url" and contains (.,"https://")]/ancestor::*[@class="md_simple_modal_body"]/following-sibling::*/descendant::button[contains(.,"OK")]
@@ -30,3 +29,7 @@ Validate_postpaid_number
     ${tb_visible}    Run Keyword And Return Status    Check_VA_response_text_with_buttons    ${order}    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6281314415099 ?    Ya    Tidak
     Run Keyword If    ${tb_visible}    Click_Button_From_Response    ${order}    Ya    Ya
     ...    ELSE    No Operation    #Check_VA_response_text    ${order}    Kamu bisa memilih nominal pulsa dibawah ini.
+
+Click_check_prepaid
+    ${amount}    Get Element Count    //a[@href="${url_check_prepaid}"]
+    Click Link    (//a[@href="${url_check_prepaid}"])[${amount}]

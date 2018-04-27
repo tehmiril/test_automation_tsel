@@ -95,3 +95,10 @@ Cancel_and_closing_session
     Run Keyword If    ${cancel_response}    Run Keywords    Check_VA_response_text    2    ${VA_question_1}
     ...    AND    Closing_session
     ...    ELSE    Perform_CES
+
+Click_URL
+    [Arguments]    ${type}
+    ${URL_now}    Get Location
+    Run Keyword If    '${type}'=='check_prepaid'    Click_check_prepaid
+    Sleep    10s
+    Go To    ${URL_now}
