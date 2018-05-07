@@ -25,3 +25,4 @@ ${emailPostpaid}    taacnindonesia03@gmail.com
 ${passwordPostpaid}    Welcome01!
 ${postpaid_number}    081314415099
 ${PIN_TCARE}      474550
+${PIN_TCARE_postpaid}    495289

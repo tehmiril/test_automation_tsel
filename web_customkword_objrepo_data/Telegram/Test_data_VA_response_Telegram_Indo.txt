@@ -1,4 +1,4 @@
-*** Variables ***
+﻿*** Variables ***
 ${VA_notunderstand_1}    Maaf    #Maaf, Veronika belum mengerti apa yang Kamu tulis karena masih dalam proses belajar.    # Maaf, Veronika tidak mengerti kata-kata yang Kamu tulis
 ${VA_notunderstand_2}    perjelas    #Tolong perjelas yang Kamu maksud ya
 ${VA_notunderstand_3}    Saat ini    #Saat ini Veronika belum bisa memenuhi keinginan Kamu.    #Saat ini, Veronika belum mengerti permintaan Kamu
@@ -29,3 +29,4 @@ ${VA_ask_rec}     Seberapa besarkah keinginan Kamu untuk merekomendasikan Telkom
 @{randomBoredIndo}    Dari pada males nggak jelas, mending bermain sama Veronika.    Dari pada mager sendirian, lebih baik ditemenin sama Veronika sambil ngobrol asik.    Bosen nggak tahu mau ngapain? Veronika punya obrolan asik nih    Tenang ya, Kamu pasti bisa melewati ini dengan baik. Veronika mencoba jadi teman ngobrol Kamu nih.
 @{randomClosingIndo}    Terima kasih sudah menghubungi Veronika. Senang bisa membantu    Terima kasih sudah menghubungi Veronika. Chat Veronika lagi ya    Terima kasih senang bisa membantu, semoga harimu menyenangkan    Terima kasih untuk hari ini. Sapa Veronika lagi ya
 ${VA_verify_PUK}    Terima kasih untuk verifikasinya. Berikut PUK untuk nomor handphone +6282110685202 PUK 1: 57857754 PUK 2: 86495211
+${VA_verify_PUK_postpaid}    Terima kasih untuk verifikasinya. Berikut PUK untuk nomor handphone +6281314415099 PUK 1: 69672424 PUK 2: 28318064

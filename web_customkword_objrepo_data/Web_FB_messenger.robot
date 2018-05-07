@@ -786,9 +786,26 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
-[TCARE PIN-PUK] 058- User perform request PIN and PUK
+058- User perform request PIN and PUK
     [Tags]    Telkomsel_FB_postpaid
     Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    Greet_VA_Indo    ${VA_GreetPostPaid}
+    User_input    riwayat pembayaran
+    Check_VA_response_text    1    berikut 3 pembayaran terakhir yang Veronika temukan untuk nomor +6281314415099 :
+    Check_VA_response_text_additional    2    ${VA_question_1}
+    #User_input    Lihat Menu Utama
+    #Validate_VA_carousel_main_menu_postpaid    3
+    #Click_button_carousel    3    Profil Kamu    Info PUK
+    User_input    Info PUK
+    Check_VA_response_text    1    Untuk mendapatkan PUK untuk nomor handphone Kamu, Veronika membutuhkan verifikasi lebih lanjut.
+    Check_VA_response_text_with_buttons    2    Pilih verifikasi menggunakan PIN T-Care atau 3 nomor yang dihubungi satu bulan terakhir. Jika nomor Kamu terblokir, verifikasi pilihan kedua sangat disarankan    PIN T-Care    Nomor Telepon
+    Click_Button_From_Response    2    PIN T-Care
+    Check_VA_response_text    1    Silakan masukkan PIN T-Care Kamu ya. Jika kamu belum memiliki PIN T-Care silakan ketik "PIN" kirim SMS ke 111 (kartuHalo) atau 116 (simPATI, KARTU As, LOOP)
+    Check_VA_response_text    2    Kamu bisa ketik 'batal' jika Kamu tidak lagi membutuhkan informasi PUK
+    User_input    ${PIN_TCARE_postpaid}
+    Check_VA_response_text    1    ${VA_verify_PUK_postpaid}
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
 
 059- Postpaid User who has no outstanding bill try to perform pay bill directly on VA and get told that he or she has no bill to pay
     [Tags]    Telkomsel_FB_postpaid

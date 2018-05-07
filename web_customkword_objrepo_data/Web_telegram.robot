@@ -651,7 +651,7 @@ Resource          Test_data/Test_data_payment.txt
 [X] 057- Postpaid User ask his credit limit
     [Tags]    Telkomsel_Telegram_Postpaid
 
-[X] 058- User perform request PIN and PUK
+058- User perform request PIN and PUK
     [Tags]    Telkomsel_Telegram_Postpaid
     Greet_VA_Indo    ${VA_GreetPostPaid}
     User_input    riwayat pembayaran
@@ -667,8 +667,8 @@ Resource          Test_data/Test_data_payment.txt
     Click_Button_From_Response    2    PIN T-Care    PIN T-Care
     Check_VA_response_text    1    Silakan masukkan PIN T-Care Kamu ya. Jika kamu belum memiliki PIN T-Care silakan ketik "PIN" kirim SMS ke 111 (kartuHalo) atau 116 (simPATI, KARTU As, LOOP)
     Check_VA_response_text    2    Kamu bisa ketik 'batal' jika Kamu tidak lagi membutuhkan informasi PUK
-    User_input    ${PIN_TCARE}
-    Check_VA_response_text    1    ${VA_verify_PUK}
+    User_input    ${PIN_TCARE_postpaid}
+    Check_VA_response_text    1    ${VA_verify_PUK_postpaid}
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 

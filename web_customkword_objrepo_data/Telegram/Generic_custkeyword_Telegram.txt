@@ -3,7 +3,7 @@ Greet_VA_Indo
     [Arguments]    ${greeting_text}= ${VA_Greet1}
     [Documentation]    Can be part of any test case, greet VA
     User_input    ${greeting}
-    Sleep    20s
+    Sleep    35s
     Run Keyword If    '${greeting_text}' == '${VA_GreetNonTsel}'    Run Keywords    Set Suite Variable    ${VA_SecondGreetWording}    Apa yang bisa Veronika bantu hari ini?
     ...    AND    Set Suite Variable    ${VA_ThirdGreetWording}    Silakan pilih salah satu pilihan di bawah ini atau langsung saja ketik permintaan kamu
     ...    ELSE    Run Keywords    Set Suite Variable    ${VA_SecondGreetWording}    Apa yang bisa Veronika bantu hari ini?

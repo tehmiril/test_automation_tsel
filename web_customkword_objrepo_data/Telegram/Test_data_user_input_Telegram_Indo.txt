@@ -20,3 +20,4 @@ ${postpaid_dest_number}    08
 ${pulsa_amount}    Rp50.000
 ${PIN_TCARE}      474550
 ${url_check_prepaid}    https://www.telkomsel.com/cek-prepaid
+${PIN_TCARE_postpaid}    495289
