@@ -992,12 +992,26 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 
-[x] 088- User asks about his usage
+088- User asks about his usage
     [Tags]    Telkomsel_FB_postpaid
     Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
     User_input    berapa usage saya?
     Validate_postpaid_number    1
     Check_VA_response_text    1    Setelah Veronika cek, Kamu memiliki pemakaian sementara sebesar
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
+
+089- User asks about current balance and PIN TCARE
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    User_input    berapa sisa pulsa saya?
+    Validate_prepaid_number    1
+    Check_VA_response_text    1    Setelah Veronika cek, sisa pulsa untuk nomor +6282110685202
+    Check_VA_response_text_with_buttons    2    Apakah Kamu juga ingin melakukan pengisian pulsa?    Ya    Tidak
+    Click_Button_From_Response    2    Tidak
+    Check_VA_response_text    1    ${VA_question_1}
+    User_input    pin tcare aku berapa?
+    Check_VA_response_text    1    PIN T-care untuk nomor handphone +6282110685202 akan Veronika kirimkan melalui SMS
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 
