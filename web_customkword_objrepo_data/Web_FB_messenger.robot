@@ -849,9 +849,16 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 
-[X] 069- User wants to know how to cash in Tcash
+069- User wants to know how to cash in Tcash
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    cara isi ulang tcash gmn ya?
+    Check_VA_response_text    1    Kamu bisa mengisi saldo TCASH Kamu dengan cara-cara berikut
+    Validate_VA_carousel_tcash    2
+    Click_button_carousel    2    ATM Bersama    Lihat Caranya
+    Check_VA_response_image    1
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
 
 070- User wants to know how to cash in Tcash
     [Tags]    Non-Telkomsel_FB
@@ -870,9 +877,16 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Check_VA_response_text    3    ${VA_question_1}
     Closing_session
 
-[X] 071- User wants to know how to cash in Tcash
+071- User wants to know how to cash in Tcash
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    cara isi ulang tcash gmn ya?
+    Check_VA_response_text    1    Kamu bisa mengisi saldo TCASH Kamu dengan cara-cara berikut
+    Validate_VA_carousel_tcash    2
+    Click_button_carousel    2    Retail Store    Lihat Caranya
+    Check_VA_response_text    1    Kamu bisa isi saldo di toko retail seperti Alfamart dan Indomaret melalui bantuan kasir
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
 
 [TCASH RELATED] 072- Prepaid Telkomsel User failed to recharge using Tcash and informed how to top up tcash balance
     [Tags]    Non-Telkomsel_FB
