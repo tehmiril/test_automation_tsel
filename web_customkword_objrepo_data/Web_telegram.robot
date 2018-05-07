@@ -513,13 +513,13 @@ Resource          Test_data/Test_data_payment.txt
     [Tags]    Telkomsel_Telegram
     Greet_VA_Indo    ${VA_Greet1}
     User_input    apa aku udah registrasi?
-    Check_VA_response_text    1    Kamu bisa lihat status registrasi kartu prabayar Kamu di https://www.telkomsel.com/cek-prepaid
+    Check_VA_response_text    1    Kamu bisa melihat status registrasi kartu prabayar dengan menghubungi *444# Kamu tetap bisa menghubungi nomor tersebut meskipun nomor Kamu sudah terblokir
     Check_VA_response_text    2    ${VA_question_1}
-    Click_URL    check_prepaid
-    User_input    butuh bantuan
-    Check_VA_response_text    1    selamat datang di GraPARI Virtual Telkomsel. Ada yang bisa Veronika bantu hari ini?
-    Check_VA_response_text_with_buttons    2    Silakan pilih salah satu pilihan dibawah ini atau ketik layanan lain yang dibutuhkan
-    Click_Button_From_Response    2    Profil Kamu    Profil Kamu
+    #Click_URL    check_prepaid
+    User_input    Ya
+    #Check_VA_response_text    1    selamat datang di GraPARI Virtual Telkomsel. Ada yang bisa Veronika bantu hari ini?
+    Check_VA_response_text_with_buttons    1    Silakan pilih salah satu pilihan dibawah ini atau ketik layanan lain yang dibutuhkan
+    Click_Button_From_Response    1    Profil Kamu    Profil Kamu
     Check_VA_response_text_with_buttons    1    Berikut informasi yang dapat Veronika berikan terkait dengan Profile Kamu
     Click_Button_From_Response    1    Sisa Kuota    Sisa Kuota
     Check_VA_response_text    1    silakan pilih jenis sisa kuota yang ingin Kamu ketahui untuk +6282110685202

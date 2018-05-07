@@ -658,11 +658,32 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
-[X] 043- Prepaid users who ask about registration status
-    [Tags]    Non-Telkomsel_FB
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+043- Prepaid users who ask about registration status
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA_Greet1}
+    User_input    apa aku udah registrasi?
+    Check_VA_response_text    1    Kamu bisa melihat status registrasi kartu prabayar dengan menghubungi *444# Kamu tetap bisa menghubungi nomor tersebut meskipun nomor Kamu sudah terblokir
+    Check_VA_response_text    2    ${VA_question_1}
+    User_input    Ya
+    Validate_Main_Menu
+    Click_button_carousel    2    Profil Kamu    Detail Kuota
+    Check_VA_response_text    1    silakan pilih jenis sisa kuota yang ingin Kamu ketahui
+    Validate_VA_carousel_kuota_prepaid    2
+    Click_button_carousel    2    Internet    Lihat Kuota Internet
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau membeli paket tambahan?    Ya    Tidak
+    Click_Button_From_Response    2    Tidak
+    Check_VA_response_text    1    ${VA_question_1}
+    User_input    Lihat Menu Utama
+    Validate_VA_carousel_main_menu_tsel    3
+    Click_button_carousel    3    Profil Kamu    Beli Pulsa
+    Check_VA_response_text    1    Kamu bisa memilih nominal pulsa dibawah ini.
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Kamu juga bisa ketik 'batal' jika ingin menanyakan informasi lain
+    Cancel_and_closing_session
 
 [X] 044- Prepaid user who wants to purchase the package that VA offers
+    [Tags]    Telkomsel_FB
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     Click_carousel_button_on_specific_location    2    2    Beli Paket Favorit

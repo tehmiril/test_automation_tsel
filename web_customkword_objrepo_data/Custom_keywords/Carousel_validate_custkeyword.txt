@@ -39,6 +39,14 @@ Validate_VA_carousel_kuota_postpaid
     Validate_carousel_items    ${order}    @{Kuota_Postpaid_C}[0]    \    @{Kuota_Postpaid_C}[1]
     Validate_carousel_items    ${order}    @{Kuota_Postpaid_D}[0]    \    @{Kuota_Postpaid_D}[1]
 
+Validate_VA_carousel_kuota_prepaid
+    [Arguments]    ${order}
+    Check_VA_response_carousel_exists    ${order}
+    Validate_carousel_items    ${order}    @{Kuota_Postpaid_A}[0]    \    @{Kuota_Postpaid_A}[1]
+    Validate_carousel_items    ${order}    @{Kuota_Postpaid_B}[0]    \    @{Kuota_Postpaid_B}[1]
+    Validate_carousel_items    ${order}    @{Kuota_Postpaid_C}[0]    \    @{Kuota_Postpaid_C}[1]
+    Validate_carousel_items    ${order}    @{Kuota_Postpaid_D}[0]    \    @{Kuota_Postpaid_D}[1]
+
 Validate_VA_carousel_appointment
     [Arguments]    ${order}
     Check_VA_response_carousel_exists    ${order}
