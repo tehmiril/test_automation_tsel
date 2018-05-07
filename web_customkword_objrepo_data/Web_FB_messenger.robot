@@ -974,6 +974,15 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 
+085- User want to check his or her historical payment
+    [Tags]    Telkomsel_FB_Postpaid
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    Greet_VA_Indo    ${VA_GreetPostPaid}
+    User_input    riwayat pembayaran
+    Check_VA_response_text    1    berikut 3 pembayaran terakhir yang Veronika temukan untuk nomor +6281314415099 :
+    Check_VA_response_text_additional    2    ${VA_question_1}
+    Closing_session
+
 086- User asks for his credit limit
     [Tags]    Telkomsel_FB_postpaid
     Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
