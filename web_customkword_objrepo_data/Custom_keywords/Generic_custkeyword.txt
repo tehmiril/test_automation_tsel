@@ -16,9 +16,9 @@ Greet_VA_Indo
     Check_VA_response_text    1    ${greeting_text}
     Check_VA_response_text    2    ${VA_SecondGreetWording}
     Check_VA_response_image    3
-    Run Keyword If    '${user_type}'=='TSEL-POSTPAID'    Check_VA_response_text_with_buttons    4    ${VA_ThirdGreetWording}    ${VA_GreetButton3}    ${VA_GreetButton1}
-    ...    ${VA_GreetButton2}
-    ...    ELSE    Check_VA_response_text_with_buttons    4    ${VA_ThirdGreetWording}    ${VA_GreetButton1}    ${VA_GreetButton2}
+    #Run Keyword If    '${user_type}'=='TSEL-POSTPAID'    Check_VA_response_text_with_buttons    4    ${VA_ThirdGreetWording}    ${VA_GreetButton3}    ${VA_GreetButton1}
+    #...    ${VA_GreetButton2}
+    Check_VA_response_text_with_buttons    4    ${VA_ThirdGreetWording}    ${VA_GreetButton1}    ${VA_GreetButton2}
     Click_Button_From_Response    4    ${VA_GreetButton1}
     SeleniumLibrary.Capture Page Screenshot    VAgreet_${TEST NAME}.png
     Validate_Main_Menu

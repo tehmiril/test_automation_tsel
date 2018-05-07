@@ -892,9 +892,23 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
-[X] 073- User wants to know how to Top Up Tcash Balance through Tcash FAQ
+073- User wants to know how to Top Up Tcash Balance through Tcash FAQ
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    Greet_VA_Indo    ${VA_GreetNonTsel}
+    User_input    tcash apaan sih min
+    Check_VA_response_text    1    TCASH adalah layanan uang elektronik dari Telkomsel yang telah mendapatkan izin dari Bank Indonesia. Berbeda dengan pulsa, TCASH dapat digunakan untuk bayar tagihan, bayar merchant, isi pulsa, kirim uang, dan banyak lagi.
+    Check_VA_response_carousel_exists    2
+    Click_button_carousel    2    Info    TCASH FAQ
+    Check_VA_response_carousel_exists    1
+    Check_VA_response_text    2    Kamu juga bisa mengetahui informasi lebih lanjut di https://digitalpayment.telkomsel.com/faq atau ketik 'batal' untuk melihat menu utama
+    Click_button_carousel    1    Bagaimana cara isi saldo TCASH?    Lihat
+    Check_VA_response_text    1    Kamu bisa mengisi saldo TCASH Kamu dengan cara-cara berikut
+    Validate_VA_carousel_tcash    2
+    Click_button_carousel    2    Internet Banking    Lihat Caranya
+    Check_VA_response_image    1
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
 
 074- User wants to participate CES in VA - finished
     [Tags]    Non-Telkomsel_FB
@@ -919,6 +933,35 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
 [AGENT RELATED] 078- User wants to participate CES in Agent
     [Tags]    Non-Telkomsel_FB
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+
+079- Postpaid user want to check quota detail information
+    [Tags]    Telkomsel_FB_Postpaid
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    Greet_VA_Indo    ${VA_GreetPostPaid}
+    Click_button_carousel    2    Profil Kamu    Detail Kuota
+    Check_VA_response_text    1    silakan pilih jenis sisa kuota yang ingin Kamu ketahui untuk +6281314415099
+    Check_VA_response_carousel_exists    2
+    Click_button_carousel    2    Internet    Lihat Kuota Internet
+    Check_VA_response_text    1    Berikut sisa kuota Internet Kamu:
+    Check_VA_response_text_with_buttons    2    Apakah Kamu mau membeli paket tambahan?    Ya    Tidak
+    Click_Button_From_Response    2    Tidak
+    Check_VA_response_text    1    ${VA_question_1}
+    Closing_session
+
+080- User asks about his PUK
+    [Tags]    Telkomsel_FB
+    Login_messenger    ${email}    ${password}
+    User_input    PUK aku berapa?
+    Validate_prepaid_number    1
+    Check_VA_response_text    1    Untuk mendapatkan PUK untuk nomor handphone Kamu, Veronika membutuhkan verifikasi lebih lanjut.
+    Check_VA_response_text_with_buttons    2    Pilih verifikasi menggunakan PIN T-Care atau 3 nomor yang dihubungi satu bulan terakhir. Jika nomor Kamu terblokir, verifikasi pilihan kedua sangat disarankan    PIN T-Care    Nomor Telepon
+    Click_Button_From_Response    2    PIN T-Care
+    Check_VA_response_text    1    Silakan masukkan PIN T-Care Kamu ya. Jika kamu belum memiliki PIN T-Care silakan ketik "PIN" kirim SMS ke 111 (kartuHalo) atau 116 (simPATI, KARTU As, LOOP)
+    Check_VA_response_text    2    Kamu bisa ketik 'batal' jika Kamu tidak lagi membutuhkan informasi PUK
+    User_input    ${PIN_TCARE}
+    Check_VA_response_text    1    ${VA_verify_PUK}
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
 
 [x] 084- User want to check his or her last invoice date and amount
     [Tags]    Telkomsel_FB_postpaid
