@@ -1,3 +1,4 @@
 *** Variables ***
-@{CC_details_fail_payment}    MTestaut    taacnindonesia01@gmail.com    123456781234    12    2025    123
+@{CC_details_wrong_payment}    MTestaut    taacnindonesia01@gmail.com    123456781234    12    2025    123
 @{MCP_details_fail_payment}    123456781234    123456
+@{CC_details_fail_payment}    MTestaut    taacnindonesia01@gmail.com    1234567812345678    12    2025    123

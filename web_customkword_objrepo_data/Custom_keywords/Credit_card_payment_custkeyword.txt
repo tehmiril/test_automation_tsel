@@ -1,6 +1,6 @@
 *** Keywords ***
 Pay_with_credit_card
-    [Arguments]    ${status}
+    [Arguments]    ${status}    ${type}
     ${URLS}    SeleniumLibrary.Get Locations
     ${first_url}    Get From List    ${URLS}    0
     Set Suite Variable    ${first_url}    ${first_url}
@@ -9,10 +9,11 @@ Pay_with_credit_card
     ${last_url}    Get From List    ${URLS}    ${index_latest_window}
     Select Window    url=${last_url}
     Wait Until Keyword Succeeds    15    3s    SeleniumLibrary.Element Should Be Visible    ${CC_holder_name_obj}
-    Run Keyword If    '${status}'=='FAIL'    Set Suite Variable    @{payment_data}    @{CC_details_fail_payment}
+    Run Keyword If    '${type}'=='details'    Set Suite Variable    @{payment_data}    @{CC_details_wrong_payment}
+    ...    ELSE IF    '${type}'=='NONE'    Set Suite Variable    @{payment_data}    @{CC_details_fail_payment}
     ...    ELSE IF    '${status}'=='PASS'    Set Suite Variable    @{payment_data}    @{CC_details_pass_payment}
     Enter_CC_details
-    Check_CC_payment_status    ${status}
+    Check_CC_payment_status    ${status}    ${type}
 
 Enter_CC_details
     SeleniumLibrary.Click Element    ${CC_holder_name_obj}
@@ -29,10 +30,10 @@ Enter_CC_details
     SeleniumLibrary.Input Text    ${CC_CV_obj}    @{payment_data}[5]
 
 Check_CC_payment_status
-    [Arguments]    ${status}
+    [Arguments]    ${status}    ${type}
     SeleniumLibrary.Click Element    ${CC_submit_obj}
-    SeleniumLibrary.Capture Page Screenshot    CCpayment_${status}_${TEST NAME}.png
     Sleep    2s
-    Run Keyword If    '${status}'=='FAIL'    Element Should Be Visible    ${CC_invalidcardalert_obj}
-    Sleep    3s
+    Run Keyword If    '${type}'=='details'    Run Keywords    Element Should Be Visible    ${CC_invalidcardalert_obj}
+    ...    AND    Sleep    3s
+    ...    AND    SeleniumLibrary.Capture Page Screenshot    CCpayment_${status}_${type}_${TEST NAME}.png
     Select Window    url=${first_url}

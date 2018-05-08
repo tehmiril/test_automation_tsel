@@ -292,9 +292,31 @@ Resource          Test_data/Test_data_payment.txt
     Click_Button_From_Response    4    NAZWA CELL SELASA    NONE
     Closing_session
 
-[NO FAQ button] 020- User perform setting Caller ID for Apple, Android, Windows Phone, and Blackberry
+020- User perform setting Caller ID for Apple, Android, Windows Phone, and Blackberry
     [Tags]    Telkomsel_Telegram
-    Greet_VA_Indo    ${VA_Greet1}
+    User_input    info konfigurasi
+    Check_VA_response_text_with_buttons    1    Berikut Veronika berikan jenis konfigurasi yang bisa Kamu pilih ya    Refresh Jaringan    Setting APN    Pengaturan Pusat SMS    Pengaturan Caller ID
+    ...    Pengalihan Panggilan    Fixed Dial Number
+    Click_Button_From_Response    1    Pengaturan Caller ID    Pengaturan Caller ID
+    Check_VA_response_text_with_buttons    1    Untuk membantu Kamu terkait hal ini, silakan pilih salah satu ya    Apple    Android    Windows Phone    Blackberry
+    Click_Button_From_Response    1    Apple    Apple
+    Check_VA_response_text    1    Veronika pandu ya Untuk pengaturan Caller ID di handphone Apple, Kamu bisa ikuti langkah-langkah berikut:
+    Check_VA_response_image    2
+    Check_VA_response_text    3    ${VA_question_1}
+    User_input    Mau setting caller id di android gmn ya?
+    Check_VA_response_text    1    Veronika pandu ya :) ${\n}Untuk pengaturan Caller ID di handphone Android, Kamu bisa ikuti langkah-langkah berikut:
+    Check_VA_response_image    2
+    Check_VA_response_image    3
+    Check_VA_response_text    4    ${VA_question_1}
+    User_input    Mau setting caller id di windows phone gmn ya?
+    Check_VA_response_text    1    Veronika pandu ya :) ${\n}Untuk pengaturan Caller ID di handphone Windows Phone, Kamu bisa ikuti langkah-langkah berikut:
+    Check_VA_response_image    2
+    Check_VA_response_text    3    ${VA_question_1}
+    User_input    Mau setting caller id di blackberry gmn ya?
+    Check_VA_response_text    1    Veronika pandu ya :) ${\n}Untuk pengaturan Caller ID di handphone Blackberry, Kamu bisa ikuti langkah-langkah berikut:
+    Check_VA_response_image    2
+    Check_VA_response_text    3    ${VA_question_1}
+    Closing_session
 
 [DEPRECATED] 021- User complain about his internet connection
     [Tags]    Non-Telkomsel_Telegram
@@ -618,8 +640,24 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    2    ${VA_Greet1}
     Closing_session
 
-[X] 053- Postpaid user who has outstanding bill wants to pay his bill
+053- Postpaid user who has outstanding bill wants to pay his bill
     [Tags]    Telkomsel_Telegram_Postpaid
+    Greet_VA_Indo    ${VA_GreetPostPaid}
+    Click_Button_From_Response    2    Profil Kamu    Profil Kamu
+    Check_VA_response_text_with_buttons    1    Berikut informasi yang dapat Veronika berikan terkait dengan Profile Kamu    Sisa Kuota    Tagihan/Pulsa    Info PUK
+    Click_Button_From_Response    1    Tagihan/Pulsa    Tagihan/Pulsa
+    Check_VA_response_text_with_buttons    1    Berikut jenis informasi yang bisa Veronika berikan untuk Kamu.    Info Tagihan    Info Sisa Pulsa
+    Click_Button_From_Response    1    Info Tagihan    Info Tagihan
+    Check_VA_response_text_with_buttons    1    Veronika perlu tau nih, apakah yang Kamu maksud adalah penggunaan saat ini atau tagihan ?    Penggunaan    Tagihan
+    Click_Button_From_Response    1    Tagihan    Tagihan
+    Check_VA_response_text    1    Total tagihan Kamu adalah sebesar
+    Check_VA_response_text_with_buttons    2    Apakah Kamu ingin melanjutkan ke pembayaran?    Ya    Tidak
+    Click_Button_From_Response    2    Tidak    Tidak
+    Check_VA_response_text    1    ${VA_question_1}
+    User_input    pemakaian saya
+    Check_VA_response_text    1    Setelah Veronika cek, Kamu memiliki pemakaian sementara sebesar
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
 
 054- Postpaid user want to check quota detail information
     [Tags]    Telkomsel_Telegram_Postpaid
@@ -648,8 +686,14 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 
-[X] 057- Postpaid User ask his credit limit
-    [Tags]    Telkomsel_Telegram_Postpaid
+057- User perform request PIN and PUK
+    [Tags]    Telkomsel_Telegram
+    User_input    pin tcare aku berapa?
+    Check_VA_response_text_with_buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
+    Click_Button_From_Response    1    Ya    Ya
+    Check_VA_response_text    1    PIN T-care untuk nomor handphone +6282110685202 akan Veronika kirimkan melalui SMS
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session
 
 058- User perform request PIN and PUK
     [Tags]    Telkomsel_Telegram_Postpaid
@@ -680,8 +724,32 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    2    ${VA_question_1}
     Closing_session
 
-[X] 060- User want to pay his bill but the payment failed for three times
+060- User want to pay his bill but the payment failed for three times
     [Tags]    Telkomsel_Telegram_Postpaid
+    Greet_VA_Indo    ${VA_GreetPostPaid}
+    User_input    mau bayar tagihan
+    Check_VA_response_text    1    Total tagihan Kamu adalah sebesar
+    Check_VA_response_text_with_buttons    2    Apakah Kamu ingin melanjutkan ke pembayaran?    Ya    Tidak
+    Click_Button_From_Response    2    Ya    Ya
+    Check_VA_response_text_with_buttons    1    Pilihan Metode Pembayaran    Kartu Kredit    E-Banking    TCASH    Batalkan
+    Check_VA_response_text    2    Sebagai alternatif, Kamu juga dapat membayar tagihan melalui MyTelkomsel, MyGraPARI, ATM, GraPARI, dan Kantor POS.
+    Click_Button_From_Response    1    Kartu Kredit    NONE
+    Pay_with_credit_card    FAIL    NONE
+    Check_VA_response_text    3    Maaf, pembayaran Kamu gagal, apakah Kamu ingin mencoba kembali?
+    User_input    Ya
+    Check_VA_response_text_with_buttons    1    Pilihan Metode Pembayaran    Kartu Kredit    E-Banking    TCASH    Batalkan
+    Check_VA_response_text    2    Sebagai alternatif, Kamu juga dapat membayar tagihan melalui MyTelkomsel, MyGraPARI, ATM, GraPARI, dan Kantor POS.
+    Click_Button_From_Response    1    Kartu Kredit    NONE
+    Pay_with_credit_card    FAIL    NONE
+    Check_VA_response_text    3    Maaf, pembayaran Kamu gagal, apakah Kamu ingin mencoba kembali?
+    User_input    Ya
+    Check_VA_response_text_with_buttons    1    Pilihan Metode Pembayaran    Kartu Kredit    E-Banking    TCASH    Batalkan
+    Check_VA_response_text    2    Sebagai alternatif, Kamu juga dapat membayar tagihan melalui MyTelkomsel, MyGraPARI, ATM, GraPARI, dan Kantor POS.
+    Click_Button_From_Response    1    Kartu Kredit    NONE
+    Pay_with_credit_card    FAIL    NONE
+    Check_VA_response_text    3    Kamu sudah 3 kali gagal melakukan pembayaran. Kamu juga bisa melakukan pembayaran kartuHalo melalui MyTelkomsel, MyGrapari, ATM, GraPARI, atau Kantor POS.
+    Check_VA_response_text    4    ${VA_question_1}
+    Closing_session
 
 061- User perform pay bill using Mandiri ClickPay (2)
     [Tags]    Telkomsel_Telegram_Postpaid
