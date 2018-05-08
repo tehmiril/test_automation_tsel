@@ -454,7 +454,7 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text_with_buttons    6    Pilihan Metode Pembayaran    Bank Mandiri    Bank Permata    Bank Danamon
     Check_VA_response_text    7    ${VA_question_1}
     Click_Button_From_Response    6    Bank Mandiri    NONE
-    Pay_with_Mandiri_CP    FAIL
+    Pay_with_Mandiri_CP    PREPAID    FAIL
     Closing_session
 
 [USE CAPTCHA] 036- Prepaid user who wants to topup using PermataNet
@@ -683,8 +683,27 @@ Resource          Test_data/Test_data_payment.txt
 [X] 060- User want to pay his bill but the payment failed for three times
     [Tags]    Telkomsel_Telegram_Postpaid
 
-[MANDIRI RELATED] 061- User perform pay bill using Mandiri ClickPay (2)
+061- User perform pay bill using Mandiri ClickPay (2)
     [Tags]    Telkomsel_Telegram_Postpaid
+    Greet_VA_Indo    ${VA_GreetPostPaid}
+    Click_Button_From_Response    2    Profil Kamu    Profil Kamu
+    Check_VA_response_text_with_buttons    1    Berikut informasi yang dapat Veronika berikan terkait dengan Profile Kamu    Sisa Kuota    Tagihan/Pulsa    Info PUK
+    Click_Button_From_Response    1    Tagihan/Pulsa    Tagihan/Pulsa
+    Check_VA_response_text_with_buttons    1    Berikut jenis informasi yang bisa Veronika berikan untuk Kamu.    Info Tagihan    Info Sisa Pulsa
+    Click_Button_From_Response    1    Info Tagihan    Info Tagihan
+    Check_VA_response_text_with_buttons    1    Veronika perlu tau nih, apakah yang Kamu maksud adalah penggunaan saat ini atau tagihan ?    Penggunaan    Tagihan
+    Click_Button_From_Response    1    Tagihan    Tagihan
+    Check_VA_response_text    1    Total tagihan Kamu adalah sebesar
+    Check_VA_response_text_with_buttons    2    Apakah Kamu ingin melanjutkan ke pembayaran?    Ya    Tidak
+    Click_Button_From_Response    2    Ya    Ya
+    Check_VA_response_text_with_buttons    1    Pilihan Metode Pembayaran    Kartu Kredit    E-Banking    TCASH    Batalkan
+    Check_VA_response_text    2    Sebagai alternatif, Kamu juga dapat membayar tagihan melalui MyTelkomsel, MyGraPARI, ATM, GraPARI, dan Kantor POS.
+    Click_Button_From_Response    1    E-Banking    NONE
+    Check_VA_response_text_with_buttons    3    Pilihan Metode Pembayaran    Bank Mandiri    Bank Permata    Bank Danamon
+    Check_VA_response_text    4    ${VA_question_1}
+    Click_Button_From_Response    3    Bank Mandiri    NONE
+    Pay_with_Mandiri_CP    POSTPAID    FAIL
+    Closing_session
 
 [TCASH RELATED] 062- User perform pay bill using TCASH
     [Tags]    Telkomsel_Telegram_Postpaid
@@ -942,7 +961,7 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text_with_buttons    6    Pilihan Metode Pembayaran    Bank Mandiri    Bank Permata    Bank Danamon
     Check_VA_response_text    7    ${VA_question_1}
     Click_Button_From_Response    6    Bank Mandiri    NONE
-    Pay_with_Mandiri_CP    FAIL
+    Pay_with_Mandiri_CP    PREPAID    FAIL
     Closing_session
 
 098- User ask something that VA doesn’t understand and directed to FAQ
@@ -1024,7 +1043,7 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text_with_buttons    6    Pilihan Metode Pembayaran    Bank Mandiri    Bank Permata    Bank Danamon
     Check_VA_response_text    7    ${VA_question_1}
     Click_Button_From_Response    6    Bank Mandiri    NONE
-    Pay_with_Mandiri_CP    FAIL
+    Pay_with_Mandiri_CP    PREPAID    FAIL
     Closing_session
 
 118- User wants to perform Send Gift from Prepaid or Postpaid Number to Prepaid or Postpaid Number
