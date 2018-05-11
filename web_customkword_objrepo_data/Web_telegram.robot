@@ -10,7 +10,7 @@ Library           Collections
 Resource          Local_path.txt
 Resource          Custom_keywords/Browser_custkeyword.txt
 Resource          Custom_keywords/SMS_web_custom_keywords.txt
-Resource          Custom_keywords/Credit_card_payment_custkeyword.txt
+Resource          Telegram/Credit_card_payment_custkeyword.txt
 Resource          Telegram/Test_data_user_input_Telegram_Indo.txt
 Resource          Telegram/Text_with_buttons_custkeyword_Telegram.txt
 Resource          Telegram/Detailed_custkeyword_Telegram.txt
@@ -453,7 +453,7 @@ Resource          Test_data/Test_data_payment.txt
     Check_VA_response_text    4    silakan pilih salah satu opsi pembayaran di bawah ini.
     Check_VA_response_text_with_buttons    5    Pilihan Metode Pembayaran    Kartu Kredit    E-Banking    TCASH    Batalkan
     Click_Button_From_Response    5    Kartu Kredit    NONE
-    Pay_with_credit_card    FAIL
+    Pay_with_credit_card    FAIL    details
     Click_Button_From_Response    5    Batalkan    NONE
     Check_VA_response_text    6    Adakah hal lain yang bisa dibantu?
     Check_VA_response_text    7    Silakan pilih salah satu pilihan dibawah ini atau ketik layanan lain yang dibutuhkan
