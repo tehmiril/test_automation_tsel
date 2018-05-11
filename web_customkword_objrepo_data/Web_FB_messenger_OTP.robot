@@ -49,7 +49,7 @@ Resource          Test_data/Test_data_payment.txt
     Closing_session
 
 [x] 124- Prepaid user who has insufficient prepaid balance purchase mobile legend voucher
-    [Tags]    Telkomsel_FB
+    [Tags]    IP
     Greet_VA_Indo    ${VA_Greet1}
     User_input    mau beli voucher games
     Check_VA_response_text_with_buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak

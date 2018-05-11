@@ -262,6 +262,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Closing_session
 
 013(backup) - User perform Inquire 4G Upgrade and Find Nearest Store
+    [Tags]    NA
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     Click_button_carousel    2    Bantuan Lainnya    FAQ
@@ -421,10 +422,11 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Closing_session
 
 [DEPRECATED] 021- User complain about his internet connection
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    NA
     Login_messenger    ${email}    ${password}
 
 [AGENT INVOLVED] 022 - User complain about his internet service and agree to connect to agent
+    [Tags]    NA
 
 023- Smalltalk
     [Tags]    Non-Telkomsel_FB
@@ -468,27 +470,27 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Cancel_and_closing_session
 
 [X] 025- User expresses harsh comment and ask random question to Veronika
-    [Tags]    Telkomsel_FB
+    [Tags]    IP
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     User_input    Vero jahat banget sih
 
 [WALL POSTING INVOLVED] 026- User wrote a wallpost in the last 3 days that VA can handle
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    NA
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    aku bosan nih
     Check_VA_response_text    1    @{randomBoredIndo}
     Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
 
 [AGENT INVOLVED] 027- User is VVIP and want to connect to agent
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    NA
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    aku bosan nih
     Check_VA_response_text    1    @{randomBoredIndo}
     Check_VA_response_text_with_buttons    2    Apakah Kamu mau?    Ya    Tidak
 
 [AGENT INVOLVED] 028- User is VVIP and want to connect to agent
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    NA
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    aku bosan nih
     Check_VA_response_text    1    @{randomBoredIndo}
@@ -522,7 +524,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Closing_session
 
 [X] 031- User perform inquire subscribed main offering, package terms & condition and subscribed offer
-    [Tags]    Telkomsel_FB
+    [Tags]    IP
     Login_messenger    ${email}    ${password}
     User_input    priceplan saya apaan ya?
     Check_VA_response_text_with_2buttons    1    Apakah Kamu ingin melanjutkan permintaan ini untuk nomor handphone +6282110685202 ?    Ya    Tidak
@@ -596,8 +598,8 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Pay_with_Mandiri_CP    FAIL
     Closing_session
 
-[X] 036- Prepaid user who wants to topup using PermataNet
-    [Tags]    Telkomsel_FB
+[USE CAPTCHA] 036- Prepaid user who wants to topup using PermataNet
+    [Tags]    NA
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     Click_button_carousel    2    Profil Kamu    Beli Pulsa
@@ -639,23 +641,23 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Closing_session
 
 [TCASH RELATED] 038- Prepaid user who wants top up his credit using TCASH
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    NA
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 [TCASH RELATED] 039- User perform reload using TCASH but has insufficient balance
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    NA
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 [MANDIRI RELATED] 040- Prepaid user who wants to top up using E-Banking (Mandiri ClickPay)
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    NA
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
-[MANDIRI RELATED] 041- Prepaid user who wants to top up using E-Banking (PermataNet)
-    [Tags]    Non-Telkomsel_FB
+[USE CAPTCHA] 041- Prepaid user who wants to top up using E-Banking (PermataNet)
+    [Tags]    NA
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 [TCASH RELATED] 042- Prepaid user who performs top up through TCASH
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    NA
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 043- Prepaid users who ask about registration status
@@ -683,7 +685,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Cancel_and_closing_session
 
 [X] 044- Prepaid user who wants to purchase the package that VA offers
-    [Tags]    Telkomsel_FB
+    [Tags]    IP
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     Click_carousel_button_on_specific_location    2    2    Beli Paket Favorit
@@ -691,11 +693,11 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Closing_session
 
 [X] 045- User want to see the detail information of ongoing promotion
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    IP
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 [X] 046- User want to see all promotion
-    [Tags]    Telkomsel_FB
+    [Tags]    IP
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     Click_carousel_button_on_specific_location    2    3    Lihat Semua Promo
@@ -705,19 +707,19 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Closing_session
 
 [X] 047- Prepaid user who wants to explore the loyalty card
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    IP
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 [POINTASTIC DEALS] 048- User want to know and participate on POINTASTIC DEALS (optional)
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    IP
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 [POINTASTIC DEALS] 049- User want to know and participate on POINTASTIC DEALS (optional)
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    IP
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 [X] 050- User wants to book an appointment at GraPARI
-    [Tags]    Telkomsel_FB
+    [Tags]    IP
     Login_messenger    ${email}    ${password}
     User_input    mau bikin janji di grapari
     Check_VA_response_text    1    Kamu sekarang berada dimana? Silakan share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu atau ketik langsung lokasi yang Kamu maksud
@@ -747,11 +749,11 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     #Click_Button_From_Response    2    Ya Benar
 
 [X] 051- User want to know about detail information about his/her reservation
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    IP
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 [X] 053- Postpaid user who has outstanding bill wants to pay his bill
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    IP
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 054- Postpaid user want to check quota detail information
@@ -770,7 +772,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Closing_session
 
 [KARTUHALO REGISTRATION] 055- User want to add kartuHalo subscripton
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    IP
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 056- Postpaid User ask his credit limit
@@ -783,7 +785,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Closing_session
 
 [X] 057- Postpaid User ask his credit limit
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    IP
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 058- User perform request PIN and PUK
@@ -817,31 +819,31 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Closing_session
 
 [X] 060- User want to pay his bill but the payment failed for three times
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    IP
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
-[MANDIRI RELATED] 061- User perform pay bill using Mandiri ClickPay (2)
-    [Tags]    Non-Telkomsel_FB
+[X] 061- User perform pay bill using Mandiri ClickPay (2)
+    [Tags]    IP
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 [TCASH RELATED] 062- User perform pay bill using TCASH
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    NA
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
-[MANDIRI RELATED] 063- User perform pay bill using PermataNet (2)
-    [Tags]    Non-Telkomsel_FB
+[USE CAPTCHA] 063- User perform pay bill using PermataNet (2)
+    [Tags]    NA
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 [X] 064- User perform pay bill using credit card
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    IP
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
-[X] 065- User perform pay bill using Mandiri ClickPay
-    [Tags]    Non-Telkomsel_FB
+[MANDIRI RELATED] 065- User perform pay bill using Mandiri ClickPay
+    [Tags]    NA
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
-[X] 066- User perform pay bill using PermataNet
-    [Tags]    Non-Telkomsel_FB
+[USE CAPTCHA] 066- User perform pay bill using PermataNet
+    [Tags]    NA
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 067- User wants to know how to cash in Tcash
@@ -906,7 +908,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Closing_session
 
 [TCASH RELATED] 072- Prepaid Telkomsel User failed to recharge using Tcash and informed how to top up tcash balance
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    NA
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 073- User wants to know how to Top Up Tcash Balance through Tcash FAQ
@@ -936,19 +938,19 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Closing_session
 
 [AGENT RELATED] 075- User wants to participate CES in Agent - finished
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    NA
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 [AGENT RELATED] 076- User wants to participate CES in Agent - finished
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    NA
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 [AGENT RELATED] 077- User wants to participate CES in Agent - not finished
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    NA
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 [AGENT RELATED] 078- User wants to participate CES in Agent
-    [Tags]    Non-Telkomsel_FB
+    [Tags]    NA
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
 
 079- Postpaid user want to check quota detail information
@@ -981,7 +983,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Closing_session
 
 [x] 084- User want to check his or her last invoice date and amount
-    [Tags]    Telkomsel_FB_postpaid
+    [Tags]    IP
     Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
     User_input    Invoice terakhir saya
     Validate_postpaid_number    1
@@ -1033,13 +1035,13 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Closing_session
 
 [x] 090- Prepaid user who wants to explore the loyalty card
-    [Tags]    Telkomsel_FB
+    [Tags]    IP
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     Click_carousel_button_on_specific_location    2    4    Info POINTASTIC DEAL
 
 [x] 092- User Inquire Active Subscribed Offer -- error 503 backend fetch error
-    [Tags]    Telkomsel_FB
+    [Tags]    IP
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     User_input    Paket saya yang aktif apa aja ya?
@@ -1103,7 +1105,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Closing_session
 
 [x] 114- User wants to perform Send Gift Pay Bill from Postpaid or Prepaid Number to Postpaid Number (Block 3 Status - Voluntary Block)
-    [Tags]    Telkomsel_FB
+    [Tags]    IP
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     User_input    Mau bayar tagihan untuk orang lain
@@ -1191,6 +1193,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Cancel_and_closing_session
 
 [AGENT RELATED] 130- Block 3 postpaid user want to purchase Mobile Legend voucher games
+    [Tags]    NA
 
 132- Prepaid user who has insufficient prepaid balance purchase mobile legend voucher
     [Tags]    Telkomsel_FB
@@ -1226,7 +1229,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Closing_session
 
 [x] 134- Prepaid user who wants to topup using E-Banking (Danamon)
-    [Tags]    Telkomsel_FB
+    [Tags]    IP
     Login_messenger    ${email}    ${password}
     Greet_VA_Indo    ${VA_Greet1}
     Click_button_carousel    2    Profil Kamu    Beli Pulsa
