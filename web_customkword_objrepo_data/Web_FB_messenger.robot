@@ -1246,3 +1246,47 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
     Click_button_carousel    1    Bank Danamon    Pilih
     #Pay_with_Danamon    FAIL
     Closing_session
+
+[NIKITA-TEST]16-User want to buy a voucher data
+    Login_messenger    ${EmailNonTsel}    ${PasswordNonTsel}
+    User_input    beli voucher data
+    Check_VA_Response_Text    1    Voucher data bisa Kamu dapatkan di outlet terdekat
+    Check_VA_Response_Text    2    Silakan tulis lokasi Kamu saat ini, atau share location Kamu menggunakan tombol menu facebook yang terletak di daerah bawah layar Kamu
+    User_input    Jakarta
+    Check_ VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Pilih
+    Check_VA_Response_Text    1    Veronika menemukan beberapa outlet Telkomsel di sekitar Jakarta yang dapat Kamu kunjungi nih
+    Check_VA_Response_Text    3    Masih ada lagi yang bisa Veronika bantu? Silakan pilih salah satu jawaban di bawah ini ya
+    User_input    Tidak
+    Closing_session
+
+[NIKITA-TEST]025-Small talk one-liner
+    Login_messenger    ${EmailNonTsel}    ${PasswordNonTsel}
+    User_input    kutu kupret
+    Check_VA_Response_Text    1    Maaf, Veronika belum bisa membantu Kamu sepenuhnya. Veronika akan belajar lebih baik lagi 🙂
+    User_input    Veronika lagi ngapain?
+    Check_VA_Response_Text    1    Veronika sedang belajar untuk melayani Kamu lebih baik lagi 🙂
+    User_input    lol
+    Sleep    3s
+    User_input    Mau komplain dong gue
+    Check_ VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    5    Pilih
+    Sleep    5s
+    User_input    gjd ah
+    Check_VA_Response_Text    1    Baiklah, Veronika batalkan.
+    Check_VA_Response_Text    2    Masih ada lagi yang bisa Veronika bantu? Silakan pilih salah satu jawaban di bawah ini ya
+    User_input    Tidak
+    Closing_Session
+
+[NIKITA-TEST]046-Main Menu Personalization
+    Login_messenger    ${EmailNonTsel}    ${PasswordNonTsel}
+    User_input    Lihat semua promo dong
+    Check_VA_response_carousel_exists    2
+    Validate_carousel_items    2    Mudik Pesawat    Telkomsel Friends, kini mudik semudah menukar POIN Telkomsel    Ikuti Promo    Detail Promosi
+    Validate_carousel_items    2    ApdetBanget LOOP COMBO    Selalu #ApdetBanget Bareng LOOP COMBO, Instagram Sepuasnya    Ikuti Promo    Detail Promosi
+    Validate_carousel_items    2    Nickelodeon Play    Kejutan Dan Keceriaan Tanpa Batas Dengan Nickelodeon Play    Beli Sekarang    Detail Promosi
+    Validate_carousel_items    2    Racing Pembelian Paket    Makin sering beli paket, makin besar kesempatan menang    Beli Sekarang    Detail Promosi
+    Validate_carousel_items    2    SiapHeboh simPATI COMBO    Pastikan Kamu selalu #SiapHeboh dengan simPATI COMBO    Ikuti Promo    Detail Promosi
+    Check_VA_response_text_with_2buttons    3    Masih ada lagi yang bisa Veronika bantu? Silakan pilih salah satu jawaban di bawah ini ya    Ya    Tidak
+    User_input    Tidak
+    Closing_session
