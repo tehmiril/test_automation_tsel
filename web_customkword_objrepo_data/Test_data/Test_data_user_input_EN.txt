@@ -1,0 +1,28 @@
+*** Variables ***
+${email}          taacnindonesia01@gmail.com
+${password}       Welcome01!
+${random_question_1}    Mobile Legend itu apa ya?
+${random_question_2}    Cara mainnya gimana?    #Main Mobile Legends tuh gmn sih?
+${no_answer}      No
+${yes_answer}     Yes
+${cancel_answer}    Batal
+${user_rate}      5
+${random_question_sholat}    Apa itu waktu sholat?
+${ask_pulsa}      Sisa pulsa saya berapa?
+${ask_kuota}      Sisa kuota data saya berapa?
+${greeting}       Halo Vero
+${select_Rate}    Kecepatan Respon
+@{chrome_arguments}    --disable-infobars    --headless    --disable-gpu
+${see_products}    Lihat semua produk
+${emailNonTsel}    automated.test.ride@gmail.com
+${passwordNonTsel}    automated1234
+${message_header}    Telkomsel
+${give_rec}       10
+${inactive_number}    081315401565
+${other_prepaid_number}    081310365118
+${postpaid_dest_number}    08
+${emailPostpaid}    taacnindonesia03@gmail.com
+${passwordPostpaid}    Welcome01!
+${postpaid_number}    081314415099
+${PIN_TCARE}      474550
+${PIN_TCARE_postpaid}    495289

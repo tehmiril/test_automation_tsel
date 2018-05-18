@@ -1,0 +1,77 @@
+*** Variables ***
+${VA_notunderstand_1}    Maaf    #Maaf, Veronika belum mengerti apa yang Kamu tulis karena masih dalam proses belajar.    # Maaf, Veronika tidak mengerti kata-kata yang Kamu tulis
+${VA_notunderstand_2}    Tolong perjelas    #Tolong perjelas yang Kamu maksud ya
+${VA_notunderstand_3}    Saat ini    #Saat ini Veronika belum bisa memenuhi keinginan Kamu.    #Saat ini, Veronika belum mengerti permintaan Kamu
+${VA_notunderstand_4}    customer service    #Veronika hubungkan dengan teman-teman dari customer service ya    #Mungkin teman dari customer service Telkomsel bisa membantu Kamu. Apakah mau disambungkan?
+${VA_notunderstand_5}    Sembari menunggu, Kamu bisa mencoba hiburan di bawah ini
+${VA_notunderstand_6}    Kamu bisa ketik    #Kamu bisa ketik 'batal' jika Kamu tidak lagi membutuhkan bantuan customer service Telkomsel
+${VA_cancel}      Baiklah, Veronika batalkan.
+${VA_question_1}    Ada lagi yang bisa Veronika bantu?
+${VA_question_2}    terus meningkatkan layanan, berikan penilaian Kamu    #Penilaian dalam skala 1-10 (1 sangat tidak puas - 10 sangat puas). Silakan masukan penilaian Kamu
+${VA_question_3}    Menurut Kamu, apa yang harus Veronika tingkatkan?
+${VA_closingstatement}    Terima kasih    #atas penilaiannya    #Veronika turut senang membantu
+${VA_answerPulsa1}    Setelah Veronika cek, sisa pulsa untuk nomor +6281310365118    #adalah sebesar Rp<BALANCE AMOUNT> dan berlaku hingga <EXPIRY DATE>
+${VA_answerPulsa2}    Apakah Kamu juga ingin melakukan pengisian pulsa?
+${VA_validateNumber}    Apakah Kamu bertanya untuk nomor handphone +6281310365118 ?
+${VA_answerKuota2}    Berikut sisa kuota Internet Kamu:
+${VA_answerKuota3}    Apakah Kamu mau membeli paket tambahan?
+${VA_Greet2}      Apa yang bisa Veronika bantu hari ini?
+${VA_GreetButton1}    Lihat Menu Utama
+${VA_GreetButton2}    Chat in English
+${VA_GreetButton3}    Beli Sekarang
+${VA_endGreet}    Sampai jumpa di chat berikutnya dan semoga harimu menyenangkan ya!    #Terima kasih atas penilaiannya  Jangan lupa untuk chat Veronika lagi ya
+${VA_askRateReason}    Tolong tulis alasan Kamu ya
+${VA_thanksRate}    Terima kasih    #atas penilaiannya
+${VA_gives_FAQ}    Berikut adalah beberapa solusi Veronika    #untuk membantu menjawab pertanyaan Kamu ya
+${VA_Greet1}      Hai M Testaut, selamat datang di GraPARI Virtual Telkomsel!
+${VA_GreetNonTsel}    Hai Lightning Diamond, selamat datang di GraPARI Virtual Telkomsel!
+${VA_GreetPostPaid}    Hai Lightning Gold, selamat datang di GraPARI Virtual Telkomsel!
+${VA_ask_rec}     Seberapa besarkah keinginan Kamu untuk merekomendasikan Telkomsel kepada keluarga atau teman?
+${VA_Main_Menu_TSEL}    Berikut adalah informasi untuk nomor Kamu +6282110685202
+${VA_Main_Menu_PostPaid}    Berikut adalah informasi untuk nomor Kamu +6281314415099
+${VA_change_number_info}    Ketik 'Ganti nomor' untuk beralih ke nomor handphone lainnya
+${VA_give_options}    Silakan pilih salah satu opsi di atas atau ketik layanan lain yang dibutuhkan
+@{randomBoredIndo}    Dari pada males nggak jelas, mending bermain sama Veronika.    Dari pada mager sendirian, lebih baik ditemenin sama Veronika sambil ngobrol asik.    Bosen nggak tahu mau ngapain? Veronika punya obrolan asik nih    Tenang ya, Kamu pasti bisa melewati ini dengan baik. Veronika mencoba jadi teman ngobrol Kamu nih.    Kamu pasti kuat deh,menjalani ini semua. Kamu mau nggak Veronika temani?
+${VA_verify_PUK}    Terima kasih untuk verifikasinya. Berikut PUK untuk nomor handphone +6282110685202 PUK 1: 57857754 PUK 2: 86495211
+${VA_verify_PUK_postpaid}    Terima kasih untuk verifikasinya. Berikut PUK untuk nomor handphone +6281314415099 PUK 1: 69672424 PUK 2: 28318064
+${Produk_titleA}    SimPATI Combo
+${Produk_subtitleA}    Aktifkan paket internet kualitas jaringan terbaik
+${Produk_button1A}    Info SimPATI Combo
+${Produk_button2A}    Perdana SimPATI
+${Produk_button3A}    Beli sekarang
+${Produk_titleB}    Kartu As Combo
+${Produk_subtitleB}    internetan asik dengan jaringan terbaik
+${Produk_button1B}    Info Kartu As Combo
+${Produk_button2B}    Perdana Kartu As
+${Produk_button3B}    Beli sekarang
+${Produk_titleC}    Loop Cash
+${Produk_subtitleC}    Beli paket internetan bisa nambah uang jajan
+${Produk_button1C}    Info Loop Cash
+${Produk_button2C}    Perdana Loop
+${Produk_button3C}    Beli sekarang
+${Produk_titleD}    Halo Kick
+${Produk_subtitleD}    Dapatkan lebih banyak benefit premium dengan Halo Kick!
+${Produk_button1D}    Info Halo Kick
+${Produk_button2D}    Daftar kartuHalo
+${Produk_button3D}    Beli di GraPARI
+${TCASH_titleA}    Mobile Banking
+${TCASH_subtitleA}    Ikuti cara berikut untuk isi saldo TCASH melalui mobile/sms
+${TCASH_button1A}    Lihat Caranya
+${TCASH_titleB}    ATM Bersama
+${TCASH_subtitleB}    Ikuti cara berikut untuk isi saldo TCASH melalui ATM
+${TCASH_button1B}    Lihat Caranya
+${TCASH_titleC}    GraPARI
+${TCASH_subtitleC}    Kamu bisa pergi ke GraPARI untuk isi saldo TCASH
+${TCASH_button1C}    Cari GraPARI
+${TCASH_titleD}    Retail Store
+${TCASH_subtitleD}    Kunjungi retail store terdekat untuk isi saldo TCASH
+${TCASH_button1D}    Lihat Caranya
+${TCASH_titleE}    Internet Banking
+${TCASH_subtitleE}    Ikuti cara berikut untuk isi saldo TCASH melalui internet banking
+${TCASH_button1E}    Lihat Caranya
+@{randomClosingIndo}    Terima kasih sudah menghubungi Veronika. Senang bisa membantu    Terima kasih sudah menghubungi Veronika. Chat Veronika lagi ya    Terima kasih senang bisa membantu, semoga harimu menyenangkan    Terima kasih untuk hari ini. Sapa Veronika lagi ya
+@{randomresp_A}    Kuis    Tes kemampuan Kamu tentang musik, infotainment dan lainnya!    Pilih
+@{randomresp_B}    Humor    Candaan singkat yang cukup menghibur    Pilih
+@{randomresp_C}    Travel    Yuk jelajahi tempat dan tips yang menarik!    Pilih
+@{randomresp_D}    Kuliner    Yuk lihat fakta unik tentang makanan Indonesia!    Pilih
+@{randomresp_E}    Lifestyle    Jangan lewatkan tren terbaru dan tips harian yang menarik!    Pilih

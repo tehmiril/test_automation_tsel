@@ -1,0 +1,65 @@
+*** Variables ***
+${Menu_utama_TSEL_titleA}    Profil Kamu
+${Menu_utama_TSEL_subtitleA}    Informasi tentang nomor Telkomsel Kamu
+${Menu_utama_TSEL_button1A}    Detail Kuota
+${Menu_utama_TSEL_button2A}    Beli Pulsa
+${Menu_utama_TSEL_button3A}    Info PUK
+${Menu_utama_TSEL_titleB}    Hanya Untuk Kamu
+${Menu_utama_TSEL_subtitleB}    Pilihan produk paling menarik hanya untuk Kamu
+${Menu_utama_TSEL_button1B}    Beli Paket Favorit
+${Menu_utama_TSEL_button2B}    Lihat Paket Lainnya
+${Menu_utama_TSEL_button3B}    Gifting
+${Menu_utama_TSEL_titleC}    '#SiapHeboh simPATI COMBO
+${Menu_utama_TSEL_subtitleC}    Pastikan Kamu selalu #SiapHeboh dengan simPATI COMBO
+${Menu_utama_TSEL_button1C}    Ikuti Promo
+${Menu_utama_TSEL_button2C}    Detail Promosi
+${Menu_utama_TSEL_button3C}    Lihat Semua Promo
+${Menu_utama_TSEL_titleD}    ABC
+${Menu_utama_TSEL_subtitleD}    ABC
+${Menu_utama_TSEL_button1D}    Penawaran untuk Kamu
+${Menu_utama_TSEL_button2D}    Semua Penawaran
+${Menu_utama_TSEL_button3D}    Info POINTASTIC DEAL
+${Menu_utama_TSEL_titleE}    Bantuan Lainnya
+${Menu_utama_TSEL_subtitleE}    Kamu punya pertanyaan? Temukan jawabannya di sini
+${Menu_utama_TSEL_button1E}    FAQ
+${Menu_utama_TSEL_button2E}    GraPARI Terdekat
+${Menu_utama_TSEL_button3E}    Kontak Live Agent
+@{Menu_utama_Postpaid_A}    Profil Kamu    Informasi tentang nomor Telkomsel Kamu    Detail Kuota    Gifting    Bayar Tagihan
+@{Menu_utama_Postpaid_B}    Hanya Untuk Kamu    Pilihan produk paling menarik hanya untuk Kamu    Beli Paket Favorit    Lihat Paket Lainnya    Daftar kartuHalo
+@{Menu_utama_Postpaid_E}    Bantuan Lainnya    Kamu punya pertanyaan? Temukan jawabannya di sini    FAQ    GraPARI Terdekat    Kontak Live Agent
+${Payment_titleA}    Kartu Kredit
+${Payment_button1A}    Kartu Kredit
+${Payment_titleB}    E-Banking
+${Payment_subtitleB}    Bayar Dengan E-Banking
+${Payment_button1B}    E-Banking
+${Payment_titleC}    TCASH
+${Payment_subtitleC}    Bayar Dengan TCASH
+${Payment_button1C}    TCASH
+${Payment_titleD}    Batalkan
+${Payment_button1D}    Batalkan
+${EBanking_titleA}    Bank Mandiri
+${EBanking_subtitleA}    Bayar Dengan Clickpay
+${EBanking_button1A}    Pilih
+${EBanking_titleB}    Bank Permata
+${EBanking_subtitleB}    Bayar Dengan PermataNet
+${EBanking_button1B}    Pilih
+@{EBanking_C}     Bank Danamon    Bayar Dengan Danamon Online    Pilih
+@{Kuota_Postpaid_A}    Internet    Lihat Kuota Internet
+@{Kuota_Postpaid_B}    SMS    Lihat Kuota SMS
+@{Kuota_Postpaid_C}    Voice    Lihat Kuota Telepon
+@{Kuota_Postpaid_D}    Ekstra Pulsa    Lihat Ekstra Pulsa
+@{Appointment_A}    Cashier    Pilih Layanan
+@{Appointment_B}    Keluhan dan Informasi    Pilih Layanan
+@{Appointment_C}    Aktivasi layanan dan Pasang Baru    Pilih Layanan
+@{Appointment_D}    Batal    Batal
+@{Konfigurasi_A}    Konfigurasi terkait Internet    Refresh Jaringan    Setting APN
+@{Konfigurasi_B}    Konfigurasi terkait SMS    Refresh Jaringan    Pengaturan Pusat SMS
+@{Konfigurasi_C}    Konfigurasi terkait telepon    Refresh Jaringan    Pengaturan Caller ID
+@{Konfigurasi_D}    Konfigurasi lain    Pengalihan Panggilan    Fixed Dial Number
+@{callerID_A}     iOS (Apple)    iPhone    Apple
+@{callerID_B}     Android    Samsung, LG, Lenovo, Asus, Xiaomi, OPPO    Android
+@{callerID_C}     Windows Phone    Nokia Lumia    Windows Phone
+@{callerID_D}     Blackberry    Blackberry    Blackberry
+@{vouchergames_A}    Voucher STEAM    Pilih
+@{vouchergames_B}    Mobile Legend    Pilih
+@{vouchergames_C}    Voucher Garena    Pilih
