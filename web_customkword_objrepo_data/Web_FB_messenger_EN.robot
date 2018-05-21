@@ -94,7 +94,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    No
     Closing_session
 
-[x]073-User wants to know how to Top Up Tcash Balance through Tcash FAQ
+073-User wants to know how to Top Up Tcash Balance through Tcash FAQ
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     Sleep    3s
     User_input    What is TCash?
@@ -103,7 +103,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Click_carousel_button_on_specific_location    2    3    TCASH FAQ
     Check_VA_response_carousel_exists    1
     Check_VA_response_text    2    Do you want to know more? Go to this link https://digitalpayment.telkomsel.com/faq to get more information or type 'cancel' to see main menu.
-    Click_carousel_button_on_specific_location    2    5    Show
+    Click_carousel_button_on_specific_location    1    5    Show
     Check_VA_response_text    1    You can top-up your TCASH balance by following the steps below
     Check_VA_response_carousel_exists    2
     Click_carousel_button_on_specific_location    2    2    See instructions
