@@ -194,3 +194,53 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text    Please select one of the buttons above, or just type in your request.
     User_input    Benefit of TCash
     Check_VA_response_image    1
+
+[x]006-Non-Telkomsel user who is interested in using KartuHalo
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    what is kartu halo?
+    Check_VA_response_text    1    Great choice! Here are some Telkomsel products that you can choose from
+    Check_VA_response_carousel_exists    2
+    Validate_carousel_items    2    simPATI Combo    Enjoy browsing, streaming, and chatting to the fullest
+    Validate_carousel_items    2    Kartu As Combo    Enjoy browsing with the best connection
+    Validate_carousel_items    2    Loop Cash    Get extra cash when buying an Internet package
+    Validate_carousel_items    2    Halo Kick    Earn more premium benefit using Halo Kick!
+    Click_carousel_button_on_specific_location    2    4    Buy at GraPARI
+    Closing_session
+
+[x]011-User perform inquire TCASH information
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    How to activate TCash?
+    Check_VA_response_text    1    All Telkomsel customers both post-paid (kartuHalo) and pre-paid (simPATI, Kartu As, dan Loop) can use TCASH service. Dial *800*88*6PINDigit# on your handphone. For new user, decide your own secret 6 digit PIN.
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    how to top up tcash?
+    Check_VA_response_text    1    You can top-up your TCASH balance by following the steps below
+    Check_VA_response_carousel_exists    2
+    Validate_carousel_items    2    Mobile Banking    Follow the instructions to top up your credit    See instructions
+    Validate_carousel_items    2    Internet Banking    Follow the instructions to top up credit    See instructions
+    Validate_carousel_items    2    ATM Bersama    Follow the instructions to top up credit    See instructions
+    Validate_carousel_items    2    GraPARI    Find the nearest GraPARI to top up credit    Find GraPARI
+    Validate_carousel_items    2    Retail Store    Follow the instructions to top up credit    See instructions
+    User_input    How to recover my TCash password?
+    Check_VA_response_text    1    You can visit the nearest GraPARI or contact the Telkomsel Call Centre 188 to request for a PIN reset. Basic Service customers need to upgrade their account to Full Service in order to reset the PIN.
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Closing_session
+
+015-User want to buy a starter pack
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    I want to buy a starter pack
+    Check_VA_response_text    1    You can get a Telkomsel starter pack at GraPARI or the nearest outlet
+    Check_VA_response_text    2    Please specify your location. You may type your location below or use the share location function
+    User_input    Jakarta Selatan
+    Check_VA_response_text    1    Please choose outlet location that you want
+    Check_VA_response_carousel_exists    2
+    User_input    Jakarta Barat
+    Check_VA_response_text    1    Please choose outlet location that you want
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    I have found several outlets close to Jakarta Barat
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Click_carousel_button_on_specific_location    2    5    Open in Google Maps
+    User_input    No
+    Closing_session
