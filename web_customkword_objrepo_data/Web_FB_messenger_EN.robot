@@ -244,3 +244,94 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Click_carousel_button_on_specific_location    2    5    Open in Google Maps
     User_input    No
     Closing_session
+
+057-User perform request PIN and PUK
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    My PIN TCare
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    OK Lightning Diamond, the T-care pin for +628122064620 will be sent shortly via SMS.
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Closing_session
+
+080-User asks about his PUK
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    what is my PUK?
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number     Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    To ensure your security, I need to verify your Identity first before providing your PUK
+    Check_VA_response_text_with_2buttons    2    Choose one from these verification methods: T-Care PIN or last 3 contacted number in the past month. If you have blocked number, use the second option    PIN T-Care    Contacted Number
+    User_input    PIN T-Care
+    Check_VA_response_text    1    To get T-Care PIN, please type in “PIN” send to 111 (kartuHalo) or 116 (simPATI, KARTU As, LOOP). \ After SMS reply has been received, please input your T-Care PIN
+    Check_VA_response_text    2    You can type 'cancel' if you no longer need information about PUK
+    User_input    858852
+    Check_VA_response_text    1    Thank you for following through our verification process. Here are PUK for mobile number
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Closing_session
+
+089-User asks about current balance and PIN TCARE
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Check my current balance
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    The remaining balance for
+    Check_VA_response_text_with_2buttons    2    Do you want to top-up your balance as well?    Yes    No
+    User_input    No
+    Check_VA_response_text_with_2buttons    1    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    What is my PIN TCare?
+    Check_VA_response_text    1    OK Lightning Diamond, the T-care pin for
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Closing_session
+
+095-User want to know his/ her historical recharge
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    recharge history
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    Ok Lightning Diamond, here are 3 last balance recharge that Veronika found for mobile number
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Closing_session
+
+098-User ask something that VA doesn’t understand and directed to FAQ
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    what is waktu sholat?
+    Check_VA_response_text    1    OK, Lightning Diamond. I have several possible answers for you. Choose one of the answer below to find your solution
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Is there anything else you might want to know? Please choose one of the answers below
+    Click_carousel_button_on_specific_location    2    1    See the answer here
+    Closing_session
+
+099-User ask something that VA doesn’t understand and not available in FAQ
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    What is pop call?
+    Check_VA_response_text    1    OK, Lightning Diamond. I have several possible answers for you. Choose one of the answer below to find your solution
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Is there anything else you might want to know? Please choose one of the answers below
+    Click_carousel_button_on_specific_location    2    1    See the answer here
+    User_input    What is pop sms?
+    Check_VA_response_text    1    I'm not sure I understand what you are saying, but I am continuously learning every day
+    Check_VA_response_text    2    Could you please elaborate or rephrase your question?
+    User_input    What is collect sms?
+    Check_VA_response_text    1    OK, Lightning Diamond. I have several possible answers for you. Choose one of the answer below to find your solution
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Is there anything else you might want to know? Please choose one of the answers below
+    User_input    Cancel
+    Close Browser
+
+[x]117-User wants to perform Send Gift from Prepaid/Postpaid Number to Prepaid/Postpaid Number
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    I want to buy credit for my friend
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    OK, please input a mobile number that you want to gift \ (Example: 08110000000)
+    User_input    0818944239
+    Check_VA_response_text    1    Sorry, I couldn’t recognize that. Please type in your Telkomsel number which correspond with given format in the chat window \ 🙂
+    User_input    Cancel
+    Check_VA_response_text    1    OK, cancelling.
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Closing_session
