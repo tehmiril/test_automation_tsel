@@ -322,7 +322,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    Cancel
     Close Browser
 
-[x]117-User wants to perform Send Gift from Prepaid/Postpaid Number to Prepaid/Postpaid Number
+117-User wants to perform Send Gift from Prepaid/Postpaid Number to Prepaid/Postpaid Number
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    I want to buy credit for my friend
     Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
