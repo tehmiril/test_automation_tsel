@@ -423,3 +423,23 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
     User_input    No
     Close Browser
+
+[x]133-Prepaid user who has insufficient prepaid balance purchase Mobile Legend voucher games
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    I want to buy voucher game
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    Here are some categories of games voucher you might choose
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    2    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Buy
+    Check_VA_response_text_with_2buttons    1    It seems like you do not have sufficient balance. Do you want to top up your balance or browse other vouchers?    Top Up    See Other Vouchers
+    User_input    Top Up
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    User_input    Cancel
+    Close Browser
