@@ -258,7 +258,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
 080-User asks about his PUK
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    what is my PUK?
-    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number     Yes    No
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
     User_input    Yes
     Check_VA_response_text    1    To ensure your security, I need to verify your Identity first before providing your PUK
     Check_VA_response_text_with_2buttons    2    Choose one from these verification methods: T-Care PIN or last 3 contacted number in the past month. If you have blocked number, use the second option    PIN T-Care    Contacted Number
@@ -335,3 +335,91 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
     User_input    No
     Closing_session
+
+056-Postpaid User ask his credit limit
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    My credit's limit
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    Your Domestic credit limit is
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Close Browser
+
+084-User want to check his/ her last invoice date and amount
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    My last invoice
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number     Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    Your total invoice is
+    Check_VA_response_text_with_2buttons    2    Do you want to process the payment?    Yes    No
+    User_input    No
+    Check_VA_response_text_with_2buttons    1    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Close Browser
+
+086-User asks for his credit limit
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    My credit's limit
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    Your Domestic credit limit is
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Check_VA_response_text    1    Thank you for contacting me. I'm happy to help!
+    Close Browser
+
+088-User asks about his usage
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    Check my usage
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    Currently, you've used
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Close Browser
+
+092-User Inquire Active Subscribed Offer
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    my active package information
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number     Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    OK Lightning Gold, below are active packages for
+    Check_VA_response_text_with_2buttons    2    Do you want to check your quota as well?    Yes    No
+    User_input    No
+    Check_VA_response_text_with_2buttons    1    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    what is my subscribed package?
+    Check_VA_response_text    1    OK Lightning Gold, below are packages subscribed by
+    Check_VA_response_text_with_2buttons    2    Do you want to check your quota as well?    Yes    No
+    User_input    No
+    Check_VA_response_text_with_2buttons    1    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    no
+    Check_VA_response_text    1    Thank you for chatting with me. Chat with me again anytime 🙂
+    Close Browser
+
+[x]112-User wants to perform Send Gift Purchase Package from Postpaid (Consumer with Block 1 or Block 2 Status) to Prepaid Number
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input     I want to buy package for my friend
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    OK, please input a mobile number that you want to gift \ (Example: 08110000000)
+    User_input    08122064620
+    Check_VA_response_text_with_2buttons    1    Below are the gifts you can give to your destination number    Buy Credit Balance    Buy Packages
+    User_input    Cancel
+    Check_VA_response_text    1    OK, cancelling.
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Closing_session
+
+[x]117-User wants to perform Send Gift from Prepaid/Postpaid Number to Prepaid/Postpaid Number
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    I want to buy credit for my friend
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    OK, please input a mobile number that you want to gift \ (Example: 08110000000)
+    User_input    0818944228
+    Check_VA_response_text    1    Sorry, I couldn’t recognize that. Please type in your Telkomsel number which correspond with given format in the chat window \ 🙂
+    User_input    Cancel
+    Check_VA_response_text    1    OK, cancelling.
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Close Browser
