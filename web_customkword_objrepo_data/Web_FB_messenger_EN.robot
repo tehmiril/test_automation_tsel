@@ -165,22 +165,6 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    No
     Closing_session
 
-005-Non-Telkomsel user who is wondering about Telkomsel products
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
-    User_input    recommendation for new simcard
-    Check_VA_response_text    1    You can get a Telkomsel starter pack at GraPARI or the nearest outlet
-    Check_VA_response_text    2    Please specify your location. You may type your location below or use the share location function
-    User_input    Jakarta Selatan
-    Check_VA_response_text    1    Please choose outlet location that you want
-    Check_VA_response_carousel_exists    2
-    Click_carousel_button_on_specific_location    2    1    Choose
-    Check_VA_response_text    1    I have found several outlets close to Jakarta Selatan
-    Check_VA_response_carousel_exists    2
-    Click_carousel_button_on_specific_location    2    1    Open in Google Maps
-    Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
-    User_input    No
-    Closing_Session
-
 [x]010-User perform inquire TCASH information
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    What is TCash?
@@ -349,7 +333,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
 084-User want to check his/ her last invoice date and amount
     Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
     User_input    My last invoice
-    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number     Yes    No
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
     User_input    Yes
     Check_VA_response_text    1    Your total invoice is
     Check_VA_response_text_with_2buttons    2    Do you want to process the payment?    Yes    No
@@ -381,7 +365,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
 092-User Inquire Active Subscribed Offer
     Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
     User_input    my active package information
-    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number     Yes    No
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
     User_input    Yes
     Check_VA_response_text    1    OK Lightning Gold, below are active packages for
     Check_VA_response_text_with_2buttons    2    Do you want to check your quota as well?    Yes    No
@@ -398,7 +382,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
 
 [x]112-User wants to perform Send Gift Purchase Package from Postpaid (Consumer with Block 1 or Block 2 Status) to Prepaid Number
     Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
-    User_input     I want to buy package for my friend
+    User_input    I want to buy package for my friend
     Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
     User_input    Yes
     Check_VA_response_text    1    OK, please input a mobile number that you want to gift \ (Example: 08110000000)
@@ -442,4 +426,62 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    You can also type 'cancel' to start over
     User_input    Cancel
+    Close Browser
+
+005-Non-Telkomsel user who is wondering about Telkomsel products
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    recommend starter pack sim card
+    Check_VA_response_text    1    I'm more than happy to help you find the most suitable Telkomsel product
+    Check_VA_response_text_with_2buttons    2    All you need to do is answer these three short questions 🙂    Start    See All Products
+    User_input    See All Products
+    Check_VA_response_text    1    Great choice! Here are some Telkomsel products that you can choose from
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    2    Kartu As Starter
+    Check_VA_response_image    1
+    Check_VA_response_text    2    For further info click https://telkomsel.com/kartu-as/
+    Check_VA_response_text_with_2buttons    3    Do you want to use Kartu As?    Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    Please specify your location. You may type your location below or use the share location function
+    User_input    Jakarta Barat
+    Check_VA_response_text    1    Please choose outlet location that you want
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    I have found several outlets close to Jakarta Barat
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Close Browser
+
+007-Non-Telkomsel user who wants to know about KartuAs
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    I want to know about Kartu As
+    Check_VA_response_text    1    Great choice! Here are some Telkomsel products that you can choose from
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Buy Now
+    Check_VA_response_text    1    Please specify your location. You may type your location below or use the share location function
+    User_input    Jakarta Barat
+    Check_VA_response_text    1    Please choose outlet location that you want
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    I have found several outlets close to Jakarta Barat
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Open in Google Maps
+    Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Close Browser
+
+[x]008-Non-Telkomsel user who wants to know about SimPATI
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    I want to know about Simpati
+    Check_VA_response_text    1    Great choice! Here are some Telkomsel products that you can choose from
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Buy Now
+    Check_VA_response_text    1    Please specify your location. You may type your location below or use the share location function
+    User_input    Jakarta Barat
+    Check_VA_response_text    1    Please choose outlet location that you want
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    I have found several outlets close to Jakarta Barat
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Open in Google Maps
+    Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
     Close Browser
