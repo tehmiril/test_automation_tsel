@@ -149,8 +149,8 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
 
 [x]002-Non-Telkomsel who wants to explore VA
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
-    User_input    Hi Vero
-    Check_VA_response_text    1    Hi
+    User_input    Hi
+    Check_VA_response_text    1    Hi Lightning Diamond, welcome to Telkomsel Virtual GraPARI. How can I help you today? 🙂
     Check_VA_response_text    2    How may I assist you today
     Check_VA_response_image    3
     Check_VA_response_text_with_2buttons    4    Kindly select one of the options below or directly type in your request    Go To Menu    Ganti Bahasa
@@ -184,10 +184,10 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    what is kartu halo?
     Check_VA_response_text    1    Great choice! Here are some Telkomsel products that you can choose from
     Check_VA_response_carousel_exists    2
-    Validate_carousel_items    2    simPATI Combo    Enjoy browsing, streaming, and chatting to the fullest
-    Validate_carousel_items    2    Kartu As Combo    Enjoy browsing with the best connection
-    Validate_carousel_items    2    Loop Cash    Get extra cash when buying an Internet package
-    Validate_carousel_items    2    Halo Kick    Earn more premium benefit using Halo Kick!
+    Validate_carousel_items    2    simPATI Combo    Enjoy browsing, streaming, and chatting to the fullest    SimPATI Combo Info    SimPATI Starter Pack    Buy Now
+    Validate_carousel_items    2    Kartu As Combo    Enjoy browsing with the best connection    Kartu As Combo Info    Kartu As Starter    Buy Now
+    Validate_carousel_items    2    Loop Cash    Get extra cash when buying an Internet package    Loop Cash Info    Loop Starter Pack    Buy Now
+    Validate_carousel_items    2    Halo Kick    Earn more premium benefit using Halo Kick!    Halo Kick Info    Register kartuHALO    Buy at GraPARI
     Click_carousel_button_on_specific_location    2    4    Buy at GraPARI
     Closing_session
 
@@ -469,7 +469,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    No
     Close Browser
 
-[x]008-Non-Telkomsel user who wants to know about SimPATI
+008-Non-Telkomsel user who wants to know about SimPATI
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    I want to know about Simpati
     Check_VA_response_text    1    Great choice! Here are some Telkomsel products that you can choose from
@@ -485,3 +485,48 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
     User_input    No
     Close Browser
+
+012-User want to have a 4G card and order it online
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    How to get 4G sim card?
+    Check_VA_response_text    1    To upgrade your SIM card to 4G, change your old SIM card to 4G SIM card ready. Your Telkomsel number will not change during the process. Here are some ways to get a 4G SIM card:
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Click_carousel_button_on_specific_location    2    1    Nearest MyGraPARI
+    Click_carousel_button_on_specific_location    2    3    Online Registration
+    User_input    No
+    Closing_session
+
+[x]013-User perform Inquire 4G Upgrade and Find Nearest Store
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi Lightning Diamond, welcome to Telkomsel Virtual GraPARI
+    Check_VA_response_text    2    Now, as often as you can buy Telkomsel packages, you have a big chance to win! For more information, click: tsel.me/racingpaketVA
+    Check_VA_response_text    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Purchase Now    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_button_from_response_additional    2    5    FAQ
+    Check_VA_response_carousel_exists    1
+    Click_carousel_button_on_specific_location    1    1    Upgrade to 4G
+    Check_VA_response_text_with_2buttons    1    OK Lightning Diamond To use 4G services, make sure your smartphone & SIM card are 4G ready. Does your smartphone support 4G network ?    Yes    Not Yet
+    User_input    Yes
+    Check_VA_response_text_with_2buttons    1    Have you swapped your old SIM card to the new 4G SIM card?    Yes    Not yet
+    User_input    Not yet
+    Check_VA_response_text    1    To upgrade your SIM card to 4G, change your old SIM card to 4G SIM card ready. Your Telkomsel number will not change during the process. Here are some ways to get a 4G SIM card:
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text_with_buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Click_carousel_button_on_specific_location    2    2    Nearest GraPARI
+    Check_VA_response_text    1    Please specify a location/area where you wish to find a GraPARI. You may share your location or type-in below
+    User_input    Jakarta Pusat
+    Check_VA_response_text    1    Which GraPARI area are you looking for ?
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    C
+    Check_VA_response_text    1    I have found several GraPARI close to
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Closing_session
