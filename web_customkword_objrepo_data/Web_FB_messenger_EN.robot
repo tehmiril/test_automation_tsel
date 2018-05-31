@@ -147,17 +147,17 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Click_button_from_response_additional    2    Wrap it up
     Closing session
 
-[x]002-Non-Telkomsel who wants to explore VA
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+002-Non-Telkomsel who wants to explore VA
+    Login_messenger    ${email}    ${password}
     User_input    Hi
-    Check_VA_response_text    1    Hi Lightning Diamond, welcome to Telkomsel Virtual GraPARI. How can I help you today? 🙂
+    Check_VA_response_text    1    Hi
     Check_VA_response_text    2    How may I assist you today
     Check_VA_response_image    3
     Check_VA_response_text_with_2buttons    4    Kindly select one of the options below or directly type in your request    Go To Menu    Ganti Bahasa
     User_input    Go To Menu
     Check_VA_response_carousel_exists    1
     Check_VA_response_text    2    Please select one of the buttons above, or just type in your request.
-    Click_carousel_button_on_specific_location    2    4    Top-up
+    Click_carousel_button_on_specific_location    1    4    Top-up
     Check_VA_response_text    1    In order to process your inquire, please type your valid Telkomsel phone number (e.g. 0811000000)
     User_input    cancel
     Check_VA_response_text    1    OK, cancelling.
@@ -497,21 +497,21 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    No
     Closing_session
 
-[x]013-User perform Inquire 4G Upgrade and Find Nearest Store
+013-User perform Inquire 4G Upgrade and Find Nearest Store
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    Hi
     Check_VA_response_text    1    Hi Lightning Diamond, welcome to Telkomsel Virtual GraPARI
     Check_VA_response_text    2    Now, as often as you can buy Telkomsel packages, you have a big chance to win! For more information, click: tsel.me/racingpaketVA
-    Check_VA_response_text    3
+    Check_VA_response_image    3
     Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Purchase Now    Go To Menu    Ganti Bahasa
     User_input    Go To Menu
     Check_VA_response_text    1    This is the information for your number
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
     Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
-    Click_button_from_response_additional    2    5    FAQ
+    Click_carousel_button_on_specific_location    2    5    FAQ
     Check_VA_response_carousel_exists    1
-    Click_carousel_button_on_specific_location    1    1    Upgrade to 4G
+    Click_button_carousel_faq    1    FAQ    Upgrade to 4G
     Check_VA_response_text_with_2buttons    1    OK Lightning Diamond To use 4G services, make sure your smartphone & SIM card are 4G ready. Does your smartphone support 4G network ?    Yes    Not Yet
     User_input    Yes
     Check_VA_response_text_with_2buttons    1    Have you swapped your old SIM card to the new 4G SIM card?    Yes    Not yet
@@ -528,5 +528,94 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text    1    I have found several GraPARI close to
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Closing_session
+
+[x]014-User want to search a grapari that opens on a specific day
+
+016-User want to buy voucher data
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    I want to buy voucher data
+    Check_VA_response_text    1    You can get internet voucher at the nearest outlet
+    Check_VA_response_text    2    Please specify your location. You may type your location below or use the share location function
+    User_input    Jakarta Pusat
+    Check_VA_response_text    1    Please choose outlet location that you want
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    I have found several outlets close to Jakarta Pusat
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Closing_session
+
+[x]017-User wants to know about voucher information
+    Login_messenger    ${email}    ${password}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Now, as often as you can buy Telkomsel packages, you have a big chance to win! For more information, click: tsel.me/racingpaketVA
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Purchase Now    Go To Menu    Ganti Bahasa
+    User_input    Info voucher telkomsel
+    Check_VA_response_text    1    OK
+    Check_VA_response_text_with_buttons    2    Please type your brand: simPATI, Loop or Kartu As.    simPATI    Loop    Kartu As
+    User_input    Cancel
+    Check_VA_response_text    1    OK, cancelling.
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Closing_session
+
+[x]004-Non-Telkomsel user who greets VA for the first time and explore VA
+    Login_messenger    ${email}    ${password}
+    User_input    Hi
+    Check_VA_response_text    1    Hi M Testaut, welcome to Telkomsel Virtual GraPARI
+    Check_VA_response_text    2    How may I assist you today
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    Kindly select one of the options below or directly type in your request    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_carousel_exists    1
+    Check_VA_response_text    2    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    1    2    Switch to Telkomsel
+    Check_VA_response_text    1    Great choice! Here are some Telkomsel products that you can choose from
+    Check_VA_response_carousel_exists    2
+    Validate_carousel_items    2    simPATI Combo    Enjoy browsing, streaming, and chatting to the fullest    SimPATI Combo Info    SimPATI Starter Pack    Buy Now
+    Validate_carousel_items    2    Kartu As Combo    Enjoy browsing with the best connection    Kartu As Combo Info    Kartu As Starter    Buy now
+    Validate_carousel_items    2    Loop Cash    Get extra cash when buying an Internet package    Loop Cash Info    Loop Starter Pack    Buy now
+    Validate_carousel_items    2    Halo Kick    Earn more premium benefit using Halo Kick!    Halo Kick Info    Register kartuHalo    Buy at GraPARI
+    Click_carousel_button_on_specific_location    2    1    SimPATI Combo Info
+    Click_carousel_button_on_specific_location    2    1    SimPATI Starter Pack
+    Check_VA_response_image    1
+    Check_VA_response_text    2    For further info click https://telkomsel.com/simpati
+    Check_VA_response_text_with_2buttons    3    Do you want to use simPATI?    Yes    No
+    User_input    No
+    Check_VA_response_text_with_2buttons    1    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    starter pack that suits me
+    Check_VA_response_text    1    I'm more than happy to help you find the most suitable Telkomsel product
+    Check_VA_response_text_with_2buttons    2    All you need to do is answer these three short questions 🙂    Start    See All Products
+    User_input    Start
+    Check_VA_response_text_with_buttons    1    What do you use your handphone for?    A. Chatting & socmed    B. Video games music    C. All the above
+    User_input    B. Video games music
+    Check_VA_response_text    1    Interesting 🙂
+    Check_VA_response_text_with_buttons    2    On average, how much money (in Rupiah) you usually spend for your phone?    A. < 50.000    B. 50.000 - 150.000    C. > 150.000
+    User_input    B. 50.000 - 150.000
+    Check_VA_response_text    1    Well noted 🙂
+    Check_VA_response_text_with_2buttons    2    Speaking about payment method, which one do you prefer, monthly bill or pay-as-you-go?    A. Pay-as-you-go    B. Monthly Bill
+    User_input    A. Pay-as-you-go
+    Check_VA_response_text    1    All done! Here's the Telkomsel product that suits you the most. Enjoy 🙂
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Click_carousel_button_on_specific_location    2    1    Loop Cash Info
+    Click_carousel_button_on_specific_location    2    1    Loop Starter Pack
+    Check_VA_response_image    1
+    Check_VA_response_text    2    For further info click https://telkomsel.com/loop/
+    Check_VA_response_text_with_2buttons    3    Do you want to use Loop?    Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    Please specify your location. You may type your location below or use the share location function
+    User_input    Jakarta Pusat
+    Check_VA_response_text    1    Please choose outlet location that you want
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    I have found several outlets close to Jakarta Pusat
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
     User_input    No
     Closing_session
