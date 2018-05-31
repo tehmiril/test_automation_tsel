@@ -619,3 +619,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
     User_input    No
     Closing_session
+
+[x]009-Non-Telkomsel user who wants to know about Loop
+    Login_messenger    ${email}    ${password}
+    Greet_VA_Indo    ${VA
