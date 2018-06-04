@@ -163,3 +163,5 @@ Click_button_carousel_faq
     SeleniumLibrary.Click Element    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${current_user_input}")])[${current_total_user_message}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*/descendant::*[contains(@class,"clearfix _o46")][${order}]/descendant::div[@class="_3cn0" and contains (.,"${current_carousel_title}")]/descendant::*[@class="_3cne"]/following-sibling::div//a[contains(.,"${current_carousel_button}")]
     Sleep    2s
     Check_opened_URL    ${c_button}
+
+Greet_VA_EN
