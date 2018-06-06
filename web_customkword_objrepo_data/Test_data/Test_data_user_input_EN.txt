@@ -5,12 +5,12 @@ ${random_question_1}    Mobile Legend itu apa ya?
 ${random_question_2}    Cara mainnya gimana?    #Main Mobile Legends tuh gmn sih?
 ${no_answer}      No
 ${yes_answer}     Yes
-${cancel_answer}    Batal
+${cancel_answer}    Cancel
 ${user_rate}      5
 ${random_question_sholat}    Apa itu waktu sholat?
 ${ask_pulsa}      Sisa pulsa saya berapa?
 ${ask_kuota}      Sisa kuota data saya berapa?
-${greeting}       Halo Vero
+${greeting}       Hi
 ${select_Rate}    Kecepatan Respon
 @{chrome_arguments}    --disable-infobars    --headless    --disable-gpu
 ${see_products}    Lihat semua produk

@@ -5,8 +5,8 @@ ${VA_notunderstand_3}    Saat ini    #Saat ini Veronika belum bisa memenuhi kein
 ${VA_notunderstand_4}    customer service    #Veronika hubungkan dengan teman-teman dari customer service ya    #Mungkin teman dari customer service Telkomsel bisa membantu Kamu. Apakah mau disambungkan?
 ${VA_notunderstand_5}    Sembari menunggu, Kamu bisa mencoba hiburan di bawah ini
 ${VA_notunderstand_6}    Kamu bisa ketik    #Kamu bisa ketik 'batal' jika Kamu tidak lagi membutuhkan bantuan customer service Telkomsel
-${VA_cancel}      Baiklah, Veronika batalkan.
-${VA_question_1}    Ada lagi yang bisa Veronika bantu?
+${VA_cancel}      OK, cancelling.
+${VA_question_1}    Is there anything else you might want to know? Please choose one of the answers below
 ${VA_question_2}    terus meningkatkan layanan, berikan penilaian Kamu    #Penilaian dalam skala 1-10 (1 sangat tidak puas - 10 sangat puas). Silakan masukan penilaian Kamu
 ${VA_question_3}    Menurut Kamu, apa yang harus Veronika tingkatkan?
 ${VA_closingstatement}    Terima kasih    #atas penilaiannya    #Veronika turut senang membantu
@@ -16,10 +16,10 @@ ${VA_validateNumber}    Apakah Kamu bertanya untuk nomor handphone +628131036511
 ${VA_answerKuota2}    Berikut sisa kuota Internet Kamu:
 ${VA_answerKuota3}    Apakah Kamu mau membeli paket tambahan?
 ${VA_Greet2}      Apa yang bisa Veronika bantu hari ini?
-${VA_GreetButton1}    Lihat Menu Utama
-${VA_GreetButton2}    Chat in English
-${VA_GreetButton3}    Beli Sekarang
-${VA_endGreet}    Sampai jumpa di chat berikutnya dan semoga harimu menyenangkan ya!    #Terima kasih atas penilaiannya  Jangan lupa untuk chat Veronika lagi ya
+${VA_GreetButton1}    Go To Menu
+${VA_GreetButton2}    Ganti Bahasa
+${VA_GreetButton3}    Top-up Now
+${VA_endGreet}    Hope I've been helpful today. Thank you!    #Terima kasih atas penilaiannya  Jangan lupa untuk chat Veronika lagi ya
 ${VA_askRateReason}    Tolong tulis alasan Kamu ya
 ${VA_thanksRate}    Terima kasih    #atas penilaiannya
 ${VA_gives_FAQ}    Berikut adalah beberapa solusi Veronika    #untuk membantu menjawab pertanyaan Kamu ya

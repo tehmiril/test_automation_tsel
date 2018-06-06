@@ -27,6 +27,20 @@ Resource          Test_data/Test_data_payment.txt
 Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
 
 *** Test Cases ***
+[x]001-Non-Telkomsel user who just started talking to VA
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    How may I assist you today
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    Kindly select one of the options below or directly type in your request    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_carousel_exists    1
+    Check_VA_response_text    2    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    1    4    Telkomsel POIN
+    Check_VA_response_text    1    In order to process your inquire, please type your valid Telkomsel phone number (e.g. 0811000000)
+    User_input
+
 002-Non-Telkomsel who wants to explore VA
     Login_messenger    ${email}    ${password}
     User_input    Hi
@@ -182,7 +196,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_carousel_exists    1
     Check_VA_response_text    2    Please select one of the buttons above, or just type in your request.
     Click_carousel_button_on_specific_location    1    2    Digital Life Style
-    Validate_carousel_items    1              Purchase Now    Promotion Detail    See All Promotions
+    Validate_carousel_items    1    Purchase Now    Promotion Detail    See All Promotions
     Validate_carousel_items    1    Discover Telkomsel Product    Browse and purchase your favorite Telkomsel products here    Switch to Telkomsel    Find Your Product    Digital Life Style
     Validate_carousel_items    1    Your Profile    Information about your Telkomsel number    My Quota    My Bill/Balance    My PUK
     Validate_carousel_items    1    Purchase Package and Redeem POIN    Browse and purchase your favorite Telkomsel products here    Top-up    Purchase Package    Telkomsel POIN
@@ -282,7 +296,16 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Closing_session
 
 [x]014-User want to search a grapari that opens on a specific day
-    Login_messenger
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    grapari that open on sunday in Jakarta
+    Check_VA_response_text    1    Which GraPARI area are you looking for ?
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    I have found several GraPARI close to Jakarta that fulfill the condition.
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Closing_session
 
 015-User want to buy a starter pack
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
@@ -334,6 +357,105 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    No
     Closing_session
 
+[x]018-User explore the FAQ menu and read about voucher information
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_carousel_exists    1
+    Check_VA_response_text    2    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    3    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    1    5    FAQ
+    Check_VA_response_carousel_exists    1
+    Click_carousel_button_on_specific_location    1    1    Voucher Info
+    Check_VA_response_text    1    OK
+    Check_VA_response_text_with_buttons    2    Please type your brand: simPATI, Loop or Kartu As.    SimPATI    Loop    Kartu As
+    User_input    Kartu As
+    Check_VA_response_text    1    Below is the information for Kartu As voucher
+    Check_VA_response_image    2
+    Check_VA_response_text_with_2buttons    3    Do you want to top-up your balance as well?    ${yes_answer}    ${no_answer}
+    User_input    Yes
+    Check_VA_response_text    1    Yes
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+
+019-User perform inquire outlet location
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    I want to buy voucher 10.000
+    Check_VA_response_text    1    Currently, I can only provide voucher with the following nominals: 50.000, 100.000, 150.000, 200.000, and 300.000. If you still want to top up with your nominal, I can help you to find the nearest GraPARI or outlet in your area
+    Check_VA_response_text    2    Please specify your location. You may type your location below or use the share location function
+    User_input    Jakarta Barat
+    Check_VA_response_text    1    Please choose outlet location that you want
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    I have found several outlets close to Jakarta Barat
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Click_carousel_button_on_specific_location    2    1    Open in Google Maps
+    User_input    No
+    Closing_session
+
+[x]020-User perform setting Caller ID \ for Apple, Android, Windows Phone, and Blackberry
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    5    FAQ
+    Check_VA_response_carousel_exists    1
+    Click_carousel_button_on_specific_location    1    1    Device Config
+    Check_VA_response_text    1    Below are the device related configurations that I can help you with:
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    3    Caller ID Setting
+    Check_VA_response_text    1    To connect to the internet, make sure you have configured the APN (Access Point Name) settings correctly. Select the type of your phone to get the configuration instruction:
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Apple
+    Check_VA_response_text    1    OK, let me guide you 🙂 For Caller ID setting in Apple smartphone, you may follow these steps:
+    Check_VA_response_image    2
+    Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    I want to set caller ID for android device
+    Check_VA_response_text    1    OK, let me guide you 🙂 For Caller ID setting in Android smartphone, you may follow these steps:
+    Check_VA_response_image    2
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    I want to set Caller ID \ for Windows Phone
+    Check_VA_response_text    1    OK, let me guide you 🙂 For Caller ID setting in Windows Phone smartphone, you may follow these steps:
+    Check_VA_response_image    2
+    Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    how to \ setting Caller ID \ for Blackberry
+    Check_VA_response_text    1    OK, let me guide you 🙂 For Caller ID setting in Blackberry smartphone, you may follow these steps:
+    Check_VA_response_image    2
+    Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Closing_session
+
+[x]021-User complain about his internet connection
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    can't connect to the network
+
+[x]022-User complain about his internet service and agree to connect to agent
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    I have internet problem
+    Check_VA_response_text    1    Sorry for your inconvenience 🙂
+    Check_VA_response_text    2    OK, Lightning Diamond. I will check the issue for you
+    Check_VA_response_text_with_2buttons    3    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    In order to fix your issue, please select operating system of your phone below
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Apple
+
 023-User is bored/angry/sad/not feeling well/engage small talk but don't want to see Veronika's topic
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    i'm sad
@@ -368,6 +490,10 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text_with_buttons    2    Share the joke with your friends 🙂 Do you want to see another joke?
     Click_button_from_response_additional    2    Wrap it up
     Closing session
+
+[x]025-User expresses harsh comment and ask random question to Veronika
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input
 
 056-Postpaid User ask his credit limit
     Login_messenger    ${emailPostpaid}    ${passwordPostpaid}

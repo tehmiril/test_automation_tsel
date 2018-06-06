@@ -165,3 +165,4 @@ Click_button_carousel_faq
     Check_opened_URL    ${c_button}
 
 Greet_VA_EN
+    User_input    ${greeting}
