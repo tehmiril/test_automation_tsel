@@ -495,6 +495,327 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input
 
+[x]028-User request to connect to agent direclty from main menu
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    5    Chat Customer Care
+    Check_VA_response_text    1    What do you want to ask? Maybe I can help with your problem
+    User_input    What is pop sms?
+    Check_VA_response_text    1    My bad, I'm still learning. I don't understand what you've meant by that
+    Check_VA_response_text    2    Could you please elaborate or rephrase your question?
+    User_input    What is pop sms?
+    Check_VA_response_text    1    Currently I'm unable to process your request
+    Check_VA_response_text    2    Let me connect you to one of our customer service agents
+    Check_VA_response_text    3    In the mean time, you can try one of the entertainment below
+    Check_VA_response_carousel_exists    4
+    Check_VA_response_text    5    You can type 'cancel' if you no longer need help from a customer service agent
+    User_input    Cancel
+    Check_VA_response_text    1    OK, cancelling
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Closing_session
+
+[x]029-User Inquire Active Subscribed Offer
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Now, as often as you can buy Telkomsel packages, you have a big chance to win! For more information, click: tsel.me/racingpaketVA
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Purchase Now    Go To Menu    Ganti Bahasa
+    User_input    what are my active packages?
+    Check_VA_response_text    1    At the moment, I can only provide information on packages that you subscribed here or via MyTelkomsel Apps
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    what are my subscribed packages?
+    Check_VA_response_text    1    At the moment, I can only provide information on packages that you subscribed here or via MyTelkomsel Apps
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Closing_session
+
+030-User inquire for hot offer
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    is there any promo for internet product?
+    Check_VA_response_text    1    Currently, there is a couple of interesting promotions that Telkomsel offers. Here are the list of promotions that you can join
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Click_carousel_button_on_specific_location    2    2    Promotion Detail
+    User_input    Cancel
+    Closing_session
+
+[x]031-User perform inquire subscribed main offering, package terms & condition and subscribed offer
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    what is my current priceplan?
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    OK
+    Check_VA_response_text    2    Is there anything else you might want to know? Please choose one of the answers below
+    User_input    what is the best package for me?
+    Check_VA_response_carousel_exists    1
+    Click_carousel_button_on_specific_location    1    3    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Detail
+    Check_VA_response_text    1    Listed below is the terms and condition for
+    Check_VA_response_text    2    Paket Internet berlaku untuk
+    Check_VA_response_text_with_2buttons    4    Would you like to buy this offer?    Yes    No
+    User_input    No
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    User_input    Cancel
+    Check_VA_response_text    1    ${cancel_answer}
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Closing_session
+
+032-Prepaid User ask for Recharge History
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Mudik season will come soon! Now you can go back to hometown only by redeeming your Telkomsel POIN. See the details here: tsel.me/POINmudik
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    How may I assist you today    Go To Menu    Ganti Bahasa
+    User_input    my payments history
+    Check_VA_response_text    1    Okay
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Closing_session
+
+033-Prepaid User perform Get Invoice Date & Amount
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
+    User_input    have i paid the bill for this month?
+    Check_VA_response_text    1    Billing and invoice inquiry is only available for kartuHalo subscribers.
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Closing_session
+
+034-Prepaid user who wants to topup using credit card
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now     Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    1    Top-up credit
+    Check_VA_response_text    1    OK Lightning Diamond, you may choose one of the available top-up options below.
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Credit Card
+    Close Browser
+
+035-Prepaid user who wants to topup using Mandiri ClickPay
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now     Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    1    Top-up credit
+    Check_VA_response_text    1    OK Lightning Diamond, you may choose one of the available top-up options below.
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    2    E-Banking
+    Check_VA_response_carousel_exists    1
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Click_carousel_button_on_specific_location    1    1    Select
+    User_input    No
+    Closing_session
+
+036-Prepaid user who wants to topup using PermataNet
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now     Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    1    Top-up credit
+    Check_VA_response_text    1    OK Lightning Diamond, you may choose one of the available top-up options below.
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    2    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    2    E-Banking
+    Check_VA_response_carousel_exists    1
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Click_carousel_button_on_specific_location    1    1    Select
+    User_input    No
+    Closing_session
+
+037-Prepaid user who wants top up his credit using TCASH but doesn't have a TCASH account yet
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    i want to top-up credit
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    3    TCASH
+    Check_VA_response_text_with_2buttons    1    You do not have enough credit. Do you want to know how to top-up your TCASH credit?    Yes    No
+    User_input    No
+    Check_VA_response_text_with_2buttons    1    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Closing_session
+
+[x]038-Prepaid user who wants top up his credit using TCASH
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    i want to top-up credit
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    3    TCASH
+
+[x]039-User perform reload using TCASH but has insufficient balance
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    i want to top-up credit
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    3    TCASH
+
+040-Prepaid user who wants to top up using E-Banking (Mandiri ClickPay)
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    i want to top-up credit
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    2    E-Banking
+    Check_VA_response_carousel_exists    1
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Click_carousel_button_on_specific_location    1    1    Select
+    User_input    No
+    Close Browser
+
+041-Prepaid user who wants to top up using E-Banking (PermataNet)
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    i want to top-up credit
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    2    E-Banking
+    Check_VA_response_carousel_exists    1
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Click_carousel_button_on_specific_location    1    2    Select
+    User_input    No
+    Close Browser
+
+043-Prepaid users who ask about registration status
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now     Go To Menu    Ganti Bahasa
+    User_input    Is my number registrated?
+    Check_VA_response_text    1    You can check your prepaid registration by dialing *444# on your phone You are able to dial this number despite your number has been blocked
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    1    Quota detail
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    See Internet Quota
+    Check_VA_response_text    1    Unfortunately, you do not have any active Internet quota
+    Check_VA_response_text_with_2buttons    2    Do you wish to purchase additional/add-on offers?    Yes    No
+    User_input    No
+    Check_VA_response_text_with_2buttons    1    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    1    Top-up credit
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    User_input    Cancel
+    Check_VA_response_text    1    ${cancel_answer}
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Closing_session
+
+046-User want to see all promotion
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now     Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    2    Browse packages
+    Check_VA_response_text    1    You can purchase any of our offers listed in the five catalogues provided below:
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    User_input    cancel
+    Check_VA_response_text    1    OK, cancelling.
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Check_VA_response_text    1    Thank you for contacting me. I'm happy to help!
+    Close Browser
+
 056-Postpaid User ask his credit limit
     Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
     User_input    My credit's limit
