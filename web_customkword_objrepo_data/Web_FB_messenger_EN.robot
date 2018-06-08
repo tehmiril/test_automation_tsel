@@ -607,7 +607,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text    1    Hi
     Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
     Check_VA_response_image    3
-    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now     Go To Menu    Ganti Bahasa
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
     User_input    Go To Menu
     Check_VA_response_text    1    This is the information for your number
     Check_VA_response_carousel_exists    2
@@ -629,7 +629,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text    1    Hi
     Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
     Check_VA_response_image    3
-    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now     Go To Menu    Ganti Bahasa
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
     User_input    Go To Menu
     Check_VA_response_text    1    This is the information for your number
     Check_VA_response_carousel_exists    2
@@ -655,7 +655,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text    1    Hi
     Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
     Check_VA_response_image    3
-    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now     Go To Menu    Ganti Bahasa
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
     User_input    Go To Menu
     Check_VA_response_text    1    This is the information for your number
     Check_VA_response_carousel_exists    2
@@ -755,13 +755,34 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    No
     Close Browser
 
+[x]042-Prepaid user who performs top up through TCASH
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    1    Top-up credit
+    Check_VA_response_text    1    OK Lightning Diamond, you may choose one of the available top-up options below.
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    3    TCASH
+
 043-Prepaid users who ask about registration status
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    Hi
     Check_VA_response_text    1    Hi
     Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
     Check_VA_response_image    3
-    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now     Go To Menu    Ganti Bahasa
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
     User_input    Is my number registrated?
     Check_VA_response_text    1    You can check your prepaid registration by dialing *444# on your phone You are able to dial this number despite your number has been blocked
     Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
@@ -793,13 +814,44 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    No
     Closing_session
 
+[x]044-Prepaid user who wants to purchase the package that VA offers
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    2    Buy favourite package
+    Check_VA_response_text    1    OK
+    Check_VA_response_text_with_2buttons    2    Do you wish to spend    Yes    No
+
+[x]045-User want to see the detail information of ongoing promotion
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    1    Promotion Detail
+    Click_carousel_button_on_specific_location    2    1    Join This Promo
+
 046-User want to see all promotion
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    Hi
     Check_VA_response_text    1    Hi
     Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
     Check_VA_response_image    3
-    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now     Go To Menu    Ganti Bahasa
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
     User_input    Go To Menu
     Check_VA_response_text    1    This is the information for your number
     Check_VA_response_carousel_exists    2
@@ -814,6 +866,172 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
     User_input    No
     Check_VA_response_text    1    Thank you for contacting me. I'm happy to help!
+    Close Browser
+
+[x]047-Prepaid user who wants to explore the loyalty card
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    4    POINTASTIC DEAL Info
+    Click_carousel_button_on_specific_location    2    4    Redeem your reward
+
+[x]048-User want to know and participate on POINTASTIC DEALS (optional)
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    4    POINTASTIC DEAL Info
+
+[x]049-User want to know and participate on POINTASTIC DEALS (optional)
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    4    POINTASTIC DEAL Info
+
+[x]050-User wa nts to book an appointment at GraPARI
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    I want to book an appointment
+    Check_VA_response_text    1    Hi
+    User_input    Jakarta Pusat
+    Check_VA_response_text    1    Which GraPARI area are you looking for ?
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    I have found several GraPARI close to Jakarta Pusat.
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Click_carousel_button_on_specific_location    2    1    Make an Appointment
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    3    Choose Service
+    Check_VA_response_text    1    Speaking of information and complaint, one of Telkomsel staff can also help you with your needs.
+    Check_VA_response_text_with_2buttons    2    Do you want to speak with a Telkomsel customer service agent?    Yes    No
+    User_input    No
+    Check_VA_response_text    1    When do you want to come to GraPARI?
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    17:00-21:00 WIB
+    Check_VA_response_text    1    What time do you want to come?
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    2    18:00-18:30 WIB
+    Check_VA_response_text    1    The appointment booking for mobile number
+    Check_VA_response_text_with_buttons    2    Is everything correct?    Yes    No    Cancel
+    User_input    Yes
+
+[x]051-User want to know about detail information about his/her reservation
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    5    Appointment Detail
+    Check_VA_response_text    1    Below is your next appointment at GraPARI.
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Change Reservation
+    Check_VA_response_text_with_buttons    1    Which appointment details that you wish to change?    Date & Time    Location    Cancel
+    User_input    Location
+    Check_VA_response_text    1    Please specify a location/area where you wish to find a GraPARI. You may share your location or type-in below
+    User_input    Jakarta Pusat
+    Check_VA_response_text    1    Which GraPARI area are you looking for ?
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    I have found several GraPARI close to Tanah Abang.
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Make an Appointment
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    2    Choose Service
+    Check_VA_response_text    1    Speaking of information and complaint, one of Telkomsel staff can also help you with your needs.
+    Check_VA_response_text_with_2buttons    2    Do you want to speak with a Telkomsel customer service agent?    Yes    No
+    User_input    No
+    Check_VA_response_text    1    When do you want to come to GraPARI?
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    2    17:00-21:00
+    Check_VA_response_text    1    What time do you want to come?
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    3    19:00-19:30
+    Check_VA_response_text    1    Here is your new appointment schedule. Please check your appointment detail.
+    Check_VA_response_text_with_buttons    2    Is everything correct?    Yes    No    Cancel
+    User_input    Yes
+    Check_VA_response_text    1    Perfect! Thank you for making the appointment. Looking forward to meeting you!
+    Check_VA_response_image    2
+    Check_VA_response_text    3    Please come 15 minutes before your appointment and show your appointment number to one of our Telkomsel staff.
+    Check_VA_response_text_with_2buttons    4    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Check_VA_response_text    1    Thank you for chatting with me. Chat with me again anytime 🙂
+    Close Browser
+
+[x]052-Postpaid user wants to change his number (vice versa)
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Mudik season will come soon! Now you can go back to hometown only by redeeming your Telkomsel POIN. See the details here: tsel.me/POINmudik
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    How may I assist you today    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+
+[x]053-Postpaid user who has outstanding bill wants to pay his bill
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Mudik season will come soon! Now you can go back to hometown only by redeeming your Telkomsel POIN. See the details here: tsel.me/POINmudik
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    How may I assist you today    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+
+054-Postpaid user want to check quota detail information
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Mudik season will come soon! Now you can go back to hometown only by redeeming your Telkomsel POIN. See the details here: tsel.me/POINmudik
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    How may I assist you today    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    1    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    1    Quota detail
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    See Internet Quota
+    Check_VA_response_text    1    Here's your remaining Internet quota:
+    Check_VA_response_text_with_2buttons    2    Do you wish to purchase additional/add-on offers?    Yes    No
+    User_input    No
+    Check_VA_response_text_with_2buttons    1    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Check_VA_response_text    1    Thank you for chatting with me. Chat with me again anytime 🙂
     Close Browser
 
 056-Postpaid User ask his credit limit
@@ -1085,3 +1303,5 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text    3    You can also type 'cancel' to start over
     User_input    Cancel
     Close Browser
+
+[x]055-User want to add kartuHalo subscripton
