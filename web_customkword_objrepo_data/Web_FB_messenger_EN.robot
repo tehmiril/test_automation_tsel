@@ -1054,6 +1054,186 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    No
     Closing_session
 
+058-Postpaid user want to see payment history and request PUK
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Mudik season will come soon! Now you can go back to hometown only by redeeming your Telkomsel POIN. See the details here: tsel.me/POINmudik
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    How may I assist you today    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    1    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    User_input    Payment History
+    Check_VA_response_text    1    Okay
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    User_input    info PUK
+    Check_VA_response_text    1    To ensure your security, I need to verify your Identity first before providing your PUK
+    Check_VA_response_text_with_2buttons    2    Choose one from these verification methods: T-Care PIN or last 3 contacted number in the past month. If you have blocked number, use the second option    PIN T-Care    Contacted Number
+    User_input    PIN T-Care
+    Check_VA_response_text    1    To get T-Care PIN, please type in “PIN” send to 111 (kartuHalo) or 116 (simPATI, KARTU As, LOOP). After SMS reply has been received, please input your T-Care PIN
+    Check_VA_response_text    2    You can type 'cancel' if you no longer need information about PUK
+    User_input    cancel
+    Check_VA_response_text    1    ${cancel_answer}
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Check_VA_response_text    1    Hope I've been helpful today. Thank you!
+    Close Browser
+
+[x]059-Postpaid User who has no outstanding bill try to perform pay bill directly on VA and get told that he/she has no bill to pay
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    pay bill
+
+[x]060-User want to pay his bill but the payment failed for three times
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    my invoice
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
+    User_input    Yes
+    Check_VA_response_text    1    Your total invoice is
+    Check_VA_response_text_with_2buttons    2    Do you want to process the payment?    Yes    No
+    User_input    Yes
+    Check_VA_response_carousel_exists    1
+    Check_VA_response_text    2    As an alternative, You can pay your bills through MyTelkomsel, MyGraPARI, ATM, GraPARI, and Kantor POS.
+    Click_carousel_button_on_specific_location    1    1    Credit Card
+
+[x]061-User perform pay bill using Mandiri ClickPay (2)
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Mudik season will come soon! Now you can go back to hometown only by redeeming your Telkomsel POIN. See the details here: tsel.me/POINmudik
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    How may I assist you today    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    1    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    1    Pay Bill
+    Check_VA_response_text    1    Your total invoice is
+    Check_VA_response_text_with_2buttons    2    Do you want to process the payment?    Yes    No
+    User_input    Yes
+    Check_VA_response_carousel_exists    1
+    Check_VA_response_text    2    As an alternative, You can pay your bills through MyTelkomsel, MyGraPARI, ATM, GraPARI, and Kantor POS.
+    Click_carousel_button_on_specific_location    1    2    E-Banking
+    Check_VA_response_carousel_exists    1
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Click_carousel_button_on_specific_location    1    1    Select
+
+[x]062-User perform pay bill using TCASH
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Mudik season will come soon! Now you can go back to hometown only by redeeming your Telkomsel POIN. See the details here: tsel.me/POINmudik
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    How may I assist you today    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    1    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    1    Pay Bill
+    Check_VA_response_text    1    Your total invoice is
+    Check_VA_response_text_with_2buttons    2    Do you want to process the payment?    Yes    No
+    User_input    Yes
+    Check_VA_response_carousel_exists    1
+    Check_VA_response_text    2    As an alternative, You can pay your bills through MyTelkomsel, MyGraPARI, ATM, GraPARI, and Kantor POS.
+    Click_carousel_button_on_specific_location    1    3    TCASH
+
+[x]063-User perform pay bill using PermataNet (2)
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Mudik season will come soon! Now you can go back to hometown only by redeeming your Telkomsel POIN. See the details here: tsel.me/POINmudik
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    How may I assist you today    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    1    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    1    Pay Bill
+    Check_VA_response_text    1    Your total invoice is
+    Check_VA_response_text_with_2buttons    2    Do you want to process the payment?    Yes    No
+    User_input    Yes
+    Check_VA_response_carousel_exists    1
+    Check_VA_response_text    2    As an alternative, You can pay your bills through MyTelkomsel, MyGraPARI, ATM, GraPARI, and Kantor POS.
+    Click_carousel_button_on_specific_location    1    2    E-Banking
+    Check_VA_response_carousel_exists    1
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Click_carousel_button_on_specific_location    1    2    Select
+
+[x]064-User perform pay bill using credit card
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Mudik season will come soon! Now you can go back to hometown only by redeeming your Telkomsel POIN. See the details here: tsel.me/POINmudik
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    How may I assist you today    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    1    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    1    Pay Bill
+    Check_VA_response_text    1    Your total invoice is
+    Check_VA_response_text_with_2buttons    2    Do you want to process the payment?    Yes    No
+    User_input    Yes
+    Check_VA_response_carousel_exists    1
+    Check_VA_response_text    2    As an alternative, You can pay your bills through MyTelkomsel, MyGraPARI, ATM, GraPARI, and Kantor POS.
+
+[x]065-User perform pay bill using Mandiri ClickPay
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Mudik season will come soon! Now you can go back to hometown only by redeeming your Telkomsel POIN. See the details here: tsel.me/POINmudik
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    How may I assist you today    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    1    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    1    Pay Bill
+    Check_VA_response_text    1    Your total invoice is
+    Check_VA_response_text_with_2buttons    2    Do you want to process the payment?    Yes    No
+    User_input    Yes
+    Check_VA_response_carousel_exists    1
+    Check_VA_response_text    2    As an alternative, You can pay your bills through MyTelkomsel, MyGraPARI, ATM, GraPARI, and Kantor POS.
+    Click_carousel_button_on_specific_location    1    2    E-Banking
+    Check_VA_response_carousel_exists    1
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Click_carousel_button_on_specific_location    1    1    Select
+
+[x]066-User perform pay bill using PermataNet
+    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Mudik season will come soon! Now you can go back to hometown only by redeeming your Telkomsel POIN. See the details here: tsel.me/POINmudik
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    How may I assist you today    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    1    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    1    Pay Bill
+    Check_VA_response_text    1    Your total invoice is
+    Check_VA_response_text_with_2buttons    2    Do you want to process the payment?    Yes    No
+    User_input    Yes
+    Check_VA_response_carousel_exists    1
+    Check_VA_response_text    2    As an alternative, You can pay your bills through MyTelkomsel, MyGraPARI, ATM, GraPARI, and Kantor POS.
+    Click_carousel_button_on_specific_location    1    2    E-Banking
+    Check_VA_response_carousel_exists    1
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Click_carousel_button_on_specific_location    1    2    Select
+
 067-User wants to know how to cash in Tcash via Mobile Banking
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     Sleep    3s
@@ -1120,6 +1300,21 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
     User_input    No
     Closing_session
+
+[x]072-Prepaid Telkomsel User failed to recharge using Tcash and informed how to top up tcash balance
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Now, as often as you can buy Telkomsel packages, you have a big chance to win! For more information, click: tsel.me/racingpaketVA
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Purchase Now    Go To Menu
+    User_input    I want to top up balance
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    3    TCASH
 
 073-User wants to know how to Top Up Tcash Balance through Tcash FAQ
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
