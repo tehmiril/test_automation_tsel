@@ -28,7 +28,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
 
 *** Test Cases ***
 [x]001-Non-Telkomsel user who just started talking to VA
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    Login_messenger    ${email}    ${password}
     User_input    Hi
     Check_VA_response_text    1    Hi
     Check_VA_response_text    2    How may I assist you today
@@ -38,8 +38,11 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_carousel_exists    1
     Check_VA_response_text    2    Please select one of the buttons above, or just type in your request.
     Click_carousel_button_on_specific_location    1    4    Telkomsel POIN
-    Check_VA_response_text    1    In order to process your inquire, please type your valid Telkomsel phone number (e.g. 0811000000)
-    User_input
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Closing_session
 
 002-Non-Telkomsel who wants to explore VA
     Login_messenger    ${email}    ${password}
@@ -139,15 +142,15 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    No
     Close Browser
 
-[x]006-Non-Telkomsel user who is interested in using KartuHalo
+006-Non-Telkomsel user who is interested in using KartuHalo
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    what is kartu halo?
     Check_VA_response_text    1    Great choice! Here are some Telkomsel products that you can choose from
     Check_VA_response_carousel_exists    2
     Validate_carousel_items    2    simPATI Combo    Enjoy browsing, streaming, and chatting to the fullest    SimPATI Combo Info    SimPATI Starter Pack    Buy Now
-    Validate_carousel_items    2    Kartu As Combo    Enjoy browsing with the best connection    Kartu As Combo Info    Kartu As Starter    Buy Now
-    Validate_carousel_items    2    Loop Cash    Get extra cash when buying an Internet package    Loop Cash Info    Loop Starter Pack    Buy Now
-    Validate_carousel_items    2    Halo Kick    Earn more premium benefit using Halo Kick!    Halo Kick Info    Register kartuHALO    Buy at GraPARI
+    Validate_carousel_items    2    Kartu As Combo    Enjoy browsing with the best connection    Kartu As Combo Info    Kartu As Starter    Buy now
+    Validate_carousel_items    2    Loop Cash    Get extra cash when buying an Internet package    Loop Cash Info    Loop Starter Pack    Buy now
+    Validate_carousel_items    2    Halo Kick    Earn more premium benefit using Halo Kick!    Halo Kick Info    Register kartuHalo    Buy at GraPARI
     Click_carousel_button_on_specific_location    2    4    Buy at GraPARI
     Closing_session
 
@@ -196,11 +199,10 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_carousel_exists    1
     Check_VA_response_text    2    Please select one of the buttons above, or just type in your request.
     Click_carousel_button_on_specific_location    1    2    Digital Life Style
-    Validate_carousel_items    1    Purchase Now    Promotion Detail    See All Promotions
     Validate_carousel_items    1    Discover Telkomsel Product    Browse and purchase your favorite Telkomsel products here    Switch to Telkomsel    Find Your Product    Digital Life Style
     Validate_carousel_items    1    Your Profile    Information about your Telkomsel number    My Quota    My Bill/Balance    My PUK
     Validate_carousel_items    1    Purchase Package and Redeem POIN    Browse and purchase your favorite Telkomsel products here    Top-up    Purchase Package    Telkomsel POIN
-    Validate_carousel_items    1    Further Support    Any questions? Find your answer here    Prepaid Registration    Nearest GraPARI    Talk to Our Agent
+    Validate_carousel_items    1    Further Support    Any questions? Find your answer here    Prepaid Registration    Nearest GraPARI    Chat Customer Care
     Click_carousel_button_on_specific_location    1    2    Switch to Telkomsel
     Check_VA_response_text    1    Great choice! Here are some Telkomsel products that you can choose from
     Check_VA_response_carousel_exists    2
