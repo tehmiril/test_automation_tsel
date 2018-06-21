@@ -188,7 +188,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    No
     Close Browser
 
-[x]009-Non-Telkomsel user who wants to know about Loop
+009-Non-Telkomsel user who wants to know about Loop
     Login_messenger    ${email}    ${password}
     User_input    Hi
     Check_VA_response_text    1    Hi
@@ -219,19 +219,26 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    No
     Closing_session
 
-[x]010-User perform inquire TCASH information
+010-User perform inquire TCASH information
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    What is TCash?
     Check_VA_response_text    1    TCASH is an electronic money service from Telkomsel, with official license from Bank of Indonesia. You can use TCASH to pay many things; merchants, billing, purchase online, share money and more! TCASH can be used by all Telkomsel users.
     Check_VA_response_carousel_exists    2
-    Click_carousel_button_on_specific_location    2    3    Ask something else
-    Check_VA_response_text    1    OK, cancelling.
-    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
-    User_input    Yes
-    Check_VA_response_carousel_exists    1
-    Check_VA_response_text    Please select one of the buttons above, or just type in your request.
-    User_input    Benefit of TCash
+    User_input    What are benefits of tcash?
     Check_VA_response_image    1
+    Check_VA_response_text_with_2buttons    2    Do you want to learn more about TCASH?    Yes    No
+    User_input    the differences between basic and full service tcash?
+    Check_VA_response_image    1
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    What are tcash promo?
+    Check_VA_response_text    1    Currently, there is a couple of interesting promotions that Telkomsel offers. Here are the list of promotions that you can join
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    where to get tcash sticker?
+    Check_VA_response_text    1    TCASH is an electronic money service from Telkomsel, with official license from Bank of Indonesia. You can use TCASH to pay many things; merchants, billing, purchase online, share money and more! TCASH can be used by all Telkomsel users.
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Order Sticker
+    Closing_session
 
 011-User perform inquire TCASH information
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
@@ -297,7 +304,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    No
     Closing_session
 
-[x]014-User want to search a grapari that opens on a specific day
+014-User want to search a grapari that opens on a specific day
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    grapari that open on sunday in Jakarta
     Check_VA_response_text    1    Which GraPARI area are you looking for ?
@@ -306,6 +313,9 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text    1    I have found several GraPARI close to Jakarta that fulfill the condition.
     Check_VA_response_carousel_exists    2
     Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    What is grapari's phone number?
+    Check_VA_response_text    1    If you need to call Telkomsel, please kindly contact our call center at 188.
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
     User_input    No
     Closing_session
 
@@ -343,16 +353,16 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    No
     Closing_session
 
-[x]017-User wants to know about voucher information
-    Login_messenger    ${email}    ${password}
+017-User wants to know about voucher information
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    Hi
     Check_VA_response_text    1    Hi
-    Check_VA_response_text    2    Now, as often as you can buy Telkomsel packages, you have a big chance to win! For more information, click: tsel.me/racingpaketVA
+    Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
     Check_VA_response_image    3
-    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Purchase Now    Go To Menu    Ganti Bahasa
-    User_input    Info voucher telkomsel
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
+    User_input    i want to know about telkomsel voucher
     Check_VA_response_text    1    OK
-    Check_VA_response_text_with_buttons    2    Please type your brand: simPATI, Loop or Kartu As.    simPATI    Loop    Kartu As
+    Check_VA_response_text_with_buttons    2    Please type your brand: simPATI, Loop or Kartu As.    SimPATI    Loop    Kartu As
     User_input    Cancel
     Check_VA_response_text    1    OK, cancelling.
     Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
@@ -367,10 +377,11 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_image    3
     Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
     User_input    Go To Menu
-    Check_VA_response_carousel_exists    1
-    Check_VA_response_text    2    If you want to change your number, please type-in 'Change number'
-    Check_VA_response_text    3    Please select one of the buttons above, or just type in your request.
-    Click_carousel_button_on_specific_location    1    5    FAQ
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    5    FAQ
     Check_VA_response_carousel_exists    1
     Click_carousel_button_on_specific_location    1    1    Voucher Info
     Check_VA_response_text    1    OK
@@ -386,6 +397,8 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Click_carousel_button_on_specific_location    2    1    Choose
     Check_VA_response_text    1    OK
     Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Credit Card
+    Pay_with_credit_card    Fail
 
 019-User perform inquire outlet location
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
@@ -410,7 +423,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
     Check_VA_response_image    3
     Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
-    User_input    Go To Menu
+    Click_Button_From_Response    4    Go To Menu
     Check_VA_response_text    1    This is the information for your number
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
@@ -445,7 +458,14 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
 
 [x]021-User complain about his internet connection
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
-    User_input    can't connect to the network
+    User_input    I can't connect to the network
+    Check_VA_response_text    1    Sorry for your inconvenience 🙂
+    Check_VA_response_text    2    OK, Lightning Diamond. I will check the issue for you
+    Check_VA_response_text_with_2buttons    3    Before I proceed further, do you want me to continue your inquiry with this phone number +6282297363942 ?    Yes    No
+    Click_additional_Yes
+    Check_VA_response_text    1    In order to fix your issue, please select operating system of your phone below
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    2    Android
 
 [x]022-User complain about his internet service and agree to connect to agent
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
@@ -460,38 +480,27 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
 
 023-User is bored/angry/sad/not feeling well/engage small talk but don't want to see Veronika's topic
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
-    User_input    i'm sad
-    Check_VA_response_text    1
-    Check_VA_response_text_with_2buttons    2    Are you interested?    Yes    No
+    User_input    I'm not feeling well
+    Check_VA_response_text    1    i'm not feeling well
+    Check_VA_response_text_with_2buttons    2    Hang in there! Don't skip any meals and keep hydrated. Maybe topic like humor or lifestyle can make you feel better    Yes    No
     User_input    No
     Check_VA_response_text_with_2buttons    1    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
     User_input    No
     Closing_session
 
-[x]024-User wants to have a small talk with Veronika
+024-User wants to have a small talk with Veronika
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    I'm not feeling well
-    Check_VA_response_text    1
-    Check_VA_response_text_with_2buttons    2    Are you interested?    Yes    No
+    Check_VA_response_text    1    i'm not feeling well
+    Check_VA_response_text_with_2buttons    2    Hang in there! Don't skip any meals and keep hydrated. Maybe topic like humor or lifestyle can make you feel better    Yes    No
     User_input    Yes
     Check_VA_response_text    1    Here are some interesting topics that can restore your energy 🙂
     Check_VA_response_carousel_exists    2
-    Validate_carousel_items    2    Quiz    Test your knowledge about music, celebrities and many more!    Choose
     Click_carousel_button_on_specific_location    2    5    Choose
     Check_VA_response_text    1
     Check_VA_response_text_with_buttons    2    Choose Your Answer
-    Click_Button_From_Response    2    2
-    Check_VA_response_text    1
-    Check_VA_response_text_with_buttons    2    Do you want to try another round?    Yes    Other Topics    No
-    Click_button_from_response_additional    2    Other Topics
-    Check_VA_response_text    1    Here are some interesting topics that can restore your energy 🙂
-    Check_VA_response_carousel_exists    2
-    Validate_carousel_items    2    Humor    Simple jokes just for you!
-    Click_carousel_button_on_specific_location    2    1    Choose
-    Check_VA_response_image    1
-    Check_VA_response_text_with_buttons    2    Share the joke with your friends 🙂 Do you want to see another joke?
-    Click_button_from_response_additional    2    Wrap it up
-    Closing session
+    Click_button_from_response_additional    2    1
+    Closing_session
 
 [x]025-User expresses harsh comment and ask random question to Veronika
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
