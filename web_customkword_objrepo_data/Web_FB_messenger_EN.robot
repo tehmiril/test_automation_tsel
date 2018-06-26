@@ -488,7 +488,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    No
     Closing_session
 
-024-User wants to have a small talk with Veronika
+[x]024-User wants to have a small talk with Veronika
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    I'm not feeling well
     Check_VA_response_text    1    i'm not feeling well
@@ -506,7 +506,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input
 
-[x]028-User request to connect to agent direclty from main menu
+028-User request to connect to agent direclty from main menu
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    Hi
     Check_VA_response_text    1    Hi
@@ -560,7 +560,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    Cancel
     Closing_session
 
-[x]031-User perform inquire subscribed main offering, package terms & condition and subscribed offer
+031-User perform inquire subscribed main offering, package terms & condition and subscribed offer
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    what is my current priceplan?
     Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
@@ -569,14 +569,15 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text    2    Is there anything else you might want to know? Please choose one of the answers below
     User_input    what is the best package for me?
     Check_VA_response_carousel_exists    1
-    Click_carousel_button_on_specific_location    1    3    Choose
+    Click_carousel_button_on_specific_location    1    2    Choose
     Check_VA_response_text    1    OK
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    You can also type 'cancel' to start over
     Click_carousel_button_on_specific_location    2    1    Detail
     Check_VA_response_text    1    Listed below is the terms and condition for
     Check_VA_response_text    2    Paket Internet berlaku untuk
-    Check_VA_response_text_with_2buttons    4    Would you like to buy this offer?    Yes    No
+    Check_VA_response_text    1    1. Paket berlaku hanya untuk pemakaian domestik (tidak berlalu untuk Internasional Roaming yang akan dikenakan biaya terpisah).
+    Check_VA_response_text_with_2buttons    1    Would you like to buy this offer?    Yes    No
     User_input    No
     Check_VA_response_text    1    OK
     Check_VA_response_carousel_exists    2
@@ -730,7 +731,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_carousel_exists    2
     Click_carousel_button_on_specific_location    2    3    TCASH
 
-040-Prepaid user who wants to top up using E-Banking (Mandiri ClickPay)
+[x]040-Prepaid user who wants to top up using E-Banking (Mandiri ClickPay)
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    i want to top-up credit
     Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
@@ -745,10 +746,10 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_carousel_exists    1
     Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
     Click_carousel_button_on_specific_location    1    1    Select
-    User_input    No
-    Close Browser
+    Pay_with_Mandiri_CP    Fail
+    Closing_session
 
-041-Prepaid user who wants to top up using E-Banking (PermataNet)
+[x]041-Prepaid user who wants to top up using E-Banking (PermataNet)
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    i want to top-up credit
     Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
@@ -772,7 +773,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text    1    Hi
     Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
     Check_VA_response_image    3
-    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Purchase Now    Go To Menu    Ganti Bahasa
     User_input    Go To Menu
     Check_VA_response_text    1    This is the information for your number
     Check_VA_response_carousel_exists    2
@@ -829,9 +830,9 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    Hi
     Check_VA_response_text    1    Hi
-    Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
+    Check_VA_response_text    2    Now, as often as you can buy Telkomsel packages, you have a big chance to win! For more information, click: tsel.me/racingpaketVA
     Check_VA_response_image    3
-    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Purchase Now    Go To Menu    Ganti Bahasa
     User_input    Go To Menu
     Check_VA_response_text    1    This is the information for your number
     Check_VA_response_carousel_exists    2
@@ -840,14 +841,16 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Click_carousel_button_on_specific_location    2    2    Buy favourite package
     Check_VA_response_text    1    OK
     Check_VA_response_text_with_2buttons    2    Do you wish to spend    Yes    No
+    Click_additional_Yes_EN
+    Check_VA_response_text    1    Thank you for your confirmation. Before activing the package, I will need you to enter a password that I sent you via SMS from TELKOMSEL to
 
 [x]045-User want to see the detail information of ongoing promotion
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    Hi
     Check_VA_response_text    1    Hi
-    Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
+    Check_VA_response_text    2    Now, as often as you can buy Telkomsel packages, you have a big chance to win! For more information, click: tsel.me/racingpaketVA
     Check_VA_response_image    3
-    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Purchase Now    Go To Menu    Ganti Bahasa
     User_input    Go To Menu
     Check_VA_response_text    1    This is the information for your number
     Check_VA_response_carousel_exists    2
@@ -860,9 +863,9 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    Hi
     Check_VA_response_text    1    Hi
-    Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
+    Check_VA_response_text    2    Now, as often as you can buy Telkomsel packages, you have a big chance to win! For more information, click: tsel.me/racingpaketVA
     Check_VA_response_image    3
-    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Purchase Now    Go To Menu    Ganti Bahasa
     User_input    Go To Menu
     Check_VA_response_text    1    This is the information for your number
     Check_VA_response_carousel_exists    2
@@ -883,16 +886,22 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    Hi
     Check_VA_response_text    1    Hi
-    Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
+    Check_VA_response_text    2    Now, as often as you can buy Telkomsel packages, you have a big chance to win! For more information, click: tsel.me/racingpaketVA
     Check_VA_response_image    3
-    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Purchase Now    Go To Menu    Ganti Bahasa
     User_input    Go To Menu
     Check_VA_response_text    1    This is the information for your number
     Check_VA_response_carousel_exists    2
     Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
     Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
     Click_carousel_button_on_specific_location    2    4    POINTASTIC DEAL Info
-    Click_carousel_button_on_specific_location    2    4    Redeem your reward
+    Click_carousel_button_on_specific_location    2    4    Browse all rewards
+    Check_VA_response_text    1    Your POIN is
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Redeem POIN
+    Check_VA_response_text_with_buttons    1    Great! You are going to redeem    Yes    No    Previous
+    Click_button_from_response_additional    1    Yes
 
 [x]048-User want to know and participate on POINTASTIC DEALS (optional)
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
@@ -1016,10 +1025,21 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
     User_input    Hi
     Check_VA_response_text    1    Hi
-    Check_VA_response_text    2    Mudik season will come soon! Now you can go back to hometown only by redeeming your Telkomsel POIN. See the details here: tsel.me/POINmudik
+    Check_VA_response_text    2    How may I assist you today
     Check_VA_response_image    3
-    Check_VA_response_text_with_2buttons    4    How may I assist you today    Go To Menu    Ganti Bahasa
-    User_input    Go To Menu
+    Check_VA_response_text_with_2buttons    4    Kindly select one of the options below or directly type in your request    Go To Menu    Ganti Bahasa
+    Click_Button_From_Response    4    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    1    Pay Bill
+    Check_VA_response_text    1    Your total invoice
+    Check_VA_response_text_with_2buttons    2    Do you want to process the payment?    Yes    No
+    Click_Button_From_Response    2    Yes
+    Check_VA_response_carousel_exists    1
+    Check_VA_response_text    2    As an alternative, You can pay your bills through MyTelkomsel, MyGraPARI, ATM, GraPARI, and Kantor POS.
+    User_input    cancel
 
 054-Postpaid user want to check quota detail information
     Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
@@ -1345,6 +1365,51 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    No
     Closing_session
 
+074-User wants to participate CES in VA - finished
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Now, as often as you can buy Telkomsel packages, you have a big chance to win! For more information, click: tsel.me/racingpaketVA
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Purchase Now    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    5    Nearest GraPARI
+    Check_VA_response_text    1    Please specify a location/area where you wish to find a GraPARI. You may share your location or type-in below
+    User_input    Jakarta
+    Check_VA_response_text    1    I have found several GraPARI close to Jakarta.
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    I have found several GraPARI close to Jakarta.
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    No
+    Check_VA_response_text    1    Hai,
+    User_input    5
+    Check_VA_response_text    1    What should I fix? Kindly select one of the categories below:
+    User_input    Solution Accuracy
+    Check_VA_response_text    1    Finally, please could you tell us the reasons for choosing Solution Accuracy as improvement item?
+    User_input    No
+    Check_VA_response_text    1    (10 = Extremely likely to recommend – 1 = Extremely unlikely to recommend)
+    User_input    8
+    Check_VA_response_text    1    I'll keep learning, I promise! Have a nice day!
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Now, as often as you can buy Telkomsel packages, you have a big chance to win! For more information, click: tsel.me/racingpaketVA
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Purchase Now    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    User_input    No
+    Check_VA_response_text    1    Thank you for contacting me. I'm happy to help!
+    Close Browser
+
 080-User asks about his PUK
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    what is my PUK?
@@ -1511,3 +1576,30 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Close Browser
 
 [x]055-User want to add kartuHalo subscripton
+
+[x]075-User wants to participate CES in Agent - finished
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Now, as often as you can buy Telkomsel packages, you have a big chance to win! For more information, click: tsel.me/racingpaketVA
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Purchase Now    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    5    Chat Customer Care
+    Check_VA_response_text    1    What do you want to ask? Maybe I can help with your problem
+    User_input    What is pop sms?
+    Check_VA_response_text    1    I'm not sure I understand what you are saying, but I am continuously learning every day
+    Check_VA_response_text    2    Could you please elaborate or rephrase your question?
+    User_input    What is sms?
+    Check_VA_response_text    1    Currently I'm unable to process your request
+    Check_VA_response_text    2    Let me connect you to one of our customer service agents
+    Check_VA_response_text    3    In the mean time, you can try one of the entertainment below
+    Check_VA_response_carousel_exists    4
+    Check_VA_response_text    5    You can type 'cancel' if you no longer need help from a customer service agent
+    Sleep    300s
+    Check_VA_response_text    1    Halo Lightning Diamond, \ good news! I am already with
+    Sleep    1200s

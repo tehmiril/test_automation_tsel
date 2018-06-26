@@ -76,3 +76,17 @@ Check_VA_response_text_actual_additional
     ${textresponse}    SeleniumLibrary.Get Element Attribute    (//*[@class="clearfix _o46 _3erg _3i_m _nd_ direction_ltr text_align_ltr" and contains (.,"${user_input}")])[${total_user_input}]/ancestor::*[@class="_1t_p clearfix"]/parent::*/following-sibling::*[${order}]/descendant::*[contains(@class,"clearfix _o46")]/div    body
     ${textresponse2}=    Remove String Using Regexp    ${textresponse}    (\r\n|\r|\n)
     Should Contain    ${textresponse2}    ${expected_text}
+
+Click_additional_No_EN
+    [Documentation]    Deprecated --- This keyword can be used to click Tidak button that is part of the VA response.
+    ${totalNo}    SeleniumLibrary.Get Element Count    ${nobutton_obj}
+    SeleniumLibrary.Click Element    (${nobutton_obj})[${totalNo}]
+    Set Suite Variable    ${current_user_input}    No
+    Run Keyword    Count_message_bubble_user_input    ${current_user_input}
+
+Click_additional_Yes_EN
+    [Documentation]    Deprecated --- This keyword can be used to click Ya button that is part of the VA response.
+    ${totalYa}    SeleniumLibrary.Get Element Count    ${yabutton_obj}
+    SeleniumLibrary.Click Element    (${yabutton_obj})[${totalYa}]
+    Set Suite Variable    ${current_user_input}    Yes
+    Run Keyword    Count_message_bubble_user_input    ${current_user_input}
