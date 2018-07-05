@@ -166,3 +166,10 @@ Click_button_carousel_faq
 
 Greet_VA_EN
     User_input    ${greeting}
+
+Cancel_and_closing_session_EN
+    [Documentation]    User enter 'Batal', validate text responses and contnue to close the conversation.
+    User_input    ${cancel_answer}
+    Check_VA_response_text    1    ${VA_cancel}
+    Check_VA_response_text    2    ${VA_question_1}
+    Closing_session

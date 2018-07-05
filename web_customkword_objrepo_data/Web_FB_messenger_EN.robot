@@ -28,13 +28,13 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
 
 *** Test Cases ***
 [x]001-Non-Telkomsel user who just started talking to VA
-    Login_messenger    ${email}    ${password}
+    Login_messenger    ${email}    ${passwordNonTsel}
     User_input    Hi
     Check_VA_response_text    1    Hi
     Check_VA_response_text    2    How may I assist you today
     Check_VA_response_image    3
     Check_VA_response_text_with_2buttons    4    Kindly select one of the options below or directly type in your request    Go To Menu    Ganti Bahasa
-    User_input    Go To Menu
+    Click_button_from_response_additional    4    Go To Menu
     Check_VA_response_carousel_exists    1
     Check_VA_response_text    2    Please select one of the buttons above, or just type in your request.
     Click_carousel_button_on_specific_location    1    4    Telkomsel POIN
@@ -56,11 +56,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text    2    Please select one of the buttons above, or just type in your request.
     Click_carousel_button_on_specific_location    1    4    Top-up
     Check_VA_response_text    1    In order to process your inquire, please type your valid Telkomsel phone number (e.g. 0811000000)
-    User_input    cancel
-    Check_VA_response_text    1    OK, cancelling.
-    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
-    User_input    No
-    Closing_session
+    Cancel_and_closing_session_EN
 
 [x]004-Non-Telkomsel user who greets VA for the first time and explore VA
     Login_messenger    ${email}    ${password}
@@ -1426,6 +1422,41 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    No
     Closing_session
 
+[x]081-Prepaid user who wants to purchase the package that VA offers
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi Lightning Diamond, welcome to Telkomsel Virtual GraPARI
+    Check_VA_response_text    2    Hai, kawan simPATI! Do you need any help?
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    Just type in your request or select a menu below 🙂    Go To Menu    Ganti Bahasa
+    Click_Button_From_Response    4    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Validate_carousel_items    2    Your Profile    Information about your Telkomsel number    Quota detail    Top-up credit    PUK Info
+    Validate_carousel_items    2    Just for you    Browse and buy our best selection products for you    Buy favorite package    Browse packages    Send Gift
+    Validate_carousel_items    2    simPATI COMBO    Always ready to get excited with \ simPATI COMBO    Join This Promo    Promotion Detail    See All Promotions
+    Validate_carousel_items    2    100 Telkomsel POIN    Shopee App - Diskon Rp 30.000    Redeem your reward    Browse all rewards    POINTASTIC DEAL Info
+    Validate_carousel_items    2    Support    Any questions? Find your answer here    FAQ    Nearest GraPARI    Chat Customer Care
+    Click_carousel_button_on_specific_location    2    2    Browse packages
+    Check_VA_response_text    1    You can purchase any of our offers listed in the five catalogues provided below:
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_carousel_exists    1
+    Click_carousel_button_on_specific_location    1    1    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Buy
+    Check_VA_response_text    1    OK
+    Check_VA_response_text_with_2buttons    2    Do you wish to spend    Yes    No
+    Click_Button_From_Response    2    Yes
+    Check_VA_response_text    1    Thank you for your confirmation. Before activing the package, I will need you to enter a password that I sent you via SMS from TELKOMSEL to
+    Check_VA_response_text    2    Valid for the next 3 minutes. Should you require a another one, please type 'New Password'
+    Closing_session
+
 084-User want to check his/ her last invoice date and amount
     Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
     User_input    My last invoice
@@ -1447,6 +1478,44 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
     Check_VA_response_text    1    Thank you for contacting me. I'm happy to help!
     Close Browser
+
+[x]087-User wants to book an appointment at GraPARI
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    i want to book an appointment
+    Check_VA_response_text    1    Hi
+    User_input    cikarang
+    Check_VA_response_text    1    Which GraPARI area are you looking for ?
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    I have found several GraPARI close to Cikarang.
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Validate_carousel_items    2    GraPARI    Senin-Jumat(07:30-18:00)     Open in Google Maps    Make an Appointment
+    Click_carousel_button_on_specific_location    2    1    Make an Appointment
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number     Yes    No
+    Click_Button_From_Response    1    Yes
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    2    Choose Service
+    Check_VA_response_text    1    Speaking of information and complaint, one of Telkomsel staff can also help you with your needs.
+    Check_VA_response_text_with_2buttons    2    Do you want to speak with a Telkomsel customer service agent?    Yes    No
+    Click_Button_From_Response    2    No
+    Check_VA_response_text    1    When do you want to come to GraPARI?
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    3    13:00-17:00 WIB
+    Check_VA_response_text    1    What time do you want to come?
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    13:30-14:00 WIB
+    Check_VA_response_text    1    The appointment booking for mobile number
+    Check_VA_response_text_with_buttons    2    Is everything correct?    Yes    No    Cancel
+    Click_Button_From_Response    2    Yes
+    Check_VA_response_text    1    Perfect! Thank you for making the appointment. Looking forward to meeting you!
+    Check_VA_response_image    2
+    Check_VA_response_text    1    Please come 15 minutes before your appointment and show your appointment number to one of our Telkomsel staff.
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Click_Button_From_Response    2    No
+    Check_VA_response_text    1    Thank you for contacting me. I'm happy to help!
+    Closing_session
 
 088-User asks about his usage
     Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
@@ -1473,6 +1542,59 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    No
     Closing_session
 
+[x]090-Prepaid user who wants to explore the loyalty card
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Hai, kawan simPATI! Do you need any help?
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    Just type in your request or select a menu below 🙂    Go To Menu    Ganti Bahasa
+    Click_Button_From_Response    4    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    4    Redeem your reward
+    Check_VA_response_text_with_2buttons    1    Great! You are going to redeem    Yes    No
+    Click_Button_From_Response    1    Yes
+    Check_VA_response_text    1    You have redeemed
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Click_Button_From_Response    2    Yes
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    4    Browse all rewards
+    Check_VA_response_text    1    Your POIN is
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    5    See All Rewards
+    Check_VA_response_text    1    Check out these POIN reward categories.
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    4    Telco & Digital
+    Check_VA_response_text    1    Here are the available Telco & Digital rewards
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Redeem POIN
+    Check_VA_response_text_with_buttons    1    Great! You are going to redeem     Yes    No    Previous
+    Click_Button_From_Response    1    No
+    Check_VA_response_text_with_2buttons    1    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Click_Button_From_Response    1    No
+    Closing_session
+
+091-User asks about his main offer
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    What is my priceplan?
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
+    Click_Button_From_Response    1    Yes
+    Check_VA_response_text    1    OK
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    User_input    My top up history
+    Check_VA_response_text    1    OK
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Click_Button_From_Response    2    No
+    Closing_session
+
 092-User Inquire Active Subscribed Offer
     Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
     User_input    my active package information
@@ -1490,6 +1612,45 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    no
     Check_VA_response_text    1    Thank you for chatting with me. Chat with me again anytime 🙂
     Close Browser
+
+[x]093-User wants to reload
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    I want to top up
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
+    Click_Button_From_Response    1    Yes
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Choose
+
+[x]094-User want to reload but cancel in the middle of conversation
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Hai, kawan simPATI! Do you need any help?
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    Just type in your request or select a menu below 🙂    Go To Menu    Ganti Bahasa
+    Click_Button_From_Response    4    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    1    Top-up credit
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    2    E-Banking
+    Check_VA_response_carousel_exists    1
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Click_carousel_button_on_specific_location    2    1    Select
+    Pay_with_Mandiri_CP    FAIL
+    Closing_session
 
 095-User want to know his/ her historical recharge
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
@@ -1603,3 +1764,26 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Sleep    300s
     Check_VA_response_text    1    Halo Lightning Diamond, \ good news! I am already with
     Sleep    1200s
+
+[x]097-User ask something that Veronika understand
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Hai, kawan simPATI! Do you need any help?
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    Just type in your request or select a menu below 🙂    Go To Menu    Ganti Bahasa
+    Click_Button_From_Response    4    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    User_input    What is pop call?
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Is there anything else you might want to know? Please choose one of the answers below
+    User_input    What is waktu shalat?
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Is there anything else you might want to know? Please choose one of the answers below
+    User_input    No
+    Closing_session
