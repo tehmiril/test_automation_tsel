@@ -1,3 +1,5 @@
+*** Settings ***
+
 *** Keywords ***
 Pay_with_credit_card
     [Arguments]    ${status}

@@ -1,3 +1,5 @@
+*** Settings ***
+
 *** Keywords ***
 Login_messenger_actual
     [Arguments]    ${email}    ${password}

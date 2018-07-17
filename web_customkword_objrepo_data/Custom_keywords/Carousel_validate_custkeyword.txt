@@ -1,3 +1,20 @@
+*** Settings ***
+Resource          ../Object_repository/Object_repo_FB.txt
+Resource          ../Object_repository/Payment_pages_object_repo.txt
+Resource          ../Test_data/Test_data_payment.txt
+Resource          ../Test_data/Test_data_SMS_Indo.txt
+Resource          ../Test_data/Test_data_user_input_EN.txt
+Resource          ../Test_data/Test_data_user_input_Indo.txt
+Resource          ../Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
+Resource          ../Test_data/Test_data_VA_response_carousel_NonTSEL_Indo.txt
+Resource          ../Test_data/Test_data_VA_response_carousel_TSEL_EN.txt
+Resource          ../Test_data/Test_data_VA_response_carousel_TSEL_Indo.txt
+Resource          ../Test_data/Test_data_VA_response_EN.txt
+Resource          ../Test_data/Test_data_VA_response_Indo.txt
+Resource          ../Test_data/URL_data.txt
+Resource          Detailed_custkeyword.txt
+Resource          Generic_custkeyword.txt
+
 *** Keywords ***
 Validate_VA_carousel_produk
     Check_VA_response_carousel_exists    2

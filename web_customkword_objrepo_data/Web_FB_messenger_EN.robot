@@ -2,7 +2,7 @@
 Suite Setup       Open_chrome    ${URLmessengerTSEL}
 Suite Teardown    Close Browser
 Test Teardown     Run Keyword If Test Failed    Cancel_and_closing_session
-Library           SeleniumLibrary    run_on_failure=No Operation
+Library           SeleniumLibrary
 Library           String
 Library           OperatingSystem
 Library           Collections
@@ -353,9 +353,9 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    Hi
     Check_VA_response_text    1    Hi
-    Check_VA_response_text    2    Purchase your credit here and get 10% cashback. For more information, click: tsel.me/cashbackVA
+    Check_VA_response_text    2    Hai, kawan simPATI! Do you need any help?
     Check_VA_response_image    3
-    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Top-up Now    Go To Menu    Ganti Bahasa
+    Check_VA_response_text_with_2buttons    4    Just type in your request or select a menu below 🙂    Go To Menu    Ganti Bahasa
     User_input    i want to know about telkomsel voucher
     Check_VA_response_text    1    OK
     Check_VA_response_text_with_buttons    2    Please type your brand: simPATI, Loop or Kartu As.    SimPATI    Loop    Kartu As
@@ -584,7 +584,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Closing_session
 
 032-Prepaid User ask for Recharge History
-    Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    Hi
     Check_VA_response_text    1    Hi
     Check_VA_response_text    2    Mudik season will come soon! Now you can go back to hometown only by redeeming your Telkomsel POIN. See the details here: tsel.me/POINmudik
@@ -1061,6 +1061,8 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text    1    Thank you for chatting with me. Chat with me again anytime 🙂
     Close Browser
 
+[x]055-User want to add kartuHalo subscripton
+
 056-Postpaid User ask his credit limit
     Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
     User_input    My credit's limit
@@ -1406,6 +1408,33 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text    1    Thank you for contacting me. I'm happy to help!
     Close Browser
 
+[x]075-User wants to participate CES in Agent - finished
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Now, as often as you can buy Telkomsel packages, you have a big chance to win! For more information, click: tsel.me/racingpaketVA
+    Check_VA_response_image    3
+    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Purchase Now    Go To Menu    Ganti Bahasa
+    User_input    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    Click_carousel_button_on_specific_location    2    5    Chat Customer Care
+    Check_VA_response_text    1    What do you want to ask? Maybe I can help with your problem
+    User_input    What is pop sms?
+    Check_VA_response_text    1    I'm not sure I understand what you are saying, but I am continuously learning every day
+    Check_VA_response_text    2    Could you please elaborate or rephrase your question?
+    User_input    What is sms?
+    Check_VA_response_text    1    Currently I'm unable to process your request
+    Check_VA_response_text    2    Let me connect you to one of our customer service agents
+    Check_VA_response_text    3    In the mean time, you can try one of the entertainment below
+    Check_VA_response_carousel_exists    4
+    Check_VA_response_text    5    You can type 'cancel' if you no longer need help from a customer service agent
+    Sleep    300s
+    Check_VA_response_text    1    Halo Lightning Diamond, \ good news! I am already with
+    Sleep    1200s
+
 080-User asks about his PUK
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    what is my PUK?
@@ -1490,9 +1519,9 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text    1    I have found several GraPARI close to Cikarang.
     Check_VA_response_carousel_exists    2
     Check_VA_response_text_with_2buttons    3    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
-    Validate_carousel_items    2    GraPARI    Senin-Jumat(07:30-18:00)     Open in Google Maps    Make an Appointment
+    Validate_carousel_items    2    GraPARI    Senin-Jumat(07:30-18:00)    Open in Google Maps    Make an Appointment
     Click_carousel_button_on_specific_location    2    1    Make an Appointment
-    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number     Yes    No
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
     Click_Button_From_Response    1    Yes
     Check_VA_response_text    1    OK
     Check_VA_response_carousel_exists    2
@@ -1576,7 +1605,7 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text    1    Here are the available Telco & Digital rewards
     Check_VA_response_carousel_exists    2
     Click_carousel_button_on_specific_location    2    1    Redeem POIN
-    Check_VA_response_text_with_buttons    1    Great! You are going to redeem     Yes    No    Previous
+    Check_VA_response_text_with_buttons    1    Great! You are going to redeem    Yes    No    Previous
     Click_Button_From_Response    1    No
     Check_VA_response_text_with_2buttons    1    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
     Click_Button_From_Response    1    No
@@ -1662,6 +1691,29 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    No
     Closing_session
 
+097-User ask something that Veronika understand
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Hai, kawan simPATI! Do you need any help?
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    Just type in your request or select a menu below 🙂    Go To Menu    Ganti Bahasa
+    Click_Button_From_Response    4    Go To Menu
+    Check_VA_response_text    1    This is the information for your number
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
+    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
+    User_input    What is pop call?
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Is there anything else you might want to know? Please choose one of the answers below
+    User_input    What is waktu shalat?
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    Is there anything else you might want to know? Please choose one of the answers below
+    User_input    No
+    Closing_session
+
 098-User ask something that VA doesn’t understand and directed to FAQ
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    what is waktu sholat?
@@ -1687,6 +1739,51 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     Check_VA_response_text    3    Is there anything else you might want to know? Please choose one of the answers below
     User_input    Cancel
     Close Browser
+
+[x]110-User wants to perform Send Gift Reload Balance from Prepaid/Postpaid Number to Prepaid Number
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Hai, kawan simPATI! Do you need any help?
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    Just type in your request or select a menu below 🙂    Go To Menu    Ganti Bahasa
+    User_input    i want to top up credit for my friend
+    Check_VA_response_text    1    OK, please input a mobile number that you want to gift \ (Example: 08110000000)
+    User_input    082297363942
+    Check_VA_response_text_with_2buttons    1    Below are the gifts you can give to your destination number    Buy Credit Balance    Buy Packages
+    Click_Button_From_Response    1    Buy Credit Balance
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    2    E-Banking
+    Check_VA_response_carousel_exists    1
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+
+[x]111-User wants to perform Send Gift Purchase Package from Postpaid (Consumer with no Block Status) or Prepaid Number to Prepaid Number
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Hai, kawan simPATI! Do you need any help?
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    Just type in your request or select a menu below 🙂    Go To Menu    Ganti Bahasa
+    User_input    i want to top up credit for my friend
+    Check_VA_response_text    1    OK, please input a mobile number that you want to gift \ (Example: 08110000000)
+    User_input    082297363942
+    Check_VA_response_text_with_2buttons    1    Below are the gifts you can give to your destination number    Buy Credit Balance    Buy Packages
+    Click_Button_From_Response    1    Buy Packages
+    Check_VA_response_text    1    Below are the package categories you can gift to number
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Buy
+    Check_VA_response_text    1    OK
+    Check_VA_response_text_with_2buttons    2    OK    Yes    No
+    Click_Button_From_Response    2    Yes
+    Check_VA_response_text    1    Thank you for your confirmation. Before activing the package, I will need you to enter a password that I sent you via SMS from TELKOMSEL to
 
 [x]112-User wants to perform Send Gift Purchase Package from Postpaid (Consumer with Block 1 or Block 2 Status) to Prepaid Number
     Login_messenger    ${emailPostpaid}    ${passwordPostpaid}
@@ -1716,6 +1813,117 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    No
     Closing_session
 
+[x]118-User wants to perform Send Gift from Prepaid/Postpaid Number to Prepaid/Postpaid Number
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Hai, kawan simPATI! Do you need any help?
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    Just type in your request or select a menu below 🙂    Go To Menu    Ganti Bahasa
+    User_input    i want to top up credit for my friend
+    Check_VA_response_text    1    OK, please input a mobile number that you want to gift \ (Example: 08110000000)
+    User_input    085219606108
+    Check_VA_response_text    1    The number you inputted is no longer active. Please input an active Telkomsel number
+    Closing_session
+
+[x]119-Telkomsel user want to purchase voucher games
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Hai, kawan simPATI! Do you need any help?
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    Just type in your request or select a menu below 🙂    Go To Menu    Ganti Bahasa
+    User_input    i want to buy voucher game
+    Check_VA_response_text    1    Here are some categories of games voucher you might choose
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    1    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Buy
+
+[x]124-Prepaid user who has insufficient prepaid balance purchase voucher games
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Hai, kawan simPATI! Do you need any help?
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    Just type in your request or select a menu below 🙂    Go To Menu    Ganti Bahasa
+    User_input    i want to buy voucher game
+    Check_VA_response_text    1    Here are some categories of games voucher you might choose
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    2    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Buy
+    Check_VA_response_text_with_2buttons    3    It seems like you do not have sufficient balance. Do you want to top up your balance or browse other vouchers?    Top Up    See Other Vouchers
+
+[x]125-Prepaid user who has insufficient prepaid balance purchase voucher games
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Hai, kawan simPATI! Do you need any help?
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    Just type in your request or select a menu below 🙂    Go To Menu    Ganti Bahasa
+    User_input    i want to buy voucher game
+    Check_VA_response_text    1    Here are some categories of games voucher you might choose
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    2    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Buy
+    Check_VA_response_text_with_2buttons    3    It seems like you do not have sufficient balance. Do you want to top up your balance or browse other vouchers?    Top Up    See Other Vouchers
+
+[x]126-Prepaid user want to purchase Mobile Legend voucher games
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Hai, kawan simPATI! Do you need any help?
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    Just type in your request or select a menu below 🙂    Go To Menu    Ganti Bahasa
+    User_input    i want to buy voucher game
+    Check_VA_response_text    1    Here are some categories of games voucher you might choose
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    2    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Buy
+
+[x]127-Prepaid user want to purchase Mobile Legend voucher games
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Hai, kawan simPATI! Do you need any help?
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    Just type in your request or select a menu below 🙂    Go To Menu    Ganti Bahasa
+    User_input    i want to buy voucher game
+    Check_VA_response_text    1    Here are some categories of games voucher you might choose
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    2    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Buy
+
+[x]132-Prepaid user who has insufficient prepaid balance purchase mobile legend voucher
+    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
+    User_input    Hi
+    Check_VA_response_text    1    Hi
+    Check_VA_response_text    2    Hai, kawan simPATI! Do you need any help?
+    Check_VA_response_image    3
+    Check_VA_response_text_with_2buttons    4    Just type in your request or select a menu below 🙂    Go To Menu    Ganti Bahasa
+    User_input    i want to buy voucher game
+    Check_VA_response_text    1    Here are some categories of games voucher you might choose
+    Check_VA_response_carousel_exists    2
+    Click_carousel_button_on_specific_location    2    2    Choose
+    Check_VA_response_text    1    OK
+    Check_VA_response_carousel_exists    2
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Buy
+
 [x]133-Prepaid user who has insufficient prepaid balance purchase Mobile Legend voucher games
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
     User_input    I want to buy voucher game
@@ -1736,54 +1944,20 @@ Resource          Test_data/Test_data_VA_response_carousel_NonTSEL_EN.txt
     User_input    Cancel
     Close Browser
 
-[x]055-User want to add kartuHalo subscripton
-
-[x]075-User wants to participate CES in Agent - finished
+[x]134-Prepaid user who wants to topup using E-Banking (Danamon)
     Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
-    User_input    Hi
-    Check_VA_response_text    1    Hi
-    Check_VA_response_text    2    Now, as often as you can buy Telkomsel packages, you have a big chance to win! For more information, click: tsel.me/racingpaketVA
-    Check_VA_response_image    3
-    Check_VA_response_text_with_buttons    4    Just type in your request or select a menu below 🙂    Purchase Now    Go To Menu    Ganti Bahasa
-    User_input    Go To Menu
-    Check_VA_response_text    1    This is the information for your number
-    Check_VA_response_carousel_exists    2
-    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
-    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
-    Click_carousel_button_on_specific_location    2    5    Chat Customer Care
-    Check_VA_response_text    1    What do you want to ask? Maybe I can help with your problem
-    User_input    What is pop sms?
-    Check_VA_response_text    1    I'm not sure I understand what you are saying, but I am continuously learning every day
-    Check_VA_response_text    2    Could you please elaborate or rephrase your question?
-    User_input    What is sms?
-    Check_VA_response_text    1    Currently I'm unable to process your request
-    Check_VA_response_text    2    Let me connect you to one of our customer service agents
-    Check_VA_response_text    3    In the mean time, you can try one of the entertainment below
-    Check_VA_response_carousel_exists    4
-    Check_VA_response_text    5    You can type 'cancel' if you no longer need help from a customer service agent
-    Sleep    300s
-    Check_VA_response_text    1    Halo Lightning Diamond, \ good news! I am already with
-    Sleep    1200s
-
-[x]097-User ask something that Veronika understand
-    Login_messenger    ${emailNonTsel}    ${passwordNonTsel}
-    User_input    Hi
-    Check_VA_response_text    1    Hi
-    Check_VA_response_text    2    Hai, kawan simPATI! Do you need any help?
-    Check_VA_response_image    3
-    Check_VA_response_text_with_2buttons    4    Just type in your request or select a menu below 🙂    Go To Menu    Ganti Bahasa
-    Click_Button_From_Response    4    Go To Menu
-    Check_VA_response_text    1    This is the information for your number
-    Check_VA_response_carousel_exists    2
-    Check_VA_response_text    3    If you want to change your number, please type-in 'Change number'
-    Check_VA_response_text    4    Please select one of the buttons above, or just type in your request.
-    User_input    What is pop call?
+    User_input    I want to top up balance
+    Check_VA_response_text_with_2buttons    1    Before I proceed further, do you want me to continue your inquiry with this phone number    Yes    No
+    Click_Button_From_Response    1    Yes
     Check_VA_response_text    1    OK
     Check_VA_response_carousel_exists    2
-    Check_VA_response_text    3    Is there anything else you might want to know? Please choose one of the answers below
-    User_input    What is waktu shalat?
+    Check_VA_response_text    3    You can also type 'cancel' to start over
+    Click_carousel_button_on_specific_location    2    1    Choose
     Check_VA_response_text    1    OK
     Check_VA_response_carousel_exists    2
-    Check_VA_response_text    3    Is there anything else you might want to know? Please choose one of the answers below
-    User_input    No
-    Closing_session
+    Click_carousel_button_on_specific_location    2    2    E-Banking
+    Check_VA_response_carousel_exists    1
+    Check_VA_response_text_with_2buttons    2    Is there anything else you might want to know? Please choose one of the answers below    Yes    No
+    Click_carousel_button_on_specific_location    1    3    Danamon
+
+[x]135-Prepaid user who wants to topup using Danamon

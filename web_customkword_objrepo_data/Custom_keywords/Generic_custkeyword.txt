@@ -1,3 +1,6 @@
+*** Settings ***
+Library           SeleniumLibrary
+
 *** Keywords ***
 Greet_VA_Indo
     [Arguments]    ${greeting_text}= ${VA_Greet1}
@@ -23,6 +26,7 @@ Greet_VA_Indo
     SeleniumLibrary.Capture Page Screenshot    VAgreet_${TEST NAME}.png
     Validate_Main_Menu
     Sleep    2s
+    ${greeting_text}
 
 Click_Button_From_Response
     [Arguments]    ${order}    ${r_button}
@@ -98,6 +102,7 @@ Login_messenger
     ${email_obj_visible}    Run Keyword And Return Status    Wait Until Keyword Succeeds    10    3s    SeleniumLibrary.Element Should Be Visible    ${email_obj}
     Run Keyword If    ${email_obj_visible}    Login_messenger_actual    ${email}    ${password}
     ...    ELSE    Check_logged_in_user    ${email}    ${password}
+    SeleniumLibrary.Set Screenshot Directory    ${TEST_NAME}
 
 Cancel_and_closing_session
     [Documentation]    User enter 'Batal', validate text responses and contnue to close the conversation.

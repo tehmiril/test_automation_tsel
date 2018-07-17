@@ -1,3 +1,5 @@
+*** Settings ***
+
 *** Keywords ***
 Count_message_bubble
     [Documentation]    count total of message bubble, for both user input and VA response

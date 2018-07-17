@@ -1,3 +1,6 @@
+*** Settings ***
+Resource          Generic_custkeyword.txt
+
 *** Keywords ***
 Check_VA_response_text_with_buttons
     [Arguments]    ${order}    ${expected_text}    @{expected_buttons}

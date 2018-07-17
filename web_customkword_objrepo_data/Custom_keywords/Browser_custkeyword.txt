@@ -1,3 +1,7 @@
+*** Settings ***
+Library           SeleniumLibrary
+Library           String
+
 *** Keywords ***
 Open_chrome
     [Arguments]    ${URL}
